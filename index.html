@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kewei Liu | Multimodal AI, Speech & Education</title>
-  <meta name="description" content="Kewei Liu is an M.S. student at the University of Tokyo working on multimodal AI, speech and language processing, interactive systems, and education technology.">
+  <meta name="description" content="Kewei Liu is an M.S. student at the University of Tokyo working on speech, multimodal AI, human communication, and education.">
   <meta name="author" content="Kewei Liu">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <link rel="canonical" href="https://kayui-gavo.github.io/kewei-liu-site/">
@@ -14,8 +14,8 @@
   <link rel="alternate" hreflang="zh-Hant" href="https://kayui-gavo.github.io/kewei-liu-site/zh-tw/">
   <link rel="alternate" hreflang="x-default" href="https://kayui-gavo.github.io/kewei-liu-site/">
   <meta property="og:type" content="profile">
-  <meta property="og:title" content="Kewei Liu | Multimodal AI, Speech & Education">
-  <meta property="og:description" content="Researcher, engineer, and educator working across multimodal AI, speech & language, and learning systems.">
+  <meta property="og:title" content="Kewei Liu">
+  <meta property="og:description" content="Speech, multimodal AI, human communication, and education.">
   <meta property="og:url" content="https://kayui-gavo.github.io/kewei-liu-site/">
   <link rel="stylesheet" href="./assets/style.css">
   <script type="application/ld+json">
@@ -41,7 +41,9 @@
   <nav class="nav" aria-label="Primary navigation">
     <a class="brand" href="#top">Kewei Liu</a>
     <div class="nav-links">
-      <a href="#work">Work</a><a href="#research">Research</a><a href="#education">Education</a><a href="#publications">Publications</a><a href="#about">About</a>
+      <a href="#selected">Selected</a>
+      <a href="#education">Education</a>
+      <a class="cv-link" href="./cv/kewei-liu-cv.pdf">CV</a>
     </div>
     <div class="language-switcher" aria-label="Language">
       <a href="./" aria-current="page">EN</a><a href="./ja/">日本語</a><a href="./zh-cn/">简中</a><a href="./zh-tw/">繁中</a>
@@ -49,96 +51,69 @@
   </nav>
 </header>
 <main id="main">
-  <section class="section hero" id="top">
-    <div>
-      <div class="eyebrow">Researcher · Engineer · Educator</div>
-      <h1>Kewei<br>Liu</h1>
-      <p class="role">Multimodal AI, speech & language, and learning systems.</p>
-      <p class="lead">M.S. student in Electrical Engineering and Information Systems at the University of Tokyo. I work on multimodal AI and speech-language technologies, build inspectable prototypes, and develop learning materials for students preparing for Japanese university entrance examinations.</p>
-      <div class="actions">
-        <a class="button primary" href="#work">Selected work</a>
-        <a class="button" href="https://github.com/kayui-gavo">GitHub</a>
-        <a class="button" href="mailto:ryukayuiii@gmail.com">Email</a>
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <span class="flower" aria-hidden="true"></span>
+      <div class="kicker">Tokyo · speech · multimodal AI · education</div>
+      <h1>Kewei Liu</h1>
+      <p class="intro">M.S. student at the University of Tokyo. I study speech and multimodal interaction, and I also teach physics and develop learning materials for students preparing to study in Japan.</p>
+      <div class="quick-links">
+        <a href="./cv/kewei-liu-cv.pdf">CV ↗</a>
+        <a href="https://github.com/kayui-gavo">GitHub ↗</a>
+        <a href="mailto:ryukayuiii@gmail.com">Email</a>
       </div>
     </div>
-    <div class="hero-mark" aria-hidden="true"><span>KL</span></div>
   </section>
 
-  <section class="section" id="work">
-    <div class="section-head">
-      <div class="section-label">Selected work</div>
-      <div><h2 class="section-title">Research, prototypes, and education built around real signals and real learners.</h2><p class="section-intro">My work spans multimodal video understanding, Japanese speech evaluation, language-learning support, and educational content development.</p></div>
-    </div>
-    <div class="work-grid">
-      <article class="card large">
-        <div class="index">01 · Research</div>
-        <h3>Emotion-Transition-Controllable Video Summarization</h3>
-        <p>A multimodal video summarization framework that uses vision, audio, and text cues to follow a user-specified valence–arousal trajectory while preserving important content.</p>
-        <div class="tags"><span class="tag">Multimodal AI</span><span class="tag">Video</span><span class="tag">Audio</span><span class="tag">NLP</span><span class="tag">Dynamic Programming</span></div>
-        <a class="card-link" href="#publications">APSIPA ASC 2026 →</a>
-      </article>
-      <article class="card medium card-accent">
-        <div class="index">02 · Prototype</div>
-        <h3>Japanese Speech Evaluation</h3>
-        <p>An inspectable speaking-practice prototype with pronunciation, prosody, fluency, content checks, evidence gating, and developer-facing logs.</p>
-        <div class="tags"><span class="tag">Speech</span><span class="tag">Evaluation</span><span class="tag">Python</span><span class="tag">Interactive AI</span></div>
-        <a class="card-link" href="https://kayui-gavo-jp-speech-eval-demo.hf.space/">Open demo →</a>
-      </article>
-      <article class="card half">
-        <div class="index">03 · Education</div>
-        <h3>Tabito Education</h3>
-        <p>Physics instruction, curriculum development, LaTeX-based learning materials, course resources, and web-based learning infrastructure for international students preparing for study in Japan.</p>
-        <div class="tags"><span class="tag">Teaching</span><span class="tag">Curriculum</span><span class="tag">LaTeX</span><span class="tag">Web</span></div>
-        <a class="card-link" href="https://github.com/kayui-gavo/tabito-course-portal">View course portal repository →</a>
-      </article>
-      <article class="card half">
-        <div class="index">04 · Ongoing M.S. research</div>
-        <h3>Speaking Onset Support for Japanese Learners</h3>
-        <p>Investigating how visual context and staged hints can help learners begin speaking in their own words, with evaluation focused on speaking-onset latency, speech amount, specificity, naturalness, and burden.</p>
-        <div class="tags"><span class="tag">Speech & Language</span><span class="tag">Multimodal Interaction</span><span class="tag">Language Learning</span></div>
-      </article>
-    </div>
-  </section>
-
-  <section class="section" id="research">
-    <div class="section-head">
-      <div class="section-label">Research</div>
-      <div><h2 class="section-title">From multimodal video understanding to speech and interaction.</h2></div>
-    </div>
-    <div class="timeline">
-      <article class="timeline-item"><div class="timeline-meta">2026–present<br>The University of Tokyo</div><div><h3>Speech, language, and multimodal interaction</h3><p>Current M.S. work in the Minematsu–Saito Laboratory explores support for Japanese learners who need to turn visual context into spontaneous speech. The focus is on staged hints and measurable changes in speaking behavior.</p></div></article>
-      <article class="timeline-item"><div class="timeline-meta">2025–2026<br>Kyoto University</div><div><h3>Emotion-transition-controllable video summarization</h3><p>Bachelor's research in the Yoshii Laboratory. I designed a path-conditioned multimodal VA fusion framework and an ordered segment selector that balances emotional-path coherence and content importance.</p></div></article>
+  <section class="section" id="selected">
+    <h2 class="section-title">Selected things</h2>
+    <div class="list">
+      <div class="item">
+        <div class="item-meta">Research · 2026</div>
+        <div class="item-title"><strong>Emotion-Transition-Controllable Video Summarization</strong><br>Multimodal video summarization with vision, audio, text, and a user-specified emotional trajectory.</div>
+        <a class="item-link" href="#publication">APSIPA ASC 2026 →</a>
+      </div>
+      <div class="item">
+        <div class="item-meta">M.S. research</div>
+        <div class="item-title"><strong>Speaking Onset Support for Japanese Learners</strong><br>Visual context and staged hints for helping learners begin speaking in their own words.</div>
+        <span class="item-link">ongoing</span>
+      </div>
+      <div class="item">
+        <div class="item-meta">Prototype</div>
+        <div class="item-title"><strong>Japanese Speech Evaluation</strong><br>An inspectable speaking-practice prototype for pronunciation, prosody, fluency, and content checks.</div>
+        <a class="item-link" href="https://kayui-gavo-jp-speech-eval-demo.hf.space/">demo →</a>
+      </div>
+      <div class="item">
+        <div class="item-meta">Education</div>
+        <div class="item-title"><strong>Tabito Education / 旅人教育</strong><br>Physics teaching, learning-material development, and course web resources for international students.</div>
+        <a class="item-link" href="https://kayui-gavo.github.io/tabito-course-portal/">portal →</a>
+      </div>
     </div>
   </section>
 
   <section class="section" id="education">
-    <div class="section-head">
-      <div class="section-label">Education</div>
-      <div><h2 class="section-title">Teaching and building the infrastructure around learning.</h2><p class="section-intro">At Tabito Education, I work across teaching, material design, course organization, and web resources for international students preparing for Japanese university admissions.</p></div>
-    </div>
-    <div class="work-grid">
-      <article class="card half"><div class="index">Teaching</div><h3>Physics for Japanese university entrance</h3><p>Instruction for EJU, the Common Test, and university-specific examinations, with explanations adjusted to students' Japanese proficiency and problem-solving stage.</p><div class="tags"><span class="tag">EJU</span><span class="tag">Common Test</span><span class="tag">Physics</span></div></article>
-      <article class="card half"><div class="index">Materials & systems</div><h3>Textbooks, problem sets, and course web resources</h3><p>Designing diagram-driven LaTeX materials, worked solutions, assignments, recorded-lesson resources, and a static course portal. The related Information I prototype organizes official topics into compact lessons with original figures and review questions.</p><div class="tags"><span class="tag">Information Design</span><span class="tag">LaTeX</span><span class="tag">HTML/CSS</span></div><a class="card-link" href="https://kayui-gavo.github.io/tabito-course-portal/">Open course portal →</a></article>
+    <h2 class="section-title">Education & teaching</h2>
+    <p class="section-note">My education work centers on Japanese university entrance preparation for international students. I teach physics and develop LaTeX-based materials, problem sets, worked solutions, and web resources at Tabito Education.</p>
+    <p class="soft-note">For academic background, technical skills, awards, and other experience, please see my CV.</p>
+  </section>
+
+  <section class="section" id="publication">
+    <h2 class="section-title">Publication</h2>
+    <div class="list">
+      <div class="item">
+        <div class="item-meta">2026</div>
+        <div class="item-title"><strong>Emotion Transition-Controllable Video Summarization Based on Multimodal Emotional Features</strong><br>Kewei Liu, Kazuyoshi Yoshii · APSIPA ASC 2026</div>
+        <span class="item-link">paper</span>
+      </div>
     </div>
   </section>
 
-  <section class="section" id="publications">
-    <div class="section-head"><div class="section-label">Publications</div><div><h2 class="section-title">Publications & presentations</h2></div></div>
-    <article class="publication">
-      <div class="year">2026</div>
-      <div><h3>Emotion Transition-Controllable Video Summarization Based on Multimodal Emotional Features</h3><p><strong>Kewei Liu</strong>, Kazuyoshi Yoshii</p><p class="venue">Asia Pacific Signal and Information Processing Association Annual Summit and Conference (APSIPA ASC 2026)</p></div>
-      <div><span class="tag">First author</span></div>
-    </article>
-  </section>
-
-  <section class="section" id="about">
-    <div class="section-head"><div class="section-label">About</div><div><h2 class="section-title">Engineering, research, and education.</h2></div></div>
-    <div class="about-grid">
-      <div><h3>Education</h3><p><strong>The University of Tokyo</strong><br>M.S., Electrical Engineering and Information Systems · 2026–2028 expected</p><p><strong>Kyoto University</strong><br>B.Eng., Electrical and Electronic Engineering · 2022–2026</p><h3>University experience</h3><p>Office Assistant for Electrical and Electronic Circuits and International Student Tutor at Kyoto University.</p></div>
-      <div><h3>Technical focus</h3><dl class="skill-list"><dt>AI / ML</dt><dd>Python, PyTorch, NumPy, pandas, scikit-learn</dd><dt>Multimodal</dt><dd>Vision, audio, text, feature fusion, model evaluation</dd><dt>Speech</dt><dd>Speech analysis, alignment, prosody, F0, ASR-assisted evaluation</dd><dt>Development</dt><dd>Git/GitHub, Linux, Docker, HTML/CSS, browser-based prototypes</dd><dt>Engineering</dt><dd>Signal processing, circuits, control, measurement</dd><dt>Languages</dt><dd>Mandarin Chinese · Japanese (JLPT N1) · English</dd></dl></div>
-    </div>
+  <section class="section">
+    <h2 class="section-title">Say hello</h2>
+    <p class="section-note">Research, collaboration, education, or just a hello.</p>
+    <div class="contact-line"><a href="mailto:ryukayuiii@gmail.com">Email</a><a href="https://github.com/kayui-gavo">GitHub</a><a href="./cv/kewei-liu-cv.pdf">CV</a></div>
   </section>
 </main>
-<footer class="footer"><span>© 2026 Kewei Liu</span><div class="footer-links"><a href="mailto:ryukayuiii@gmail.com">Email</a><a href="https://github.com/kayui-gavo">GitHub</a></div></footer>
+<footer class="footer"><span>© 2026 Kewei Liu</span></footer>
 </body>
 </html>
