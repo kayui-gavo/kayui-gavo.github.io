@@ -1,7 +1,5 @@
-# Kewei Liu Personal Website
+# Kewei Liu — Personal Website
 
-Personal academic, engineering, and education portfolio for Kewei Liu (劉 可惟 / 刘可惟).
+Personal academic / professional homepage with English, Japanese, Simplified Chinese, and Traditional Chinese versions.
 
-Languages: English, 日本語, 简体中文, 繁體中文.
-
-The site is designed as a static GitHub Pages website with research, projects, publications, education, and profile sections.
+Published with GitHub Pages.
