@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" fill="none">
+  <defs>
+    <linearGradient id="soft" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E8B8C0" stop-opacity=".34"/>
+      <stop offset="1" stop-color="#B7CAD7" stop-opacity=".22"/>
+    </linearGradient>
+  </defs>
+
+  <!-- long editorial connector -->
+  <path d="M78 694C226 600 280 731 402 638C520 548 591 585 694 502C798 419 884 464 961 381C1042 294 1136 329 1354 183"
+        stroke="url(#soft)" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 11"/>
+
+  <!-- waveform / speech motif -->
+  <g opacity=".46" stroke="#D394A0" stroke-width="2.2" stroke-linecap="round">
+    <path d="M92 160v30M108 151v48M124 169v12M140 142v66M156 158v34M172 166v18M188 148v54M204 160v30"/>
+    <path d="M70 222c0-18 15-33 33-33h120c18 0 33 15 33 33v26c0 18-15 33-33 33h-66l-31 25 8-25h-31c-18 0-33-15-33-33z" opacity=".42"/>
+  </g>
+
+  <!-- petal / fashion-like geometric motif -->
+  <g opacity=".34" transform="translate(314 118)">
+    <path d="M0 18C0 8 8 0 18 0c10 0 18 8 18 18 0 10-8 18-18 18C8 36 0 28 0 18Z" fill="#F2D8DD"/>
+    <path d="M18 36c10 0 18 8 18 18s-8 18-18 18S0 64 0 54s8-18 18-18Z" fill="#D8E2E8"/>
+    <path d="M36 18c0-10 8-18 18-18s18 8 18 18-8 18-18 18-18-8-18-18Z" fill="#E8D0C7"/>
+    <path d="M36 54c0-10 8-18 18-18s18 8 18 18-8 18-18 18-18-8-18-18Z" fill="#F3E6E2"/>
+  </g>
+
+  <!-- tiny sparkle marks -->
+  <g stroke="#C98B97" stroke-width="1.6" stroke-linecap="round" opacity=".36">
+    <path d="M1216 148v24M1204 160h24"/>
+    <path d="M1260 206v16M1252 214h16"/>
+    <path d="M238 744v20M228 754h20"/>
+  </g>
+
+  <!-- VA-space research motif -->
+  <g transform="translate(1115 615)" opacity=".43">
+    <path d="M0 80H190M94 0v172" stroke="#A9BBC7" stroke-width="1.5"/>
+    <path d="M26 136C52 111 67 126 84 96C102 66 120 75 137 48C150 28 168 34 180 18" stroke="#C88491" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="26" cy="136" r="6" fill="#F0C4CB"/>
+    <circle cx="84" cy="96" r="6" fill="#D5DFE6"/>
+    <circle cx="137" cy="48" r="6" fill="#E8D8C8"/>
+    <circle cx="180" cy="18" r="6" fill="#E5B6C0"/>
+    <circle cx="94" cy="80" r="48" stroke="#E8D4D8" stroke-width="1.4" stroke-dasharray="4 8"/>
+  </g>
+
+  <!-- notebook corner marks -->
+  <g opacity=".30" stroke="#D6ABB3" stroke-width="1.5">
+    <path d="M1340 700h42v42"/>
+    <path d="M100 90H58v42"/>
+  </g>
+</svg>
