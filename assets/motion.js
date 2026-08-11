@@ -1,35 +1,49 @@
 (()=>{
   const script=document.currentScript;
-  const image=document.querySelector('.portrait');
-  if(script&&image){
+  const portraits=[...document.querySelectorAll('.portrait')];
+  if(script&&portraits.length){
     const base=new URL('portrait-data/',script.src);
     const parts=['p01.txt','p02.txt','p03.txt','p04.txt','p05.txt','p06.txt'];
     Promise.all(parts.map(name=>fetch(new URL(name,base)).then(r=>{if(!r.ok)throw new Error('portrait');return r.text()})))
-      .then(chunks=>{image.src=`data:image/webp;base64,${chunks.join('')}`})
+      .then(chunks=>{
+        const src=`data:image/webp;base64,${chunks.join('')}`;
+        portraits.forEach(img=>{img.src=src});
+      })
       .catch(()=>{});
   }
 
   const shell=document.querySelector('.site-shell');
   const landing=document.querySelector('.landing');
   const frame=document.querySelector('.portrait-frame');
+  const indexEl=document.querySelector('.section-index');
   const topics=[...document.querySelectorAll('.topic')];
   const panels=[...document.querySelectorAll('.detail-panel')];
   const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.documentElement.classList.add('motion-ready');
 
-  const setTopic=(name,focusButton=false)=>{
+  let committed=topics.find(btn=>btn.getAttribute('aria-selected')==='true')?.dataset.topic || topics[0]?.dataset.topic || 'research';
+
+  const renderTopic=(name,{focusButton=false,commit=false}={})=>{
+    if(!name)return;
+    if(commit)committed=name;
+    if(shell)shell.dataset.topic=name;
     topics.forEach(btn=>{
       const active=btn.dataset.topic===name;
       btn.setAttribute('aria-selected',active?'true':'false');
+      btn.tabIndex=active?0:-1;
       if(active&&focusButton)btn.focus({preventScroll:true});
     });
-    panels.forEach(panel=>panel.classList.toggle('is-active',panel.dataset.panel===name));
+    panels.forEach(panel=>{
+      const active=panel.dataset.panel===name;
+      panel.classList.toggle('is-active',active);
+      panel.setAttribute('aria-hidden',active?'false':'true');
+    });
   };
 
   topics.forEach((btn,index)=>{
-    btn.addEventListener('mouseenter',()=>setTopic(btn.dataset.topic));
-    btn.addEventListener('focus',()=>setTopic(btn.dataset.topic));
-    btn.addEventListener('click',()=>setTopic(btn.dataset.topic));
+    btn.addEventListener('mouseenter',()=>renderTopic(btn.dataset.topic));
+    btn.addEventListener('focus',()=>renderTopic(btn.dataset.topic));
+    btn.addEventListener('click',()=>renderTopic(btn.dataset.topic,{commit:true}));
     btn.addEventListener('keydown',e=>{
       if(!['ArrowRight','ArrowDown','ArrowLeft','ArrowUp','Home','End'].includes(e.key))return;
       e.preventDefault();
@@ -38,16 +52,20 @@
       if(e.key==='ArrowLeft'||e.key==='ArrowUp')next=(index-1+topics.length)%topics.length;
       if(e.key==='Home')next=0;
       if(e.key==='End')next=topics.length-1;
-      setTopic(topics[next].dataset.topic,true);
+      renderTopic(topics[next].dataset.topic,{focusButton:true,commit:true});
     });
   });
+  indexEl?.addEventListener('mouseleave',()=>renderTopic(committed));
+  renderTopic(committed);
 
   if(reduced||!shell||!landing||!frame)return;
   let tx=0,ty=0,x=0,y=0,raf=0;
   const render=()=>{
-    x+=(tx-x)*.075;
-    y+=(ty-y)*.075;
-    frame.style.transform=`perspective(1300px) rotateX(${(-y*.55).toFixed(2)}deg) rotateY(${(x*.72).toFixed(2)}deg) translate3d(${(-x*1.5).toFixed(1)}px,${(-y*1.2).toFixed(1)}px,0)`;
+    x+=(tx-x)*.07;
+    y+=(ty-y)*.07;
+    shell.style.setProperty('--mx',x.toFixed(3));
+    shell.style.setProperty('--my',y.toFixed(3));
+    frame.style.transform=`perspective(1400px) rotateX(${(-y*.42).toFixed(2)}deg) rotateY(${(x*.56).toFixed(2)}deg) translate3d(${(-x*1.1).toFixed(1)}px,${(-y*.9).toFixed(1)}px,0)`;
     if(Math.abs(tx-x)>.001||Math.abs(ty-y)>.001)raf=requestAnimationFrame(render);else raf=0;
   };
   const kick=()=>{if(!raf)raf=requestAnimationFrame(render)};
