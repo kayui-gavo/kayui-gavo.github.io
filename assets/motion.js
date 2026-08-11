@@ -13,31 +13,6 @@
         })
         .catch(()=>{});
     }
-
-    const artBase=new URL('art-data/',script.src);
-    const artImages=[...document.querySelectorAll('img[data-art]')];
-    const cache=new Map();
-    artImages.forEach(img=>{
-      const key=img.dataset.art;
-      if(!key)return;
-      const file=key==='kyoto'?'kyoto01.txt':`${key}.txt`;
-      if(!cache.has(key)){
-        cache.set(key,
-          fetch(new URL(file,artBase),{cache:'no-store'})
-            .then(r=>{if(!r.ok)throw new Error(key);return r.text()})
-            .then(text=>`data:image/webp;base64,${text.replace(/\s+/g,'')}`)
-        );
-      }
-      cache.get(key)
-        .then(src=>{
-          const reveal=()=>img.classList.add('is-loaded');
-          img.addEventListener('load',reveal,{once:true});
-          img.addEventListener('error',()=>{img.removeAttribute('src');img.classList.remove('is-loaded')},{once:true});
-          img.src=src;
-          if(img.complete&&img.naturalWidth>0)reveal();
-        })
-        .catch(()=>{img.removeAttribute('src');img.classList.remove('is-loaded')});
-    });
   }
 
   const shell=document.querySelector('.site-shell');
@@ -51,6 +26,7 @@
   document.documentElement.classList.add('motion-ready');
 
   let committed=topics.find(btn=>btn.getAttribute('aria-selected')==='true')?.dataset.topic || topics[0]?.dataset.topic || 'research';
+
   const renderTopic=(name,{focusButton=false,commit=false}={})=>{
     if(!name)return;
     if(commit)committed=name;
@@ -89,11 +65,11 @@
   if(reduced||!shell||!landing||!frame||!canHover)return;
   let tx=0,ty=0,x=0,y=0,raf=0;
   const render=()=>{
-    x+=(tx-x)*.06;
-    y+=(ty-y)*.06;
+    x+=(tx-x)*.055;
+    y+=(ty-y)*.055;
     shell.style.setProperty('--mx',x.toFixed(3));
     shell.style.setProperty('--my',y.toFixed(3));
-    frame.style.transform=`perspective(1500px) rotateX(${(-y*.24).toFixed(2)}deg) rotateY(${(x*.32).toFixed(2)}deg) translate3d(${(-x*.55).toFixed(1)}px,${(-y*.45).toFixed(1)}px,0)`;
+    frame.style.transform=`perspective(1550px) rotateX(${(-y*.18).toFixed(2)}deg) rotateY(${(x*.24).toFixed(2)}deg) translate3d(${(-x*.38).toFixed(1)}px,${(-y*.30).toFixed(1)}px,0)`;
     if(Math.abs(tx-x)>.001||Math.abs(ty-y)>.001)raf=requestAnimationFrame(render);else raf=0;
   };
   const kick=()=>{if(!raf)raf=requestAnimationFrame(render)};
