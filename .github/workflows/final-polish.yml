@@ -1,0 +1,56 @@
+name: Final homepage polish
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/final-polish.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  polish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Apply final editorial polish
+        run: python .final-polish.py
+
+      - name: Regenerate and verify one-page resume PDF
+        shell: bash
+        run: |
+          python -m pip install --quiet pypdf
+          CHROME="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
+          test -n "$CHROME"
+          "$CHROME" --headless --disable-gpu --no-sandbox --allow-file-access-from-files --print-to-pdf="$(pwd)/cv/kewei-liu-cv.pdf" "file://$(pwd)/cv/index.html"
+          python - <<'PY'
+          from pypdf import PdfReader
+          p='cv/kewei-liu-cv.pdf'
+          r=PdfReader(p)
+          assert len(r.pages)==1, f'Expected one-page resume, got {len(r.pages)} pages'
+          text='\n'.join((page.extract_text() or '') for page in r.pages)
+          assert 'KEWEI LIU' in text.upper()
+          assert 'APSIPA ASC 2026' in text
+          assert 'fashion' in text.lower()
+          print('One-page resume PDF verified')
+          PY
+
+      - name: Commit polished site and clean temporary files
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f .final-polish.py .github/workflows/final-polish.yml
+          rmdir .github/workflows 2>/dev/null || true
+          rmdir .github 2>/dev/null || true
+          git add -A
+          git commit -m "finalize homepage hierarchy, privacy, and tablet layout"
+          git push
