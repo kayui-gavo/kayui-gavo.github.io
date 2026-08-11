@@ -1,0 +1,57 @@
+name: Language-consistent internship wording
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/internship-language-clean.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Apply language-consistent internship wording
+        run: python .internship-language-clean.py
+
+      - name: Regenerate and verify one-page resume PDF
+        shell: bash
+        run: |
+          python -m pip install --quiet pypdf
+          CHROME="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
+          test -n "$CHROME"
+          "$CHROME" --headless --disable-gpu --no-sandbox --allow-file-access-from-files --print-to-pdf="$(pwd)/cv/kewei-liu-cv.pdf" "file://$(pwd)/cv/index.html"
+          python - <<'PY'
+          from pypdf import PdfReader
+          r=PdfReader('cv/kewei-liu-cv.pdf')
+          assert len(r.pages)==1, f'Expected one-page resume, got {len(r.pages)} pages'
+          text='\n'.join((p.extract_text() or '') for p in r.pages)
+          assert 'Selected internships (2026)' in text
+          assert 'Sony Corporation' in text and 'Rakuten Group, Inc.' in text
+          assert 'Software Engineering Internship' in text
+          assert 'Upcoming' not in text and '夏の陣' not in text and '職場密着' not in text
+          print('One-page English resume verified')
+          PY
+
+      - name: Commit and clean temporary files
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f .internship-language-clean.py .internship-neutral.py
+          rm -f .github/workflows/internship-language-clean.yml .github/workflows/internship-neutral.yml
+          rmdir .github/workflows 2>/dev/null || true
+          rmdir .github 2>/dev/null || true
+          git add -A
+          git commit -m "use language-consistent 2026 internship labels"
+          git push
