@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kayui-gavo.github.io/sitemap.xml
+Sitemap: https://kayui-gavo.github.io/kewei-liu-site/sitemap.xml
