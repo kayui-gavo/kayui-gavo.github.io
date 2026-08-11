@@ -31,23 +31,9 @@ jobs:
           from pathlib import Path
           p=Path('.site-polish.py')
           t=p.read_text(encoding='utf-8')
-          old="""def replace_once(text, old, new, label):
-              if old not in text:
-                  raise RuntimeError(f'missing replacement target: {label}')
-              return text.replace(old, new, 1)
-          """.replace('          ','')
-          new="""def replace_once(text, old, new, label):
-              if old not in text:
-                  escaped=old.replace('&','&amp;')
-                  if escaped in text:
-                      old=escaped
-                      new=new.replace('&','&amp;')
-                  else:
-                      raise RuntimeError(f'missing replacement target: {label}')
-              return text.replace(old, new, 1)
-          """.replace('          ','')
-          assert old in t
-          p.write_text(t.replace(old,new,1),encoding='utf-8')
+          t=t.replace("'education_old': 'At China Tabito Education Group, I work on education R&D,", "'education_old': 'At China Tabito Education Group, I work on education R&amp;D,", 1)
+          t=t.replace("'education_new': 'At China Tabito Education Group, I work on education R&D,", "'education_new': 'At China Tabito Education Group, I work on education R&amp;D,", 1)
+          p.write_text(t,encoding='utf-8')
           PY
           python .site-polish.py
 
