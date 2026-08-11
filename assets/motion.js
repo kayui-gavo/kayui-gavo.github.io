@@ -6,7 +6,11 @@
     if(portraits.length){
       const parts=['p01.txt','p02.txt','p03.txt','p04.txt','p05.txt','p06.txt'];
       Promise.all(parts.map(name=>fetch(new URL(name,portraitBase)).then(r=>{if(!r.ok)throw new Error('portrait');return r.text()})))
-        .then(chunks=>{const src=`data:image/webp;base64,${chunks.join('')}`;portraits.forEach(img=>{img.src=src})})
+        .then(chunks=>{
+          const clean=chunks.join('').replace(/\s+/g,'');
+          const src=`data:image/webp;base64,${clean}`;
+          portraits.forEach(img=>{img.src=src});
+        })
         .catch(()=>{});
     }
 
@@ -19,16 +23,18 @@
       const file=key==='kyoto'?'kyoto01.txt':`${key}.txt`;
       if(!cache.has(key)){
         cache.set(key,
-          fetch(new URL(file,artBase),{cache:'no-cache'})
+          fetch(new URL(file,artBase),{cache:'no-store'})
             .then(r=>{if(!r.ok)throw new Error(key);return r.text()})
-            .then(text=>`data:image/webp;base64,${text.trim()}`)
+            .then(text=>`data:image/webp;base64,${text.replace(/\s+/g,'')}`)
         );
       }
       cache.get(key)
         .then(src=>{
-          img.addEventListener('load',()=>img.classList.add('is-loaded'),{once:true});
+          const reveal=()=>img.classList.add('is-loaded');
+          img.addEventListener('load',reveal,{once:true});
+          img.addEventListener('error',()=>{img.removeAttribute('src');img.classList.remove('is-loaded')},{once:true});
           img.src=src;
-          if(img.complete&&img.naturalWidth>0)img.classList.add('is-loaded');
+          if(img.complete&&img.naturalWidth>0)reveal();
         })
         .catch(()=>{img.removeAttribute('src');img.classList.remove('is-loaded')});
     });
@@ -41,6 +47,7 @@
   const topics=[...document.querySelectorAll('.topic')];
   const panels=[...document.querySelectorAll('.detail-panel')];
   const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canHover=matchMedia('(hover:hover) and (pointer:fine)').matches;
   document.documentElement.classList.add('motion-ready');
 
   let committed=topics.find(btn=>btn.getAttribute('aria-selected')==='true')?.dataset.topic || topics[0]?.dataset.topic || 'research';
@@ -62,7 +69,7 @@
   };
 
   topics.forEach((btn,index)=>{
-    btn.addEventListener('mouseenter',()=>renderTopic(btn.dataset.topic));
+    if(canHover)btn.addEventListener('mouseenter',()=>renderTopic(btn.dataset.topic));
     btn.addEventListener('focus',()=>renderTopic(btn.dataset.topic));
     btn.addEventListener('click',()=>renderTopic(btn.dataset.topic,{commit:true}));
     btn.addEventListener('keydown',e=>{
@@ -76,22 +83,25 @@
       renderTopic(topics[next].dataset.topic,{focusButton:true,commit:true});
     });
   });
-  indexEl?.addEventListener('mouseleave',()=>renderTopic(committed));
+  if(canHover)indexEl?.addEventListener('mouseleave',()=>renderTopic(committed));
   renderTopic(committed);
 
-  if(reduced||!shell||!landing||!frame)return;
+  if(reduced||!shell||!landing||!frame||!canHover)return;
   let tx=0,ty=0,x=0,y=0,raf=0;
   const render=()=>{
-    x+=(tx-x)*.065;y+=(ty-y)*.065;
-    shell.style.setProperty('--mx',x.toFixed(3));shell.style.setProperty('--my',y.toFixed(3));
-    frame.style.transform=`perspective(1450px) rotateX(${(-y*.34).toFixed(2)}deg) rotateY(${(x*.46).toFixed(2)}deg) translate3d(${(-x*.9).toFixed(1)}px,${(-y*.7).toFixed(1)}px,0)`;
+    x+=(tx-x)*.06;
+    y+=(ty-y)*.06;
+    shell.style.setProperty('--mx',x.toFixed(3));
+    shell.style.setProperty('--my',y.toFixed(3));
+    frame.style.transform=`perspective(1500px) rotateX(${(-y*.24).toFixed(2)}deg) rotateY(${(x*.32).toFixed(2)}deg) translate3d(${(-x*.55).toFixed(1)}px,${(-y*.45).toFixed(1)}px,0)`;
     if(Math.abs(tx-x)>.001||Math.abs(ty-y)>.001)raf=requestAnimationFrame(render);else raf=0;
   };
   const kick=()=>{if(!raf)raf=requestAnimationFrame(render)};
   landing.addEventListener('pointermove',e=>{
-    if(e.pointerType==='touch')return;
     const r=landing.getBoundingClientRect();
-    tx=((e.clientX-r.left)/r.width-.5)*2;ty=((e.clientY-r.top)/r.height-.5)*2;kick();
+    tx=((e.clientX-r.left)/r.width-.5)*2;
+    ty=((e.clientY-r.top)/r.height-.5)*2;
+    kick();
   },{passive:true});
   landing.addEventListener('pointerleave',()=>{tx=0;ty=0;kick()});
 })();
