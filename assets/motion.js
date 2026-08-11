@@ -9,14 +9,28 @@
         .then(chunks=>{const src=`data:image/webp;base64,${chunks.join('')}`;portraits.forEach(img=>{img.src=src})})
         .catch(()=>{});
     }
+
     const artBase=new URL('art-data/',script.src);
     const artImages=[...document.querySelectorAll('img[data-art]')];
     const cache=new Map();
     artImages.forEach(img=>{
       const key=img.dataset.art;
       if(!key)return;
-      if(!cache.has(key))cache.set(key,fetch(new URL(`${key}.txt`,artBase)).then(r=>{if(!r.ok)throw new Error(key);return r.text()}).then(text=>`data:image/webp;base64,${text.trim()}`));
-      cache.get(key).then(src=>{img.src=src;img.classList.add('is-loaded')}).catch(()=>{});
+      const file=key==='kyoto'?'kyoto01.txt':`${key}.txt`;
+      if(!cache.has(key)){
+        cache.set(key,
+          fetch(new URL(file,artBase),{cache:'no-cache'})
+            .then(r=>{if(!r.ok)throw new Error(key);return r.text()})
+            .then(text=>`data:image/webp;base64,${text.trim()}`)
+        );
+      }
+      cache.get(key)
+        .then(src=>{
+          img.addEventListener('load',()=>img.classList.add('is-loaded'),{once:true});
+          img.src=src;
+          if(img.complete&&img.naturalWidth>0)img.classList.add('is-loaded');
+        })
+        .catch(()=>{img.removeAttribute('src');img.classList.remove('is-loaded')});
     });
   }
 
