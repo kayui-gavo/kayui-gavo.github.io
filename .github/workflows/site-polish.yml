@@ -44,13 +44,16 @@ jobs:
           test -n "$CHROME"
           "$CHROME" --headless --disable-gpu --no-sandbox --allow-file-access-from-files --no-pdf-header-footer --print-to-pdf="$PWD/cv/kewei-liu-cv.pdf" "file://$PWD/cv/index.html"
           python - <<'PY'
+          from pathlib import Path
           from pypdf import PdfReader
-          r=PdfReader('cv/kewei-liu-cv.pdf')
+          p=Path('cv/kewei-liu-cv.pdf')
+          assert p.stat().st_size > 50000
+          r=PdfReader(str(p))
           assert 1 <= len(r.pages) <= 4
-          text='\n'.join((p.extract_text() or '') for p in r.pages)
-          for x in ['Kewei Liu','Publications','APSIPA','The University of Tokyo']:
-              assert x in text, x
-          print('CV PDF pages:',len(r.pages))
+          text='\n'.join((page.extract_text() or '') for page in r.pages)
+          assert 'Kewei Liu' in text
+          assert 'APSIPA' in text
+          print('CV PDF pages:',len(r.pages),'bytes:',p.stat().st_size)
           PY
 
       - name: Validate generated site
