@@ -10,13 +10,14 @@
 <meta property="og:type" content="profile"><meta property="og:title" content="劉 可惟"><meta property="og:description" content="マルチモーダルAI · 音声言語処理 · 教育"><meta property="og:image" content="https://kayui-gavo.github.io/kewei-liu-site/assets/portrait.webp">
 <link rel="stylesheet" href="../assets/style.css">
 </head>
-<body><div class="site-shell">
+<body><div class="site-shell" data-topic="research">
 <header class="site-header"><nav class="nav" aria-label="メイン"><a class="brand" href="./">劉 可惟</a><div class="header-right"><div class="header-links"><a href="../cv/">CV</a><a href="https://github.com/kayui-gavo">GitHub</a><a href="https://www.linkedin.com/in/kayui-ryu/">LinkedIn</a></div><div class="languages" aria-label="言語"><a href="../">EN</a><a href="./" aria-current="page">日本語</a><a href="../zh-cn/">简中</a><a href="../zh-tw/">繁中</a></div></div></nav></header>
 <main class="landing">
 <section class="portrait-column" aria-label="ポートレート">
-  <div class="portrait-rule"></div><div class="portrait-accent"></div>
+  <div class="portrait-line"></div><div class="portrait-corner"></div>
   <div class="portrait-frame"><img class="portrait" src="../assets/portrait.webp" alt="京都大学での劉可惟"></div>
-  <div class="photo-caption"><span>KYOTO UNIVERSITY</span><i></i><span>2026</span></div><div class="photo-index">K</div>
+  <div class="portrait-caption"><span>KYOTO UNIVERSITY</span><i></i><span>2026</span></div>
+  <div class="portrait-note">B.ENG. / KYOTO</div>
 </section>
 <section class="editorial">
   <div class="identity">
@@ -30,28 +31,31 @@
   <div class="explore">
     <div class="section-index" role="tablist" aria-label="プロフィール項目">
       <p class="index-title">Selected / 01—03</p>
-      <button class="topic" role="tab" data-topic="research" aria-selected="true"><span class="topic-no">01</span><span class="topic-label">研究</span><span class="topic-sub">音声 · マルチモーダルAI</span></button>
-      <button class="topic" role="tab" data-topic="education" aria-selected="false"><span class="topic-no">02</span><span class="topic-label">教育</span><span class="topic-sub">授業 · 進学指導</span></button>
-      <button class="topic" role="tab" data-topic="personal" aria-selected="false"><span class="topic-no">03</span><span class="topic-label">Personal</span><span class="topic-sub">京都 · 音楽 · 言語</span></button>
+      <button class="topic" role="tab" id="topic-research" aria-controls="panel-research" data-topic="research" aria-selected="true"><span class="topic-no">01</span><span class="topic-label">研究</span><span class="topic-sub">音声 · マルチモーダルAI</span></button>
+      <button class="topic" role="tab" id="topic-education" aria-controls="panel-education" data-topic="education" aria-selected="false"><span class="topic-no">02</span><span class="topic-label">教育</span><span class="topic-sub">授業 · 進学指導</span></button>
+      <button class="topic" role="tab" id="topic-personal" aria-controls="panel-personal" data-topic="personal" aria-selected="false"><span class="topic-no">03</span><span class="topic-label">Personal</span><span class="topic-sub">京都 · 音楽 · 言語</span></button>
     </div>
 
     <div class="topic-detail" aria-live="polite">
-      <article class="detail-panel is-active" data-panel="research">
-        <p class="detail-kicker">Research / current</p><h2>日本語学習者の発話支援</h2>
-        <p>現在は、音声・言語処理とマルチモーダルインタラクションを用いた発話支援に取り組んでいます。学部で研究した情動遷移を制御可能な映像要約は、APSIPA ASC 2026 に採択されました。</p>
-        <div class="proofs"><span>APSIPA ASC 2026 · 採択</span><span>日本語発音評価プロトタイプ</span><a href="https://github.com/kayui-gavo/jp_speech_eval_project">Project code ↗</a></div>
-        <img class="detail-art" src="../assets/decor-speech.webp" alt="" aria-hidden="true">
+      <article class="detail-panel is-active" id="panel-research" role="tabpanel" aria-labelledby="topic-research" data-panel="research">
+        <div class="detail-layout"><div class="detail-copy">
+          <p class="detail-kicker">Research / current</p><h2>日本語学習者の発話支援</h2>
+          <p>現在は、音声・言語処理とマルチモーダルインタラクションを用いた発話支援に取り組んでいます。学部で研究した情動遷移を制御可能な映像要約は、APSIPA ASC 2026 に採択されました。</p>
+          <div class="proofs"><span>APSIPA ASC 2026 · 採択</span><span>日本語発音評価プロトタイプ</span><a href="https://github.com/kayui-gavo/jp_speech_eval_project">Project code ↗</a></div>
+        </div><div class="visual-cell visual-research" aria-hidden="true"><img src="../assets/decor-speech.webp" alt=""><img class="secondary" src="../assets/decor-multimodal.webp" alt=""></div></div>
       </article>
-      <article class="detail-panel" data-panel="education">
-        <p class="detail-kicker">Education / 4 years</p><h2>授業・進学指導・教材づくり</h2>
-        <p>行知学園関西校で4年間、数学・物理の集団授業と個別指導を担当し、志望理由書、口頭試問・面接、出願計画まで指導してきました。</p>
-        <div class="proofs"><span>京都大学 · 電気電子回路OA / 留学生チューター</span><a href="https://www.tabitoedu.com">旅人教育 · 物理指導・教材開発 ↗</a></div>
-        <img class="detail-art" src="../assets/decor-education.webp" alt="" aria-hidden="true">
+      <article class="detail-panel" id="panel-education" role="tabpanel" aria-labelledby="topic-education" data-panel="education" aria-hidden="true">
+        <div class="detail-layout"><div class="detail-copy">
+          <p class="detail-kicker">Education / 4 years</p><h2>授業・進学指導・教材づくり</h2>
+          <p>行知学園関西校で4年間、数学・物理の集団授業と個別指導を担当し、志望理由書、口頭試問・面接、出願計画まで指導してきました。</p>
+          <div class="proofs"><span>京都大学 · 電気電子回路OA / 留学生チューター</span><a href="https://www.tabitoedu.com">旅人教育 · 物理指導・教材開発 ↗</a></div>
+        </div><div class="visual-cell visual-education" aria-hidden="true"><img src="../assets/decor-education.webp" alt=""></div></div>
       </article>
-      <article class="detail-panel" data-panel="personal">
-        <p class="detail-kicker">Personal / Kyoto</p><h2>音楽と言語、京都での4年間</h2>
-        <div class="personal-grid"><div><b>Music</b><span>カラオケ同好会 · COLORS!</span></div><div><b>Languages</b><span>中国語 · 日本語 · 英語 · フランス語（少し）</span></div><div><b>Qualifications</b><span>JLPT N1 · TOEFL iBT 81</span></div><div><b>Kyoto</b><span>2022—2026</span></div></div>
-        <img class="detail-art" src="../assets/decor-kyoto.webp" alt="" aria-hidden="true">
+      <article class="detail-panel" id="panel-personal" role="tabpanel" aria-labelledby="topic-personal" data-panel="personal" aria-hidden="true">
+        <div class="detail-layout"><div class="detail-copy">
+          <p class="detail-kicker">Personal / Kyoto</p><h2>音楽と言語、京都での4年間</h2>
+          <div class="personal-grid"><div><b>Music</b><span>カラオケ同好会 · COLORS!</span></div><div><b>Languages</b><span>中国語 · 日本語 · 英語 · フランス語（少し）</span></div><div><b>Qualifications</b><span>JLPT N1 · TOEFL iBT 81</span></div><div><b>Kyoto</b><span>2022—2026</span></div></div>
+        </div><div class="visual-cell personal-visual" aria-hidden="true"><div class="personal-mark"><span class="pm-kicker">KYOTO</span><strong>22—26</strong><small>music / languages</small></div></div></div>
       </article>
     </div>
   </div>
