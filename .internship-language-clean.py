@@ -30,7 +30,7 @@ changes = {
         ('<span class="visual-caption">upcoming internships</span>', '<span class="visual-caption">internships</span>'),
     ],
     'cv/index.html': [
-        ('<strong>Upcoming technical internships (2026):</strong> Sony Corporation — 職場密着インターン; Rakuten Group, Inc. — 夏の陣 2026 / Software Engineer.', '<strong>Selected internships (2026):</strong> Sony Corporation — Internship; Rakuten Group, Inc. — Software Engineering Internship.'),
+        ('<strong>Upcoming internships (2026):</strong> Sony Corporation — Workplace Immersion Internship; Rakuten Group, Inc. — 夏の陣 / Software Engineer.', '<strong>Selected internships (2026):</strong> Sony Corporation — Internship; Rakuten Group, Inc. — Software Engineering Internship.'),
     ],
 }
 
@@ -57,7 +57,7 @@ for path, expected in checks.items():
         assert s in text
 
 cv = Path('cv/index.html').read_text(encoding='utf-8')
-assert 'Upcoming technical internships' not in cv
+assert 'Upcoming internships' not in cv
 assert '職場密着' not in cv
 assert '夏の陣' not in cv
 assert 'Software Engineering Internship' in cv
