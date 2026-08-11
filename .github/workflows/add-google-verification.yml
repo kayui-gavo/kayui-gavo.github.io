@@ -1,0 +1,42 @@
+name: Add Google verification
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/add-google-verification.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Add verification tag
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          t = p.read_text(encoding='utf-8')
+          tag = '<meta name="google-site-verification" content="QaeYgp40TKdE1anIW7Q95oQPqafaykjCzV3cGNwxbow" />'
+          if tag not in t:
+              marker = '<meta name="viewport" content="width=device-width,initial-scale=1">'
+              if marker not in t:
+                  raise SystemExit('viewport marker not found')
+              t = t.replace(marker, marker + '\n' + tag, 1)
+              p.write_text(t, encoding='utf-8')
+          PY
+      - name: Commit and clean workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f .github/workflows/add-google-verification.yml
+          rmdir .github/workflows 2>/dev/null || true
+          rmdir .github 2>/dev/null || true
+          git add -A
+          git commit -m "add Google Search Console verification"
+          git push
