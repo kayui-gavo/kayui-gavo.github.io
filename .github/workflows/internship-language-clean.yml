@@ -55,3 +55,5 @@ jobs:
           git add -A
           git commit -m "use language-consistent 2026 internship labels"
           git push
+
+# corrected CV matcher; temporary workflow self-removes after success
