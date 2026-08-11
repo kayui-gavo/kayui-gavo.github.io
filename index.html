@@ -11,13 +11,14 @@
 <link rel="stylesheet" href="./assets/style.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfilePage","mainEntity":{"@type":"Person","name":"Kewei Liu","alternateName":["劉 可惟","刘可惟","劉可惟"],"url":"https://kayui-gavo.github.io/kewei-liu-site/","email":"mailto:ryukayuiii@gmail.com","affiliation":{"@type":"CollegeOrUniversity","name":"The University of Tokyo"},"alumniOf":{"@type":"CollegeOrUniversity","name":"Kyoto University"},"sameAs":["https://github.com/kayui-gavo","https://www.linkedin.com/in/kayui-ryu/","https://x.com/ryukayuiii","https://www.tabitoedu.com"]}}</script>
 </head>
-<body><div class="site-shell">
+<body><div class="site-shell" data-topic="research">
 <header class="site-header"><nav class="nav" aria-label="Primary"><a class="brand" href="./">Kewei Liu</a><div class="header-right"><div class="header-links"><a href="./cv/">CV</a><a href="https://github.com/kayui-gavo">GitHub</a><a href="https://www.linkedin.com/in/kayui-ryu/">LinkedIn</a></div><div class="languages" aria-label="Language"><a href="./" aria-current="page">EN</a><a href="./ja/">日本語</a><a href="./zh-cn/">简中</a><a href="./zh-tw/">繁中</a></div></div></nav></header>
 <main class="landing">
 <section class="portrait-column" aria-label="Portrait">
-  <div class="portrait-rule"></div><div class="portrait-accent"></div>
+  <div class="portrait-line"></div><div class="portrait-corner"></div>
   <div class="portrait-frame"><img class="portrait" src="./assets/portrait.webp" alt="Kewei Liu at Kyoto University"></div>
-  <div class="photo-caption"><span>KYOTO UNIVERSITY</span><i></i><span>2026</span></div><div class="photo-index">K</div>
+  <div class="portrait-caption"><span>KYOTO UNIVERSITY</span><i></i><span>2026</span></div>
+  <div class="portrait-note">B.ENG. / KYOTO</div>
 </section>
 <section class="editorial">
   <div class="identity">
@@ -31,28 +32,31 @@
   <div class="explore">
     <div class="section-index" role="tablist" aria-label="Profile sections">
       <p class="index-title">Selected / 01—03</p>
-      <button class="topic" role="tab" data-topic="research" aria-selected="true"><span class="topic-no">01</span><span class="topic-label">Research</span><span class="topic-sub">Speech · multimodal AI</span></button>
-      <button class="topic" role="tab" data-topic="education" aria-selected="false"><span class="topic-no">02</span><span class="topic-label">Education</span><span class="topic-sub">Teaching · admissions</span></button>
-      <button class="topic" role="tab" data-topic="personal" aria-selected="false"><span class="topic-no">03</span><span class="topic-label">Personal</span><span class="topic-sub">Kyoto · music · languages</span></button>
+      <button class="topic" role="tab" id="topic-research" aria-controls="panel-research" data-topic="research" aria-selected="true"><span class="topic-no">01</span><span class="topic-label">Research</span><span class="topic-sub">Speech · multimodal AI</span></button>
+      <button class="topic" role="tab" id="topic-education" aria-controls="panel-education" data-topic="education" aria-selected="false"><span class="topic-no">02</span><span class="topic-label">Education</span><span class="topic-sub">Teaching · admissions</span></button>
+      <button class="topic" role="tab" id="topic-personal" aria-controls="panel-personal" data-topic="personal" aria-selected="false"><span class="topic-no">03</span><span class="topic-label">Personal</span><span class="topic-sub">Kyoto · music · languages</span></button>
     </div>
 
     <div class="topic-detail" aria-live="polite">
-      <article class="detail-panel is-active" data-panel="research">
-        <p class="detail-kicker">Research / current</p><h2>Speaking support for Japanese learners</h2>
-        <p>My current work focuses on speech and language processing and multimodal interaction. My undergraduate research on emotion-transition-controllable video summarization was accepted for presentation at APSIPA ASC 2026.</p>
-        <div class="proofs"><span>APSIPA ASC 2026 · accepted</span><span>Japanese speech evaluation prototype</span><a href="https://github.com/kayui-gavo/jp_speech_eval_project">Project code ↗</a></div>
-        <img class="detail-art" src="./assets/decor-speech.webp" alt="" aria-hidden="true">
+      <article class="detail-panel is-active" id="panel-research" role="tabpanel" aria-labelledby="topic-research" data-panel="research">
+        <div class="detail-layout"><div class="detail-copy">
+          <p class="detail-kicker">Research / current</p><h2>Speaking support for Japanese learners</h2>
+          <p>My current work focuses on speech and language processing and multimodal interaction. My undergraduate research on emotion-transition-controllable video summarization was accepted for presentation at APSIPA ASC 2026.</p>
+          <div class="proofs"><span>APSIPA ASC 2026 · accepted</span><span>Japanese speech evaluation prototype</span><a href="https://github.com/kayui-gavo/jp_speech_eval_project">Project code ↗</a></div>
+        </div><div class="visual-cell visual-research" aria-hidden="true"><img src="./assets/decor-speech.webp" alt=""><img class="secondary" src="./assets/decor-multimodal.webp" alt=""></div></div>
       </article>
-      <article class="detail-panel" data-panel="education">
-        <p class="detail-kicker">Education / 4 years</p><h2>Teaching, advising, and materials</h2>
-        <p>At Coach Academy, I taught mathematics and physics in large classes and one-to-one lessons, and supported personal statements, oral examinations, interviews, and application planning.</p>
-        <div class="proofs"><span>Kyoto University · Circuits OA / International Student Tutor</span><a href="https://www.tabitoedu.com">Tabito Education · physics & materials ↗</a></div>
-        <img class="detail-art" src="./assets/decor-education.webp" alt="" aria-hidden="true">
+      <article class="detail-panel" id="panel-education" role="tabpanel" aria-labelledby="topic-education" data-panel="education" aria-hidden="true">
+        <div class="detail-layout"><div class="detail-copy">
+          <p class="detail-kicker">Education / 4 years</p><h2>Teaching, advising, and materials</h2>
+          <p>At Coach Academy, I taught mathematics and physics in large classes and one-to-one lessons, and supported personal statements, oral examinations, interviews, and application planning.</p>
+          <div class="proofs"><span>Kyoto University · Circuits OA / International Student Tutor</span><a href="https://www.tabitoedu.com">Tabito Education · physics & materials ↗</a></div>
+        </div><div class="visual-cell visual-education" aria-hidden="true"><img src="./assets/decor-education.webp" alt=""></div></div>
       </article>
-      <article class="detail-panel" data-panel="personal">
-        <p class="detail-kicker">Personal / Kyoto</p><h2>Music, languages, and Kyoto days</h2>
-        <div class="personal-grid"><div><b>Music</b><span>Karaoke Club · COLORS!</span></div><div><b>Languages</b><span>Chinese · Japanese · English · French (a little)</span></div><div><b>Qualifications</b><span>JLPT N1 · TOEFL iBT 81</span></div><div><b>Kyoto</b><span>2022—2026</span></div></div>
-        <img class="detail-art" src="./assets/decor-kyoto.webp" alt="" aria-hidden="true">
+      <article class="detail-panel" id="panel-personal" role="tabpanel" aria-labelledby="topic-personal" data-panel="personal" aria-hidden="true">
+        <div class="detail-layout"><div class="detail-copy">
+          <p class="detail-kicker">Personal / Kyoto</p><h2>Music, languages, and Kyoto days</h2>
+          <div class="personal-grid"><div><b>Music</b><span>Karaoke Club · COLORS!</span></div><div><b>Languages</b><span>Chinese · Japanese · English · French (a little)</span></div><div><b>Qualifications</b><span>JLPT N1 · TOEFL iBT 81</span></div><div><b>Kyoto</b><span>2022—2026</span></div></div>
+        </div><div class="visual-cell personal-visual" aria-hidden="true"><div class="personal-mark"><span class="pm-kicker">KYOTO</span><strong>22—26</strong><small>music / languages</small></div></div></div>
       </article>
     </div>
   </div>
