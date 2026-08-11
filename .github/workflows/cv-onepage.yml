@@ -1,0 +1,63 @@
+name: One-page CV rebuild
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/cv-onepage.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install PDF checker
+        run: python -m pip install --quiet pypdf
+
+      - name: Apply one-page resume source
+        run: python .cv-onepage-fix.py
+
+      - name: Generate and verify one-page PDF
+        shell: bash
+        run: |
+          CHROME="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
+          test -n "$CHROME"
+          "$CHROME" --headless --disable-gpu --no-sandbox --allow-file-access-from-files --no-pdf-header-footer --print-to-pdf="$PWD/cv/kewei-liu-cv.pdf" "file://$PWD/cv/index.html"
+          python - <<'PY'
+          from pathlib import Path
+          from pypdf import PdfReader
+          p=Path('cv/kewei-liu-cv.pdf')
+          assert p.stat().st_size > 45000, p.stat().st_size
+          r=PdfReader(str(p))
+          assert len(r.pages) == 1, f'expected 1 page, got {len(r.pages)}'
+          text=r.pages[0].extract_text() or ''
+          for s in ['KEWEI LIU','APSIPA ASC 2026','China Tabito Education Group','Coach Academy']:
+              assert s in text, s
+          print('verified one-page CV:', p.stat().st_size, 'bytes')
+          PY
+          if command -v pdftoppm >/dev/null 2>&1; then
+            pdftoppm -f 1 -singlefile -png -r 120 cv/kewei-liu-cv.pdf /tmp/cv-render >/dev/null
+            test -s /tmp/cv-render.png
+          fi
+
+      - name: Commit final CV and clean up
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f .cv-onepage-fix.py .github/workflows/cv-onepage.yml
+          rmdir .github/workflows 2>/dev/null || true
+          rmdir .github 2>/dev/null || true
+          git add -A
+          git commit -m "rebuild CV from one-page application resume"
+          git push
