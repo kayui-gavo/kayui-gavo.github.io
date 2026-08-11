@@ -84,6 +84,7 @@ h1{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(60px,5.55vw
 .proofs span::before,.proofs a::before{content:"";width:14px;height:1px;margin-top:.7em;background:rgba(181,150,96,.55);flex:none}
 .proofs a{color:#71575a}
 .proofs a:hover{color:var(--rose)}
+.internship-proofs{margin-top:18px;gap:10px;font-size:10.7px}
 
 .visual-cell{position:relative;min-height:216px;overflow:visible;isolation:isolate;display:block}
 .visual-cell::before{content:"";position:absolute;width:156px;height:54px;right:-2px;top:88px;border-radius:2px;background:linear-gradient(100deg,rgba(216,184,178,.04),rgba(216,184,178,.16),rgba(181,150,96,.03),transparent 86%);filter:blur(10px);transform:rotate(-5deg);z-index:-2;opacity:.58}
@@ -93,6 +94,11 @@ h1{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(60px,5.55vw
 .visual-research img.secondary{width:90px;height:60px;left:-8px;bottom:14px;opacity:.24;transform:rotate(-2.2deg)}
 .visual-education img{width:205px;height:137px;right:-12px;bottom:19px;opacity:.95;transform:rotate(-1deg)}
 .visual-interests img{width:205px;height:137px;right:-10px;bottom:18px;opacity:.98;transform:rotate(.6deg)}
+.visual-internships{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 0 18px}
+.visual-internships::before{width:142px;height:50px;right:4px;top:90px;opacity:.42}
+.visual-internships::after{right:4px;top:37px;width:31px}
+.intern-year{font-family:var(--serif);font-size:46px;line-height:1;font-weight:400;letter-spacing:.045em;color:rgba(28,41,69,.76)}
+.intern-companies{margin-top:10px;font-family:var(--serif);font-size:8.4px;line-height:1.2;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;white-space:nowrap}
 .visual-caption{position:absolute;right:0;bottom:2px;font-family:var(--serif);font-size:8.1px;letter-spacing:.17em;text-transform:uppercase;color:#988b79;z-index:3;white-space:nowrap}
 
 .interest-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px 22px;margin-top:14px;max-width:480px}
@@ -138,6 +144,7 @@ html[lang="zh-CN"] .detail-panel p,html[lang="zh-Hant-TW"] .detail-panel p{line-
   .visual-research img.secondary{width:80px;height:53px;left:-6px}
   .visual-education img{width:188px;height:125px;right:-9px}
   .visual-interests img{width:188px;height:125px;right:-8px}
+  .intern-year{font-size:43px}
 }
 
 @media(max-width:1060px){
@@ -167,6 +174,7 @@ html[lang="zh-CN"] .detail-panel p,html[lang="zh-Hant-TW"] .detail-panel p{line-
   .visual-research img.secondary{width:76px;height:51px;left:-3px}
   .visual-education img{width:176px;height:117px;right:-5px}
   .visual-interests img{width:176px;height:117px;right:-4px}
+  .intern-year{font-size:40px}
   .utility{align-items:flex-start}
   .utility-note{padding-top:3px}
 }
@@ -188,15 +196,17 @@ html[lang="zh-CN"] .detail-panel p,html[lang="zh-Hant-TW"] .detail-panel p{line-
   .school-lines{display:grid;gap:5px;font-size:10.7px}
   .explore{display:block;padding-top:17px}
   .index-title{margin-bottom:7px}
-  .section-index{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .section-index{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .section-index .index-title{grid-column:1/-1;border:0;margin:0;padding:0 0 7px;position:absolute;left:-9999px}
-  .topic{border:0;border-right:1px solid var(--line);display:block;text-align:center;padding:10px 6px 11px;min-height:58px}
+  .topic{border:0;border-right:1px solid var(--line);display:block;text-align:center;padding:10px 3px 11px;min-height:58px}
   .topic:last-child{border-right:0;border-bottom:0}
   .topic::after{left:20%;right:20%;top:auto;bottom:-1px;width:auto;height:1px;transform:scaleX(0);transform-origin:center;transition:transform .2s ease}
-  .topic[aria-selected="true"]{padding-left:6px}
+  .topic[aria-selected="true"]{padding-left:3px}
   .topic[aria-selected="true"]::after{width:auto;transform:scaleX(1)}
   .topic-no{display:block;font-size:8.7px;margin-bottom:2px;padding:0}
-  .topic-label{display:block;font-size:13.5px;line-height:1.1}
+  .topic-label{display:block;font-size:12.4px;line-height:1.1}
+  html[lang="en"] .topic[data-topic="internships"] .topic-label{font-size:11.2px}
+  html[lang="ja"] .topic-label{font-size:11.9px}
   .topic-sub{display:none}
   .topic-detail{min-height:0;padding-top:20px}
   .detail-layout{grid-template-columns:1fr;gap:10px;min-height:0}
@@ -204,6 +214,7 @@ html[lang="zh-CN"] .detail-panel p,html[lang="zh-Hant-TW"] .detail-panel p{line-
   .detail-panel p{max-width:none;font-size:11.7px;line-height:1.72}
   .proofs{font-size:10.35px;gap:7px;margin-top:14px}
   .proofs span,.proofs a{max-width:none}
+  .internship-proofs{gap:9px;margin-top:16px}
   .visual-cell{min-height:126px;margin-top:4px}
   .visual-cell::before{width:154px;height:48px;top:52px}
   .visual-cell::after{top:4px}
@@ -211,6 +222,11 @@ html[lang="zh-CN"] .detail-panel p,html[lang="zh-Hant-TW"] .detail-panel p{line-
   .visual-research img.secondary{width:82px;height:55px;left:auto;right:128px;bottom:0}
   .visual-education img{width:190px;height:127px;right:1px;bottom:-3px}
   .visual-interests img{width:190px;height:127px;right:2px;bottom:-2px}
+  .visual-internships{min-height:120px;padding:16px 0 12px}
+  .visual-internships::before{top:50px;right:4px}
+  .visual-internships::after{top:12px}
+  .intern-year{font-size:39px}
+  .intern-companies{margin-top:7px;font-size:7.9px}
   .visual-caption{right:3px;bottom:-2px}
   .interest-grid{max-width:none;gap:9px 18px}
   .utility{display:block;margin-top:18px}
@@ -231,10 +247,11 @@ html[lang="zh-CN"] .detail-panel p,html[lang="zh-Hant-TW"] .detail-panel p{line-
   .name-line{gap:12px}
   .native-name{font-size:14.5px;letter-spacing:.12em}
   .tagline{font-size:18px}
-  .topic{padding-left:4px;padding-right:4px}
-  .topic[aria-selected="true"]{padding-left:4px}
-  .topic-label{font-size:12.7px}
-  html[lang="ja"] .topic-label{font-size:12.3px;white-space:nowrap}
+  .topic{padding-left:2px;padding-right:2px}
+  .topic[aria-selected="true"]{padding-left:2px}
+  .topic-label{font-size:11.7px}
+  html[lang="en"] .topic[data-topic="internships"] .topic-label{font-size:10.6px}
+  html[lang="ja"] .topic-label{font-size:11.3px;white-space:nowrap}
   .detail-panel h2,html[lang="ja"] .detail-panel h2,html[lang="zh-CN"] .detail-panel h2,html[lang="zh-Hant-TW"] .detail-panel h2{font-size:21.5px}
   .interest-grid{grid-template-columns:1fr 1fr;gap:8px 14px}
   .socials{gap:12px 14px}
@@ -245,8 +262,9 @@ html[lang="zh-CN"] .detail-panel p,html[lang="zh-Hant-TW"] .detail-panel p{line-
   .languages{gap:7px;font-size:9.6px}
   .landing{width:calc(100% - 20px)}
   .portrait-column{width:88vw;padding-left:15px}
-  .topic-label{font-size:12px}
-  html[lang="ja"] .topic-label{font-size:11.7px}
+  .topic-label{font-size:10.8px}
+  html[lang="en"] .topic[data-topic="internships"] .topic-label{font-size:9.9px}
+  html[lang="ja"] .topic-label{font-size:10.4px}
   .interest-grid{grid-template-columns:1fr}
   .interest-grid .wide{grid-column:auto}
   .socials{gap:11px 12px;font-size:10.2px}
