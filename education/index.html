@@ -20,6 +20,42 @@
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="../assets/education-v2.css?v=20260813g">
+<style>
+.direct-contact-card{grid-template-columns:minmax(0,.9fr) minmax(430px,1.1fr);align-items:stretch;padding:0;overflow:hidden}
+.contact-copy{padding:22px 24px}
+.contact-copy>span{display:block;max-width:570px;font-size:12.5px;line-height:1.55;color:#cbc6c0}
+.official-site-link{display:inline-block;margin-top:12px}
+.contact-secondary-links{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px}
+.contact-secondary-links a{font-size:11.5px;color:#bdb8b3}
+.direct-contact-list{display:grid;grid-template-columns:1fr 1fr;background:rgba(255,255,255,.045);border-left:1px solid rgba(255,255,255,.09)}
+.direct-contact-item{display:grid;grid-template-columns:112px minmax(0,1fr);gap:14px;align-items:center;min-width:0;padding:18px 18px;color:#fff}
+.direct-contact-item+.direct-contact-item{border-left:1px solid rgba(255,255,255,.09)}
+.direct-contact-item img{display:block;width:112px;height:112px;padding:7px;background:#fff;border-radius:9px;object-fit:contain}
+.direct-contact-item>span{display:grid;gap:2px;min-width:0}
+.direct-contact-item strong{font-family:var(--serif);font-size:20px;font-weight:500;color:#fffaf4}
+.direct-contact-item b{font-size:13px;font-weight:600;color:#f0e9e5;word-break:break-all}
+.direct-contact-item small{font-size:10.5px;line-height:1.45;color:#bdb8b3}
+.qq-contact-item img{padding:9px}
+@media(max-width:980px){
+  .direct-contact-card{grid-template-columns:1fr}
+  .direct-contact-list{border-left:0;border-top:1px solid rgba(255,255,255,.09)}
+}
+@media(max-width:620px){
+  .contact-copy{padding:19px 18px}
+  .direct-contact-list{grid-template-columns:1fr 1fr}
+  .direct-contact-item{grid-template-columns:86px minmax(0,1fr);gap:10px;padding:14px 12px}
+  .direct-contact-item img{width:86px;height:86px;padding:6px}
+  .direct-contact-item strong{font-size:18px}
+  .direct-contact-item b{font-size:12px}
+  .direct-contact-item small{font-size:9.5px}
+}
+@media(max-width:430px){
+  .direct-contact-list{grid-template-columns:1fr}
+  .direct-contact-item{grid-template-columns:96px minmax(0,1fr);padding:14px 16px}
+  .direct-contact-item+.direct-contact-item{border-left:0;border-top:1px solid rgba(255,255,255,.09)}
+  .direct-contact-item img{width:96px;height:96px}
+}
+</style>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -58,7 +94,7 @@
       <a href="#record">实绩</a>
       <a href="#guidance">主要指导</a>
       <a href="#graduate">大学院</a>
-      <a class="org-nav" href="https://www.tabitoedu.com" target="_blank" rel="noopener noreferrer">课程咨询 ↗</a>
+      <a class="org-nav" href="https://www.tabitoedu.com" target="_blank" rel="noopener noreferrer">旅人教育官网 ↗</a>
       <a href="../zh-cn/">个人主页</a>
     </div>
   </nav>
@@ -76,7 +112,7 @@
       <h1 id="page-title">刘可惟</h1>
       <p class="hero-focus"><span>大学入学共通考试</span><strong>物理</strong><i aria-hidden="true"></i><span>理工科校内考（二次试验）</span></p>
       <p class="intro">在旅人教育负责物理与本科理工科入试指导，并参与课程设计、教材开发与教育内容研发。</p>
-      <a class="hero-cta" href="https://www.tabitoedu.com" target="_blank" rel="noopener noreferrer">课程咨询｜旅人教育 ↗</a>
+      <a class="hero-cta" href="https://www.tabitoedu.com" target="_blank" rel="noopener noreferrer">旅人教育官网 ↗</a>
     </div>
 
     <div class="trust-board" aria-label="教育背景与教学经历">
@@ -216,17 +252,27 @@
     </article>
   </section>
 
-  <section class="contact-card" aria-label="咨询与相关链接">
-    <div>
+  <section class="contact-card direct-contact-card" aria-label="课程咨询与讲师联系方式">
+    <div class="contact-copy">
       <p>课程咨询</p>
-      <h2>共通考试物理・理工科校内考</h2>
-      <span>本科入试课程请通过旅人教育联系。</span>
+      <h2>旅人教育官网・直接联系讲师</h2>
+      <span>机构与课程信息请查看旅人教育官网。需要直接联系刘可惟，可添加微信或 QQ；添加好友时请备注来意。</span>
+      <a class="primary-link official-site-link" href="https://www.tabitoedu.com" target="_blank" rel="noopener noreferrer">旅人教育官网 ↗</a>
+      <div class="contact-secondary-links">
+        <a href="https://xhslink.com/m/AqfBhkkqR2w" target="_blank" rel="noopener noreferrer">大学院电气电子｜小红书 でんでん🐌⚡ ↗</a>
+        <a href="../zh-cn/">研究与个人经历 →</a>
+      </div>
     </div>
-    <nav>
-      <a class="primary-link" href="https://www.tabitoedu.com" target="_blank" rel="noopener noreferrer">课程咨询｜旅人教育 ↗</a>
-      <a href="https://xhslink.com/m/AqfBhkkqR2w" target="_blank" rel="noopener noreferrer">大学院电气电子｜小红书 でんでん🐌⚡ ↗</a>
-      <a href="../zh-cn/">研究与个人经历 →</a>
-    </nav>
+    <div class="direct-contact-list" aria-label="微信与QQ">
+      <a class="direct-contact-item" href="../assets/wechat-contact-qr.svg" target="_blank" rel="noopener noreferrer">
+        <img src="../assets/wechat-contact-qr.svg" alt="刘可惟微信好友二维码" loading="lazy" decoding="async">
+        <span><strong>微信</strong><b>扫码添加好友</b><small>请备注来意 · 点击二维码可放大</small></span>
+      </a>
+      <a class="direct-contact-item qq-contact-item" href="../assets/qq-contact-qr.svg" target="_blank" rel="noopener noreferrer">
+        <img src="../assets/qq-contact-qr.svg" alt="刘可惟QQ好友二维码" loading="lazy" decoding="async">
+        <span><strong>QQ</strong><b>1024075295</b><small>扫码添加好友 · 点击二维码可放大</small></span>
+      </a>
+    </div>
   </section>
 </main>
 
