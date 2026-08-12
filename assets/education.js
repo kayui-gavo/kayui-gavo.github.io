@@ -3,8 +3,29 @@
   const body = document.body;
 
   const classroomPhoto = document.querySelector('[data-tabito-classroom]');
-  if (classroomPhoto && window.TABITO_CLASSROOM_DATA) {
-    classroomPhoto.src = window.TABITO_CLASSROOM_DATA;
+  const classroomFigure = classroomPhoto?.closest('.tabito-photo');
+  const applyClassroomPhoto = () => {
+    if (!classroomPhoto || !window.TABITO_CLASSROOM_DATA) return false;
+    if (classroomPhoto.src !== window.TABITO_CLASSROOM_DATA) classroomPhoto.src = window.TABITO_CLASSROOM_DATA;
+    return true;
+  };
+  if (classroomPhoto) {
+    classroomPhoto.addEventListener('load', () => {
+      classroomPhoto.classList.add('is-loaded');
+      classroomFigure?.classList.remove('is-fallback');
+    }, { once: true });
+    classroomPhoto.addEventListener('error', () => {
+      classroomFigure?.classList.add('is-fallback');
+    });
+    applyClassroomPhoto();
+    window.addEventListener('load', () => {
+      if (!classroomPhoto.naturalWidth) {
+        applyClassroomPhoto();
+        window.setTimeout(() => {
+          if (!classroomPhoto.naturalWidth) classroomFigure?.classList.add('is-fallback');
+        }, 1200);
+      }
+    }, { once: true });
   }
 
   requestAnimationFrame(() => body.classList.add('is-ready'));
