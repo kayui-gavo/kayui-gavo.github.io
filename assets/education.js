@@ -25,7 +25,7 @@
 
     if (focus) tab.focus();
 
-    if (window.innerWidth <= 700) {
+    if (window.innerWidth <= 680) {
       tab.scrollIntoView({
         behavior: reduceMotion ? 'auto' : 'smooth',
         block: 'nearest',
@@ -56,19 +56,4 @@
 
   selectFromHash();
   window.addEventListener('hashchange', selectFromHash);
-
-  const portrait = document.querySelector('[data-portrait]');
-  if (portrait && !reduceMotion && window.matchMedia('(pointer:fine)').matches) {
-    portrait.addEventListener('pointermove', (event) => {
-      const rect = portrait.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width - 0.5;
-      const y = (event.clientY - rect.top) / rect.height - 0.5;
-      portrait.style.transform = `perspective(900px) rotateY(${x * 1.5}deg) rotateX(${-y * 1.2}deg) translateY(-2px)`;
-      portrait.style.boxShadow = '0 28px 58px rgba(28,41,69,.14)';
-    });
-    portrait.addEventListener('pointerleave', () => {
-      portrait.style.transform = '';
-      portrait.style.boxShadow = '';
-    });
-  }
 })();
