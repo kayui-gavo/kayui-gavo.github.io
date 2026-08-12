@@ -2,6 +2,11 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const body = document.body;
 
+  const classroomPhoto = document.querySelector('[data-tabito-classroom]');
+  if (classroomPhoto && window.TABITO_CLASSROOM_DATA) {
+    classroomPhoto.src = window.TABITO_CLASSROOM_DATA;
+  }
+
   requestAnimationFrame(() => body.classList.add('is-ready'));
 
   const progressBar = document.querySelector('.scroll-progress span');
