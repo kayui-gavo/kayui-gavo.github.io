@@ -29,6 +29,7 @@ a:focus-visible,button:focus-visible{outline:2px solid rgba(152,89,104,.44);outl
 .nav-links a{position:relative;padding:8px 0;transition:color .18s ease}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:3px;width:28px;height:1px;background:var(--rose);transform:scaleX(0);transform-origin:left;transition:transform .2s var(--ease)}
 .nav-links a:hover{color:var(--navy)}.nav-links a:hover::after{transform:scaleX(1)}
+.nav-links .org-nav{color:var(--rose-deep);font-weight:600}
 
 main{width:min(1140px,calc(100% - 64px));margin:0 auto;padding:48px 0 44px}
 .hero{display:grid;grid-template-columns:286px minmax(0,1fr);gap:74px;align-items:center;padding:4px 0 48px}
@@ -44,6 +45,8 @@ main{width:min(1140px,calc(100% - 64px));margin:0 auto;padding:48px 0 44px}
 .subject-line{margin:0 0 8px;font-size:14px;font-weight:600;letter-spacing:.02em;color:var(--rose)}
 .hero h1{margin:0;font-family:var(--serif);font-size:55px;line-height:1.02;font-weight:500;letter-spacing:-.04em;color:var(--navy)}
 .hero-role{margin:10px 0 0;font-family:var(--serif);font-size:21px;line-height:1.45;font-weight:400;color:#4f5870}
+.hero-role .hero-org{color:var(--rose-deep);font-weight:500;border-bottom:1px solid rgba(152,89,104,.30);transition:color .18s ease,border-color .18s ease}
+.hero-role .hero-org:hover{color:var(--navy);border-color:var(--gold)}
 .intro{margin:14px 0 0;max-width:690px;font-size:14px;line-height:1.82;color:#514b47;text-wrap:pretty;line-break:strict}
 .hero-meta{display:grid;grid-template-columns:minmax(0,1fr) 170px;gap:34px;align-items:end;margin-top:22px;padding-top:16px;border-top:1px solid var(--line-strong)}
 .academic-path{display:grid;gap:10px}.academic-path p{display:grid;grid-template-columns:162px minmax(0,1fr);gap:16px;margin:0;font-size:14px;line-height:1.58;color:#5a534e}.academic-path strong{font-family:var(--serif);font-size:16px;line-height:1.4;font-weight:500;color:var(--navy);white-space:nowrap}.academic-path span{min-width:0}
@@ -131,7 +134,7 @@ footer{width:min(1140px,calc(100% - 64px));margin:0 auto;padding:18px 0 24px;bor
   .grad-intro{grid-template-columns:1fr 260px;gap:40px}.exam-scope{grid-template-columns:1fr;gap:30px}.experience{grid-template-columns:1fr;gap:32px}.record-heading,.section-title{align-items:flex-start}.page-links{grid-template-columns:1fr;gap:18px}.link-actions{align-items:flex-start}
 }
 @media(max-width:700px){
-  body{font-size:15px}.site-header{height:56px}.nav,main,footer{width:calc(100% - 34px)}.brand{font-size:19px}.nav-links{gap:16px;font-size:12px}.nav-links a{display:none}.nav-links a[href="#guidance"],.nav-links a[href="../zh-cn/"]{display:block}main{padding-top:28px}
+  body{font-size:15px}.site-header{height:56px}.nav,main,footer{width:calc(100% - 34px)}.brand{font-size:19px}.nav-links{gap:16px;font-size:12px}.nav-links a{display:none}.nav-links a[href="#guidance"],.nav-links .org-nav{display:block}main{padding-top:28px}
   .hero{grid-template-columns:minmax(0,1fr) 122px;gap:18px;padding:0 0 32px;align-items:start}.hero-copy{display:contents}.portrait-column{grid-column:2;grid-row:1/4;width:122px;justify-self:end}.portrait-backdrop{inset:11px -7px -7px 10px;border-radius:12px 12px 4px 12px}.portrait-frame{border-radius:11px 11px 4px 11px;box-shadow:0 13px 30px rgba(27,41,68,.09)}.portrait-sparkle{display:none}
   .subject-line{grid-column:1;margin:2px 0 4px;font-size:12px}.hero h1{grid-column:1;font-size:37px}.hero-role{grid-column:1;margin-top:6px;font-size:18px}.intro{grid-column:1/-1;margin-top:15px;font-size:14px;line-height:1.8}.hero-meta{grid-column:1/-1;grid-template-columns:1fr;gap:14px;margin-top:3px}.academic-path p{grid-template-columns:1fr;gap:1px;font-size:12px}.academic-path strong{font-size:14px}.hero-hours{border-left:0;border-top:1px solid var(--line);padding:12px 0 0;display:flex;align-items:baseline;gap:9px}.hero-hours strong{font-size:30px}.hero-hours span,.hero-hours small{margin:0;font-size:12px}.hero-hours small{margin-left:auto}
   .strength-strip{grid-template-columns:1fr}.strength-strip article{padding:19px 0}.strength-strip article+article{border-left:0;border-top:1px solid var(--line);padding-left:0}.strength-strip strong{font-size:18px}.strength-strip p{font-size:14px}
