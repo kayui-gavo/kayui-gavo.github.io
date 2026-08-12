@@ -2,7 +2,8 @@
 
 Personal academic and professional website for Kewei Liu (劉 可惟 / 刘可惟), an M.S. student at The University of Tokyo working on speech and language processing, multimodal interaction, and Japanese learner speaking support.
 
-**Website:** https://kayui-gavo.github.io/
+**Website:** https://kayui-gavo.github.io/  
+**Education profile:** https://kayui-gavo.github.io/education/
 
 - The University of Tokyo, EEIS / Minematsu–Saito Laboratory
 - Speech and language processing / multimodal interaction
