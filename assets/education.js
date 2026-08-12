@@ -1,18 +1,13 @@
 (() => {
   const tabs = [...document.querySelectorAll('[data-guide-tab]')];
   const panels = [...document.querySelectorAll('[data-guide-panel]')];
-  const tablist = document.querySelector('.track-tabs');
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  const updateIndicator = (tab) => {
-    if (!tablist || !tab || innerWidth <= 700) return;
-    const listRect = tablist.getBoundingClientRect();
-    const tabRect = tab.getBoundingClientRect();
-    tablist.style.setProperty('--indicator-left', `${Math.round(tabRect.left - listRect.left)}px`);
-    tablist.style.setProperty('--indicator-width', `${Math.round(tabRect.width)}px`);
-  };
-
   let active = tabs.find(tab => tab.getAttribute('aria-selected') === 'true') || tabs[0];
+  let transitionToken = 0;
+  let outAnimation = null;
+  let inAnimation = null;
+
+  const panelFor = tab => panels.find(panel => panel.dataset.guidePanel === tab?.dataset.guideTab);
 
   const setState = (tab, { focus = false } = {}) => {
     tabs.forEach(item => {
@@ -21,54 +16,55 @@
       item.tabIndex = selected ? 0 : -1;
     });
     if (focus) tab.focus({ preventScroll: true });
-    updateIndicator(tab);
   };
 
-  const panelFor = tab => panels.find(panel => panel.dataset.guidePanel === tab?.dataset.guideTab);
+  const showInstant = tab => {
+    const target = panelFor(tab);
+    panels.forEach(panel => {
+      const selected = panel === target;
+      panel.hidden = !selected;
+      panel.classList.toggle('is-active', selected);
+    });
+  };
 
   const activate = async (tab, { focus = false, updateHash = false } = {}) => {
     if (!tab) return;
-    const oldPanel = panelFor(active);
-    const newPanel = panelFor(tab);
-
     if (tab === active) {
       setState(tab, { focus });
       return;
     }
 
+    const token = ++transitionToken;
+    const oldPanel = panelFor(active);
+    const newPanel = panelFor(tab);
     active = tab;
     setState(tab, { focus });
 
-    if (updateHash && history.replaceState) {
-      history.replaceState(null, '', `#${tab.dataset.guideTab}`);
-    }
+    if (updateHash && history.replaceState) history.replaceState(null, '', `#${tab.dataset.guideTab}`);
+
+    outAnimation?.cancel();
+    inAnimation?.cancel();
 
     if (reduceMotion || !oldPanel?.animate || !newPanel?.animate) {
-      panels.forEach(panel => {
-        const selected = panel === newPanel;
-        panel.hidden = !selected;
-        panel.classList.toggle('is-active', selected);
-      });
+      showInstant(tab);
       return;
     }
 
-    const out = oldPanel.animate(
-      [{ opacity: 1, transform: 'translateY(0)' }, { opacity: 0, transform: 'translateY(-4px)' }],
-      { duration: 145, easing: 'cubic-bezier(.4,0,.7,.2)', fill: 'both' }
+    outAnimation = oldPanel.animate(
+      [{ opacity: 1, transform: 'translateY(0)' }, { opacity: 0, transform: 'translateY(-3px)' }],
+      { duration: 115, easing: 'ease-out', fill: 'both' }
     );
-    try { await out.finished; } catch (_) {}
+    try { await outAnimation.finished; } catch (_) {}
+    if (token !== transitionToken) return;
 
     oldPanel.hidden = true;
     oldPanel.classList.remove('is-active');
     newPanel.hidden = false;
     newPanel.classList.add('is-active');
 
-    newPanel.animate(
-      [
-        { opacity: 0, transform: 'translateY(7px)', clipPath: 'inset(5% 0 0 0)' },
-        { opacity: 1, transform: 'translateY(0)', clipPath: 'inset(0 0 0 0)' }
-      ],
-      { duration: 360, easing: 'cubic-bezier(.22,.8,.24,1)', fill: 'both' }
+    inAnimation = newPanel.animate(
+      [{ opacity: 0, transform: 'translateY(5px)' }, { opacity: 1, transform: 'translateY(0)' }],
+      { duration: 220, easing: 'cubic-bezier(.22,.82,.24,1)', fill: 'both' }
     );
   };
 
@@ -89,15 +85,8 @@
   const hashKey = location.hash.replace('#', '');
   const hashTab = tabs.find(tab => tab.dataset.guideTab === hashKey);
   if (hashTab) active = hashTab;
-
-  panels.forEach(panel => {
-    const selected = panel === panelFor(active);
-    panel.hidden = !selected;
-    panel.classList.toggle('is-active', selected);
-  });
   setState(active);
-  requestAnimationFrame(() => updateIndicator(active));
-  addEventListener('resize', () => updateIndicator(active), { passive: true });
+  showInstant(active);
 
   const revealTargets = [
     document.querySelector('.record'),
@@ -114,7 +103,7 @@
         entry.target.classList.add('is-visible');
         observer.unobserve(entry.target);
       });
-    }, { threshold: .12, rootMargin: '0px 0px -4% 0px' });
+    }, { threshold: .1, rootMargin: '0px 0px -3% 0px' });
     revealTargets.forEach(node => observer.observe(node));
   }
 })();
