@@ -10,8 +10,10 @@
   document.documentElement.classList.add('motion-ready');
 
   let activeTopic=tabs.find(tab=>tab.getAttribute('aria-selected')==='true')?.dataset.topic||tabs[0]?.dataset.topic;
+  let switchToken=0;
 
   const panelFor=topic=>panels.find(panel=>panel.dataset.panel===topic);
+  const activeTab=()=>tabs.find(tab=>tab.dataset.topic===activeTopic);
 
   const updateMarker=tab=>{
     if(!tablist||!tab||innerWidth<=600)return;
@@ -23,10 +25,10 @@
 
   const setTabState=(topic,{focus=false}={})=>{
     tabs.forEach(tab=>{
-      const active=tab.dataset.topic===topic;
-      tab.setAttribute('aria-selected',active?'true':'false');
-      tab.tabIndex=active?0:-1;
-      if(active){
+      const selected=tab.dataset.topic===topic;
+      tab.setAttribute('aria-selected',selected?'true':'false');
+      tab.tabIndex=selected?0:-1;
+      if(selected){
         updateMarker(tab);
         if(focus)tab.focus({preventScroll:true});
       }
@@ -35,19 +37,27 @@
 
   const showInstant=topic=>{
     panels.forEach(panel=>{
-      const active=panel.dataset.panel===topic;
-      panel.hidden=!active;
-      panel.classList.toggle('is-active',active);
-      panel.setAttribute('aria-hidden',active?'false':'true');
+      const selected=panel.dataset.panel===topic;
+      panel.getAnimations?.().forEach(animation=>animation.cancel());
+      panel.hidden=!selected;
+      panel.classList.toggle('is-active',selected);
+      panel.setAttribute('aria-hidden',selected?'false':'true');
+      panel.style.removeProperty('opacity');
+      panel.style.removeProperty('transform');
+      panel.style.removeProperty('clip-path');
     });
   };
 
   const transitionTo=async(topic,{focus=false}={})=>{
-    if(!topic||topic===activeTopic){
+    if(!topic)return;
+    if(topic===activeTopic){
       setTabState(topic,{focus});
       return;
     }
-    const oldPanel=panelFor(activeTopic);
+
+    const token=++switchToken;
+    const previousTopic=activeTopic;
+    const oldPanel=panelFor(previousTopic);
     const newPanel=panelFor(topic);
     activeTopic=topic;
     setTabState(topic,{focus});
@@ -57,11 +67,14 @@
       return;
     }
 
+    panels.forEach(panel=>panel.getAnimations?.().forEach(animation=>animation.cancel()));
+
     const out=oldPanel.animate(
-      [{opacity:1,transform:'translateY(0)'},{opacity:0,transform:'translateY(-4px)'}],
-      {duration:150,easing:'cubic-bezier(.4,0,.7,.2)',fill:'both'}
+      [{opacity:1,transform:'translateY(0)'},{opacity:0,transform:'translateY(-3px)'}],
+      {duration:135,easing:'cubic-bezier(.4,0,.7,.2)',fill:'both'}
     );
     try{await out.finished}catch(_){}
+    if(token!==switchToken)return;
 
     oldPanel.classList.remove('is-active');
     oldPanel.hidden=true;
@@ -70,13 +83,17 @@
     newPanel.hidden=false;
     newPanel.classList.add('is-active');
     newPanel.setAttribute('aria-hidden','false');
-    newPanel.animate(
+
+    const incoming=newPanel.animate(
       [
-        {opacity:0,transform:'translateY(7px)',clipPath:'inset(5% 0 0 0)'},
+        {opacity:0,transform:'translateY(6px)',clipPath:'inset(4% 0 0 0)'},
         {opacity:1,transform:'translateY(0)',clipPath:'inset(0 0 0 0)'}
       ],
-      {duration:380,easing:'cubic-bezier(.22,.8,.24,1)',fill:'both'}
+      {duration:360,easing:'cubic-bezier(.22,.82,.24,1)',fill:'both'}
     );
+    try{await incoming.finished}catch(_){}
+    if(token!==switchToken)return;
+    incoming.cancel();
   };
 
   tabs.forEach((tab,index)=>{
@@ -96,15 +113,15 @@
 
   showInstant(activeTopic);
   setTabState(activeTopic);
-  requestAnimationFrame(()=>updateMarker(tabs.find(tab=>tab.dataset.topic===activeTopic)));
-  addEventListener('resize',()=>updateMarker(tabs.find(tab=>tab.dataset.topic===activeTopic)),{passive:true});
+  requestAnimationFrame(()=>updateMarker(activeTab()));
+  addEventListener('resize',()=>updateMarker(activeTab()),{passive:true});
 
   if(reduced||!canHover||!landing||!shell)return;
 
   let targetX=0,targetY=0,currentX=0,currentY=0,raf=0;
   const draw=()=>{
-    currentX+=(targetX-currentX)*.035;
-    currentY+=(targetY-currentY)*.035;
+    currentX+=(targetX-currentX)*.032;
+    currentY+=(targetY-currentY)*.032;
     shell.style.setProperty('--mx',currentX.toFixed(3));
     shell.style.setProperty('--my',currentY.toFixed(3));
     if(Math.abs(targetX-currentX)>.002||Math.abs(targetY-currentY)>.002){
@@ -120,7 +137,5 @@
     targetY=((event.clientY-rect.top)/rect.height-.5)*2;
     requestDraw();
   },{passive:true});
-  landing.addEventListener('pointerleave',()=>{
-    targetX=0;targetY=0;requestDraw();
-  });
+  landing.addEventListener('pointerleave',()=>{targetX=0;targetY=0;requestDraw()});
 })();
