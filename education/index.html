@@ -20,6 +20,14 @@
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="../assets/education-v2.css?v=20260812n">
+<style>
+/* School names are the recognition anchor; counts remain supporting evidence. */
+.record-board .record-school{display:block;margin:0;font-family:var(--serif);font-size:22px;line-height:1.22;font-weight:500;color:var(--navy);letter-spacing:-.012em;text-wrap:balance}
+.record-board .record-count{display:block;margin-top:9px;font-family:var(--serif);font-size:18px;line-height:1.18;font-weight:400;color:var(--rose);letter-spacing:0}
+.record-board .record-school+.record-count+small{margin-top:4px}
+@media(max-width:700px){.record-board .record-school{font-size:16px;line-height:1.28}.record-board .record-count{margin-top:7px;font-size:15.5px}.record-board small{font-size:10.6px}}
+@media(max-width:460px){.record-board .record-school{font-size:20px}.record-board .record-count{font-size:16.5px}}
+</style>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -44,7 +52,7 @@
     "alumniOf":{"@type":"CollegeOrUniversity","name":"Kyoto University"},
     "worksFor":{"@type":"Organization","name":"China Tabito Education Group","url":"https://www.tabitoedu.com"},
     "sameAs":["https://xhslink.com/m/AqfBhkkqR2w"],
-    "knowsAbout":["日本留学考试（EJU）","大学入学共通テスト","校内考","EJU数学","EJU物理","共通テスト物理","出愿","志望理由书","面试","口頭試問","大学院入试","电路分析","传输线理论","电磁学","模拟电子电路","自动控制","专业日语"],
+    "knowsAbout":["日本留学考试（EJU）","大学入学共通テスト","校内考","EJU数学","EJU物理","共通テスト物理","出愿","志望理由书","面试","口頭試問","大学院入试","电路分析","传输线理论","静电场","静磁场","电磁感应","带电粒子运动","麦克斯韦方程与电磁波","模拟电子电路","经典控制","专业日语"],
     "award":["Ichikawa International Scholarship Foundation Scholar","MEXT Honors Scholarship for Privately Financed International Students","Kyoto University Electrical and Electronic Circuit Practice Poster Presentation Award"]
   }
 }
@@ -100,9 +108,9 @@
       <p>以下学生均接受过我负责的班课、一对一、理科口试或面试指导。</p>
     </div>
     <div class="record-board" aria-label="合格指导实绩">
-      <div><strong>约 40 名</strong><span>东京科学大学</span><small>原东京工业大学</small></div>
-      <div><strong>约 20 名</strong><span>京都大学</span></div>
-      <div><strong>约 20 名</strong><span>早稻田大学</span></div>
+      <div><strong class="record-school">东京科学大学</strong><span class="record-count">约 40 名</span><small>原东京工业大学</small></div>
+      <div><strong class="record-school">京都大学</strong><span class="record-count">约 20 名</span></div>
+      <div><strong class="record-school">早稻田大学</strong><span class="record-count">约 20 名</span></div>
     </div>
     <p class="record-note">按录取学校分别统计，学校之间可能有重复。</p>
   </section>
@@ -180,9 +188,13 @@
             </div>
           </div>
           <div class="topic-list">
-            <p><strong>京都大学｜数学</strong><span>数学 2 题：微积分、常微分方程、线性代数、复变函数、傅里叶分析</span></p>
-            <p><strong>京都大学｜专业</strong><span>电磁学 1・2、电气回路、电子回路、自动控制</span></p>
-            <p><strong>东京大学</strong><span>电气回路（交流、过渡、传输线、模拟电子、反馈）／控制与电气能源工学（控制基础、稳定性、反馈、电能转换）</span></p>
+            <p><strong>京都大学｜数学</strong><span>微积分（一元、多元）、常微分方程、线性代数、复变函数、傅里叶分析</span></p>
+            <p><strong>京都大学｜电磁学</strong><span>静电场、静磁场、电磁感应、带电粒子运动、麦克斯韦方程与电磁波</span></p>
+            <p><strong>京都大学｜电路分析</strong><span>交流电路、分布参数电路（传输线）、暂态过程</span></p>
+            <p><strong>京都大学｜模拟电子</strong><span>模拟电子电路基础</span></p>
+            <p><strong>京都大学｜自动控制</strong><span>连续时间系统的经典控制理论</span></p>
+            <p><strong>东京大学｜电路分析</strong><span>直流与交流、暂态与拉普拉斯变换、频率响应与傅里叶分析、传输线、小信号分析、放大与振荡、反馈</span></p>
+            <p><strong>东京大学｜控制与电能</strong><span>控制系统基础、响应与稳定性、反馈设计、交流电与电能转换</span></p>
             <p><strong>训练重点</strong><span>解题路线、推导、专业术语、口头试问与追问</span></p>
           </div>
         </div>
