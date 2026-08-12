@@ -5,6 +5,8 @@ Personal academic and professional website for Kewei Liu (劉 可惟 / 刘可惟
 **Website:** https://kayui-gavo.github.io/  
 **Education profile:** https://kayui-gavo.github.io/education/
 
+The main profile is written as a first-person personal site, while the separate education profile presents STEM admissions teaching experience for students and families.
+
 - The University of Tokyo, EEIS / Minematsu–Saito Laboratory
 - Speech and language processing / multimodal interaction
 - Japanese learner speaking support
