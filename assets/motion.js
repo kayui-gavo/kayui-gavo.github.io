@@ -1,32 +1,70 @@
 (()=>{
   const readabilityStyle=document.createElement('style');
+  readabilityStyle.id='profile-reading-width-fix';
   readabilityStyle.textContent=`
-    .lede,.detail-panel h2,.detail-panel p,.proofs span,.proofs a,.school-lines span{line-break:strict;overflow-wrap:break-word;text-wrap:pretty}
-    @media(min-width:1061px){
-      .explore{grid-template-columns:172px minmax(0,1fr);gap:24px}
-      .section-index{padding-left:13px;padding-right:14px}
-      .detail-layout{grid-template-columns:minmax(0,1fr) 118px;gap:18px}
-      .detail-panel h2,.detail-panel p,.proofs span,.proofs a,.interest-grid{max-width:none}
-      html[lang="zh-CN"] .detail-panel h2,html[lang="zh-Hant-TW"] .detail-panel h2{font-size:clamp(23px,1.55vw,25.5px);white-space:nowrap;text-wrap:nowrap}
-      .visual-cell{min-height:212px}
-      .visual-research img:first-child{width:180px;height:120px;right:-12px;top:44px}
-      .visual-research img.secondary{width:72px;height:48px;left:0;bottom:18px}
-      .visual-education img,.visual-interests img{width:170px;height:113px;right:-2px;bottom:30px}
-      .visual-internships::before{width:118px;right:0}
-      .intern-year{font-size:41px}
-    }
-    @media(min-width:1240px){
-      .nav,.landing{width:min(1240px,calc(100% - 64px))}
-      .landing{grid-template-columns:minmax(350px,.76fr) minmax(0,1.24fr);gap:clamp(58px,5vw,76px)}
-      .portrait-column{width:min(29vw,382px)}
+    .lede,.detail-panel h2,.detail-panel p,.proofs span,.proofs a,.school-lines span{line-break:strict;word-break:normal;text-wrap:pretty}
+
+    @media(min-width:721px){
       .editorial{max-width:820px}
-      .explore{grid-template-columns:176px minmax(0,1fr);gap:26px}
-      .detail-layout{grid-template-columns:minmax(0,1fr) 126px;gap:20px}
+      .explore{grid-template-columns:175px minmax(0,1fr);gap:27px}
+      .section-index{padding-left:14px;padding-right:16px}
+
+      /* Do not spend a permanent column on decoration. Headings and prose get
+         the full reading width; artwork sits only beside the compact proof area. */
+      .topic-detail{min-height:276px;overflow:hidden}
+      .detail-layout{display:block;position:relative;min-height:268px}
+      .detail-copy{position:relative;z-index:2;min-width:0}
+      .detail-panel h2{max-width:none;text-wrap:balance;line-break:strict}
+      .detail-panel p{max-width:none;text-wrap:pretty;line-break:strict;word-break:normal}
+      .proofs,.interest-grid{max-width:calc(100% - 142px)}
+
+      .visual-cell{position:absolute;right:0;bottom:2px;width:124px;min-height:128px;z-index:1;pointer-events:none}
+      .visual-cell::before{width:118px;height:42px;right:0;top:50px}
+      .visual-cell::after{right:0;top:7px;width:24px}
+      .visual-research img:first-child{width:156px;height:104px;right:-14px;top:14px}
+      .visual-research img.secondary{width:58px;height:39px;left:-16px;bottom:-2px}
+      .visual-education img,.visual-interests img{width:148px;height:99px;right:-8px;bottom:5px}
+      .visual-internships{padding:8px 0 12px;justify-content:center}
+      .visual-internships::before{width:112px;height:40px;top:52px}
+      .visual-internships::after{top:8px;width:25px}
+      .intern-year{font-size:36px}
+      .intern-companies{margin-top:7px;font-size:9.2px}
+      .visual-caption{font-size:9.8px;bottom:-1px}
+
+      /* Prevent the exact failure visible in CJK: one trailing character alone. */
+      html[lang="ja"] .detail-panel h2,
+      html[lang="zh-CN"] .detail-panel h2,
+      html[lang="zh-Hant-TW"] .detail-panel h2{
+        max-width:none;
+        white-space:nowrap;
+        text-wrap:nowrap;
+        font-size:clamp(22px,1.5vw,26px);
+        letter-spacing:0;
+      }
     }
-    @media(max-width:1060px) and (min-width:601px){
-      .detail-panel h2,.detail-panel p,.proofs span,.proofs a{max-width:none}
-      .detail-layout{grid-template-columns:minmax(0,1fr) 154px;gap:20px}
-      html[lang="zh-CN"] .detail-panel h2,html[lang="zh-Hant-TW"] .detail-panel h2{text-wrap:balance}
+
+    @media(min-width:1180px){
+      .nav,.landing{width:min(1230px,calc(100% - 64px))}
+      .landing{grid-template-columns:minmax(330px,.76fr) minmax(670px,1.24fr);gap:clamp(58px,5vw,78px)}
+      .portrait-column{width:min(29vw,382px)}
+      .editorial{max-width:840px}
+      .explore{grid-template-columns:172px minmax(0,1fr);gap:30px}
+    }
+
+    @media(min-width:721px) and (max-width:900px){
+      .explore{grid-template-columns:164px minmax(0,1fr);gap:22px}
+      .proofs,.interest-grid{max-width:calc(100% - 124px)}
+      .visual-cell{width:108px}
+      .visual-research img:first-child{width:136px;height:91px;right:-12px;top:22px}
+      .visual-education img,.visual-interests img{width:130px;height:87px;right:-6px}
+    }
+
+    @media(max-width:720px){
+      .detail-layout{display:grid;grid-template-columns:1fr;gap:10px;min-height:0}
+      .detail-panel h2{max-width:none;white-space:normal!important;text-wrap:balance}
+      .detail-panel p{max-width:none;text-wrap:pretty;line-break:strict;word-break:normal}
+      .proofs,.interest-grid{max-width:none}
+      .visual-cell{position:relative;right:auto;bottom:auto;width:auto;min-height:126px;z-index:auto}
     }
   `;
   document.head.appendChild(readabilityStyle);
