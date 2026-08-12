@@ -2,32 +2,6 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const body = document.body;
 
-  const classroomPhoto = document.querySelector('[data-tabito-classroom]');
-  const classroomFigure = classroomPhoto?.closest('.tabito-photo');
-  const applyClassroomPhoto = () => {
-    if (!classroomPhoto || !window.TABITO_CLASSROOM_DATA) return false;
-    if (classroomPhoto.src !== window.TABITO_CLASSROOM_DATA) classroomPhoto.src = window.TABITO_CLASSROOM_DATA;
-    return true;
-  };
-  if (classroomPhoto) {
-    classroomPhoto.addEventListener('load', () => {
-      classroomPhoto.classList.add('is-loaded');
-      classroomFigure?.classList.remove('is-fallback');
-    }, { once: true });
-    classroomPhoto.addEventListener('error', () => {
-      classroomFigure?.classList.add('is-fallback');
-    });
-    applyClassroomPhoto();
-    window.addEventListener('load', () => {
-      if (!classroomPhoto.naturalWidth) {
-        applyClassroomPhoto();
-        window.setTimeout(() => {
-          if (!classroomPhoto.naturalWidth) classroomFigure?.classList.add('is-fallback');
-        }, 1200);
-      }
-    }, { once: true });
-  }
-
   requestAnimationFrame(() => body.classList.add('is-ready'));
 
   const progressBar = document.querySelector('.scroll-progress span');
@@ -66,27 +40,18 @@
   const setCourse = (key, { focus = false } = {}) => {
     const activeTab = tabs.find(tab => tab.dataset.courseTab === key) || tabs[0];
     const activePanel = panels.find(panel => panel.dataset.coursePanel === key) || panels[0];
-
     tabs.forEach(tab => {
       const active = tab === activeTab;
       tab.setAttribute('aria-selected', String(active));
       tab.tabIndex = active ? 0 : -1;
     });
-
-    panels.forEach(panel => {
-      const active = panel === activePanel;
-      panel.hidden = !active;
-    });
-
+    panels.forEach(panel => panel.hidden = panel !== activePanel);
     if (focus) activeTab?.focus({ preventScroll: true });
     if (!reduceMotion && activePanel?.animate) {
-      activePanel.animate(
-        [
-          { opacity: 0, transform: 'translateY(8px)' },
-          { opacity: 1, transform: 'translateY(0)' }
-        ],
-        { duration: 260, easing: 'cubic-bezier(.2,.7,.2,1)' }
-      );
+      activePanel.animate([
+        { opacity: 0, transform: 'translateY(8px)' },
+        { opacity: 1, transform: 'translateY(0)' }
+      ], { duration: 260, easing: 'cubic-bezier(.2,.7,.2,1)' });
     }
   };
 
@@ -106,15 +71,10 @@
   if (tabs.length) setCourse(tabs.find(tab => tab.getAttribute('aria-selected') === 'true')?.dataset.courseTab || tabs[0].dataset.courseTab);
 
   const navLinks = [...document.querySelectorAll('.nav-links a[href^="#"]')];
-  const sectionMap = navLinks
-    .map(link => ({ link, section: document.querySelector(link.getAttribute('href')) }))
-    .filter(item => item.section);
-
+  const sectionMap = navLinks.map(link => ({ link, section: document.querySelector(link.getAttribute('href')) })).filter(item => item.section);
   if ('IntersectionObserver' in window && sectionMap.length) {
     const activeObserver = new IntersectionObserver(entries => {
-      const visible = entries
-        .filter(entry => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
       if (!visible) return;
       const match = sectionMap.find(item => item.section === visible.target);
       if (!match) return;
