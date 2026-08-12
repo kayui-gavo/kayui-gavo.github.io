@@ -27,11 +27,10 @@ a:focus-visible{outline:2px solid rgba(135,104,59,.7);outline-offset:4px;border-
 .nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:1px;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .18s ease}
 .nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
 main{width:min(1160px,calc(100% - 60px));margin:0 auto;padding:34px 0 30px}
-.section-kicker{margin:0 0 8px;font-family:var(--serif);font-size:10px;letter-spacing:.16em;color:var(--gold-dark)}
 .hero{display:grid;grid-template-columns:minmax(0,1fr) 248px;gap:58px;align-items:center;padding:8px 0 30px;border-bottom:1px solid var(--line-strong)}
 .hero-copy{max-width:730px}
 .hero h1{margin:0;font-family:var(--serif);font-size:44px;line-height:1.05;font-weight:400;letter-spacing:-.025em;color:var(--navy)}
-.specialty{margin:9px 0 14px;font-family:var(--serif);font-size:19px;line-height:1.4;color:var(--rose)}
+.specialty{margin:9px 0 14px;font-family:var(--serif);font-size:18px;line-height:1.4;color:var(--rose)}
 .intro{margin:0;max-width:720px;font-size:14.4px;line-height:1.8;color:#514d49}
 .degree-lines{display:flex;flex-wrap:wrap;gap:6px 28px;margin-top:15px;padding-top:13px;border-top:1px solid var(--line)}
 .degree-lines p{margin:0;font-size:12.4px;color:#5d5853}
@@ -53,8 +52,7 @@ main{width:min(1160px,calc(100% - 60px));margin:0 auto;padding:34px 0 30px}
 .record-schools span{white-space:nowrap}
 .record-note{margin:6px 0 0;font-size:11.8px;line-height:1.6;color:#716b65}
 .section{padding-top:28px}
-.section-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;padding-bottom:10px;border-bottom:1px solid var(--line-strong)}
-.section-heading p{margin:0;font-size:12.5px;color:#6a655f}
+.section-heading{padding-bottom:10px;border-bottom:1px solid var(--line-strong)}
 .guidance-grid{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line-strong)}
 .guidance-grid>article{padding:20px 30px 19px 0}
 .guidance-grid>article+article{padding-left:30px;padding-right:0;border-left:1px solid var(--line)}
@@ -103,10 +101,9 @@ footer{width:min(1160px,calc(100% - 60px));margin:0 auto;padding:16px 0 20px;bor
   main{padding-top:24px}
   .hero{grid-template-columns:minmax(0,1fr) 108px;gap:18px;padding:4px 0 22px}
   .hero-copy{display:contents}
-  .section-kicker{grid-column:1;margin-bottom:4px;font-size:9px}
   .hero h1{grid-column:1;font-size:34px}
-  .specialty{grid-column:1;margin:5px 0 10px;font-size:16px}
-  .portrait-block{grid-column:2;grid-row:1/4;align-self:start;padding-left:10px}
+  .specialty{grid-column:1;margin:6px 0 10px;font-size:15px;line-height:1.5}
+  .portrait-block{grid-column:2;grid-row:1/3;align-self:start;padding-left:10px}
   .portrait-line{left:0}
   .portrait-corner{display:none}
   .portrait-block figcaption{display:none}
@@ -121,8 +118,7 @@ footer{width:min(1160px,calc(100% - 60px));margin:0 auto;padding:16px 0 20px;bor
   .record-schools span{display:block;white-space:normal}
   .record-note{font-size:11.3px}
   .section{padding-top:22px}
-  .section-heading{display:block;padding-bottom:8px}
-  .section-heading p{margin-top:4px;font-size:11.7px}
+  .section-heading{padding-bottom:8px}
   .guidance-grid>article,.guidance-grid>article+article{padding:16px 0}
   .guidance h3{font-size:16px}
   .guidance article>p{font-size:12.6px}
