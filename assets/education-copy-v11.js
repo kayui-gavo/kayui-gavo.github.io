@@ -1,4 +1,14 @@
 import('./education-copy-v10.js?v=20260814j').then(() => {
+  /* Load the final QA layer after every legacy stylesheet. This deliberately
+     bypasses stale @import caches from the long historical CSS chain. */
+  if (!document.querySelector('link[data-education-qa="v15"]')) {
+    const qa = document.createElement('link');
+    qa.rel = 'stylesheet';
+    qa.href = '/assets/education-qa-v13.css?v=20260814r';
+    qa.dataset.educationQa = 'v15';
+    document.head.appendChild(qa);
+  }
+
   const planningText = document.querySelector('.planning-head > p');
   if (planningText) {
     planningText.textContent = '结合学生当前成绩、目标专业和备考时间，逐校比较材料审查、校内考、面试或口试，以及 EJU、共通考试和英语成绩的计分方式，再确定报考组合与备考重点。';
@@ -42,9 +52,9 @@ import('./education-copy-v10.js?v=20260814j').then(() => {
     img.onerror = () => {
       if (fallbackUsed) return;
       fallbackUsed = true;
-      img.src = '/assets/student-feedback-wechat-v5.webp?v=20260814q';
+      img.src = '/assets/student-feedback-wechat-v5.webp?v=20260814r';
     };
-    img.src = '/assets/student-feedback-wechat.webp?v=20260814q';
+    img.src = '/assets/student-feedback-wechat.webp?v=20260814r';
     if (caption) caption.textContent = '学生课程反馈';
   }
 
@@ -71,7 +81,7 @@ import('./education-copy-v10.js?v=20260814j').then(() => {
   if (tabitoInfo) {
     tabitoInfo.innerHTML = `
       <a class="tabito-logo-link tabito-logo-link--simple" href="https://www.tabitoedu.com" target="_blank" rel="noopener noreferrer" aria-label="旅人教育官方网站">
-        <img class="tabito-logo-float" src="/assets/tabito-logo.webp?v=20260814q" alt="TABITO 中国旅人教育集团株式会社 Logo" loading="eager" decoding="async">
+        <img class="tabito-logo-float" src="/assets/tabito-logo.webp?v=20260814r" alt="TABITO 中国旅人教育集团株式会社 Logo" loading="eager" decoding="async">
       </a>
       <p class="tabito-brand-caption">旅人教育｜东京・中野</p>
       <a class="tabito-brand-site" href="https://www.tabitoedu.com" target="_blank" rel="noopener noreferrer">官方网站 ↗</a>`;
