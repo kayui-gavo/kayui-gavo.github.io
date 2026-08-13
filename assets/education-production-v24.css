@@ -1,0 +1,16 @@
+/* Production style entrypoint v24.
+   Historical source files are retained for rollback, but the live cascade is now centralized here. */
+@import url('./education-compact-v3.css?v=20260814ae');
+@import url('./education-compact-hotfix.css?v=20260814ae');
+@import url('./education-tune-v4.css?v=20260814ae');
+@import url('./education-hotfix-v5.css?v=20260814ae');
+@import url('./education-detail-v8.css?v=20260814ae');
+@import url('./education-ornament-v11.css?v=20260814ae');
+@import url('./education-ornament-v12.css?v=20260814ae');
+@import url('./education-final-v13-test.css?v=20260814ae');
+@import url('./education-qa-v13.css?v=20260814ae');
+@import url('./education-final-v20.css?v=20260814ae');
+@import url('./education-polish-v21.css?v=20260814ae');
+@import url('./education-polish-v22.css?v=20260814ae');
+@import url('./education-interactions-v24.css?v=20260814ae');
+@import url('./education-browser-preflight-v24.css?v=20260814ae');
