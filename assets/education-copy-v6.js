@@ -1,1 +1,1 @@
-import('./education-copy-v10.js?v=20260814h');
+import('./education-copy-v10.js?v=20260814i');
