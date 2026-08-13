@@ -43,15 +43,17 @@
 .student-media-grid .student-shot:nth-child(6)::before{display:none!important;content:none!important}
 .student-media-grid .student-shot figcaption{min-height:39px!important}
 
-/* 学生课程反馈：单独使用已确认存在的旧版单图作为背景，避免 img 加载异常时出现空卡片。 */
-.student-media-grid .student-shot.feedback-shot img{display:none!important}
-.student-media-grid .student-shot.feedback-shot::before{
+/* 学生课程反馈：不依赖 JS class，直接识别 data-media，避免空白卡片。 */
+.student-media-grid .student-shot.feedback-shot img,
+.student-media-grid .student-shot:has(img[data-media="feedback"]) img{display:none!important}
+.student-media-grid .student-shot.feedback-shot::before,
+.student-media-grid .student-shot:has(img[data-media="feedback"])::before{
   content:""!important;
   display:block!important;
   width:100%!important;
   height:248px!important;
   background-color:#ececec!important;
-  background-image:url('/assets/student-feedback-wechat.webp?v=20260813ad'),url('/assets/student-record-wall-v4.webp?v=20260813ad')!important;
+  background-image:url('/assets/student-feedback-wechat.webp?v=20260813ae'),url('/assets/student-record-wall-v4.webp?v=20260813ae')!important;
   background-position:center,center!important;
   background-size:contain,cover!important;
   background-repeat:no-repeat,no-repeat!important;
@@ -108,7 +110,7 @@
   line-height:1!important;
   font-weight:650!important;
   letter-spacing:-.02em!important;
-  opacity:.78!important;
+  opacity:.8!important;
   white-space:nowrap!important;
 }
 
@@ -123,7 +125,9 @@
   .student-media-grid{margin-inline:-15px!important;padding:0 15px 10px!important;scroll-padding-left:15px!important;scrollbar-width:none!important}
   .student-media-grid::-webkit-scrollbar{display:none!important}
   .student-media-grid .student-shot{flex-basis:min(82vw,330px)!important;width:min(82vw,330px)!important;min-width:min(82vw,330px)!important}
-  .student-media-grid .student-shot img,.student-media-grid .student-shot.feedback-shot::before{height:230px!important}
+  .student-media-grid .student-shot img,
+  .student-media-grid .student-shot.feedback-shot::before,
+  .student-media-grid .student-shot:has(img[data-media="feedback"])::before{height:230px!important}
   .experience-bullets{font-size:12.1px!important;line-height:1.56!important;gap:3px!important}
   .experience-bullets li{padding-left:13px!important}
   .experience-role-lines span{font-size:12.1px!important;white-space:normal!important}
