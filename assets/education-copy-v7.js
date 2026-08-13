@@ -4,6 +4,7 @@
     if (node) node.textContent = text;
   };
 
+  /* Final copy pass: natural Chinese, concrete classroom/service descriptions. */
   setText('.hero-intro', '共通考试与 EJU 阶段，重点打牢基本规律、实验图表和典型题型；针对理工科校内考，再补充近似处理、微积分、数列与三角变换等方法。遇到陌生设问时，也要能够准确提取条件，完成推导并规范作答。');
   setText('.record-proof-strip .proof-quote strong', '每年根据目标院校真题，调整课程重点、练习顺序和书面作答训练。');
 
@@ -29,7 +30,7 @@
   const principleCopy = [
     ['结合现象讲清公式', '通过现象、图像和实验说明公式的含义与适用条件，再进入典型题训练。'],
     ['同类题型集中归纳', '把同一知识点的常见题型与变式放在一起练，在对比中掌握稳定的处理方法。'],
-    ['校内考按目标院校专项训练', '结合历年真题训练题干信息提取、近似处理、数学方法、推导过程和书面作答。']
+    ['按目标院校专项训练', '结合历年真题训练题干信息提取、近似处理、数学方法、推导过程和书面作答。']
   ];
   principles.forEach((item, i) => {
     if (!principleCopy[i]) return;
@@ -101,57 +102,130 @@
   setText('.graduate-score > span', '当年最低合格分 410，高出 213 分');
   setText('.graduate-score > small', '本人实际参加该年度考试');
 
+  /* Experience: TABITO responsibilities, Gyouchi teaching, Kyoto University support. */
   const experienceHead = document.querySelector('.experience-head > p');
-  if (experienceHead) experienceHead.textContent = '曾负责 EJU 物理大班、数学与物理一对一、热门大学校内考、志望理由、面试及理科口试等课程与指导。现于旅人教育负责本科升学物理课程，并参与课程设计与教材开发。';
+  if (experienceHead) experienceHead.textContent = '现于旅人教育担任董事、营业教育1部部长，负责本科升学课程与报考指导，并参与课程、教材、网页及教育产品开发。此前曾在行知学园负责 EJU 物理大班、一对一及热门大学校内考等课程。';
 
   const experienceList = document.querySelector('.experience-list');
   if (experienceList) {
     const items = [...experienceList.querySelectorAll('.experience-item')];
-    const current = items.find(item => item.classList.contains('experience-item--current') || item.querySelector('strong')?.textContent.includes('旅人教育'));
+    const tabito = items.find(item => item.querySelector('strong')?.textContent.includes('旅人教育'));
     const gyouchi = items.find(item => item.querySelector('strong')?.textContent.includes('行知学园'));
-    const kyoto = items.find(item => item.querySelector('strong')?.textContent.includes('時間雇用教職員'));
+    const kyoto = items.find(item => item.querySelector('strong')?.textContent.includes('時間雇用教職員') || item.querySelector('strong')?.textContent.includes('京都大学'));
 
-    const setBullets = (item, bullets) => {
-      if (!item) return;
-      const old = item.querySelector('p, ul.experience-bullets');
+    if (tabito) {
+      const old = tabito.querySelector('p, ul.experience-bullets, .experience-copy-stack');
+      const wrap = document.createElement('div');
+      wrap.className = 'experience-copy-stack';
+      const role = document.createElement('p');
+      role.className = 'experience-position';
+      role.textContent = '董事・营业教育1部部长';
       const ul = document.createElement('ul');
       ul.className = 'experience-bullets';
-      bullets.forEach(text => {
+      [
+        '共通考试 / EJU 物理',
+        '理工科校内考、理科口试',
+        '本科报考规划',
+        '课程设计与教材开发',
+        '官网维护与网页开发',
+        '教育产品开发'
+      ].forEach(text => {
         const li = document.createElement('li');
         li.textContent = text;
         ul.appendChild(li);
       });
-      if (old) old.replaceWith(ul); else item.appendChild(ul);
-    };
+      wrap.append(role, ul);
+      if (old) old.replaceWith(wrap); else tabito.appendChild(wrap);
+      tabito.classList.add('experience-item--primary');
+    }
 
-    setBullets(current, [
-      '共通考试 / EJU 物理',
-      '理工科校内考',
-      '理科口试与专业问答',
-      '本科报考规划',
-      '课程设计与教材开发'
-    ]);
-
-    setBullets(gyouchi, [
-      'EJU 物理大班（基础班、冲刺班、刷题班）',
-      '数学、物理一对一',
-      '热门大学校内考班课与一对一',
-      '志望理由、面试与口头试问指导'
-    ]);
+    if (gyouchi) {
+      const old = gyouchi.querySelector('p, ul.experience-bullets');
+      const ul = document.createElement('ul');
+      ul.className = 'experience-bullets';
+      [
+        'EJU 物理大班（基础班、冲刺班、刷题班）',
+        '数学、物理一对一',
+        '热门大学校内考班课与一对一',
+        '志望理由、面试与口头试问指导'
+      ].forEach(text => {
+        const li = document.createElement('li');
+        li.textContent = text;
+        ul.appendChild(li);
+      });
+      if (old) old.replaceWith(ul); else gyouchi.appendChild(ul);
+    }
 
     if (kyoto) {
       kyoto.classList.remove('experience-item--kyoto');
-      const roles = kyoto.querySelector('.experience-role-lines');
-      if (roles) roles.innerHTML = '<span>電気電子回路 OA</span><span>留学生 Tutor</span>';
+      kyoto.classList.add('experience-item--university');
+      const meta = kyoto.querySelector('small');
+      const title = kyoto.querySelector('strong');
+      if (meta) meta.textContent = '2024–2026';
+      if (title) title.textContent = '京都大学工学部';
+      let roles = kyoto.querySelector('.experience-role-lines');
+      if (!roles) {
+        roles = document.createElement('p');
+        roles.className = 'experience-role-lines';
+        kyoto.appendChild(roles);
+      }
+      roles.innerHTML = '<span class="experience-role-title">時間雇用教職員</span><span>電気電子回路 OA</span><span>留学生 Tutor</span>';
     }
-    if (current) current.classList.add('experience-item--primary');
-    if (current && gyouchi && current.nextElementSibling !== gyouchi) experienceList.insertBefore(gyouchi, kyoto || current.nextSibling);
+
+    if (tabito && gyouchi && tabito.nextElementSibling !== gyouchi) experienceList.insertBefore(gyouchi, kyoto || tabito.nextSibling);
   }
 
-  const feedbackImg = document.querySelector('[data-media="feedback"]');
-  if (feedbackImg) {
-    const shot = feedbackImg.closest('.student-shot');
+  /* Feedback card: keep the horizontal gallery, but do not rely on image lazy-loading. */
+  const feedback = document.querySelector('[data-media="feedback"]');
+  if (feedback) {
+    const shot = feedback.closest('.student-shot');
     if (shot) shot.classList.add('feedback-shot');
-    feedbackImg.alt = '学生课程反馈聊天记录';
+    feedback.removeAttribute('src');
+    feedback.removeAttribute('loading');
+    feedback.alt = '学生课程反馈聊天记录';
   }
+
+  /* Detail styling injected last, so legacy CSS cannot reduce contrast or squeeze labels. */
+  let style = document.getElementById('education-v7-detail-style');
+  if (!style) {
+    style = document.createElement('style');
+    style.id = 'education-v7-detail-style';
+    document.head.appendChild(style);
+  }
+  style.textContent = `
+    .course-tabs{background:#12161b!important;color:#fff!important}
+    .course-tab{background:#12161b!important;color:#fff!important;border-color:rgba(255,255,255,.24)!important}
+    .course-tab small{color:#d9dfe5!important;font-weight:750!important;opacity:1!important}
+    .course-tab strong{color:#fff!important;font-weight:750!important;text-shadow:0 1px 0 rgba(0,0,0,.18)!important}
+    .course-tab span{color:#f0dcae!important;opacity:1!important}
+    .course-tab[aria-selected="true"]{background:#2f7599!important}
+    .course-tab[aria-selected="true"] small{color:#f4f8fb!important}
+    .course-tab[aria-selected="true"] strong{color:#fff!important}
+
+    .experience-copy-stack{grid-area:copy!important;display:grid!important;gap:7px!important;min-width:0!important}
+    .experience-position{margin:0!important;font-size:13.2px!important;line-height:1.5!important;font-weight:750!important;color:#3e3336!important}
+    .experience-copy-stack .experience-bullets{grid-area:auto!important}
+    .experience-item--university strong{font-size:16.5px!important;line-height:1.35!important;color:#171a1f!important}
+    .experience-item--university small{font-size:11.5px!important;color:#7f746b!important}
+    .experience-item--university .experience-role-lines{grid-area:copy!important;display:grid!important;gap:4px!important;margin-top:2px!important}
+    .experience-item--university .experience-role-lines span{display:block!important;white-space:nowrap!important;font-size:12.7px!important;line-height:1.55!important;color:#625d57!important}
+    .experience-item--university .experience-role-lines .experience-role-title{font-size:13.2px!important;font-weight:750!important;color:#34383d!important}
+
+    .graduate-score strong{display:flex!important;align-items:baseline!important;flex-wrap:nowrap!important;gap:8px!important;white-space:nowrap!important;font-size:clamp(60px,5vw,74px)!important;line-height:.96!important;letter-spacing:-.065em!important}
+    .graduate-score strong small{display:inline-block!important;flex:0 0 auto!important;margin:0!important;font-size:22px!important;line-height:1!important;font-weight:700!important;letter-spacing:-.02em!important;color:#d7e5ee!important;opacity:1!important;white-space:nowrap!important}
+
+    .student-media-grid .student-shot.feedback-shot img{display:block!important;width:100%!important;height:248px!important;object-fit:contain!important;background:#ececec url('/assets/student-feedback-wechat.webp?v=20260814b') center/contain no-repeat!important;visibility:visible!important;opacity:1!important}
+    .student-media-grid .student-shot.feedback-shot::before{display:none!important;content:none!important}
+
+    @media(max-width:767px){
+      .course-tab small{font-size:11px!important}
+      .course-tab strong{font-size:14px!important;line-height:1.35!important}
+      .experience-position{font-size:12.5px!important}
+      .experience-item--university .experience-role-lines span{white-space:normal!important;font-size:12.1px!important}
+      .experience-item--university .experience-role-lines .experience-role-title{font-size:12.6px!important}
+      .graduate-score strong{font-size:56px!important;gap:6px!important}
+      .graduate-score strong small{font-size:19px!important}
+      .student-media-grid .student-shot.feedback-shot img{height:230px!important}
+    }
+  `;
 })();
