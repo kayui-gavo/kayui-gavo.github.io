@@ -1,4 +1,4 @@
-import('./education-copy-v9.js?v=20260814i').then(() => {
+import('./education-copy-v9.js?v=20260814j').then(() => {
   /* Rebuild the experience timeline from scratch so old injected nodes/styles cannot overlap. */
   const list = document.querySelector('.experience-list');
   if (list) {
@@ -44,21 +44,58 @@ import('./education-copy-v9.js?v=20260814i').then(() => {
     hero.style.setProperty('align-content', 'start', 'important');
   }
 
-  /* Feedback image: explicit source and fallbacks while preserving horizontal scrolling. */
+  /* Student feedback: prefer the uncropped original image and fall back deterministically. */
   const feedback = document.querySelector('[data-media="feedback"]');
   if (feedback) {
+    const shot = feedback.closest('.student-shot');
+    if (shot) shot.classList.add('feedback-shot');
     feedback.loading = 'eager';
+    feedback.decoding = 'async';
     feedback.alt = '学生课程反馈聊天记录';
+    feedback.removeAttribute('srcset');
+    feedback.removeAttribute('sizes');
+
     const sources = [
-      '/assets/student-feedback-wechat-v5.webp?v=20260814f',
-      '/assets/student-feedback-wechat.webp?v=20260814f',
-      '/assets/student-record-wall-v4.webp?v=20260814f'
+      '/assets/student-feedback-wechat.webp?v=20260814j',
+      '/assets/student-feedback-wechat-v5.webp?v=20260814j',
+      '/assets/student-record-wall-v4.webp?v=20260814j'
     ];
     let index = 0;
+    const loadSource = () => { feedback.src = sources[index]; };
     feedback.onerror = () => {
       index += 1;
-      if (index < sources.length) feedback.src = sources[index];
+      if (index < sources.length) loadSource();
     };
-    feedback.src = sources[0];
+    feedback.onload = () => shot?.classList.add('is-media-ready');
+    loadSource();
+  }
+
+  /* Small editorial slider controls; keep native horizontal scrolling as the primary interaction. */
+  const mediaGrid = document.querySelector('.student-media-grid');
+  if (mediaGrid && !document.querySelector('.student-slider-toolbar')) {
+    const toolbar = document.createElement('div');
+    toolbar.className = 'student-slider-toolbar';
+    toolbar.innerHTML = `
+      <span class="student-slider-hint"><i aria-hidden="true"></i>左右滑动查看</span>
+      <span class="student-slider-actions">
+        <button type="button" class="student-slider-prev" aria-label="查看上一条记录">←</button>
+        <button type="button" class="student-slider-next" aria-label="查看下一条记录">→</button>
+      </span>`;
+    mediaGrid.insertAdjacentElement('afterend', toolbar);
+
+    const prev = toolbar.querySelector('.student-slider-prev');
+    const next = toolbar.querySelector('.student-slider-next');
+    const scrollStep = () => Math.max(280, Math.min(mediaGrid.clientWidth * 0.72, 520));
+    prev?.addEventListener('click', () => mediaGrid.scrollBy({ left: -scrollStep(), behavior: 'smooth' }));
+    next?.addEventListener('click', () => mediaGrid.scrollBy({ left: scrollStep(), behavior: 'smooth' }));
+
+    const syncButtons = () => {
+      const max = Math.max(0, mediaGrid.scrollWidth - mediaGrid.clientWidth - 2);
+      if (prev) prev.disabled = mediaGrid.scrollLeft <= 2;
+      if (next) next.disabled = mediaGrid.scrollLeft >= max;
+    };
+    mediaGrid.addEventListener('scroll', syncButtons, { passive: true });
+    window.addEventListener('resize', syncButtons, { passive: true });
+    requestAnimationFrame(syncButtons);
   }
 });
