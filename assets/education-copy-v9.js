@@ -88,9 +88,9 @@
   /* Graduate consultation */
   setText('.graduate-copy h2', '电气电子・信息通信・AI');
   const graduateIntro = document.querySelector('.graduate-copy > p:not(.kicker):not(.graduate-subjects)');
-  if (graduateIntro) graduateIntro.textContent = '本科阶段完整修读京都大学电气电子工学科的专业课程，现于东京大学大学院从事信号处理相关研究。大学院方向咨询不局限于本人当前课题，可围绕电气、电子、通信、控制、信号处理、信息工程、AI / 机器学习等电气电子工学相关方向，结合学生的本科背景、兴趣、目标研究室与入试科目，协助梳理报考方向和研究室选择。';
+  if (graduateIntro) graduateIntro.textContent = '本科阶段系统修读京都大学电气电子工学科的基础与专业课程，现于东京大学大学院从事信号处理相关研究。大学院方向咨询不局限于本人当前课题，可覆盖电力与能源、系统控制、通信与网络、信号处理与信息、半导体与电子器件、电磁波与光电子、计算机以及 AI / 机器学习等电气电子工学相关领域。可结合学生的本科背景、兴趣、目标研究室和入试科目，协助梳理研究方向、研究室选择与报考方案。';
   const graduateSubjects = document.querySelectorAll('.graduate-subjects');
-  if (graduateSubjects[1]) graduateSubjects[1].innerHTML = '<strong>研究方向咨询</strong>电气 · 电子 · 通信 · 控制 · 信号处理 · 信息工程 · AI / 机器学习等';
+  if (graduateSubjects[1]) graduateSubjects[1].innerHTML = '<strong>研究方向咨询</strong>电力・能源 · 电路・控制 · 通信・网络 · 信号处理・信息 · 半导体・器件 · 电磁波・光电子 · 计算机・AI / 机器学习等';
   const graduateLink = document.querySelector('.graduate-link');
   if (graduateLink) graduateLink.textContent = '大学院｜电气电子・信息通信方向咨询｜小红书 でんでん🐌⚡ ↗';
   setText('.graduate-score > span', '当年最低合格分 410，高出 213 分');
