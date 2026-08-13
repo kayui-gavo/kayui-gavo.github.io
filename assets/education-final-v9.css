@@ -1,0 +1,143 @@
+/* Final typography + detail system v9
+   Keep the established module layouts; normalize type, spacing and micro-alignment. */
+
+:root{
+  --edu-section-title:clamp(34px,2.9vw,42px);
+  --edu-module-title:19px;
+  --edu-body:13.4px;
+  --edu-body-lg:14.2px;
+  --edu-meta:11.5px;
+  --edu-label:12.6px;
+}
+
+/* ---- Global hierarchy: fewer, intentional type sizes ---- */
+.record-head h2,.editorial-head h2,.planning-head h2,.student-voices-head h2,.graduate-copy h2,.experience-head h2,.contact-copy h2{
+  font-size:var(--edu-section-title)!important;
+  line-height:1.16!important;
+  letter-spacing:-.032em!important;
+}
+.kicker{font-size:11px!important;line-height:1.4!important;letter-spacing:.1em!important}
+.record-head>p,.planning-head>p,.experience-head>p,.contact-copy>p{font-size:var(--edu-body)!important;line-height:1.76!important}
+
+/* Hero */
+.hero-intro{font-size:14.5px!important;line-height:1.8!important}
+.hero-education strong{font-size:15.5px!important;line-height:1.45!important}
+.hero-education span{font-size:11.8px!important;line-height:1.55!important}
+.hero-caption{font-size:11.3px!important;line-height:1.55!important}
+
+/* Results */
+.record-stat strong{font-size:13px!important;line-height:1.45!important}
+.record-stat small,.eju-title span,.eju-score span,.eju-score>small{font-size:11px!important;line-height:1.45!important}
+.proof-quote span,.proof-note{font-size:11.6px!important;line-height:1.65!important}
+
+/* Teaching */
+.editorial-head>div>p:last-child{font-size:14.2px!important;line-height:1.8!important}
+.editorial-side{font-size:13.2px!important;line-height:1.75!important}
+.principle-grid-specific .principle h3{font-size:18px!important;line-height:1.4!important}
+.principle-grid-specific .principle p{font-size:13.1px!important;line-height:1.68!important}
+.principle-grid-specific .principle small{font-size:10.8px!important}
+.course-stage{grid-template-columns:252px minmax(0,1fr)!important}
+.course-tabs{background:#eeeae4!important;color:#242328!important}
+.course-tab{min-height:84px!important;background:#f7f4ef!important;color:#242328!important;border-color:rgba(36,35,40,.14)!important;padding:15px 18px!important}
+.course-tab small{font-size:11px!important;line-height:1.4!important;color:#625d59!important;opacity:1!important;font-weight:700!important}
+.course-tab strong{font-size:16px!important;line-height:1.35!important;color:#242328!important;opacity:1!important;font-weight:750!important;text-shadow:none!important}
+.course-tab span{color:#76535d!important;opacity:1!important;font-weight:700!important}
+.course-tab[aria-selected="true"]{background:#eadde0!important;color:#4e333b!important;box-shadow:inset 4px 0 0 #6b4650!important}
+.course-tab[aria-selected="true"] small{color:#604b51!important}
+.course-tab[aria-selected="true"] strong,.course-tab[aria-selected="true"] span{color:#4b3038!important}
+.course-panel h3{font-size:23px!important;line-height:1.32!important}
+.course-panel>p{font-size:13.5px!important;line-height:1.72!important}
+.course-list li{font-size:12.8px!important;line-height:1.58!important;padding:8px 0!important}
+.course-list li::before{display:none!important;content:none!important}
+.material-feature>div:first-child strong{font-size:19px!important;line-height:1.35!important}
+.material-feature>div:first-child span,.material-feature>p{font-size:12.5px!important;line-height:1.65!important}
+.material-index span{font-size:10.8px!important}
+
+/* Planning */
+.planning-card h3{font-size:19px!important;line-height:1.42!important}
+.planning-card>p{font-size:13px!important;line-height:1.72!important}
+.selection-list li{grid-template-columns:98px minmax(0,1fr)!important;gap:12px!important;padding:8px 0!important}
+.selection-list li strong,.selection-list li span,.planning-interview .clean-list li{font-size:12.6px!important;line-height:1.62!important}
+.route-tags{font-size:11.2px!important;line-height:1.65!important}
+.planning-punch{font-size:15px!important;line-height:1.55!important}
+
+/* Student evidence */
+.student-voices-head>p{font-size:12.6px!important;line-height:1.72!important}
+.student-media-grid .student-shot figcaption{font-size:11.4px!important;line-height:1.55!important;min-height:40px!important}
+.student-media-grid .student-shot img{display:block!important;width:100%!important;height:248px!important;object-fit:contain!important;background:#ececec!important}
+.student-media-grid .student-shot.feedback-shot::before{display:none!important;content:none!important}
+
+/* Graduate score hierarchy */
+.graduate-score p{font-size:11.5px!important;line-height:1.45!important}
+.graduate-score strong{display:flex!important;align-items:baseline!important;flex-wrap:nowrap!important;gap:8px!important;white-space:nowrap!important;font-size:clamp(62px,5.2vw,78px)!important;line-height:.95!important;letter-spacing:-.06em!important}
+.graduate-score strong small{display:inline-block!important;flex:0 0 auto!important;margin:0!important;font-size:22px!important;line-height:1!important;font-weight:700!important;letter-spacing:-.01em!important;color:#d7e5ee!important;opacity:1!important;white-space:nowrap!important}
+.graduate-score span{font-size:12.8px!important;line-height:1.58!important}
+.graduate-score>small{font-size:11px!important;line-height:1.5!important}
+.graduate-copy>p:not(.kicker):not(.graduate-subjects){font-size:13.4px!important;line-height:1.76!important}
+.graduate-subjects{font-size:12.6px!important;line-height:1.65!important}
+.graduate-details summary strong{font-size:14px!important}
+.graduate-details summary small,.scope-row,.graduate-link{font-size:11.7px!important}
+
+/* ---- Experience: one consistent three-level hierarchy ---- */
+.experience-grid{grid-template-columns:minmax(620px,.98fr) minmax(500px,1.02fr)!important;gap:38px!important;align-items:start!important}
+.experience-item,.experience-item--kyoto{
+  display:grid!important;
+  grid-template-columns:96px 224px minmax(0,1fr)!important;
+  grid-template-areas:"meta title copy"!important;
+  column-gap:18px!important;
+  align-items:start!important;
+  min-height:0!important;
+  padding:17px 0 18px!important;
+  border-left:0!important;
+  background:transparent!important;
+}
+.experience-item small{grid-area:meta!important;padding-top:2px!important;font-size:12px!important;line-height:1.5!important;font-weight:650!important;color:#817870!important;white-space:nowrap!important}
+.experience-title-stack{grid-area:title!important;display:grid!important;gap:5px!important;min-width:0!important}
+.experience-title-stack>strong,.experience-item--university>strong,.experience-item>strong{font-size:17px!important;line-height:1.42!important;font-weight:750!important;letter-spacing:-.01em!important;color:#1d2025!important;white-space:normal!important;word-break:keep-all!important}
+.experience-title-stack .experience-position,.experience-item--university .experience-role-title{margin:0!important;font-size:13.4px!important;line-height:1.5!important;font-weight:700!important;color:#66565b!important;white-space:normal!important;word-break:keep-all!important}
+.experience-copy-stack{grid-area:copy!important;display:block!important;min-width:0!important}
+.experience-bullets{grid-area:copy!important;display:grid!important;gap:5px!important;margin:0!important;padding:0!important;list-style:none!important;font-size:13.1px!important;line-height:1.58!important;color:#625d57!important}
+.experience-bullets li{position:relative!important;margin:0!important;padding-left:14px!important;min-width:0!important}
+.experience-bullets li::before{content:"—"!important;position:absolute!important;left:0!important;top:0!important;color:#91827c!important;font-weight:500!important}
+.experience-item--primary .experience-bullets{grid-template-columns:repeat(2,minmax(0,1fr))!important;column-gap:18px!important;row-gap:5px!important}
+.experience-item--university .experience-role-lines{grid-area:copy!important;display:grid!important;gap:5px!important;margin:0!important}
+.experience-item--university .experience-role-lines span{display:block!important;font-size:13.1px!important;line-height:1.55!important;color:#625d57!important;white-space:normal!important}
+.experience-item--university .experience-role-lines .experience-role-title{display:none!important}
+
+/* Company card text follows same body scale */
+.tabito-info .company-name{font-size:12.5px!important}
+.tabito-info address,.tabito-links a,.tabito-media a{font-size:11.8px!important;line-height:1.58!important}
+.tabito-media>span{font-size:10.8px!important}
+
+/* Contact */
+.contact-copy>p{font-size:13.4px!important;line-height:1.75!important}
+.contact-meta a{font-size:11.8px!important}
+.qr-item strong{font-size:13.2px!important}.qr-item b{font-size:11.4px!important}.qr-item small{font-size:10.7px!important}
+
+@media(max-width:1180px){
+  .experience-grid{grid-template-columns:1fr!important;gap:24px!important}
+  .experience-list{max-width:none!important}
+}
+
+@media(max-width:767px){
+  :root{--edu-section-title:29px;--edu-body:12.5px;--edu-body-lg:13.6px}
+  .course-stage{display:block!important}
+  .course-tabs{display:grid!important;grid-template-columns:1fr 1fr!important}
+  .course-tab{min-height:76px!important;padding:12px 13px!important}
+  .course-tab small{font-size:10.4px!important}.course-tab strong{font-size:14px!important}
+  .course-tab[aria-selected="true"]{box-shadow:inset 0 4px 0 #6b4650!important}
+  .course-panel h3{font-size:20px!important}.course-panel>p{font-size:12.7px!important}.course-list li{font-size:11.9px!important}
+  .principle-grid-specific .principle h3{font-size:16.5px!important}.principle-grid-specific .principle p{font-size:12.4px!important}
+  .planning-card h3{font-size:17.5px!important}.selection-list li{grid-template-columns:1fr!important;gap:2px!important}
+  .selection-list li strong,.selection-list li span,.planning-interview .clean-list li{font-size:11.9px!important}
+  .graduate-score strong{font-size:56px!important;gap:6px!important}.graduate-score strong small{font-size:19px!important}
+  .experience-item,.experience-item--kyoto{grid-template-columns:74px minmax(0,1fr)!important;grid-template-areas:"meta title" "meta copy"!important;gap:4px 12px!important;padding:14px 0 15px!important}
+  .experience-item small{font-size:10.8px!important}
+  .experience-title-stack{gap:3px!important}
+  .experience-title-stack>strong,.experience-item--university>strong,.experience-item>strong{font-size:15px!important}
+  .experience-title-stack .experience-position{font-size:11.9px!important}
+  .experience-bullets{font-size:12.1px!important;gap:4px!important}
+  .experience-item--primary .experience-bullets{grid-template-columns:1fr!important}
+  .experience-item--university .experience-role-lines span{font-size:12.1px!important}
+  .student-media-grid .student-shot img{height:230px!important}
+}
