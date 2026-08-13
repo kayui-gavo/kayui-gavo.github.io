@@ -1,52 +1,87 @@
 import('./education-copy-v10.js?v=20260814j').then(() => {
   /* Load the final QA layer after every legacy stylesheet. */
-  if (!document.querySelector('link[data-education-qa="v17"]')) {
+  if (!document.querySelector('link[data-education-qa="v18"]')) {
     const qa = document.createElement('link');
     qa.rel = 'stylesheet';
-    qa.href = '/assets/education-qa-v13.css?v=20260814t';
-    qa.dataset.educationQa = 'v17';
+    qa.href = '/assets/education-qa-v13.css?v=20260814v';
+    qa.dataset.educationQa = 'v18';
     document.head.appendChild(qa);
   }
 
-  /* Permanent guard against the historical feedback-image hide rules. */
-  if (!document.querySelector('style[data-feedback-direct="v17"]')) {
+  /* Permanent guard against historical feedback-image hide rules. */
+  if (!document.querySelector('style[data-feedback-direct="v18"]')) {
     const style = document.createElement('style');
-    style.dataset.feedbackDirect = 'v17';
+    style.dataset.feedbackDirect = 'v18';
     style.textContent = `
-      .student-media-grid .student-shot.feedback-direct-v17{height:auto!important;min-height:0!important;max-height:none!important;overflow:hidden!important;}
-      .student-media-grid .student-shot.feedback-direct-v17::before{display:none!important;content:none!important;background:none!important;}
-      .student-media-grid .student-shot.feedback-direct-v17>img[data-media="feedback"]{display:block!important;visibility:visible!important;opacity:1!important;position:relative!important;inset:auto!important;width:100%!important;height:490px!important;min-height:490px!important;max-height:490px!important;object-fit:contain!important;object-position:center top!important;background:#f7f7f7!important;}
-      @media(max-width:767px){.student-media-grid .student-shot.feedback-direct-v17>img[data-media="feedback"]{height:min(118vw,520px)!important;min-height:min(118vw,520px)!important;max-height:min(118vw,520px)!important;}}
+      .student-media-grid .student-shot.feedback-direct-v18{height:auto!important;min-height:0!important;max-height:none!important;overflow:hidden!important;}
+      .student-media-grid .student-shot.feedback-direct-v18::before{display:none!important;content:none!important;background:none!important;}
+      .student-media-grid .student-shot.feedback-direct-v18>img[data-media="feedback"]{display:block!important;visibility:visible!important;opacity:1!important;position:relative!important;inset:auto!important;width:100%!important;height:490px!important;min-height:490px!important;max-height:490px!important;object-fit:contain!important;object-position:center top!important;background:#f7f7f7!important;}
+      @media(max-width:767px){.student-media-grid .student-shot.feedback-direct-v18>img[data-media="feedback"]{height:min(118vw,520px)!important;min-height:min(118vw,520px)!important;max-height:min(118vw,520px)!important;}}
     `;
     document.head.appendChild(style);
   }
 
-  /* Final composition rule for the experience section. Keeping this after the
-     historical CSS chain prevents old grid rules from sending TABITO to a new row. */
-  if (!document.querySelector('style[data-experience-layout="v17"]')) {
+  /* Final layout guard. This is deliberately injected after the historical CSS
+     chain: planning copy always sits BELOW its heading, and the experience area
+     is a strict 2-column composition (text/history left, TABITO right). */
+  if (!document.querySelector('style[data-education-layout="v18"]')) {
     const style = document.createElement('style');
-    style.dataset.experienceLayout = 'v17';
+    style.dataset.educationLayout = 'v18';
     style.textContent = `
-      .experience-head{display:block!important;margin-bottom:0!important}.experience-head>div{max-width:840px!important}.experience-head>p{display:none!important}
-      .experience-grid{display:grid!important;grid-template-columns:minmax(0,1.42fr) minmax(360px,.58fr)!important;gap:44px!important;align-items:start!important;margin-top:26px!important}.experience-list{display:block!important;min-width:0!important;border-top:0!important}.experience-company-note{display:none!important}
-      .experience-summary-inline{position:relative!important;max-width:880px!important;margin:0 0 22px!important;padding:0 0 0 17px!important;color:#625d57!important;font-size:13.5px!important;line-height:1.82!important;text-wrap:pretty!important}.experience-summary-inline::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:2px;border-radius:999px;background:linear-gradient(180deg,#604047,#c3a878);opacity:.55}
-      .exp-row{display:grid!important;grid-template-columns:92px 218px minmax(0,1fr)!important;gap:18px!important;align-items:start!important;padding:17px 0 18px!important;border-top:1px solid rgba(17,19,23,.115)!important;border-bottom:0!important;border-radius:0!important;background:transparent!important}.exp-row:last-child{border-bottom:1px solid rgba(17,19,23,.115)!important}.exp-row.exp-current{padding-left:10px!important;padding-right:8px!important;border-radius:11px!important;background:linear-gradient(90deg,rgba(96,64,71,.045),rgba(255,255,255,0) 72%)!important}.exp-responsibilities{grid-template-columns:1fr!important}
-      .tabito-block{grid-column:2!important;grid-row:1!important;align-self:start!important;min-width:0!important;margin:0!important;border:1px solid rgba(57,117,150,.10)!important;border-radius:16px!important;overflow:hidden!important;background:#fbfcfc!important;box-shadow:0 18px 42px rgba(31,37,42,.085)!important}.tabito-media-stage{display:grid!important;grid-template-columns:minmax(0,1.52fr) minmax(135px,.48fr)!important;width:100%!important;min-height:228px!important;margin:0!important;background:#edf2f4!important}.tabito-photo,.tabito-photo img,.tabito-map,.tabito-map iframe{display:block!important;width:100%!important;height:228px!important;min-height:228px!important;margin:0!important;border:0!important}.tabito-photo img{object-fit:cover!important;object-position:center!important}.tabito-map{overflow:hidden!important;border-left:1px solid rgba(57,117,150,.12)!important}
-      .tabito-info{display:block!important;min-height:0!important;padding:20px 21px 21px!important;text-align:left!important;background:radial-gradient(circle at 94% 88%,rgba(57,117,150,.055),transparent 27%),#fbfcfc!important}.tabito-info>*{position:static!important;grid-column:auto!important;grid-row:auto!important}.tabito-info-head{display:grid!important;grid-template-columns:minmax(0,1fr) 112px!important;gap:16px!important;align-items:start!important}.tabito-info-copy .kicker{margin:0 0 7px!important;color:#397596!important;font-size:10px!important}.tabito-info h3{margin:0!important;font-family:serif!important;font-size:21px!important;line-height:1.35!important;color:#22303a!important}.tabito-info .company-name{margin:8px 0 0!important;font-size:11.7px!important;line-height:1.5!important;color:#39444b!important;font-weight:700!important}.tabito-logo-link--compact,.tabito-info .tabito-logo-link{display:block!important;width:112px!important;margin:0!important;padding:6px!important;border:1px solid rgba(57,117,150,.10)!important;border-radius:9px!important;background:#fff!important;box-shadow:0 7px 18px rgba(41,83,105,.07)!important}.tabito-info .tabito-logo-float{display:block!important;position:static!important;width:100%!important;height:auto!important;margin:0!important;object-fit:contain!important;background:#fff!important;box-shadow:none!important}.tabito-info address{margin:15px 0 0!important;padding-top:13px!important;border-top:1px solid rgba(17,19,23,.08)!important;color:#746f69!important;font-size:11.5px!important;line-height:1.65!important;font-style:normal!important}.tabito-links--compact,.tabito-info .tabito-links{display:flex!important;flex-wrap:wrap!important;gap:7px 15px!important;margin:12px 0 0!important;padding:11px 0 0!important;border-top:1px solid rgba(17,19,23,.08)!important}.tabito-links--compact a,.tabito-info .tabito-links a{color:#397596!important;font-size:11.2px!important;text-decoration:none!important;white-space:nowrap!important}
-      @media(max-width:1180px){.experience-grid{grid-template-columns:minmax(0,1.2fr) minmax(340px,.8fr)!important;gap:30px!important}.exp-row{grid-template-columns:84px 190px minmax(0,1fr)!important;gap:15px!important}}
-      @media(max-width:1050px){.experience-grid{grid-template-columns:1fr!important;gap:26px!important}.tabito-block{grid-column:1!important;grid-row:auto!important;max-width:760px!important}}
-      @media(max-width:767px){.experience-summary-inline{font-size:12.4px!important;line-height:1.74!important}.exp-row{grid-template-columns:72px minmax(0,1fr)!important;grid-template-areas:"meta main" "meta responsibilities"!important;gap:4px 11px!important}.exp-meta{grid-area:meta!important}.exp-main{grid-area:main!important}.exp-responsibilities{grid-area:responsibilities!important}.tabito-media-stage{grid-template-columns:1.3fr .7fr!important}.tabito-info-head{grid-template-columns:minmax(0,1fr) 92px!important}.tabito-logo-link--compact,.tabito-info .tabito-logo-link{width:92px!important}}
+      /* Planning: no side-by-side paragraph, therefore no possible overlap. */
+      .planning-head{display:block!important;position:relative!important;overflow:visible!important;max-width:none!important;}
+      .planning-head>div{display:block!important;position:relative!important;inset:auto!important;transform:none!important;width:auto!important;max-width:900px!important;}
+      .planning-head>p{display:block!important;position:relative!important;inset:auto!important;transform:none!important;float:none!important;width:auto!important;max-width:900px!important;margin:15px 0 0!important;padding:0 0 0 17px!important;border:0!important;color:#625d57!important;font-size:13.6px!important;line-height:1.82!important;text-wrap:pretty!important;}
+      .planning-head>p::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:2px;border-radius:999px;background:linear-gradient(180deg,#604047,#c3a878);opacity:.5;}
+      .planning-grid{margin-top:28px!important;}
+
+      /* Experience heading stays simple. Long intro belongs to the left column. */
+      .experience-head{display:block!important;margin-bottom:0!important;}
+      .experience-head>div{display:block!important;max-width:840px!important;}
+      .experience-head>p{display:none!important;}
+      .experience-grid{display:grid!important;grid-template-columns:minmax(0,1.48fr) minmax(355px,.52fr)!important;gap:42px!important;align-items:start!important;margin-top:26px!important;}
+      .experience-list{display:block!important;min-width:0!important;border-top:0!important;}
+      .experience-company-note{display:none!important;}
+      .experience-summary-inline{display:block!important;position:relative!important;max-width:900px!important;margin:0 0 23px!important;padding:0 0 0 17px!important;color:#625d57!important;font-size:13.6px!important;line-height:1.82!important;text-wrap:pretty!important;word-break:normal!important;overflow-wrap:break-word!important;}
+      .experience-summary-inline::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:2px;border-radius:999px;background:linear-gradient(180deg,#604047,#c3a878);opacity:.52;}
+      .exp-row{display:grid!important;grid-template-columns:92px 218px minmax(0,1fr)!important;gap:18px!important;align-items:start!important;padding:17px 0 18px!important;border-top:1px solid rgba(17,19,23,.115)!important;border-bottom:0!important;border-radius:0!important;background:transparent!important;}
+      .exp-row:last-child{border-bottom:1px solid rgba(17,19,23,.115)!important;}
+      .exp-row.exp-current{padding-left:10px!important;padding-right:8px!important;border-radius:11px!important;background:linear-gradient(90deg,rgba(96,64,71,.045),rgba(255,255,255,0) 72%)!important;}
+      .exp-responsibilities{grid-template-columns:1fr!important;}
+
+      /* TABITO is one compact branded card on the right. */
+      .tabito-block{display:block!important;grid-column:2!important;grid-row:1!important;align-self:start!important;min-width:0!important;margin:0!important;border:1px solid rgba(57,117,150,.12)!important;border-radius:16px!important;overflow:hidden!important;background:#fbfcfc!important;box-shadow:0 18px 42px rgba(31,37,42,.085)!important;}
+      .tabito-media-stage{display:grid!important;grid-template-columns:minmax(0,1.5fr) minmax(135px,.5fr)!important;width:100%!important;min-height:225px!important;margin:0!important;background:#edf2f4!important;}
+      .tabito-photo,.tabito-photo img,.tabito-map,.tabito-map iframe{display:block!important;width:100%!important;height:225px!important;min-height:225px!important;margin:0!important;border:0!important;}
+      .tabito-photo img{object-fit:cover!important;object-position:center!important;}
+      .tabito-map{overflow:hidden!important;border-left:1px solid rgba(57,117,150,.12)!important;}
+      .tabito-info{display:block!important;visibility:visible!important;opacity:1!important;min-height:0!important;padding:20px 21px 21px!important;text-align:left!important;background:radial-gradient(circle at 94% 88%,rgba(57,117,150,.055),transparent 27%),#fbfcfc!important;}
+      .tabito-info>*{position:static!important;grid-column:auto!important;grid-row:auto!important;}
+      .tabito-info-head{display:grid!important;grid-template-columns:minmax(0,1fr) 128px!important;gap:16px!important;align-items:start!important;}
+      .tabito-info-copy{display:block!important;min-width:0!important;}
+      .tabito-info-copy .kicker{display:flex!important;margin:0 0 7px!important;color:#397596!important;font-size:10px!important;}
+      .tabito-info h3{display:block!important;margin:0!important;font-family:serif!important;font-size:21px!important;line-height:1.35!important;color:#22303a!important;}
+      .tabito-info .company-name{display:block!important;margin:8px 0 0!important;font-size:11.8px!important;line-height:1.5!important;color:#39444b!important;font-weight:700!important;}
+      .tabito-logo-link--compact,.tabito-info .tabito-logo-link{display:block!important;visibility:visible!important;opacity:1!important;width:128px!important;height:auto!important;margin:0!important;padding:7px!important;border:1px solid rgba(57,117,150,.12)!important;border-radius:10px!important;background:#fff!important;box-shadow:0 8px 20px rgba(41,83,105,.08)!important;}
+      .tabito-info .tabito-logo-float{display:block!important;visibility:visible!important;opacity:1!important;position:static!important;width:100%!important;height:auto!important;max-width:none!important;aspect-ratio:auto!important;margin:0!important;object-fit:contain!important;background:#fff!important;box-shadow:none!important;}
+      .tabito-info address{display:block!important;margin:15px 0 0!important;padding-top:13px!important;border-top:1px solid rgba(17,19,23,.08)!important;color:#746f69!important;font-size:11.5px!important;line-height:1.65!important;font-style:normal!important;}
+      .tabito-links--compact,.tabito-info .tabito-links{display:flex!important;flex-wrap:wrap!important;gap:7px 15px!important;margin:12px 0 0!important;padding:11px 0 0!important;border-top:1px solid rgba(17,19,23,.08)!important;}
+      .tabito-links--compact a,.tabito-info .tabito-links a{display:inline-flex!important;color:#397596!important;font-size:11.2px!important;text-decoration:none!important;white-space:nowrap!important;}
+
+      @media(max-width:1180px){.experience-grid{grid-template-columns:minmax(0,1.22fr) minmax(340px,.78fr)!important;gap:30px!important}.exp-row{grid-template-columns:84px 190px minmax(0,1fr)!important;gap:15px!important}}
+      @media(max-width:1050px){.planning-head>p{max-width:760px!important}.experience-grid{grid-template-columns:1fr!important;gap:26px!important}.tabito-block{grid-column:1!important;grid-row:auto!important;max-width:760px!important}.experience-summary-inline{max-width:760px!important}}
+      @media(max-width:767px){.planning-head>p{font-size:12.5px!important;line-height:1.74!important;margin-top:12px!important}.experience-summary-inline{font-size:12.4px!important;line-height:1.74!important}.exp-row{grid-template-columns:72px minmax(0,1fr)!important;grid-template-areas:"meta main" "meta responsibilities"!important;gap:4px 11px!important}.exp-meta{grid-area:meta!important}.exp-main{grid-area:main!important}.exp-responsibilities{grid-area:responsibilities!important}.tabito-media-stage{grid-template-columns:1.3fr .7fr!important}.tabito-info-head{grid-template-columns:minmax(0,1fr) 100px!important}.tabito-logo-link--compact,.tabito-info .tabito-logo-link{width:100px!important}}
     `;
     document.head.appendChild(style);
   }
 
   const planningText = document.querySelector('.planning-head > p');
-  if (planningText) planningText.textContent = '结合学生当前成绩、目标专业和备考时间，逐校比较材料审查、校内考、面试或口试，以及 EJU、共通考试和英语成绩的计分方式，再确定报考组合与备考重点。';
+  if (planningText) planningText.textContent = '综合学生当前成绩、目标专业、可用考试成绩和备考时间，逐校比较材料审查、校内考、面试或口试，以及 EJU、共通考试和英语成绩的计分方式，确定更合适的报考组合与备考重点。';
 
   const contactTitle = document.querySelector('.contact-copy h2');
   if (contactTitle) contactTitle.textContent = '日本学部留学咨询';
 
-  /* LEFT column = summary + three experience rows. RIGHT column = TABITO only. */
+  /* LEFT column = intro + three experience rows. RIGHT column = TABITO only. */
   const experienceHead = document.querySelector('.experience-head');
   const experienceList = document.querySelector('.experience-list');
   if (experienceHead && experienceList) {
@@ -72,7 +107,7 @@ import('./education-copy-v10.js?v=20260814j').then(() => {
           <p class="company-name">中国旅人教育集团株式会社</p>
         </div>
         <a class="tabito-logo-link tabito-logo-link--compact" href="https://www.tabitoedu.com" target="_blank" rel="noopener noreferrer" aria-label="旅人教育官方网站">
-          <img class="tabito-logo-float" src="/assets/tabito-logo.webp?v=20260814u" alt="TABITO 中国旅人教育集团株式会社 Logo" loading="eager" decoding="async">
+          <img class="tabito-logo-float" src="/assets/tabito-logo.webp?v=20260814v" alt="TABITO 中国旅人教育集团株式会社 Logo" loading="eager" decoding="async">
         </a>
       </div>
       <address>〒164-0001<br>東京都中野区中野1-55-3<br>フェリスビル 4F</address>
@@ -80,14 +115,23 @@ import('./education-copy-v10.js?v=20260814j').then(() => {
         <a href="https://www.tabitoedu.com" target="_blank" rel="noopener noreferrer">官方网站 ↗</a>
         <a href="https://xhslink.cn/m/4aasn2cOjVt" target="_blank" rel="noopener noreferrer">小红书官方号 ↗</a>
       </div>`;
+
+    const logo = tabitoInfo.querySelector('.tabito-logo-float');
+    if (logo) {
+      logo.style.setProperty('display','block','important');
+      logo.style.setProperty('visibility','visible','important');
+      logo.style.setProperty('opacity','1','important');
+      logo.style.setProperty('width','100%','important');
+      logo.style.setProperty('height','auto','important');
+    }
   }
 
   /* Feedback card: use the standalone screenshot directly, no collage crop. */
   const feedbackImg = document.querySelector('[data-media="feedback"]');
   const feedbackShot = feedbackImg?.closest('.student-shot');
   if (feedbackShot) {
-    feedbackShot.classList.remove('feedback-shot--wall-crop','feedback-direct-v16');
-    feedbackShot.classList.add('feedback-shot', 'feedback-direct-v17');
+    feedbackShot.classList.remove('feedback-shot--wall-crop','feedback-direct-v16','feedback-direct-v17');
+    feedbackShot.classList.add('feedback-shot', 'feedback-direct-v18');
     feedbackShot.querySelectorAll('.feedback-media,.feedback-wall-image,.feedback-wall-crop').forEach(node => node.remove());
     let img = feedbackShot.querySelector('img[data-media="feedback"]');
     const caption = feedbackShot.querySelector('figcaption');
@@ -114,12 +158,13 @@ import('./education-copy-v10.js?v=20260814j').then(() => {
     img.onerror = () => {
       if (fallbackUsed) return;
       fallbackUsed = true;
-      img.src = '/assets/student-feedback-wechat-v5.webp?v=20260814u';
+      img.src = '/assets/student-feedback-wechat-v5.webp?v=20260814v';
     };
-    img.src = '/assets/student-feedback-wechat.webp?v=20260814u';
+    img.src = '/assets/student-feedback-wechat.webp?v=20260814v';
     if (caption) caption.textContent = '学生课程反馈';
   }
 
+  /* Consultation guidance belongs below the QR cards. */
   const contactCopy = document.querySelector('.contact-copy');
   const qrGrid = document.querySelector('.qr-grid');
   if (contactCopy && qrGrid) {
