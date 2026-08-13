@@ -1,7 +1,0 @@
-/* Final compact hotfix */
-.hero-thesis{font-size:0!important;line-height:1!important}
-.hero-thesis::before{content:"从数学表达回到物理现象，\A从基本模型走向复杂问题。";display:block;white-space:pre-line;font-size:clamp(37px,3.25vw,48px);line-height:1.17;letter-spacing:-.034em;font-weight:620;color:#111317}
-.tabito-logo-link{min-height:132px!important;background:#fff url('/assets/tabito-logo-small.jpg?v=20260813s') center/contain no-repeat!important;overflow:hidden!important}
-.tabito-logo-float{opacity:0!important;width:100%!important;height:100%!important;object-fit:contain!important}
-@media(max-width:767px){.hero-thesis::before{font-size:29px;line-height:1.19}.tabito-logo-link{min-height:88px!important}}
-@media(max-width:390px){.hero-thesis::before{font-size:27px}.tabito-logo-link{min-height:76px!important}}
