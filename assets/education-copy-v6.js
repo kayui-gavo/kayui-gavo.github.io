@@ -4,19 +4,19 @@
     if (node) node.textContent = text;
   };
 
-  /* Hero / teaching copy: concrete classroom style, not abstract slogans. */
-  setText('.hero-intro', '共通考试与 EJU 阶段，重点夯实基本规律、实验图表和典型模型；针对理工科校内考，再进一步训练近似、微积分、数列与三角变换等方法。面对陌生设问时，也要能够准确提取条件、组织推导并规范作答。');
-  setText('.record-proof-strip .proof-quote strong', '每年结合目标校真题，更新课程重点、题目编排与记述训练。');
+  /* 全页文案：保留现有模块，只调整为更自然、明确的中文。 */
+  setText('.hero-intro', '共通考试与 EJU 阶段，重点打牢基本规律、实验图表和典型题型；针对理工科校内考，再补充近似处理、微积分、数列与三角变换等方法。遇到陌生设问时，也要能够准确提取条件，完成推导并规范作答。');
+  setText('.record-proof-strip .proof-quote strong', '每年根据目标院校真题，调整课程重点、练习顺序和书面作答训练。');
 
-  setText('.editorial-head h2', '从物理图景出发，系统归纳题型与解法。');
-  setText('.editorial-head > div > p:last-child', '基础阶段重视现象理解、公式条件和典型模型；进入校内考后，再围绕目标校真题，把不同章节中反复出现的结构集中归纳，并补充必要的数学工具。课程中会将同一知识点的典型变式连续安排，通过比较条件变化，逐步形成稳定的判断与解题思路。');
-  setText('.editorial-side', '针对长题与综合题，重点训练条件提取、近似判断、推导步骤与书面表达，使解题思路能够完整落实到答卷上。');
+  setText('.editorial-head h2', '从现象理解公式，把同类题型练透。');
+  setText('.editorial-head > div > p:last-child', '基础阶段先结合实际现象、图像和实验理解公式，再通过典型题掌握常见用法；进入校内考后，会把同一知识点的常见题型和变式集中安排，比较条件变化带来的解法差异，并根据目标院校真题补充必要的数学方法。');
+  setText('.editorial-side', '理工科校内考中的长题和综合题，还需要专门训练条件提取、近似处理、推导步骤和书面表达，让会做的题真正落实到答卷上。');
 
   const principles = document.querySelectorAll('.principle-grid-specific .principle');
   const principleCopy = [
-    ['公式结合物理图景讲解', '结合现象、图像与成立条件理解公式，再进入典型题训练，避免孤立记忆结论。'],
-    ['同一知识点集中练变式', '把常见题型与条件变化连续安排，在对比中归纳稳定的处理方法，提高同类题的熟练度。'],
-    ['校内考强化推导与记述', '结合目标校真题训练长文读解、近似处理、数学工具与规范书写，提高综合题完成度。']
+    ['结合现象讲清公式', '通过现象、图像和实验说明公式的含义与适用条件，再进入典型题训练。'],
+    ['同类题型集中归纳', '把同一知识点的常见题型与变式放在一起练，在对比中掌握稳定的处理方法。'],
+    ['按目标院校训练校内考', '结合历年真题训练长文读题、近似处理、数学方法、推导过程和书面作答。']
   ];
   principles.forEach((item, i) => {
     if (!principleCopy[i]) return;
@@ -30,49 +30,48 @@
   if (commonPanel) {
     const h3 = commonPanel.querySelector('h3');
     const p = commonPanel.querySelector(':scope > p');
-    if (h3) h3.textContent = '夯实基础，强化实验与图表题。';
-    if (p) p.textContent = '共通考试与 EJU 课程以稳定得分为目标，系统梳理基本定律与典型模型，并集中训练实验、图表、单位、数量级及条件变化题。';
+    if (h3) h3.textContent = '打牢基础，强化实验与图表题。';
+    if (p) p.textContent = '共通考试与 EJU 课程以稳定得分为目标，系统梳理基本定律和典型题型，并集中训练实验、图表、单位、数量级以及条件变化题。';
   }
 
   const schoolPanel = document.querySelector('[data-course-panel="school"]');
   if (schoolPanel) {
     const h3 = schoolPanel.querySelector('h3');
     const p = schoolPanel.querySelector(':scope > p');
-    if (h3) h3.textContent = '围绕目标校真题，强化推导与记述。';
-    if (p) p.textContent = '在高中物理框架上，根据目标大学历年真题补充近似、微积分、数列、三角变换等常用工具，并训练长文条件提取、推导组织与规范作答。';
+    if (h3) h3.textContent = '按目标院校真题训练推导与书面作答。';
+    if (p) p.textContent = '在高中物理范围内，根据目标院校历年真题补充近似处理、微积分、数列、三角变换等常用方法，并训练长文读题、推导过程和规范书写。';
   }
 
-  setText('.material-feature > p', '按校内考中反复出现的数学工具、近似方法与推理结构编排专题，配合典型例题与变式训练，便于课堂讲解后继续巩固。');
+  setText('.material-feature > p', '按照校内考中经常出现的数学方法、近似处理和综合题型编排专题，配合典型例题与变式练习，方便课堂讲解后继续巩固。');
 
-  /* Admissions planning: teacher/service-provider perspective. */
-  setText('.planning-head h2', '结合学生情况与院校选拔方式，制定个性化升学方案。');
-  setText('.planning-head > p', '综合学生现有成绩、目标专业、可用考试成绩与备考时间，逐校比较书类审查、校内考、面试或口试，以及 EJU、共通考试和英语成绩的计分方式，确定更合适的出愿组合与准备顺序。');
-  setText('.planning-strategy h3', '院校与选拔方式分析');
-  setText('.planning-punch', '在符合志望方向的前提下，优先选择更能发挥学生优势的院校与选拔方式。');
-  setText('.planning-interview h3', '志望理由、面试与口头试问统一准备');
-  setText('.planning-interview > p', '从目标学部、学科的课程设置、研究室与教授信息入手，结合学生经历整理志望理由，再据此准备面试与专业追问，使书面材料和现场回答保持一致。');
+  /* 报考规划：明确由老师根据学生情况提供方案。 */
+  setText('.planning-head h2', '根据学生情况与院校选拔方式，定制专属升学方案。');
+  setText('.planning-head > p', '结合学生现有成绩、目标专业、可用考试成绩和备考时间，逐校分析材料审查、校内考、面试或口试，以及 EJU、共通考试和英语成绩的计分方式，确定更合适的报考组合与备考重点。');
+  setText('.planning-strategy h3', '院校选拔方式与报考方案');
+  setText('.planning-punch', '在符合志望方向的前提下，优先选择更能发挥学生优势的院校和报考方式。');
+  setText('.planning-interview h3', '志望理由、面试与口试一体准备');
+  setText('.planning-interview > p', '从目标学部、学科的课程设置、研究室和教授信息入手，结合学生经历整理志望理由，再据此准备面试与专业问答，使书面材料与现场回答保持一致。');
 
   const interviewItems = document.querySelectorAll('.planning-interview .clean-list li');
   const interviewCopy = [
     '调查目标学部、学科、课程、研究室与教授',
     '梳理个人经历、兴趣与志望方向的具体联系',
-    '精简文稿，删除套话、重复与无效信息',
-    '围绕核心回答准备后续追问与口头试问'
+    '精简文稿，删除套话、重复和无效信息',
+    '围绕核心回答准备后续追问与专业口试'
   ];
   interviewItems.forEach((item, i) => {
     if (interviewCopy[i]) item.textContent = interviewCopy[i];
   });
 
-  /* Graduate section wording. */
   const graduateIntro = document.querySelector('.graduate-copy > p:not(.kicker):not(.graduate-subjects)');
   if (graduateIntro) {
-    graduateIntro.textContent = '本科就读京都大学工学部电气电子工程，现于东京大学大学院工学系研究科电气工程与信息系统专攻，从事信号处理相关研究。大学院咨询以本人实际备考、考试与研究经历为基础，主要覆盖电气电子、信息工程及相关交叉方向。';
+    graduateIntro.textContent = '本科毕业于京都大学工学部电气电子工程，现就读东京大学大学院工学系研究科电气工程与信息系统专攻，从事信号处理相关研究。可结合本人实际备考、考试和研究经历，提供电气电子、信息工程及相关方向的大学院报考咨询。';
   }
 
-  /* Experience: use compact bullet lists for the two cram-school roles. */
+  /* 教学经历：旅人、行知采用条目式；京都大学去掉日期。 */
   const experienceHead = document.querySelector('.experience-head > p');
   if (experienceHead) {
-    experienceHead.textContent = '教学经历覆盖 EJU 大班、一对一、热门大学校内考、理科口试与面试指导。现于旅人教育负责本科入试物理，并参与课程设计与教材开发。';
+    experienceHead.textContent = '曾负责 EJU 物理大班、数学与物理一对一、热门大学校内考、志望理由、面试及理科口试等课程与指导。现于旅人教育负责本科入试物理，并参与课程设计与教材开发。';
   }
 
   const experienceList = document.querySelector('.experience-list');
@@ -98,7 +97,7 @@
     setBullets(current, [
       '共通考试 / EJU 物理',
       '理工科校内考',
-      '理科口试',
+      '理科口试与专业问答',
       '本科入试报考规划',
       '课程设计与教材开发'
     ]);
@@ -110,27 +109,20 @@
       '志望理由、面试与口头试问指导'
     ]);
 
+    if (kyoto) {
+      kyoto.classList.remove('experience-item--kyoto');
+      const roles = kyoto.querySelector('.experience-role-lines');
+      if (roles) roles.innerHTML = '<span>電気電子回路 OA</span><span>留学生 Tutor</span>';
+    }
     if (current) current.classList.add('experience-item--primary');
-    if (kyoto) kyoto.classList.remove('experience-item--kyoto');
     if (current && gyouchi && current.nextElementSibling !== gyouchi) experienceList.insertBefore(gyouchi, kyoto || current.nextSibling);
   }
 
-  /* Feedback image: it sits off-screen in a horizontal scroller, so load it eagerly and use a two-step fallback. */
-  const feedback = document.querySelector('[data-media="feedback"]');
-  if (feedback) {
-    feedback.loading = 'eager';
-    feedback.removeAttribute('loading');
-    feedback.dataset.fallbackUsed = '';
-    let stage = 0;
-    feedback.onerror = () => {
-      stage += 1;
-      if (stage === 1) {
-        feedback.src = '/assets/student-feedback-wechat.webp?v=20260813ac';
-      } else {
-        feedback.onerror = null;
-        feedback.src = '/assets/student-record-wall-v4.webp?v=20260813ac';
-      }
-    };
-    feedback.src = '/assets/student-feedback-wechat-v5.webp?v=20260813ac';
+  /* 学生课程反馈：改用稳定的旧版单图作为卡片背景，保留横向滑动布局。 */
+  const feedbackImg = document.querySelector('[data-media="feedback"]');
+  if (feedbackImg) {
+    const shot = feedbackImg.closest('.student-shot');
+    if (shot) shot.classList.add('feedback-shot');
+    feedbackImg.alt = '学生课程反馈聊天记录';
   }
 })();
