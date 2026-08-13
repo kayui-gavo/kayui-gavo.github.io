@@ -1,138 +1,29 @@
 @import url('./education-final-v9.css?v=20260814e');
 
-/* Final composition pass: restore the stronger original hero direction
-   while keeping the page compact. No module redesign. */
+/* Final composition pass: restore the stronger original hero direction while keeping the page compact. */
+.hero{min-height:0!important;align-items:start!important;align-content:start!important}
+.hero-lead{grid-area:lead!important;min-width:0!important}.hero-visual{grid-area:visual!important;min-width:0!important}.hero-detail{grid-area:detail!important;min-width:0!important}
+@media(min-width:1051px){.hero{display:grid!important;grid-template-columns:minmax(0,1fr) 350px!important;grid-template-areas:"lead visual" "detail visual"!important;grid-template-rows:auto auto!important;column-gap:60px!important;row-gap:18px!important;padding:46px 0 50px!important}.hero-lead{grid-column:1!important;grid-row:1!important;max-width:735px!important;padding-top:10px!important;align-self:start!important;justify-self:start!important}.hero-detail{grid-column:1!important;grid-row:2!important;max-width:735px!important;margin:0!important;align-self:start!important;justify-self:start!important}.hero-visual{grid-column:2!important;grid-row:1/span 2!important;width:350px!important;max-width:350px!important;margin:0!important;align-self:start!important;justify-self:end!important}.hero-name{font-size:clamp(64px,5vw,78px)!important}.hero-thesis::before{max-width:720px!important;font-size:clamp(39px,3.25vw,48px)!important;line-height:1.16!important;letter-spacing:-.035em!important}.hero-intro{max-width:700px!important;font-size:14.5px!important;line-height:1.8!important}.hero-education{grid-template-columns:1fr 1.08fr!important;gap:24px!important}.hero-actions{margin-top:16px!important}}
+@media(min-width:768px) and (max-width:1050px){.hero{display:grid!important;grid-template-columns:300px minmax(0,1fr)!important;grid-template-areas:"lead lead" "visual detail"!important;gap:24px 30px!important;padding:40px 0 45px!important}.hero-lead{grid-area:lead!important;max-width:760px!important;padding-top:0!important}.hero-visual{grid-area:visual!important;width:300px!important;max-width:300px!important;margin:0!important;align-self:start!important;justify-self:start!important}.hero-detail{grid-area:detail!important;margin:0!important;align-self:start!important}.hero-thesis::before{font-size:38px!important}.hero-education{grid-template-columns:1fr!important;gap:0!important}}
+@media(max-width:767px){.hero{display:grid!important;grid-template-columns:1fr!important;grid-template-areas:"lead" "visual" "detail"!important;grid-template-rows:auto!important;padding:28px 0 36px!important}.hero-lead{grid-area:lead!important;padding-top:0!important}.hero-visual{grid-area:visual!important;width:auto!important;max-width:none!important;margin-top:21px!important}.hero-detail{grid-area:detail!important;margin-top:16px!important}}
 
-/* ---------- HERO ---------- */
-.hero{
-  min-height:0!important;
-  align-items:start!important;
-  align-content:start!important;
-}
-.hero-lead{grid-area:lead!important;min-width:0!important}
-.hero-visual{grid-area:visual!important;min-width:0!important}
-.hero-detail{grid-area:detail!important;min-width:0!important}
+/* Experience */
+.experience-grid{grid-template-columns:minmax(690px,1.08fr) minmax(410px,.92fr)!important;gap:32px!important;align-items:start!important}.experience-list{display:block!important;min-width:0!important;border-top:1px solid rgba(17,19,23,.13)!important}.exp-row{display:grid!important;grid-template-columns:96px 224px minmax(0,1fr)!important;gap:18px!important;align-items:start!important;padding:18px 0 19px!important;border-bottom:1px solid rgba(17,19,23,.13)!important}.exp-meta{padding-top:2px!important;color:#817870!important;font-size:12px!important;line-height:1.5!important;font-weight:650!important;white-space:nowrap!important}.exp-main{min-width:0!important}.exp-main h3{margin:0!important;color:#1b1e22!important;font-size:17px!important;line-height:1.42!important;font-weight:760!important;letter-spacing:-.01em!important;word-break:keep-all!important}.exp-current .exp-main h3{color:#604047!important}.exp-position{margin:5px 0 0!important;color:#65565b!important;font-size:13.4px!important;line-height:1.55!important;font-weight:700!important;word-break:keep-all!important}.exp-responsibilities{display:grid!important;grid-template-columns:1fr!important;gap:5px!important;margin:0!important;padding:0!important;list-style:none!important;min-width:0!important;color:#625d57!important;font-size:13.1px!important;line-height:1.62!important}.exp-responsibilities li{position:relative!important;margin:0!important;padding-left:15px!important;min-width:0!important}.exp-responsibilities li::before{content:"—"!important;position:absolute!important;left:0!important;top:0!important;color:#91827c!important}.tabito-media-stage{min-height:194px!important}.tabito-photo,.tabito-photo img,.tabito-map,.tabito-map iframe{height:194px!important;min-height:194px!important}.tabito-info{padding:18px 20px 20px!important}
+@media(max-width:1180px){.experience-grid{grid-template-columns:1fr!important;gap:24px!important}.experience-list{max-width:none!important}}
+@media(max-width:767px){.exp-row{grid-template-columns:74px minmax(0,1fr)!important;grid-template-areas:"meta main" "meta responsibilities"!important;gap:5px 12px!important;padding:15px 0 16px!important}.exp-meta{grid-area:meta!important;font-size:10.8px!important}.exp-main{grid-area:main!important}.exp-main h3{font-size:15px!important}.exp-position{font-size:11.9px!important;margin-top:2px!important}.exp-responsibilities{grid-area:responsibilities!important;font-size:12.1px!important;gap:4px!important}.tabito-media-stage{min-height:0!important}.tabito-photo,.tabito-photo img{height:205px!important;min-height:205px!important}.tabito-map,.tabito-map iframe{height:172px!important;min-height:172px!important}}
 
-@media(min-width:1051px){
-  .hero{
-    display:grid!important;
-    grid-template-columns:minmax(0,1fr) 350px!important;
-    grid-template-areas:"lead visual" "detail visual"!important;
-    grid-template-rows:auto auto!important;
-    column-gap:60px!important;
-    row-gap:18px!important;
-    padding:46px 0 50px!important;
-  }
-  .hero-lead{
-    grid-column:1!important;
-    grid-row:1!important;
-    max-width:735px!important;
-    padding-top:10px!important;
-    align-self:start!important;
-    justify-self:start!important;
-  }
-  .hero-detail{
-    grid-column:1!important;
-    grid-row:2!important;
-    max-width:735px!important;
-    margin:0!important;
-    align-self:start!important;
-    justify-self:start!important;
-  }
-  .hero-visual{
-    grid-column:2!important;
-    grid-row:1 / span 2!important;
-    width:350px!important;
-    max-width:350px!important;
-    margin:0!important;
-    align-self:start!important;
-    justify-self:end!important;
-  }
-  .hero-name{font-size:clamp(64px,5vw,78px)!important}
-  .hero-thesis::before{
-    max-width:720px!important;
-    font-size:clamp(39px,3.25vw,48px)!important;
-    line-height:1.16!important;
-    letter-spacing:-.035em!important;
-  }
-  .hero-intro{max-width:700px!important;font-size:14.5px!important;line-height:1.8!important}
-  .hero-education{grid-template-columns:1fr 1.08fr!important;gap:24px!important}
-  .hero-actions{margin-top:16px!important}
-}
+/* CJK line-break audit */
+.hero-intro,.hero-caption,.record-head>p,.proof-quote,.proof-note,.editorial-head>div>p:last-child,.editorial-side,.principle p,.course-panel>p,.course-list li,.material-feature>p,.planning-head>p,.planning-card>p,.selection-list li span,.planning-interview .clean-list li,.student-voices-head>p,.student-shot figcaption,.graduate-copy>p,.graduate-subjects,.scope-row span,.graduate-link,.experience-head>p,.exp-responsibilities li,.tabito-info address,.tabito-media a,.contact-note,.qr-item small{overflow-wrap:normal!important;word-break:normal!important;line-break:strict!important;text-wrap:pretty!important}
+@supports (word-break:auto-phrase){.hero-intro,.record-head>p,.editorial-head>div>p:last-child,.editorial-side,.principle p,.course-panel>p,.course-list li,.material-feature>p,.planning-head>p,.planning-card>p,.selection-list li span,.planning-interview .clean-list li,.student-voices-head>p,.graduate-copy>p,.scope-row span,.experience-head>p,.exp-responsibilities li,.contact-note{word-break:auto-phrase!important}}
+.hero-name,.hero-thesis,.record-head h2,.editorial-head h2,.planning-head h2,.student-voices-head h2,.graduate-copy h2,.experience-head h2,.contact-copy h2,.principle h3,.course-panel h3,.planning-card h3,.tabito-info h3{text-wrap:balance!important;overflow-wrap:normal!important;word-break:keep-all!important}
+.hero-role,.hero-focus strong,.hero-education strong,.record-stat strong,.record-stat b,.eju-title strong,.eju-score strong,.course-tab small,.course-tab strong,.selection-list li strong,.material-index span,.graduate-subjects strong,.scope-row strong,.exp-meta,.exp-main h3,.exp-position,.qr-item strong,.qr-item b,.contact-meta a,.tabito-links a,.btn,.header-cta{white-space:nowrap!important;word-break:keep-all!important}.course-list li,.selection-list li,.planning-interview .clean-list li,.exp-responsibilities li{overflow-wrap:normal!important}
+.route-tags{display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:6px 8px!important}.route-tags span{display:inline-flex!important;align-items:center!important;min-height:24px!important;padding:3px 8px!important;border:1px solid rgba(96,64,71,.12)!important;background:rgba(96,64,71,.035)!important;border-radius:999px!important;white-space:nowrap!important;color:#675e5b!important}
 
-@media(min-width:768px) and (max-width:1050px){
-  .hero{
-    display:grid!important;
-    grid-template-columns:300px minmax(0,1fr)!important;
-    grid-template-areas:"lead lead" "visual detail"!important;
-    gap:24px 30px!important;
-    padding:40px 0 45px!important;
-  }
-  .hero-lead{grid-area:lead!important;max-width:760px!important;padding-top:0!important}
-  .hero-visual{grid-area:visual!important;width:300px!important;max-width:300px!important;margin:0!important;align-self:start!important;justify-self:start!important}
-  .hero-detail{grid-area:detail!important;margin:0!important;align-self:start!important}
-  .hero-thesis::before{font-size:38px!important}
-  .hero-education{grid-template-columns:1fr!important;gap:0!important}
-}
+/* Recover final feedback directly from the bottom-right cell of the original 3x2 evidence wall. */
+.student-media-grid .feedback-shot--wall-crop{align-items:stretch!important;background:#171a1f!important}.student-media-grid .feedback-shot--wall-crop>img{display:none!important}.feedback-media{width:267px!important;height:390px!important;flex:0 0 390px!important;align-self:center!important;margin:0 auto!important;background-color:#f7f7f7!important;background-repeat:no-repeat!important;background-size:300% 200%!important;background-position:100% 100%!important;box-shadow:0 0 0 1px rgba(17,19,23,.045)!important}.feedback-shot--wall-crop figcaption{margin-top:0!important}
 
-@media(max-width:767px){
-  .hero{
-    display:grid!important;
-    grid-template-columns:1fr!important;
-    grid-template-areas:"lead" "visual" "detail"!important;
-    grid-template-rows:auto!important;
-    padding:28px 0 36px!important;
-  }
-  .hero-lead{grid-area:lead!important;padding-top:0!important}
-  .hero-visual{grid-area:visual!important;width:auto!important;max-width:none!important;margin-top:21px!important}
-  .hero-detail{grid-area:detail!important;margin-top:16px!important}
-}
-
-/* ---------- EXPERIENCE ---------- */
-.experience-grid{
-  grid-template-columns:minmax(690px,1.08fr) minmax(410px,.92fr)!important;
-  gap:32px!important;
-  align-items:start!important;
-}
-.experience-list{
-  display:block!important;
-  min-width:0!important;
-  border-top:1px solid rgba(17,19,23,.13)!important;
-}
-.exp-row{
-  display:grid!important;
-  grid-template-columns:96px 224px minmax(0,1fr)!important;
-  gap:18px!important;
-  align-items:start!important;
-  padding:18px 0 19px!important;
-  border-bottom:1px solid rgba(17,19,23,.13)!important;
-}
-.exp-meta{padding-top:2px!important;color:#817870!important;font-size:12px!important;line-height:1.5!important;font-weight:650!important;white-space:nowrap!important}
-.exp-main{min-width:0!important}
-.exp-main h3{margin:0!important;color:#1b1e22!important;font-size:17px!important;line-height:1.42!important;font-weight:760!important;letter-spacing:-.01em!important;word-break:keep-all!important}
-.exp-current .exp-main h3{color:#604047!important}
-.exp-position{margin:5px 0 0!important;color:#65565b!important;font-size:13.4px!important;line-height:1.55!important;font-weight:700!important;word-break:keep-all!important}
-.exp-responsibilities{display:grid!important;grid-template-columns:1fr!important;gap:5px!important;margin:0!important;padding:0!important;list-style:none!important;min-width:0!important;color:#625d57!important;font-size:13.1px!important;line-height:1.62!important}
-.exp-responsibilities li{position:relative!important;margin:0!important;padding-left:15px!important;min-width:0!important}
-.exp-responsibilities li::before{content:"—"!important;position:absolute!important;left:0!important;top:0!important;color:#91827c!important}
-
-/* Company card should support the timeline, not overpower it. */
-.tabito-media-stage{min-height:194px!important}
-.tabito-photo,.tabito-photo img,.tabito-map,.tabito-map iframe{height:194px!important;min-height:194px!important}
-.tabito-info{padding:18px 20px 20px!important}
-
-@media(max-width:1180px){
-  .experience-grid{grid-template-columns:1fr!important;gap:24px!important}
-  .experience-list{max-width:none!important}
-}
-@media(max-width:767px){
-  .exp-row{grid-template-columns:74px minmax(0,1fr)!important;grid-template-areas:"meta main" "meta responsibilities"!important;gap:5px 12px!important;padding:15px 0 16px!important}
-  .exp-meta{grid-area:meta!important;font-size:10.8px!important}
-  .exp-main{grid-area:main!important}
-  .exp-main h3{font-size:15px!important}
-  .exp-position{font-size:11.9px!important;margin-top:2px!important}
-  .exp-responsibilities{grid-area:responsibilities!important;font-size:12.1px!important;gap:4px!important}
-  .tabito-media-stage{min-height:0!important}
-  .tabito-photo,.tabito-photo img{height:205px!important;min-height:205px!important}
-  .tabito-map,.tabito-map iframe{height:172px!important;min-height:172px!important}
-}
+/* Contact guidance sits below both QR cards. */
+.contact-grid{align-items:start!important}.contact-copy{align-self:start!important}.contact-copy>p:not(.kicker){display:none!important}.qr-grid{align-content:start!important}.contact-note{grid-column:1/-1!important;position:relative!important;margin:10px 0 0!important;padding:13px 15px 0 17px!important;border-top:1px solid rgba(17,19,23,.11)!important;color:#6a645e!important;font-size:12.3px!important;line-height:1.72!important}.contact-note::before{content:"";position:absolute;left:0;top:16px;width:2px;height:30px;border-radius:999px;background:linear-gradient(180deg,#604047,#c3a878);opacity:.72}
+.student-voices-head>p,.record-head>p,.planning-head>p,.experience-head>p{max-width:48em!important}.material-feature>div:first-child span{text-wrap:pretty!important;line-break:strict!important}.tabito-media a{display:inline-block!important;max-width:100%!important}
+@media(max-width:767px){.feedback-media{width:min(68.4vw,322px)!important;height:min(100vw,470px)!important;flex-basis:min(100vw,470px)!important}.contact-note{margin-top:8px!important;padding:12px 2px 0 14px!important;font-size:11.8px!important;line-height:1.7!important}.tabito-links a,.contact-meta a{white-space:normal!important;text-wrap:pretty!important}}
+@media(max-width:390px){.course-tab strong{font-size:13.5px!important}.route-tags{gap:5px!important}.route-tags span{font-size:10.4px!important;padding:3px 7px!important}}
