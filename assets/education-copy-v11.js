@@ -1,26 +1,21 @@
-import('./education-copy-v10.js?v=20260814y').then(() => {
+import('./education-copy-v10.js?v=20260814aa').then(() => {
   /* One final stylesheet, loaded last. */
   if (!document.querySelector('link[data-education-final="v20"]')) {
     const css = document.createElement('link');
     css.rel = 'stylesheet';
-    css.href = '/assets/education-final-v20.css?v=20260814y';
+    css.href = '/assets/education-final-v20.css?v=20260814aa';
     css.dataset.educationFinal = 'v20';
     document.head.appendChild(css);
   }
 
-  /* Planning: deliberate two-line copy + useful compact markers at the right of the heading. */
+  /* Planning: clean copy only; remove the decorative selection labels. */
   const planningHead = document.querySelector('.planning-head');
   const planningText = planningHead?.querySelector(':scope > p');
-  if (planningHead && planningText) {
+  if (planningHead) {
+    planningHead.querySelectorAll('.planning-head-markers').forEach(node => node.remove());
+  }
+  if (planningText) {
     planningText.innerHTML = '<span class="planning-copy-line">综合学生当前成绩、目标专业、可用考试成绩和备考时间，逐校比较材料审查、校内考、面试或口试。</span><span class="planning-copy-line">再结合 EJU、共通考试和英语成绩的计分方式，确定更合适的报考组合与备考重点。</span>';
-    let markers = planningHead.querySelector('.planning-head-markers');
-    if (!markers) {
-      markers = document.createElement('div');
-      markers.className = 'planning-head-markers';
-      markers.setAttribute('aria-hidden', 'true');
-      markers.innerHTML = '<span>材料审查</span><span>校内考</span><span>面试・口试</span><span>EJU / 共通 / 英语</span>';
-      planningHead.appendChild(markers);
-    }
   }
 
   /* Student evidence copy: slightly shorter, so the final word never hangs by itself. */
@@ -45,7 +40,7 @@ import('./education-copy-v10.js?v=20260814y').then(() => {
     document.querySelectorAll('.experience-company-note').forEach(node => node.remove());
   }
 
-  /* TABITO card: use the confirmed official JPG as a 4:3 background panel, so no historical <img> rule can hide it. */
+  /* TABITO card: use the confirmed official JPG as a 4:3 background panel. */
   const tabitoInfo = document.querySelector('.tabito-info');
   if (tabitoInfo) {
     tabitoInfo.innerHTML = `
@@ -89,9 +84,9 @@ import('./education-copy-v10.js?v=20260814y').then(() => {
     feedback.onerror = () => {
       if (fallback) return;
       fallback = true;
-      feedback.src = '/assets/student-feedback-wechat-v5.webp?v=20260814y';
+      feedback.src = '/assets/student-feedback-wechat-v5.webp?v=20260814aa';
     };
-    feedback.src = '/assets/student-feedback-wechat.webp?v=20260814y';
+    feedback.src = '/assets/student-feedback-wechat.webp?v=20260814aa';
     const caption = feedbackShot.querySelector('figcaption');
     if (caption) caption.textContent = '学生课程反馈';
   }
