@@ -1,24 +1,94 @@
 @import url('./education-final-v9.css?v=20260814e');
 
-/* v10 — final spacing + experience cleanup. No module redesign. */
+/* Final composition pass: restore the stronger original hero direction
+   while keeping the page compact. No module redesign. */
 
-/* Hero: align the copy with the portrait instead of vertically floating in a tall grid. */
+/* ---------- HERO ---------- */
 .hero{
   min-height:0!important;
   align-items:start!important;
   align-content:start!important;
-  grid-template-rows:auto auto!important;
-  padding:44px 0 48px!important;
-  column-gap:52px!important;
-  row-gap:18px!important;
 }
-.hero-lead{align-self:start!important;padding-top:24px!important}
-.hero-visual{align-self:start!important;grid-row:1 / 3!important}
-.hero-detail{align-self:start!important}
-.hero-role{margin-top:0!important}
-.hero-intro{max-width:700px!important}
+.hero-lead{grid-area:lead!important;min-width:0!important}
+.hero-visual{grid-area:visual!important;min-width:0!important}
+.hero-detail{grid-area:detail!important;min-width:0!important}
 
-/* Experience section: isolated classes prevent legacy .experience-item rules from colliding. */
+@media(min-width:1051px){
+  .hero{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) 350px!important;
+    grid-template-areas:"lead visual" "detail visual"!important;
+    grid-template-rows:auto auto!important;
+    column-gap:60px!important;
+    row-gap:18px!important;
+    padding:46px 0 50px!important;
+  }
+  .hero-lead{
+    grid-column:1!important;
+    grid-row:1!important;
+    max-width:735px!important;
+    padding-top:10px!important;
+    align-self:start!important;
+    justify-self:start!important;
+  }
+  .hero-detail{
+    grid-column:1!important;
+    grid-row:2!important;
+    max-width:735px!important;
+    margin:0!important;
+    align-self:start!important;
+    justify-self:start!important;
+  }
+  .hero-visual{
+    grid-column:2!important;
+    grid-row:1 / span 2!important;
+    width:350px!important;
+    max-width:350px!important;
+    margin:0!important;
+    align-self:start!important;
+    justify-self:end!important;
+  }
+  .hero-name{font-size:clamp(64px,5vw,78px)!important}
+  .hero-thesis::before{
+    max-width:720px!important;
+    font-size:clamp(39px,3.25vw,48px)!important;
+    line-height:1.16!important;
+    letter-spacing:-.035em!important;
+  }
+  .hero-intro{max-width:700px!important;font-size:14.5px!important;line-height:1.8!important}
+  .hero-education{grid-template-columns:1fr 1.08fr!important;gap:24px!important}
+  .hero-actions{margin-top:16px!important}
+}
+
+@media(min-width:768px) and (max-width:1050px){
+  .hero{
+    display:grid!important;
+    grid-template-columns:300px minmax(0,1fr)!important;
+    grid-template-areas:"lead lead" "visual detail"!important;
+    gap:24px 30px!important;
+    padding:40px 0 45px!important;
+  }
+  .hero-lead{grid-area:lead!important;max-width:760px!important;padding-top:0!important}
+  .hero-visual{grid-area:visual!important;width:300px!important;max-width:300px!important;margin:0!important;align-self:start!important;justify-self:start!important}
+  .hero-detail{grid-area:detail!important;margin:0!important;align-self:start!important}
+  .hero-thesis::before{font-size:38px!important}
+  .hero-education{grid-template-columns:1fr!important;gap:0!important}
+}
+
+@media(max-width:767px){
+  .hero{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    grid-template-areas:"lead" "visual" "detail"!important;
+    grid-template-rows:auto!important;
+    padding:28px 0 36px!important;
+  }
+  .hero-lead{grid-area:lead!important;padding-top:0!important}
+  .hero-visual{grid-area:visual!important;width:auto!important;max-width:none!important;margin-top:21px!important}
+  .hero-detail{grid-area:detail!important;margin-top:16px!important}
+}
+
+/* ---------- EXPERIENCE ---------- */
 .experience-grid{
   grid-template-columns:minmax(690px,1.08fr) minmax(410px,.92fr)!important;
   gap:32px!important;
@@ -37,87 +107,26 @@
   padding:18px 0 19px!important;
   border-bottom:1px solid rgba(17,19,23,.13)!important;
 }
-.exp-meta{
-  padding-top:2px!important;
-  color:#817870!important;
-  font-size:12px!important;
-  line-height:1.5!important;
-  font-weight:650!important;
-  white-space:nowrap!important;
-}
+.exp-meta{padding-top:2px!important;color:#817870!important;font-size:12px!important;line-height:1.5!important;font-weight:650!important;white-space:nowrap!important}
 .exp-main{min-width:0!important}
-.exp-main h3{
-  margin:0!important;
-  color:#1b1e22!important;
-  font-size:17px!important;
-  line-height:1.42!important;
-  font-weight:760!important;
-  letter-spacing:-.01em!important;
-  word-break:keep-all!important;
-}
+.exp-main h3{margin:0!important;color:#1b1e22!important;font-size:17px!important;line-height:1.42!important;font-weight:760!important;letter-spacing:-.01em!important;word-break:keep-all!important}
 .exp-current .exp-main h3{color:#604047!important}
-.exp-position{
-  margin:5px 0 0!important;
-  color:#65565b!important;
-  font-size:13.4px!important;
-  line-height:1.55!important;
-  font-weight:700!important;
-  word-break:keep-all!important;
-}
-.exp-responsibilities{
-  display:grid!important;
-  grid-template-columns:1fr!important;
-  gap:5px!important;
-  margin:0!important;
-  padding:0!important;
-  list-style:none!important;
-  min-width:0!important;
-  color:#625d57!important;
-  font-size:13.1px!important;
-  line-height:1.62!important;
-}
-.exp-responsibilities li{
-  position:relative!important;
-  margin:0!important;
-  padding-left:15px!important;
-  min-width:0!important;
-}
-.exp-responsibilities li::before{
-  content:"—"!important;
-  position:absolute!important;
-  left:0!important;
-  top:0!important;
-  color:#91827c!important;
-}
+.exp-position{margin:5px 0 0!important;color:#65565b!important;font-size:13.4px!important;line-height:1.55!important;font-weight:700!important;word-break:keep-all!important}
+.exp-responsibilities{display:grid!important;grid-template-columns:1fr!important;gap:5px!important;margin:0!important;padding:0!important;list-style:none!important;min-width:0!important;color:#625d57!important;font-size:13.1px!important;line-height:1.62!important}
+.exp-responsibilities li{position:relative!important;margin:0!important;padding-left:15px!important;min-width:0!important}
+.exp-responsibilities li::before{content:"—"!important;position:absolute!important;left:0!important;top:0!important;color:#91827c!important}
 
-/* Keep the company card compact enough that it does not overpower the timeline. */
+/* Company card should support the timeline, not overpower it. */
 .tabito-media-stage{min-height:194px!important}
 .tabito-photo,.tabito-photo img,.tabito-map,.tabito-map iframe{height:194px!important;min-height:194px!important}
 .tabito-info{padding:18px 20px 20px!important}
 
-.course-list li,.selection-list li,.planning-interview .clean-list li{overflow-wrap:anywhere!important}
-
 @media(max-width:1180px){
   .experience-grid{grid-template-columns:1fr!important;gap:24px!important}
   .experience-list{max-width:none!important}
-  .exp-row{grid-template-columns:96px 224px minmax(0,1fr)!important}
 }
-
-@media(max-width:900px){
-  .hero{padding-top:38px!important}
-  .hero-lead{padding-top:0!important}
-}
-
 @media(max-width:767px){
-  .hero{grid-template-rows:auto!important;padding:28px 0 36px!important}
-  .hero-lead{padding-top:0!important}
-  .hero-visual{grid-row:auto!important}
-  .exp-row{
-    grid-template-columns:74px minmax(0,1fr)!important;
-    grid-template-areas:"meta main" "meta responsibilities"!important;
-    gap:5px 12px!important;
-    padding:15px 0 16px!important;
-  }
+  .exp-row{grid-template-columns:74px minmax(0,1fr)!important;grid-template-areas:"meta main" "meta responsibilities"!important;gap:5px 12px!important;padding:15px 0 16px!important}
   .exp-meta{grid-area:meta!important;font-size:10.8px!important}
   .exp-main{grid-area:main!important}
   .exp-main h3{font-size:15px!important}
