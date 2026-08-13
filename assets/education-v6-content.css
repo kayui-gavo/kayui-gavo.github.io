@@ -1,0 +1,49 @@
+.record-section{background:#171a1e;color:#f8f4ee}
+.record-inner{padding:50px 0 52px}
+.split-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,390px);gap:48px;align-items:end}
+.split-head .side-copy{margin:0;color:#b8b2aa;font-size:13px;line-height:1.75}
+.school-records{display:grid;grid-template-columns:repeat(3,1fr);margin-top:27px;border-top:1px solid rgba(255,255,255,.15);border-bottom:1px solid rgba(255,255,255,.15)}
+.record-stat{min-height:112px;padding:18px 20px}
+.record-stat+.record-stat{border-left:1px solid rgba(255,255,255,.12)}
+.record-stat strong{display:block;color:#e9e3da;font-size:13px}
+.record-stat b{display:block;margin-top:8px;font-family:var(--serif);font-size:clamp(37px,3.2vw,48px);line-height:1;font-weight:650}
+.record-stat small{display:block;margin-top:7px;color:#9f9992;font-size:11px}
+.eju-row{display:grid;grid-template-columns:1.1fr repeat(3,1fr);margin-top:14px;background:rgba(255,255,255,.035)}
+.eju-cell{min-height:76px;padding:12px 16px;border:1px solid rgba(255,255,255,.11);border-right:0}
+.eju-cell:last-child{border-right:1px solid rgba(255,255,255,.11)}
+.eju-cell span{display:block;color:#aaa49d;font-size:11px}
+.eju-cell strong{display:block;margin-top:3px;font-family:var(--serif);font-size:26px;line-height:1.1}
+.eju-cell strong small{font-size:.46em;color:#aaa49d}
+.eju-cell>small{display:block;margin-top:3px;color:#aaa49d;font-size:10.8px}
+.record-foot{display:grid;grid-template-columns:minmax(0,1fr) 350px;gap:38px;align-items:start;margin-top:18px}
+.record-foot strong{font-family:var(--serif);font-size:21px;line-height:1.45;font-weight:600}
+.record-foot p{margin:0;color:#99938c;font-size:11.7px;line-height:1.65}
+.teaching-section{padding:58px 0 60px}
+.teaching-head{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,.62fr);gap:48px;align-items:start}
+.teaching-head .side-copy{margin:45px 0 0;padding-left:20px;border-left:2px solid var(--gold);color:var(--muted);font-size:13.5px;line-height:1.75}
+.principle-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.principle{padding:18px 20px 19px;border:1px solid var(--line);background:rgba(255,253,250,.62)}
+.principle small{color:var(--wine);font-size:11px;font-weight:750;letter-spacing:.08em}
+.principle h3{margin:12px 0 0;font-size:18.5px;line-height:1.4}
+.principle p{margin:7px 0 0;color:var(--muted);font-size:13px;line-height:1.7}
+.course-stage{display:grid;grid-template-columns:220px minmax(0,1fr);margin-top:30px;border:1px solid var(--line);background:var(--paper);box-shadow:var(--shadow)}
+.course-tabs{border-right:1px solid var(--line)}
+.course-tab{position:relative;width:100%;min-height:88px;padding:15px 18px;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--ink);text-align:left;cursor:pointer}
+.course-tab:last-child{border-bottom:0}
+.course-tab small{display:block;color:var(--soft);font-size:10.8px}
+.course-tab strong{display:block;margin-top:4px;font-size:15.5px}
+.course-tab span{position:absolute;right:15px;top:50%;transform:translateY(-50%);color:#a49d95}
+.course-tab[aria-selected="true"]{background:#1b1e22;color:#fff}
+.course-tab[aria-selected="true"] small,.course-tab[aria-selected="true"] span{color:#bdb7af}
+.course-panel{padding:22px 25px 24px}
+.course-panel h3{margin:0;font-family:var(--serif);font-size:24px;line-height:1.3}
+.course-panel>p{margin:8px 0 0;color:var(--muted);font-size:13.6px;line-height:1.75}
+.course-list{display:grid;grid-template-columns:1fr 1fr;gap:0 28px;margin:14px 0 0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.course-list li{padding:8px 0;border-bottom:1px solid var(--line-soft);color:#4f4a45;font-size:12.7px}
+.material-note{display:grid;grid-template-columns:minmax(210px,.72fr) minmax(0,1.28fr);gap:18px;margin-top:15px;padding:16px 18px;background:#f3efe7;border-left:3px solid var(--gold)}
+.material-note small{display:block;color:#8a7863;font-size:10.8px}
+.material-note strong{display:block;margin-top:3px;font-family:var(--serif);font-size:20px}
+.material-note span{display:block;margin-top:3px;color:var(--muted);font-size:11.8px}
+.material-note p{margin:0;color:var(--muted);font-size:12.4px;line-height:1.7}
+.material-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.material-tags i{padding:3px 7px;border:1px solid rgba(100,75,56,.18);color:#6d5a48;font-size:10.7px;font-style:normal}
