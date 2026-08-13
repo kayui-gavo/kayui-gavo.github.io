@@ -1,1 +1,1 @@
-Education page media assets are stored as real repository blobs. Static classroom image and all six student record images were restored on 2026-08-13.
+Education page media assets are stored as real repository blobs. Static classroom image, six student record images, and the official Tabito logo are present as repository assets. 2026-08-13.
