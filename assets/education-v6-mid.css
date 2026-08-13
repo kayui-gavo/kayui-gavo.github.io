@@ -1,0 +1,25 @@
+.planning-section{padding:54px 0 56px;background:#e9e4dc}
+.planning-head{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(300px,.6fr);gap:46px;align-items:end}
+.planning-head .side-copy{margin:0;color:var(--muted);font-size:13.5px;line-height:1.75}
+.planning-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:14px;margin-top:26px}
+.planning-card{padding:21px 23px;background:rgba(255,253,250,.86);border:1px solid rgba(23,25,29,.08)}
+.planning-card h3{margin:0;font-size:19.5px;line-height:1.4}
+.selection-list,.compact-list{list-style:none;margin:12px 0 0;padding:0;border-top:1px solid var(--line)}
+.selection-list li{display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;padding:9px 0;border-bottom:1px solid var(--line-soft)}
+.selection-list strong{font-size:12.8px}
+.selection-list span{color:var(--muted);font-size:12.6px;line-height:1.6}
+.compact-list li{position:relative;padding:8px 0 8px 16px;border-bottom:1px solid var(--line-soft);color:var(--muted);font-size:12.7px;line-height:1.58}
+.compact-list li::before{content:"";position:absolute;left:1px;top:15px;width:5px;height:5px;border-radius:50%;background:var(--wine)}
+.planning-card>p{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.72}
+.route-tags{margin-top:12px!important;padding-top:11px;border-top:1px solid var(--line);font-size:11.5px!important;color:#7a736c!important}
+.planning-punch{margin-top:11px!important;color:var(--wine-dark)!important;font-family:var(--serif);font-size:16px!important;font-weight:650}
+.student-voices-section{padding:50px 0 54px;background:#202329;color:#f6f1ea}
+.student-voices-head{display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:44px;align-items:end}
+.student-voices-head p:last-child{margin:0;color:#aaa49d;font-size:12.7px;line-height:1.7}
+.student-media-wrap{position:relative;margin-top:22px}
+.student-media-grid{display:flex;gap:13px;overflow-x:auto;padding:0 0 10px;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:#67615b transparent}
+.student-shot{flex:0 0 330px;margin:0;scroll-snap-align:start;background:#14171b;border:1px solid rgba(255,255,255,.1)}
+.student-shot img{width:100%;height:252px;object-fit:contain;background:#eeece8}
+.student-shot figcaption{display:flex;align-items:center;min-height:40px;padding:8px 11px;color:#d7d1c9;font-size:11.7px;line-height:1.45}
+.slider-controls{display:flex;justify-content:flex-end;gap:7px;margin-top:9px}
+.slider-controls button{width:34px;height:34px;border:1px solid rgba(255,255,255,.18);background:transparent;color:#eee9e2;cursor:pointer}
