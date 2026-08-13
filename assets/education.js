@@ -2,6 +2,55 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const body = document.body;
 
+  /*
+   * Media recovery (2026-08-13)
+   * Previous large WebP blobs were truncated during upload although Pages itself built successfully.
+   * Use independently verified compact assets and make the media layout independent of older CSS rules.
+   */
+  const mediaStyle = document.createElement('style');
+  mediaStyle.textContent = `
+    .hero-visual,.portrait-stage,.portrait-frame,.portrait-frame img{opacity:1!important;visibility:visible!important;display:block!important;filter:none!important}
+    .portrait-frame img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center 42%!important;transform:none!important;animation:none!important}
+    .student-record-collage{display:block!important;width:100%!important;max-width:1060px!important;margin:30px auto 0!important;background:none!important;border:0!important;box-shadow:none!important;overflow:visible!important}
+    .student-media-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important;align-items:start!important}
+    .student-media-grid .student-shot{display:block!important;grid-column:auto!important;margin:0!important;transform:none!important;background:#181a1e!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:8px!important;overflow:hidden!important;box-shadow:0 14px 32px rgba(0,0,0,.16)!important}
+    .student-media-grid .student-shot img{display:block!important;width:100%!important;height:auto!important;max-height:none!important;object-fit:contain!important;opacity:1!important;visibility:visible!important;filter:none!important;background:#eee!important}
+    .student-media-grid .student-shot figcaption{display:block!important;padding:9px 11px 10px!important;border-top:1px solid rgba(255,255,255,.08)!important;font-size:11.5px!important;line-height:1.5!important;color:#cbc7c0!important}
+    .tabito-photo{background:#dbe1e4!important}
+    .tabito-photo>img{display:block!important;width:100%!important;height:100%!important;min-height:270px!important;object-fit:cover!important;object-position:center!important;opacity:1!important;visibility:visible!important;filter:none!important;transform:none!important;animation:none!important}
+    @media(max-width:900px){.student-media-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+    @media(max-width:600px){.student-media-grid{grid-template-columns:1fr!important;max-width:390px!important;margin-inline:auto!important}.student-record-collage{margin-top:22px!important}.student-media-grid .student-shot figcaption{font-size:12px!important}.tabito-photo>img{min-height:210px!important}}
+  `;
+  document.head.appendChild(mediaStyle);
+
+  const portrait = document.querySelector('.portrait-frame img');
+  if (portrait) {
+    portrait.src = '/assets/portrait.webp?v=20260813h';
+    portrait.loading = 'eager';
+    portrait.decoding = 'sync';
+  }
+
+  const recordWall = document.querySelector('.student-record-collage');
+  if (recordWall) {
+    recordWall.removeAttribute('data-reveal');
+    recordWall.innerHTML = `
+      <div class="student-media-grid" aria-label="六组教学与录取记录">
+        <figure class="student-shot"><img src="/assets/student-waseda-physics-v5.webp?v=20260813h" alt="早稻田大学校内考物理班课相关聊天记录" loading="eager" decoding="async"><figcaption>目标校真题与考点｜早稻田大学校内考物理</figcaption></figure>
+        <figure class="student-shot"><img src="/assets/student-oral-reminder-v5.webp?v=20260813h" alt="学生感谢提醒准备口头试问的聊天记录" loading="eager" decoding="async"><figcaption>理科口试与口头试问准备</figcaption></figure>
+        <figure class="student-shot"><img src="/assets/student-waseda-admit-v5.webp?v=20260813h" alt="早稻田大学录取反馈" loading="eager" decoding="async"><figcaption>早稻田大学｜录取反馈</figcaption></figure>
+        <figure class="student-shot"><img src="/assets/student-keio-admit-v5.webp?v=20260813h" alt="庆应义塾大学录取反馈" loading="eager" decoding="async"><figcaption>庆应义塾大学｜录取反馈</figcaption></figure>
+        <figure class="student-shot"><img src="/assets/student-kyoto-admit-v5.webp?v=20260813h" alt="京都大学药学部录取反馈" loading="eager" decoding="async"><figcaption>京都大学药学部｜录取反馈</figcaption></figure>
+        <figure class="student-shot"><img src="/assets/student-feedback-wechat-v5.webp?v=20260813h" alt="学生感谢刘可惟老师的聊天记录" loading="eager" decoding="async"><figcaption>学生课程反馈</figcaption></figure>
+      </div>`;
+  }
+
+  const classroom = document.querySelector('.tabito-photo img');
+  if (classroom) {
+    classroom.src = '/assets/tabito-classroom-v5.webp?v=20260813h';
+    classroom.loading = 'eager';
+    classroom.decoding = 'sync';
+  }
+
   requestAnimationFrame(() => body.classList.add('is-ready'));
 
   const progressBar = document.querySelector('.scroll-progress span');
@@ -36,7 +85,6 @@
 
   const tabs = [...document.querySelectorAll('[data-course-tab]')];
   const panels = [...document.querySelectorAll('[data-course-panel]')];
-
   const setCourse = (key, { focus = false } = {}) => {
     const activeTab = tabs.find(tab => tab.dataset.courseTab === key) || tabs[0];
     const activePanel = panels.find(panel => panel.dataset.coursePanel === key) || panels[0];
@@ -48,13 +96,9 @@
     panels.forEach(panel => panel.hidden = panel !== activePanel);
     if (focus) activeTab?.focus({ preventScroll: true });
     if (!reduceMotion && activePanel?.animate) {
-      activePanel.animate([
-        { opacity: 0, transform: 'translateY(8px)' },
-        { opacity: 1, transform: 'translateY(0)' }
-      ], { duration: 260, easing: 'cubic-bezier(.2,.7,.2,1)' });
+      activePanel.animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 260, easing: 'cubic-bezier(.2,.7,.2,1)' });
     }
   };
-
   tabs.forEach((tab, index) => {
     tab.addEventListener('click', () => setCourse(tab.dataset.courseTab));
     tab.addEventListener('keydown', event => {
