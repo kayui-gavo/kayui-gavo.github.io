@@ -4,7 +4,6 @@
 
   const setSourceWithFallback = (img, primary, fallback) => {
     if (!img) return;
-    img.src = primary;
     if (fallback) {
       img.addEventListener('error', () => {
         if (img.dataset.fallbackUsed) return;
@@ -12,13 +11,14 @@
         img.src = fallback;
       }, { once: true });
     }
+    img.src = primary;
   };
 
   const portrait = document.querySelector('.portrait-frame img');
   if (portrait) {
     portrait.loading = 'eager';
     portrait.decoding = 'sync';
-    setSourceWithFallback(portrait, '/assets/portrait.webp?v=20260813p');
+    setSourceWithFallback(portrait, '/assets/portrait.webp?v=20260813q');
   }
 
   const recordWall = document.querySelector('.student-record-collage');
@@ -35,12 +35,12 @@
       </div>`;
 
     const media = {
-      'waseda-physics': ['/assets/student-waseda-physics-v5.webp?v=20260813p', '/assets/student-waseda-physics.webp?v=20260813p'],
-      oral: ['/assets/student-oral-reminder-v5.webp?v=20260813p', '/assets/student-oral-reminder.webp?v=20260813p'],
-      waseda: ['/assets/student-waseda-admit-v5.webp?v=20260813p', '/assets/student-waseda-admit.webp?v=20260813p'],
-      keio: ['/assets/student-keio-admit-v5.webp?v=20260813p', '/assets/student-keio-admit.webp?v=20260813p'],
-      kyoto: ['/assets/student-kyoto-admit-v5.webp?v=20260813p', '/assets/student-kyoto-admit.webp?v=20260813p'],
-      feedback: ['/assets/student-feedback-wechat.webp?v=20260813p', '/assets/student-feedback-wechat-v5.webp?v=20260813p']
+      'waseda-physics': ['/assets/student-waseda-physics-v5.webp?v=20260813q', '/assets/student-waseda-physics.webp?v=20260813q'],
+      oral: ['/assets/student-oral-reminder-v5.webp?v=20260813q', '/assets/student-oral-reminder.webp?v=20260813q'],
+      waseda: ['/assets/student-waseda-admit-v5.webp?v=20260813q', '/assets/student-waseda-admit.webp?v=20260813q'],
+      keio: ['/assets/student-keio-admit-v5.webp?v=20260813q', '/assets/student-keio-admit.webp?v=20260813q'],
+      kyoto: ['/assets/student-kyoto-admit-v5.webp?v=20260813q', '/assets/student-kyoto-admit.webp?v=20260813q'],
+      feedback: ['/assets/student-feedback-wechat-v5.webp?v=20260813q', '/assets/student-feedback-wechat.webp?v=20260813q']
     };
     recordWall.querySelectorAll('[data-media]').forEach(img => {
       const [primary, fallback] = media[img.dataset.media] || [];
@@ -50,9 +50,9 @@
 
   const classroom = document.querySelector('.tabito-photo img');
   if (classroom) {
-    classroom.loading = 'eager';
+    classroom.loading = 'lazy';
     classroom.decoding = 'async';
-    setSourceWithFallback(classroom, '/assets/tabito-classroom-v5.webp?v=20260813p', '/assets/tabito-classroom-v4.webp?v=20260813p');
+    setSourceWithFallback(classroom, '/assets/tabito-classroom-v5.webp?v=20260813q', '/assets/tabito-classroom-v4.webp?v=20260813q');
   }
 
   const tabitoInfo = document.querySelector('.tabito-info');
@@ -64,9 +64,11 @@
       logo.alt = 'TABITO 中国旅人教育集団株式会社 ロゴ';
       logo.loading = 'lazy';
       logo.decoding = 'async';
-      tabitoInfo.prepend(logo);
+      const link = tabitoInfo.querySelector('.tabito-logo-link');
+      if (link) link.append(logo);
+      else tabitoInfo.prepend(logo);
     }
-    setSourceWithFallback(logo, '/assets/tabito-logo-official.jpg?v=20260813p', '/assets/tabito-logo.webp?v=20260813p');
+    setSourceWithFallback(logo, '/assets/tabito-logo.webp?v=20260813q', '/assets/tabito-logo-small.jpg?v=20260813q');
   }
 
   requestAnimationFrame(() => body.classList.add('is-ready'));
@@ -139,16 +141,23 @@
     setCourse(tabs.find(tab => tab.getAttribute('aria-selected') === 'true')?.dataset.courseTab || tabs[0].dataset.courseTab);
   }
 
-  const navLinks = [...document.querySelectorAll('.nav-links a[href^="#"]')];
-  const sectionMap = navLinks.map(link => ({ link, section: document.querySelector(link.getAttribute('href')) })).filter(item => item.section);
-  if ('IntersectionObserver' in window && sectionMap.length) {
+  const navLinks = [...document.querySelectorAll('.nav-links a[href^="#"], .mobile-jump-nav a[href^="#"]')];
+  const sectionById = new Map();
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    const section = href ? document.querySelector(href) : null;
+    if (section && section.id) sectionById.set(section.id, section);
+  });
+  const sections = [...sectionById.values()];
+  if ('IntersectionObserver' in window && sections.length) {
     const activeObserver = new IntersectionObserver(entries => {
-      const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (!visible) return;
-      const match = sectionMap.find(item => item.section === visible.target);
-      if (!match) return;
-      sectionMap.forEach(item => item.link.toggleAttribute('aria-current', item === match));
+      const visible = entries
+        .filter(entry => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible?.target?.id) return;
+      const activeHref = `#${visible.target.id}`;
+      navLinks.forEach(link => link.toggleAttribute('aria-current', link.getAttribute('href') === activeHref));
     }, { rootMargin: '-18% 0px -58% 0px', threshold: [0.05, 0.2, 0.45] });
-    sectionMap.forEach(item => activeObserver.observe(item.section));
+    sections.forEach(section => activeObserver.observe(section));
   }
 })();
