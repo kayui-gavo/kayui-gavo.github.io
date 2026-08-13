@@ -1,0 +1,119 @@
+/* Decorative polish v21 — visual detail only. No layout/grid/spacing changes. */
+:root{
+  --j-wine:#604047;
+  --j-wine-soft:#8a6972;
+  --j-gold:#c3a878;
+  --j-gold-pale:#e8dcc7;
+  --j-blue:#397596;
+  --j-blue-pale:#c7dce7;
+  --j-ink:#15171b;
+}
+
+/* Global finishing touches */
+::selection{background:rgba(96,64,71,.16);color:#15171b}
+a,button,summary{transition-property:color,background-color,border-color,box-shadow,transform,opacity!important;transition-duration:.18s!important;transition-timing-function:ease!important}
+
+/* Section titles: subtle editorial shimmer, no geometry changes */
+.record-head h2,.editorial-head h2,.planning-head h2,.student-voices-head h2,.graduate-copy h2,.experience-head h2,.contact-copy h2{
+  text-shadow:0 1px 0 rgba(255,255,255,.32);
+  text-rendering:optimizeLegibility;
+}
+.record-section .record-head h2,.student-voices-section .student-voices-head h2,.graduate-section .graduate-copy h2{
+  text-shadow:0 1px 0 rgba(255,255,255,.025);
+}
+
+/* Header: tiny jewelry-like active state */
+.nav-links>a:not(.header-cta):hover{color:var(--j-wine)!important}
+.header-cta{box-shadow:0 1px 0 rgba(255,255,255,.08) inset,0 7px 18px rgba(17,19,23,.07)!important}
+.header-cta:hover{box-shadow:0 1px 0 rgba(255,255,255,.12) inset,0 10px 24px rgba(17,19,23,.10)!important}
+
+/* Hero: refined portrait and buttons */
+.hero-name{filter:drop-shadow(0 1px 0 rgba(255,255,255,.35))}
+.hero-thesis{background-image:linear-gradient(90deg,rgba(96,64,71,.028),transparent 62%);background-repeat:no-repeat;background-size:100% 42%;background-position:0 92%}
+.portrait-frame{box-shadow:0 24px 58px rgba(24,20,19,.15),0 1px 0 rgba(255,255,255,.48) inset!important}
+.portrait-frame img{filter:saturate(.98) contrast(1.015)}
+.hero-actions .btn,.hero-actions a.btn{box-shadow:0 1px 0 rgba(255,255,255,.28) inset,0 8px 20px rgba(27,23,21,.06)!important}
+.hero-actions .btn:hover,.hero-actions a.btn:hover{box-shadow:0 1px 0 rgba(255,255,255,.34) inset,0 12px 26px rgba(27,23,21,.09)!important}
+
+/* Record section: richer gold hierarchy */
+.record-stat b,.eju-score strong{font-variant-numeric:tabular-nums lining-nums}
+.record-stat b{background:linear-gradient(180deg,#e5cc97 0%,#c9a968 100%);-webkit-background-clip:text;background-clip:text;color:transparent!important}
+.record-stat:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.025)}
+.eju-row{box-shadow:0 1px 0 rgba(255,255,255,.035) inset}
+
+/* Teaching cards: soft blush/champagne/blue paper tint */
+.principle-grid-specific .principle:nth-child(1){background-image:linear-gradient(145deg,rgba(127,87,97,.035),transparent 58%)!important}
+.principle-grid-specific .principle:nth-child(2){background-image:linear-gradient(145deg,rgba(195,168,120,.052),transparent 58%)!important}
+.principle-grid-specific .principle:nth-child(3){background-image:linear-gradient(145deg,rgba(83,127,150,.034),transparent 58%)!important}
+.principle-grid-specific .principle h3{position:relative}
+.principle-grid-specific .principle h3::after{content:"✦";margin-left:7px;color:var(--j-gold);font-size:.58em;vertical-align:.18em;opacity:.56}
+.course-stage{box-shadow:0 18px 40px rgba(36,30,28,.065),0 1px 0 rgba(255,255,255,.5) inset!important}
+.course-tab[aria-selected="true"]{text-shadow:0 1px 0 rgba(255,255,255,.26)}
+.material-feature{background-image:linear-gradient(120deg,rgba(195,168,120,.055),transparent 34%)!important}
+.material-index span{box-shadow:0 1px 0 rgba(255,255,255,.42) inset}
+
+/* Planning: card finishing only */
+.planning-card{box-shadow:0 12px 34px rgba(33,27,25,.045),0 1px 0 rgba(255,255,255,.62) inset!important}
+.planning-card:hover{box-shadow:0 17px 40px rgba(33,27,25,.075),0 1px 0 rgba(255,255,255,.68) inset!important}
+.planning-strategy{background-image:linear-gradient(145deg,rgba(96,64,71,.025),transparent 48%)!important}
+.planning-interview{background-image:linear-gradient(145deg,rgba(195,168,120,.04),transparent 48%)!important}
+.route-tags span{box-shadow:0 1px 0 rgba(255,255,255,.52) inset!important}
+.route-tags span:hover{border-color:rgba(96,64,71,.22)!important;background:rgba(96,64,71,.055)!important}
+
+/* Student evidence: polished photographic cards */
+.student-media-grid .student-shot{box-shadow:0 14px 32px rgba(0,0,0,.20),0 1px 0 rgba(255,255,255,.06) inset!important}
+.student-media-grid .student-shot:hover{box-shadow:0 20px 42px rgba(0,0,0,.26),0 1px 0 rgba(255,255,255,.08) inset!important}
+.student-media-grid .student-shot img{filter:saturate(.96) contrast(1.01)}
+.student-media-grid .student-shot figcaption{letter-spacing:.015em}
+.student-slider-actions button{border-radius:50%!important;box-shadow:0 1px 0 rgba(255,255,255,.04) inset}
+.student-slider-actions button:hover:not(:disabled){box-shadow:0 5px 14px rgba(0,0,0,.16),0 1px 0 rgba(255,255,255,.05) inset}
+.student-media-grid{scrollbar-color:rgba(195,168,120,.48) rgba(255,255,255,.055)}
+.student-media-grid::-webkit-scrollbar{height:5px}
+.student-media-grid::-webkit-scrollbar-track{background:rgba(255,255,255,.045);border-radius:999px}
+.student-media-grid::-webkit-scrollbar-thumb{background:linear-gradient(90deg,rgba(195,168,120,.42),rgba(138,105,114,.42));border-radius:999px}
+
+/* Graduate: keep current geometry, add elegant technical feel */
+.graduate-score strong{filter:drop-shadow(0 5px 14px rgba(0,0,0,.08))}
+.graduate-subjects strong{color:#d1b47d!important}
+.graduate-details summary{position:relative}
+.graduate-details summary::after{filter:drop-shadow(0 0 5px rgba(195,168,120,.15))}
+.graduate-details details[open]{background-image:linear-gradient(90deg,rgba(215,229,238,.025),transparent 62%)}
+.graduate-link{color:#cddce5!important}
+.graduate-link:hover{color:#fff!important}
+
+/* Experience timeline: tiny status cues */
+.exp-current .exp-meta{color:var(--j-wine)!important}
+.exp-current .exp-meta::before{content:"";display:inline-block;width:5px;height:5px;margin-right:6px;border-radius:50%;background:linear-gradient(135deg,var(--j-wine),var(--j-gold));box-shadow:0 0 0 3px rgba(96,64,71,.055);vertical-align:.1em}
+.exp-row:hover .exp-main h3{color:var(--j-wine)!important}
+.exp-responsibilities li::before{color:rgba(96,64,71,.52)!important}
+
+/* TABITO brand card: crisp blue accent */
+.tabito-block{box-shadow:0 20px 48px rgba(28,47,58,.09),0 1px 0 rgba(255,255,255,.68) inset!important}
+.tabito-info{background-image:radial-gradient(circle at 93% 12%,rgba(57,117,150,.055),transparent 28%)!important}
+.tabito-info .kicker{color:var(--j-blue)!important}
+.tabito-info h3{letter-spacing:-.015em}
+.tabito-links a:hover{color:var(--j-blue)!important}
+.tabito-logo-panel{box-shadow:0 10px 24px rgba(45,94,118,.13)!important}
+
+/* Contact: friendly, slightly cute without looking playful */
+.qr-item{box-shadow:0 12px 30px rgba(33,27,25,.055),0 1px 0 rgba(255,255,255,.62) inset!important}
+.qr-item:nth-child(1){background-image:linear-gradient(145deg,rgba(126,86,98,.035),transparent 54%)!important}
+.qr-item:nth-child(2){background-image:linear-gradient(145deg,rgba(74,124,151,.035),transparent 54%)!important}
+.qr-item:hover{box-shadow:0 17px 38px rgba(33,27,25,.08),0 1px 0 rgba(255,255,255,.68) inset!important}
+.qr-item img{filter:drop-shadow(0 5px 12px rgba(25,25,25,.055))}
+.contact-meta a:hover{color:var(--j-wine)!important}
+.contact-note{background-image:linear-gradient(90deg,rgba(96,64,71,.025),transparent 48%);border-radius:4px}
+
+/* Footer / page-end refinement */
+.site-footer,footer{position:relative}
+.site-footer::before,footer::before{content:"";position:absolute;left:50%;top:0;width:54px;height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,var(--j-gold),transparent);opacity:.58}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
+}
+
+@media(max-width:767px){
+  .principle-grid-specific .principle h3::after{display:none}
+  .portrait-frame,.tabito-block,.planning-card,.qr-item,.student-media-grid .student-shot{box-shadow:none!important}
+  .student-media-grid::-webkit-scrollbar{height:3px}
+}
