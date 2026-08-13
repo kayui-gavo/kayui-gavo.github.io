@@ -64,11 +64,9 @@
       logo.alt = 'TABITO 中国旅人教育集団株式会社 ロゴ';
       logo.loading = 'lazy';
       logo.decoding = 'async';
-      const link = tabitoInfo.querySelector('.tabito-logo-link');
-      if (link) link.append(logo);
-      else tabitoInfo.prepend(logo);
+      tabitoInfo.prepend(logo);
     }
-    setSourceWithFallback(logo, '/assets/tabito-logo.webp?v=20260813q', '/assets/tabito-logo-small.jpg?v=20260813q');
+    logo.src = '/assets/tabito-logo-official.jpg?v=20260813q';
   }
 
   requestAnimationFrame(() => body.classList.add('is-ready'));
