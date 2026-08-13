@@ -1,1 +1,15 @@
-/* final polish */
+/* v13 final polish */
+.hero-thesis,.record-head h2,.editorial-head h2,.planning-head h2,.student-voices-head h2,.graduate-copy h2,.experience-head h2,.contact-copy h2,.principle h3,.course-panel h3,.planning-card h3,.exp-main h3,.tabito-info h3{ text-wrap:balance!important;word-break:keep-all!important;overflow-wrap:normal!important }
+.hero-intro,.record-head>p,.editorial-head>div>p:last-child,.editorial-side,.course-panel>p,.material-feature>p,.planning-head>p,.planning-card>p,.selection-list li span,.planning-interview .clean-list li,.student-voices-head>p,.graduate-copy>p,.scope-row span,.experience-head>p,.exp-responsibilities li,.contact-note,.tabito-info address,.tabito-media a{ text-wrap:pretty!important;word-break:normal!important;overflow-wrap:break-word!important }
+@supports (word-break:auto-phrase){.hero-intro,.record-head>p,.editorial-head>div>p:last-child,.editorial-side,.course-panel>p,.planning-head>p,.planning-card>p,.student-voices-head>p,.graduate-copy>p,.experience-head>p,.contact-note{word-break:auto-phrase!important}}
+.course-tab small,.course-tab strong,.route-tags span,.selection-list li strong,.exp-meta,.exp-position,.graduate-subjects strong,.material-index span,.hero-focus,.hero-education strong,.btn,.header-cta{white-space:nowrap!important;word-break:keep-all!important}
+
+.planning-head{display:grid!important;grid-template-columns:minmax(0,1.16fr) minmax(360px,.84fr)!important;column-gap:64px!important;row-gap:14px!important;align-items:start!important;overflow:visible!important}
+.planning-head>div,.planning-head>p{position:relative!important;inset:auto!important;transform:none!important;float:none!important;width:auto!important;max-width:none!important;min-width:0!important;z-index:1!important}
+.planning-head>p{margin:0!important;padding:9px 0 0!important;line-height:1.82!important}
+.planning-head h2{margin-right:0!important}
+.route-tags{display:flex!important;flex-wrap:wrap!important;gap:7px!important;line-height:1!important}
+.route-tags span{display:inline-flex!important;align-items:center!important;min-height:25px!important;padding:5px 9px!important;border:1px solid rgba(96,64,71,.12)!important;border-radius:999px!important;background:rgba(255,255,255,.34)!important;color:#66565b!important;font-size:10.8px!important;line-height:1.2!important}
+
+@media(max-width:1050px){.planning-head{grid-template-columns:1fr!important;gap:10px!important}.planning-head>p{padding-top:0!important;max-width:760px!important}}
+@media(max-width:767px){.route-tags{gap:6px!important}.route-tags span{font-size:10px!important;min-height:23px!important;padding:4px 8px!important}}
