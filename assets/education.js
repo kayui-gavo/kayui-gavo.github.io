@@ -18,7 +18,7 @@
   if (portrait) {
     portrait.loading = 'eager';
     portrait.decoding = 'sync';
-    setSourceWithFallback(portrait, '/assets/portrait.webp?v=20260813k');
+    setSourceWithFallback(portrait, '/assets/portrait.webp?v=20260813m');
   }
 
   const recordWall = document.querySelector('.student-record-collage');
@@ -35,12 +35,12 @@
       </div>`;
 
     const media = {
-      'waseda-physics': ['/assets/student-waseda-physics-v5.webp?v=20260813k', '/assets/student-waseda-physics.webp?v=20260813k'],
-      oral: ['/assets/student-oral-reminder-v5.webp?v=20260813k', '/assets/student-oral-reminder.webp?v=20260813k'],
-      waseda: ['/assets/student-waseda-admit-v5.webp?v=20260813k', '/assets/student-waseda-admit.webp?v=20260813k'],
-      keio: ['/assets/student-keio-admit-v5.webp?v=20260813k', '/assets/student-keio-admit.webp?v=20260813k'],
-      kyoto: ['/assets/student-kyoto-admit-v5.webp?v=20260813k', '/assets/student-kyoto-admit.webp?v=20260813k'],
-      feedback: ['/assets/student-feedback-wechat.webp?v=20260813k', '/assets/student-feedback-wechat-v5.webp?v=20260813k']
+      'waseda-physics': ['/assets/student-waseda-physics-v5.webp?v=20260813m', '/assets/student-waseda-physics.webp?v=20260813m'],
+      oral: ['/assets/student-oral-reminder-v5.webp?v=20260813m', '/assets/student-oral-reminder.webp?v=20260813m'],
+      waseda: ['/assets/student-waseda-admit-v5.webp?v=20260813m', '/assets/student-waseda-admit.webp?v=20260813m'],
+      keio: ['/assets/student-keio-admit-v5.webp?v=20260813m', '/assets/student-keio-admit.webp?v=20260813m'],
+      kyoto: ['/assets/student-kyoto-admit-v5.webp?v=20260813m', '/assets/student-kyoto-admit.webp?v=20260813m'],
+      feedback: ['/assets/student-feedback-wechat.webp?v=20260813m', '/assets/student-feedback-wechat-v5.webp?v=20260813m']
     };
     recordWall.querySelectorAll('[data-media]').forEach(img => {
       const [primary, fallback] = media[img.dataset.media] || [];
@@ -52,14 +52,14 @@
   if (classroom) {
     classroom.loading = 'eager';
     classroom.decoding = 'async';
-    setSourceWithFallback(classroom, '/assets/tabito-classroom-v5.webp?v=20260813k', '/assets/tabito-classroom-v4.webp?v=20260813k');
+    setSourceWithFallback(classroom, '/assets/tabito-classroom-v5.webp?v=20260813m', '/assets/tabito-classroom-v4.webp?v=20260813m');
   }
 
   const tabitoInfo = document.querySelector('.tabito-info');
   if (tabitoInfo && !tabitoInfo.querySelector('.tabito-logo-float')) {
     const logo = document.createElement('img');
     logo.className = 'tabito-logo-float';
-    logo.src = '/assets/tabito-logo.webp?v=20260813k';
+    logo.src = '/assets/tabito-logo-inline.svg?v=20260813m';
     logo.alt = 'TABITO 中国旅人教育集団株式会社 ロゴ';
     logo.loading = 'lazy';
     logo.decoding = 'async';
