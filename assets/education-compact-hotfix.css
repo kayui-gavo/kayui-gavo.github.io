@@ -2,31 +2,29 @@
 .hero-thesis{font-size:0!important;line-height:1!important}
 .hero-thesis::before{content:"从数学表达回到物理现象，\A从基本模型走向复杂问题。";display:block;white-space:pre-line;font-size:clamp(37px,3.25vw,48px);line-height:1.17;letter-spacing:-.034em;font-weight:620;color:#111317}
 
-/* TABITO: force the complete vector brand lockup; never crop it. */
+/* TABITO — use the real 4:3 official logo artwork. Never crop or stretch it. */
 .tabito-logo-link{
-  width:220px!important;
+  display:block!important;
+  width:178px!important;
+  height:auto!important;
   min-height:0!important;
-  aspect-ratio:640/210!important;
+  aspect-ratio:4/3!important;
   padding:0!important;
   border:0!important;
-  background:transparent url('/assets/tabito-brand-lockup.svg?v=20260813t') center/contain no-repeat!important;
+  background:#5ba5cd url('/assets/tabito-logo-official.jpg?v=20260813u') center center/contain no-repeat!important;
   box-shadow:none!important;
-  overflow:visible!important;
+  overflow:hidden!important;
 }
 .tabito-logo-float{
-  opacity:0!important;
-  display:block!important;
-  width:100%!important;
-  height:100%!important;
-  object-fit:contain!important;
+  display:none!important;
 }
 
-@media(max-width:1050px){.tabito-logo-link{width:200px!important}}
+@media(max-width:1050px){.tabito-logo-link{width:164px!important}}
 @media(max-width:767px){
   .hero-thesis::before{font-size:29px;line-height:1.19}
-  .tabito-logo-link{width:176px!important;min-height:0!important;aspect-ratio:640/210!important;margin:0 0 14px auto!important}
+  .tabito-logo-link{width:136px!important;aspect-ratio:4/3!important;margin:0 0 14px auto!important}
 }
 @media(max-width:390px){
   .hero-thesis::before{font-size:27px}
-  .tabito-logo-link{width:154px!important}
+  .tabito-logo-link{width:118px!important}
 }
