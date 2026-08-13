@@ -1,1 +1,1 @@
-temporary
+Education page media assets are stored as real repository blobs. Static classroom image and all six student record images were restored on 2026-08-13.
