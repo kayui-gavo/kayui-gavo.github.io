@@ -71,6 +71,27 @@
     setSourceWithFallback(logo, '/assets/tabito-logo.webp?v=20260813r', '/assets/tabito-logo-small.jpg?v=20260813r');
   }
 
+  /* Teaching experience: keep the three institutions visually equal and make the long-term cram-school work concrete. */
+  const experienceHeadCopy = document.querySelector('.experience-head > p');
+  if (experienceHeadCopy) {
+    experienceHeadCopy.textContent = '教学经历横跨 EJU 大班、一对一、热门大学校内考与大学教学支持。现于旅人教育负责本科入试物理，并参与课程设计与教材开发。';
+  }
+  const experienceList = document.querySelector('.experience-list');
+  if (experienceList) {
+    const items = [...experienceList.querySelectorAll('.experience-item')];
+    const current = items.find(item => item.classList.contains('experience-item--current'));
+    const kyoto = items.find(item => item.classList.contains('experience-item--kyoto'));
+    const gyouchi = items.find(item => item.querySelector('strong')?.textContent.includes('行知学园'));
+
+    if (gyouchi) {
+      const copy = gyouchi.querySelector('p');
+      if (copy) copy.textContent = 'EJU 物理大班（基础班・冲刺班・刷题班）、数学・物理一对一、热门大学校内考班课与一对一，以及志望理由・面试・口头试问指导。';
+    }
+    if (kyoto) kyoto.classList.remove('experience-item--kyoto');
+    if (current) current.classList.add('experience-item--primary');
+    if (gyouchi && kyoto) experienceList.insertBefore(gyouchi, kyoto);
+  }
+
   requestAnimationFrame(() => body.classList.add('is-ready'));
 
   const progressBar = document.querySelector('.scroll-progress span');
