@@ -1,0 +1,84 @@
+@import url('./education-final-v19.css?v=20260814x');
+
+/* v20 — stable brand visibility + deliberate wrapping */
+
+/* Planning header: title + compact markers on the first row; explanatory copy spans full width below. */
+.planning-head{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  column-gap:42px!important;
+  row-gap:16px!important;
+  align-items:end!important;
+  overflow:visible!important;
+}
+.planning-head>div{grid-column:1!important;grid-row:1!important;max-width:none!important;min-width:0!important}
+.planning-head-markers{
+  grid-column:2!important;grid-row:1!important;
+  display:flex!important;flex-wrap:wrap!important;justify-content:flex-end!important;gap:7px!important;
+  max-width:390px!important;padding-bottom:7px!important;
+}
+.planning-head-markers span{
+  display:inline-flex!important;align-items:center!important;min-height:27px!important;
+  padding:5px 10px!important;border:1px solid rgba(96,64,71,.11)!important;border-radius:999px!important;
+  background:rgba(255,255,255,.36)!important;color:#6c5d61!important;font-size:10.8px!important;line-height:1.2!important;
+  white-space:nowrap!important;
+}
+.planning-head-markers span:nth-child(2n){border-color:rgba(195,168,120,.18)!important;background:rgba(195,168,120,.075)!important;color:#806d50!important}
+.planning-head>p{
+  grid-column:1/-1!important;grid-row:2!important;
+  width:100%!important;max-width:none!important;margin:0!important;padding:0 0 0 18px!important;
+  font-size:13.8px!important;line-height:1.82!important;color:#625d57!important;
+}
+.planning-copy-line{display:block!important;white-space:normal!important}
+
+/* Student evidence header: give the explanatory copy enough measure to avoid orphaned 1–2 character lines. */
+.student-voices-head{
+  display:grid!important;grid-template-columns:minmax(0,1fr) minmax(500px,610px)!important;
+  gap:52px!important;align-items:end!important;
+}
+.student-voices-head>p{
+  width:100%!important;max-width:610px!important;margin:0!important;
+  font-size:12.8px!important;line-height:1.78!important;text-wrap:pretty!important;
+  word-break:auto-phrase!important;overflow-wrap:normal!important;
+}
+
+/* TABITO logo: use a real 4:3 official-image panel as a CSS background, independent of old img rules. */
+.tabito-info-head{grid-template-columns:minmax(0,1fr) 150px!important;gap:18px!important;align-items:start!important}
+.tabito-logo-link,.tabito-logo-link--compact,.tabito-info .tabito-logo-link{
+  display:block!important;visibility:visible!important;opacity:1!important;
+  width:150px!important;min-width:150px!important;height:auto!important;margin:0!important;padding:0!important;
+  border:0!important;border-radius:10px!important;overflow:hidden!important;background:#79a7ca!important;
+  box-shadow:0 9px 22px rgba(41,83,105,.12)!important;
+}
+.tabito-logo-panel{
+  display:block!important;visibility:visible!important;opacity:1!important;
+  width:100%!important;aspect-ratio:4/3!important;
+  background-color:#79a7ca!important;
+  background-image:url('/assets/tabito-logo-official.jpg?v=20260814y')!important;
+  background-position:center!important;background-repeat:no-repeat!important;background-size:contain!important;
+}
+.tabito-info .tabito-logo-float{display:none!important}
+
+/* The experience intro must visibly exist above the rows in the left column. */
+.experience-summary-inline{
+  display:block!important;visibility:visible!important;opacity:1!important;
+  width:100%!important;max-width:none!important;margin:0 0 23px!important;
+}
+
+@media(max-width:1180px){
+  .planning-head{grid-template-columns:1fr!important;gap:12px!important}
+  .planning-head>div,.planning-head-markers,.planning-head>p{grid-column:1!important;grid-row:auto!important}
+  .planning-head-markers{justify-content:flex-start!important;max-width:none!important;padding-bottom:0!important}
+  .student-voices-head{grid-template-columns:minmax(0,1fr) minmax(430px,520px)!important;gap:34px!important}
+}
+@media(max-width:900px){
+  .student-voices-head{grid-template-columns:1fr!important;gap:10px!important}
+  .student-voices-head>p{max-width:720px!important}
+}
+@media(max-width:767px){
+  .planning-head-markers{gap:6px!important}.planning-head-markers span{font-size:10.2px!important;padding:5px 8px!important}
+  .planning-copy-line{display:inline!important}
+  .planning-copy-line+ .planning-copy-line::before{content:' '!important}
+  .tabito-info-head{grid-template-columns:minmax(0,1fr) 108px!important}
+  .tabito-logo-link,.tabito-logo-link--compact,.tabito-info .tabito-logo-link{width:108px!important;min-width:108px!important}
+}
