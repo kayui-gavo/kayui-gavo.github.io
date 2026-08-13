@@ -1,4 +1,4 @@
-import('./education-copy-v9.js?v=20260814h').then(() => {
+import('./education-copy-v9.js?v=20260814i').then(() => {
   /* Rebuild the experience timeline from scratch so old injected nodes/styles cannot overlap. */
   const list = document.querySelector('.experience-list');
   if (list) {
