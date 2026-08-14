@@ -1,0 +1,26 @@
+/* Functional interaction layer. No page layout redesign and no decorative motifs. */
+#record,#teaching,#planning,#graduate,#experience,#contact{scroll-margin-top:96px}
+
+.student-slider-toolbar{align-items:center!important}
+.student-slider-status{display:inline-flex;align-items:center;gap:10px;margin-left:auto;color:#b8b1aa;font-size:10px;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:.08em;white-space:nowrap}
+.student-slider-status__count{min-width:42px;text-align:right}
+.student-slider-status__track{display:block;width:72px;height:2px;overflow:hidden;background:rgba(255,255,255,.11)}
+.student-slider-status__track i{display:block;width:100%;height:100%;transform:scaleX(.1667);transform-origin:left center;background:#c3a878;transition:transform .2s ease}
+.student-media-grid.is-pointer-dragging{cursor:grabbing!important;scroll-snap-type:none!important;user-select:none!important}
+.student-media-grid .student-shot[data-gallery-current]{border-color:rgba(195,168,120,.30)!important}
+
+.education-lightbox__figure{position:relative}
+.education-lightbox__count{position:absolute;left:0;top:-28px;color:rgba(245,241,234,.72);font-size:10px;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:.12em;pointer-events:none}
+
+.graduate-details details[open] summary{cursor:pointer}
+
+@media(max-width:767px){
+  #record,#teaching,#planning,#graduate,#experience,#contact{scroll-margin-top:112px}
+  .student-slider-status__track{display:none}
+  .student-slider-status{gap:0;margin-left:auto}
+  .education-lightbox__count{top:-24px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .student-slider-status__track i{transition:none}
+}
