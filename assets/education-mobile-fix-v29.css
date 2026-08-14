@@ -1,4 +1,4 @@
-/* Mobile v29 — targeted correction for duplicate copy and graduate hierarchy. Desktop is untouched. */
+/* Mobile v29 — targeted correction for duplicate copy, hero fit, and graduate hierarchy. Desktop is untouched. */
 @media (max-width:767px){
   /* Remove legacy/pseudo copies that can visually repeat the hero slogan or contact heading. */
   .hero-thesis::before,.hero-thesis::after,.hero-motto,
@@ -8,6 +8,28 @@
     content:none!important;
   }
   .hero-lead>.hero-thesis~.hero-thesis,.contact-copy>h2~h2{display:none!important}
+
+  /* Hero slogan must always stay inside the phone viewport. */
+  .hero-lead{min-width:0!important;max-width:100%!important;overflow:visible!important}
+  .hero-thesis{
+    display:block!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    box-sizing:border-box!important;
+    margin-left:0!important;
+    margin-right:0!important;
+    padding-right:2px!important;
+    font-size:clamp(27px,7.7vw,34px)!important;
+    line-height:1.18!important;
+    letter-spacing:-.025em!important;
+    white-space:normal!important;
+    word-break:normal!important;
+    overflow-wrap:anywhere!important;
+    line-break:strict!important;
+    text-wrap:wrap!important;
+    overflow:visible!important;
+  }
 
   /* Graduate mobile hierarchy: heading first, then context, score proof, subjects, accordion. */
   .graduate-grid{
@@ -93,6 +115,7 @@
 }
 
 @media (max-width:390px){
+  .hero-thesis{font-size:27px!important;letter-spacing:-.018em!important}
   .graduate-score{grid-template-columns:1fr!important}
   .graduate-score>strong,.graduate-score>span{grid-column:1!important;grid-row:auto!important}
   .graduate-score>span{padding-bottom:0!important}
