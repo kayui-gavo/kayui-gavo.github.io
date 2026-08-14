@@ -42,7 +42,7 @@
       await ready;
       await loadScript('/assets/education-language-switch.js?v=20260814ao');
       if (isTraditional) {
-        await loadScript('/assets/education-locale-zh-tw.js?v=20260814ao');
+        await loadScript('/assets/education-locale-zh-tw.js?v=20260814ap');
         window.applyEducationZhTW?.();
       }
     } catch (error) {
