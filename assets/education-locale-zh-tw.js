@@ -5,7 +5,7 @@
   ];
   const phraseMap = new Map([
     ['日本学部留学咨询','日本學部留學諮詢'],
-    ['从数学表达回到物理现象，从基本模型走向复杂问题。','從數學表達回到物理現象，從基本模型走向複雜問題。'],
+    ['从数学表达回到物理现象，从基本模型走向复杂问题。','從數學式看懂物理現象，從基本模型拆解複雜問題。'],
     ['旅人教育官网','旅人教育官網'],['官方网站','官方網站'],['官方内容与账号','官方內容與帳號'],
     ['小红书','小紅書'],['微信公众号','微信公眾號'],['百度百科','百度百科'],
     ['信息通信','資訊通訊'],['信息工程','資訊工程'],['信息系统','資訊系統'],['多模态信息处理','多模態資訊處理'],
@@ -88,7 +88,7 @@
     const contactTitle = document.querySelector('.contact-copy h2');
     if (contactTitle) contactTitle.textContent = '日本學部留學諮詢';
     const thesis = document.querySelector('.hero-thesis');
-    if (thesis && thesis.textContent.includes('數學表達')) thesis.textContent = '從數學表達回到物理現象，從基本模型走向複雜問題。';
+    if (thesis) thesis.textContent = '從數學式看懂物理現象，從基本模型拆解複雜問題。';
   };
 
   let scheduled = false;
