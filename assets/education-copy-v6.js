@@ -13,6 +13,33 @@
       if (detail) detail.textContent = '工学部 电气电子工程';
     }
 
+    /* Mobile-only content guard: old layers occasionally leave duplicate visible copy. */
+    const cleanMobileDuplicates = () => {
+      if (!window.matchMedia('(max-width:767px)').matches) return;
+      const normalize = value => (value || '').replace(/\s+/g, '').trim();
+      const removeExactDuplicates = (root, preferred) => {
+        if (!root || !preferred) return;
+        const target = normalize(preferred.textContent);
+        if (!target) return;
+        [...root.querySelectorAll('*')].forEach(node => {
+          if (node === preferred || preferred.contains(node) || node.contains(preferred)) return;
+          if (node.children.length) return;
+          if (normalize(node.textContent) === target) node.remove();
+        });
+      };
+
+      const hero = document.querySelector('.hero');
+      const thesis = hero?.querySelector('.hero-thesis');
+      removeExactDuplicates(hero, thesis);
+      hero?.querySelectorAll('.hero-motto').forEach(node => node.remove());
+
+      const contact = document.querySelector('.contact-section');
+      const contactTitle = contact?.querySelector('.contact-copy h2');
+      removeExactDuplicates(contact, contactTitle);
+    };
+    cleanMobileDuplicates();
+    requestAnimationFrame(cleanMobileDuplicates);
+
     if (!document.querySelector('style[data-education-interactions="v23"]')) {
       try {
         const response = await fetch('/assets/education-interactions-v23.css.b64?v=20260814af', { cache: 'force-cache' });
