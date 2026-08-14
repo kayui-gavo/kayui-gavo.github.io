@@ -1,0 +1,99 @@
+/* Mobile v29 — targeted correction for duplicate copy and graduate hierarchy. Desktop is untouched. */
+@media (max-width:767px){
+  /* Remove legacy/pseudo copies that can visually repeat the hero slogan or contact heading. */
+  .hero-thesis::before,.hero-thesis::after,.hero-motto,
+  .contact-section::before,.contact-section::after,.contact-copy::before,.contact-copy::after,
+  .contact-copy h2::before,.contact-copy h2::after,.qr-grid::before,.qr-grid::after{
+    display:none!important;
+    content:none!important;
+  }
+  .hero-lead>.hero-thesis~.hero-thesis,.contact-copy>h2~h2{display:none!important}
+
+  /* Graduate mobile hierarchy: heading first, then context, score proof, subjects, accordion. */
+  .graduate-grid{
+    display:flex!important;
+    flex-direction:column!important;
+    padding-top:46px!important;
+    padding-bottom:48px!important;
+  }
+  .graduate-copy{display:contents!important}
+  .graduate-copy>.kicker{order:1!important;margin:0 0 7px!important}
+  .graduate-copy>h2{order:2!important;margin:0!important;font-size:30px!important;line-height:1.16!important}
+  .graduate-copy>p:not(.kicker):not(.graduate-subjects){
+    order:3!important;
+    margin:13px 0 0!important;
+    font-size:13px!important;
+    line-height:1.72!important;
+    color:#c8ced4!important;
+  }
+  .graduate-score{
+    order:4!important;
+    display:grid!important;
+    grid-template-columns:auto minmax(0,1fr)!important;
+    align-items:end!important;
+    gap:5px 15px!important;
+    margin:18px 0 3px!important;
+    padding:14px 15px!important;
+    border:1px solid rgba(255,255,255,.12)!important;
+    border-radius:10px!important;
+    background:rgba(255,255,255,.035)!important;
+    overflow:hidden!important;
+  }
+  .graduate-score>p{
+    grid-column:1/-1!important;
+    margin:0!important;
+    font-size:10.5px!important;
+    line-height:1.45!important;
+    color:#aeb6be!important;
+  }
+  .graduate-score>strong{
+    grid-column:1!important;
+    grid-row:2!important;
+    margin:2px 0 0!important;
+    font-size:42px!important;
+    line-height:.96!important;
+    white-space:nowrap!important;
+  }
+  .graduate-score>strong small{font-size:15px!important}
+  .graduate-score>span{
+    grid-column:2!important;
+    grid-row:2!important;
+    align-self:end!important;
+    margin:0!important;
+    padding:0 0 2px!important;
+    max-width:none!important;
+    text-align:left!important;
+    font-size:11px!important;
+    line-height:1.5!important;
+    color:#b9c0c7!important;
+  }
+  .graduate-score>small{display:none!important}
+  .graduate-subjects{
+    order:5!important;
+    margin:0!important;
+    padding:12px 0!important;
+    border-bottom:1px solid rgba(255,255,255,.10)!important;
+    font-size:12px!important;
+    line-height:1.65!important;
+  }
+  .graduate-subjects:first-of-type{margin-top:8px!important;border-top:1px solid rgba(255,255,255,.10)!important}
+  .graduate-subjects strong{display:block!important;margin:0 0 4px!important;font-size:11.5px!important}
+  .graduate-details{order:6!important;margin-top:12px!important}
+  .graduate-details summary{
+    min-height:48px!important;
+    padding:13px 0!important;
+    gap:10px!important;
+  }
+  .graduate-details summary strong{font-size:14px!important;line-height:1.4!important}
+  .graduate-details summary small{display:none!important}
+  .scope-row{padding:10px 0!important}
+  .scope-row strong{font-size:11.5px!important}
+  .scope-row span{font-size:12px!important;line-height:1.62!important}
+  .graduate-link{order:7!important;margin-top:15px!important;font-size:11px!important;line-height:1.55!important}
+}
+
+@media (max-width:390px){
+  .graduate-score{grid-template-columns:1fr!important}
+  .graduate-score>strong,.graduate-score>span{grid-column:1!important;grid-row:auto!important}
+  .graduate-score>span{padding-bottom:0!important}
+}
