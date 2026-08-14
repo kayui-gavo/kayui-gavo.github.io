@@ -1,0 +1,174 @@
+/* Mobile QA v27 — mobile-only cleanup. Desktop (>=768px) is frozen. */
+@media (max-width:767px){
+  /* ---------- Global mobile safety ---------- */
+  .hero,.hero-lead,.hero-detail,.hero-visual,
+  .record-inner,.record-head,.school-records,.eju-row,
+  .editorial-head,.course-stage,.course-panels,.course-panel,
+  .planning-head,.planning-grid,.planning-card,
+  .student-voices-head,.student-record-collage,.student-media-grid,
+  .graduate-grid,.graduate-score,.graduate-copy,.graduate-details,
+  .experience-grid,.experience-list,.exp-row,.exp-main,.exp-responsibilities,
+  .tabito-block,.tabito-media-stage,.tabito-info,.tabito-info-head,.tabito-info-copy,
+  .contact-grid,.contact-copy,.qr-grid,.qr-item,.qr-item>span{min-width:0!important;max-width:100%}
+
+  img,iframe{max-width:100%!important}
+  .tabito-map iframe{display:block!important;width:100%!important;border:0!important}
+
+  .record-head h2,.editorial-head h2,.planning-head h2,.student-voices-head h2,
+  .graduate-copy h2,.experience-head h2,.contact-copy h2,.course-panel h3,
+  .planning-card h3,.principle h3{
+    text-wrap:balance!important;
+    word-break:normal!important;
+    overflow-wrap:normal!important;
+  }
+  .hero-intro,.record-head>p,.editorial-head>div>p:last-child,
+  .planning-head>p,.planning-card p,.selection-list li span,
+  .student-voices-head>p,.graduate-copy>p,.graduate-subjects,.scope-row,
+  .experience-summary-inline,.exp-responsibilities li,.contact-copy>p,.contact-note{
+    word-break:normal!important;
+    overflow-wrap:break-word!important;
+    line-break:strict!important;
+  }
+  .graduate-link,.tabito-links a,.contact-meta a{overflow-wrap:anywhere!important}
+
+  /* Desktop decorative pseudo-elements are too easy to collide on a narrow viewport. */
+  .hero::after,.hero-visual::after,.portrait-frame::after,
+  .record-section::before,.record-section::after,.record-stat::after,
+  .principle-grid-specific .principle::after,.course-tab::after,
+  .planning-card::after,.graduate-section::before,.graduate-score::before,.graduate-score::after{
+    display:none!important;
+    content:none!important;
+  }
+
+  /* ---------- Header ---------- */
+  .mobile-jump-nav{scroll-padding-inline:18px!important}
+  .mobile-jump-nav a{min-height:36px!important;display:flex!important;align-items:center!important}
+
+  /* ---------- Hero: shorten duplicated information on phones ---------- */
+  .hero{padding-bottom:39px!important}
+  .hero-highlights{display:none!important}
+  .hero-caption{display:none!important}
+  .hero-detail{margin-top:22px!important}
+  .hero-education{margin-top:0!important}
+  .hero-actions{margin-top:18px!important}
+  .hero-actions .btn{white-space:nowrap!important}
+
+  /* ---------- Record ---------- */
+  .school-records{align-items:stretch!important}
+  .record-stat,.record-stat+.record-stat{display:flex!important;flex-direction:column!important;justify-content:flex-start!important;overflow:hidden!important}
+  .record-stat strong{min-height:2.8em!important}
+  .record-stat b{white-space:nowrap!important;font-size:clamp(23px,7.2vw,30px)!important}
+  .record-stat small{font-size:9.25px!important}
+  .eju-score{min-width:0!important;overflow:hidden!important}
+  .eju-score strong{white-space:nowrap!important;font-size:27px!important}
+  .eju-score>small{font-size:9.25px!important}
+  .proof-quote span{display:none!important}
+  .proof-note{margin-top:9px!important}
+
+  /* ---------- Teaching ---------- */
+  .editorial-side{display:none!important}
+  .teaching-section{padding-top:49px!important}
+  .principle-grid-specific{margin-top:24px!important}
+  .principle-grid-specific .principle,.principle-grid-specific .principle+.principle{min-height:176px!important}
+  .course-stage{margin-top:27px!important}
+  .course-tab{min-height:78px!important;padding:14px 13px!important;overflow:hidden!important}
+  .course-tab small{font-size:9px!important;line-height:1.35!important}
+  .course-tab strong{font-size:13.5px!important}
+  .course-panel{overflow:hidden!important}
+  .material-feature{overflow:hidden!important}
+
+  /* ---------- Planning: avoid a tall wall of pills ---------- */
+  .planning-grid{margin-top:24px!important}
+  .selection-list li{align-items:start!important}
+  .route-tags{
+    display:flex!important;
+    flex-wrap:nowrap!important;
+    overflow-x:auto!important;
+    overscroll-behavior-inline:contain!important;
+    -webkit-overflow-scrolling:touch!important;
+    scrollbar-width:none!important;
+    padding:1px 0 6px!important;
+    margin-right:-19px!important;
+    padding-right:19px!important;
+  }
+  .route-tags::-webkit-scrollbar{display:none!important}
+  .route-tags span{flex:0 0 auto!important;white-space:nowrap!important}
+  .planning-foot{margin-top:12px!important}
+
+  /* ---------- Evidence gallery ---------- */
+  .student-media-grid{scrollbar-width:none!important}
+  .student-media-grid::-webkit-scrollbar{display:none!important}
+  .student-media-grid .student-shot{overflow:hidden!important}
+  .student-media-grid .student-shot figcaption{overflow:hidden!important;min-height:44px!important}
+  .student-slider-toolbar{display:grid!important;grid-template-columns:1fr auto!important;align-items:center!important}
+  .student-slider-status{grid-column:1!important;grid-row:1!important;margin-left:0!important;justify-self:start!important}
+  .student-slider-hint{grid-column:1!important;grid-row:2!important;margin-top:3px!important}
+  .student-slider-actions{grid-column:2!important;grid-row:1/3!important;align-self:center!important}
+
+  /* ---------- Graduate: remove one redundant line and protect the score grid ---------- */
+  .graduate-score{overflow:hidden!important}
+  .graduate-score>small{display:none!important}
+  .graduate-score>strong{white-space:nowrap!important;font-size:54px!important}
+  .graduate-score>span{min-width:0!important;max-width:148px!important;text-align:right!important}
+  .graduate-copy{margin-top:27px!important}
+  .graduate-details summary{min-width:0!important;overflow:hidden!important}
+  .graduate-details summary>span{min-width:0!important;max-width:calc(100% - 28px)!important}
+  .graduate-details summary strong,.graduate-details summary small{overflow-wrap:break-word!important}
+  .scope-row span{display:block!important;min-width:0!important}
+
+  /* ---------- Experience: long responsibilities must never squeeze into two narrow columns ---------- */
+  .exp-row{overflow:hidden!important}
+  .exp-main{min-width:0!important}
+  .exp-main h3,.exp-position{overflow-wrap:break-word!important}
+  .exp-responsibilities{min-width:0!important}
+  .exp-responsibilities li{min-width:0!important;padding-right:2px!important}
+  .exp-row:not(.exp-current) .exp-responsibilities{grid-template-columns:1fr!important;gap:6px!important}
+  .tabito-media-stage{overflow:hidden!important;height:154px!important}
+  .tabito-photo,.tabito-map{height:154px!important;overflow:hidden!important}
+  .tabito-info-head{align-items:start!important}
+  .tabito-info-copy{overflow:hidden!important}
+  .tabito-info .company-name,.tabito-info address{overflow-wrap:break-word!important}
+
+  /* ---------- Contact ---------- */
+  .contact-grid{gap:21px!important}
+  .qr-item{overflow:hidden!important}
+  .qr-item>span{overflow:hidden!important}
+  .qr-item b,.qr-item small{overflow-wrap:break-word!important}
+  footer{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:16px!important}
+}
+
+@media (max-width:410px){
+  /* Small phones: protect against cramped two-column micro-layouts. */
+  .school-records{grid-template-columns:1fr!important;gap:7px!important}
+  .record-stat,.record-stat+.record-stat{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) auto!important;
+    align-items:center!important;
+    gap:4px 12px!important;
+    min-height:0!important;
+    padding:11px 12px!important;
+  }
+  .record-stat strong{min-height:0!important;font-size:11px!important}
+  .record-stat b{grid-column:2!important;grid-row:1/3!important;margin:0!important;font-size:25px!important}
+  .record-stat small{grid-column:1!important;margin-top:0!important}
+
+  .selection-list li{display:block!important}
+  .selection-list li strong{display:block!important;margin-bottom:3px!important}
+
+  .student-slider-hint{display:none!important}
+  .student-slider-toolbar{grid-template-columns:1fr auto!important}
+  .student-slider-status{grid-row:1!important}
+  .student-slider-actions{grid-row:1!important}
+
+  .graduate-score{grid-template-columns:1fr!important;gap:7px!important}
+  .graduate-score>strong{font-size:50px!important}
+  .graduate-score>span{max-width:none!important;text-align:left!important;padding-bottom:0!important}
+
+  .exp-row{grid-template-columns:60px minmax(0,1fr)!important}
+  .exp-responsibilities,.exp-row.exp-current .exp-responsibilities{grid-template-columns:1fr!important;gap:6px!important}
+
+  .tabito-info-head{grid-template-columns:minmax(0,1fr) 76px!important;gap:10px!important}
+  .tabito-logo-link,.tabito-logo-link--compact,.tabito-info .tabito-logo-link{width:76px!important;min-width:76px!important}
+  .qr-item{grid-template-columns:76px minmax(0,1fr)!important;gap:12px!important}
+  .qr-item img{width:76px!important;height:76px!important}
+}
