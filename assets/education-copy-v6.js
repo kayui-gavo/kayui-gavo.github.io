@@ -66,5 +66,16 @@
       script.dataset.educationInteractionsFunctional = 'true';
       document.head.appendChild(script);
     }
+
+    if (!document.querySelector('script[data-education-language-switch]')) {
+      const script = document.createElement('script');
+      script.src = '/assets/education-language-switch.js?v=20260814ao';
+      script.defer = true;
+      script.dataset.educationLanguageSwitch = 'true';
+      document.head.appendChild(script);
+    }
+
+    window.__educationCopyReady = true;
+    window.dispatchEvent(new CustomEvent('education:copy-ready'));
   });
 })();
