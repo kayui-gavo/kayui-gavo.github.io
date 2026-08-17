@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://kayui-gavo.github.io/</loc><lastmod>2026-08-12</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://kayui-gavo.github.io/"/>
@@ -7,6 +9,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://kayui-gavo.github.io/zh-cn/"/>
     <xhtml:link rel="alternate" hreflang="zh-TW" href="https://kayui-gavo.github.io/zh-tw/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kayui-gavo.github.io/"/>
+    <image:image><image:loc>https://kayui-gavo.github.io/assets/portrait.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://kayui-gavo.github.io/ja/</loc><lastmod>2026-08-12</lastmod>
@@ -15,6 +18,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://kayui-gavo.github.io/zh-cn/"/>
     <xhtml:link rel="alternate" hreflang="zh-TW" href="https://kayui-gavo.github.io/zh-tw/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kayui-gavo.github.io/"/>
+    <image:image><image:loc>https://kayui-gavo.github.io/assets/portrait.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://kayui-gavo.github.io/zh-cn/</loc><lastmod>2026-08-12</lastmod>
@@ -23,6 +27,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://kayui-gavo.github.io/zh-cn/"/>
     <xhtml:link rel="alternate" hreflang="zh-TW" href="https://kayui-gavo.github.io/zh-tw/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kayui-gavo.github.io/"/>
+    <image:image><image:loc>https://kayui-gavo.github.io/assets/portrait.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://kayui-gavo.github.io/zh-tw/</loc><lastmod>2026-08-12</lastmod>
@@ -31,6 +36,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://kayui-gavo.github.io/zh-cn/"/>
     <xhtml:link rel="alternate" hreflang="zh-TW" href="https://kayui-gavo.github.io/zh-tw/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kayui-gavo.github.io/"/>
+    <image:image><image:loc>https://kayui-gavo.github.io/assets/portrait.webp</image:loc></image:image>
   </url>
   <url><loc>https://kayui-gavo.github.io/cv/</loc><lastmod>2026-08-18</lastmod></url>
   <url><loc>https://kayui-gavo.github.io/research/</loc><lastmod>2026-08-18</lastmod></url>
@@ -39,17 +45,20 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://kayui-gavo.github.io/education/zh-cn/"/>
     <xhtml:link rel="alternate" hreflang="zh-TW" href="https://kayui-gavo.github.io/education/zh-tw/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kayui-gavo.github.io/education/"/>
+    <image:image><image:loc>https://kayui-gavo.github.io/assets/portrait.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://kayui-gavo.github.io/education/zh-cn/</loc><lastmod>2026-08-14</lastmod>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://kayui-gavo.github.io/education/zh-cn/"/>
     <xhtml:link rel="alternate" hreflang="zh-TW" href="https://kayui-gavo.github.io/education/zh-tw/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kayui-gavo.github.io/education/"/>
+    <image:image><image:loc>https://kayui-gavo.github.io/assets/portrait.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://kayui-gavo.github.io/education/zh-tw/</loc><lastmod>2026-08-14</lastmod>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://kayui-gavo.github.io/education/zh-cn/"/>
     <xhtml:link rel="alternate" hreflang="zh-TW" href="https://kayui-gavo.github.io/education/zh-tw/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kayui-gavo.github.io/education/"/>
+    <image:image><image:loc>https://kayui-gavo.github.io/assets/portrait.webp</image:loc></image:image>
   </url>
 </urlset>
