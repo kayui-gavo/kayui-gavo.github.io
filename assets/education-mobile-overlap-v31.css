@@ -1,0 +1,158 @@
+/* Mobile v31 — final anti-overlap pass for /education/.
+   Loaded last so narrow-screen safety wins over older desktop and interaction layers. */
+
+@media (max-width:767px){
+  html,body{max-width:100%;overflow-x:hidden}
+  body{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+
+  /* Every major mobile block must shrink with the viewport instead of forcing siblings over it. */
+  .page-shell,.site-header,.nav,.mobile-jump-nav,main,
+  .hero,.hero-lead,.hero-visual,.hero-detail,.portrait-stage,.hero-proof,.hero-education,.hero-actions,
+  .record-section,.record-inner,.record-head,.school-records,.record-stat,.eju-row,.eju-title,.eju-score,.record-proof-strip,.proof-quote,
+  .teaching-section,.editorial-head,.principle-grid-specific,.principle,.course-stage,.course-tabs,.course-tab,.course-panels,.course-panel,.course-list,.material-feature,
+  .year-courses,.year-courses-head,.year-courses-title,.year-courses-status,.year-course-grid,.year-course-card,.year-course-card-head,.year-course-copy,.year-course-exclusive,.year-course-track,.year-course-details,.year-course-syllabus,.year-course-unit,
+  .planning-section,.planning-head,.planning-grid,.planning-card,.selection-list,
+  .student-voices-section,.student-voices-head,.student-record-collage,.student-media-grid,.student-shot,.student-slider-toolbar,
+  .graduate-section,.graduate-grid,.graduate-copy,.graduate-score,.graduate-details,.scope-list,.scope-row,
+  .experience-section,.experience-head,.experience-grid,.experience-list,.exp-row,.exp-main,.exp-responsibilities,.tabito-block,.tabito-media-stage,.tabito-info,.tabito-info-head,.tabito-info-copy,
+  .contact-section,.contact-grid,.contact-copy,.contact-meta,.qr-grid,.qr-item,.qr-item>span,footer{
+    min-width:0!important;
+    max-width:100%!important;
+    box-sizing:border-box!important;
+  }
+
+  /* Text may wrap, but must never occupy the same physical line box as another item. */
+  .hero-role,.hero-focus,.hero-thesis,.hero-intro,
+  .record-head h2,.record-stat strong,.record-stat b,.record-stat small,.eju-title,.eju-score,.proof-quote strong,.proof-note,
+  .editorial-head h2,.editorial-head p,.principle small,.principle h3,.principle p,
+  .course-tab small,.course-tab strong,.course-panel h3,.course-panel p,.course-list li,.material-feature,.material-feature * ,
+  .year-courses-title h3,.year-courses-intro,.year-term,.year-course-card-head small,.year-course-card h4,.year-course-hours,.year-course-copy,.year-course-exclusive,.year-course-exclusive *,.year-course-track li,.year-course-details summary,.year-course-unit b,.year-course-unit span,.year-course-note,
+  .planning-head h2,.planning-head p,.planning-card h3,.planning-card p,.selection-list li,.selection-list strong,.selection-list span,
+  .student-voices-head h2,.student-voices-head p,.student-shot figcaption,
+  .graduate-copy h2,.graduate-copy p,.graduate-score,.graduate-score *,.graduate-subjects,.graduate-details summary,.graduate-details summary *,.scope-row,.scope-row *,.graduate-link,
+  .experience-head h2,.exp-meta,.exp-main,.exp-main h3,.exp-position,.exp-responsibilities li,.tabito-info,.tabito-info * ,
+  .contact-copy h2,.contact-copy p,.contact-meta a,.qr-item,.qr-item * ,footer *{
+    position:relative!important;
+    inset:auto!important;
+    transform:none!important;
+    max-height:none!important;
+    white-space:normal!important;
+    word-break:normal!important;
+    overflow-wrap:anywhere!important;
+    line-break:strict!important;
+    text-overflow:clip!important;
+  }
+
+  /* Keep decorative pseudo-elements out of mobile text boxes. */
+  .hero-thesis::before,.hero-thesis::after,
+  .record-stat::before,.record-stat::after,
+  .principle::before,.principle::after,.principle small::before,.principle small::after,
+  .course-tab::before,.course-tab::after,
+  .year-course-card h4::before,.year-course-card h4::after,
+  .planning-card::before,.planning-card::after,
+  .graduate-score::before,.graduate-score::after,
+  .experience-item::before,.experience-item::after,
+  .contact-copy h2::before,.contact-copy h2::after{content:none!important;display:none!important}
+
+  /* Header: horizontal nav remains scrollable and never wraps into itself. */
+  .site-header{overflow:visible!important}
+  .nav{overflow:hidden!important}
+  .brand{min-width:0!important;overflow:hidden!important}
+  .brand strong{flex:0 0 auto!important;white-space:nowrap!important}
+  .brand span{min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+  .mobile-jump-nav{overflow-x:auto!important;overflow-y:hidden!important;white-space:nowrap!important}
+  .mobile-jump-nav a{position:relative!important;white-space:nowrap!important;overflow:visible!important}
+
+  /* Hero: remove inherited fixed heights and leave breathing room between lines. */
+  .hero,.hero-lead,.hero-detail,.hero-visual{height:auto!important;min-height:0!important;overflow:visible!important}
+  .hero-name{position:relative!important;inset:auto!important;transform:none!important;height:auto!important;max-height:none!important;overflow:visible!important;white-space:normal!important}
+  .hero-thesis{height:auto!important;min-height:0!important;line-height:1.22!important;margin-bottom:0!important}
+  .hero-intro{height:auto!important;min-height:0!important}
+  .hero-education>div{height:auto!important;min-height:0!important;overflow:visible!important}
+  .hero-education strong,.hero-education span{display:block!important;height:auto!important}
+
+  /* Record: avoid cramped two-column number/name collisions on narrow phones. */
+  .record-stat{height:auto!important;min-height:0!important}
+  .record-stat strong{align-self:start!important;padding-right:4px!important}
+  .record-stat b{align-self:center!important;justify-self:end!important}
+  .record-stat small{height:auto!important}
+  .eju-score{height:auto!important;min-height:0!important}
+  .eju-score strong,.eju-score>small,.eju-score span{display:block!important;height:auto!important}
+
+  /* Teaching tabs/panels: no fixed-height copy. */
+  .course-tab{height:auto!important;min-height:74px!important;overflow:visible!important}
+  .course-tab small,.course-tab strong{height:auto!important;min-height:0!important}
+  .course-panel,.course-list li,.material-feature{height:auto!important;min-height:0!important;overflow:visible!important}
+
+  /* 2026 course preview: stack all potentially colliding inline content gracefully. */
+  .year-courses{overflow:visible!important}
+  .year-courses-head{align-items:start!important}
+  .year-courses-status{min-width:0!important}
+  .year-term{height:auto!important;min-height:30px!important;line-height:1.25!important;flex-wrap:wrap!important}
+  .year-course-card{height:auto!important;min-height:0!important;overflow:visible!important}
+  .year-course-card-head{grid-template-columns:minmax(0,1fr) auto!important;align-items:start!important}
+  .year-course-card h4{height:auto!important;min-height:0!important;padding-right:2px!important}
+  .year-course-hours{align-self:start!important;height:auto!important;line-height:1!important}
+  .year-course-copy{height:auto!important;min-height:0!important}
+  .year-course-exclusive{grid-template-columns:auto minmax(0,1fr)!important;align-items:start!important;height:auto!important;overflow:visible!important}
+  .year-course-exclusive span{grid-column:1!important;white-space:nowrap!important;overflow:visible!important}
+  .year-course-exclusive strong{grid-column:2!important;white-space:normal!important;line-height:1.35!important}
+  .year-course-exclusive small{grid-column:1/-1!important;white-space:normal!important;line-height:1.45!important;overflow:visible!important}
+  .year-course-track{height:auto!important;min-height:0!important}
+  .year-course-track li{height:auto!important;min-height:24px!important;line-height:1.25!important}
+  .year-course-details{height:auto!important;min-height:0!important;overflow:visible!important}
+  .year-course-details summary{min-height:28px!important;height:auto!important;line-height:1.35!important}
+  .year-course-syllabus{height:auto!important;overflow:visible!important}
+  .year-course-unit{grid-template-columns:64px minmax(0,1fr)!important;height:auto!important;min-height:0!important}
+  .year-course-unit b,.year-course-unit span{height:auto!important;min-height:0!important}
+
+  /* Graduate and experience: force natural vertical growth. */
+  .graduate-grid,.graduate-copy,.graduate-score,.graduate-details,.scope-row,
+  .experience-grid,.experience-list,.exp-row,.exp-main,.exp-responsibilities,
+  .tabito-block,.tabito-media-stage,.tabito-info,.tabito-info-head,.tabito-info-copy,
+  .contact-grid,.contact-copy,.contact-meta,.qr-grid,.qr-item,.qr-item>span{
+    height:auto!important;min-height:0!important;overflow:visible!important
+  }
+  .graduate-score>strong{white-space:nowrap!important;overflow:visible!important}
+  .graduate-details summary>span{display:block!important;min-width:0!important;max-width:calc(100% - 28px)!important}
+  .exp-row{align-items:start!important}
+  .exp-main h3,.exp-position{height:auto!important}
+  .tabito-info-head{align-items:start!important}
+  .tabito-logo-link,.tabito-logo-link--compact,.tabito-info .tabito-logo-link{position:relative!important;inset:auto!important;transform:none!important}
+  .qr-item{align-items:center!important}
+
+  /* Tap targets/focus states should not change line geometry. */
+  details[open]>summary,.course-tab[aria-selected="true"],.mobile-jump-nav a[aria-current="true"]{transform:none!important}
+}
+
+@media (max-width:430px){
+  .year-courses-head{display:grid!important;grid-template-columns:1fr!important;gap:9px!important}
+  .year-courses-status{justify-content:flex-start!important}
+  .year-course-card-head{grid-template-columns:minmax(0,1fr) 44px!important;gap:8px!important}
+  .year-course-hours{justify-self:end!important}
+  .year-course-hours strong{font-size:1.22rem!important}
+  .year-course-unit{grid-template-columns:58px minmax(0,1fr)!important;gap:7px!important}
+  .record-stat{grid-template-columns:minmax(0,1fr) auto!important}
+  .graduate-score{grid-template-columns:1fr!important}
+  .graduate-score>strong,.graduate-score>span{grid-column:1!important;grid-row:auto!important}
+}
+
+@media (max-width:360px){
+  :root{--mobile-pad:14px}
+  .hero-name{font-size:48px!important;letter-spacing:-.045em!important}
+  .hero-thesis{font-size:26px!important;line-height:1.22!important}
+  .course-tabs{grid-template-columns:1fr!important}
+  .course-tab{min-height:0!important;padding:11px 12px!important;border-right:0!important;border-bottom:1px solid rgba(255,255,255,.13)!important}
+  .course-tab:last-child{border-bottom:0!important}
+  .eju-row{grid-template-columns:1fr!important}
+  .eju-title{grid-column:1!important}
+  .eju-score,.eju-score+.eju-score{border-right:0!important;border-bottom:1px solid rgba(255,255,255,.10)!important}
+  .eju-score:last-child{border-bottom:0!important}
+  .year-course-card-head{grid-template-columns:1fr!important}
+  .year-course-hours{justify-self:start!important;margin-top:4px!important}
+  .year-course-exclusive{grid-template-columns:1fr!important}
+  .year-course-exclusive span,.year-course-exclusive strong,.year-course-exclusive small{grid-column:1!important}
+  .year-course-unit{grid-template-columns:1fr!important;gap:2px!important}
+  .qr-item{grid-template-columns:72px minmax(0,1fr)!important;gap:10px!important}
+  .qr-item img{width:72px!important;height:72px!important}
+}
