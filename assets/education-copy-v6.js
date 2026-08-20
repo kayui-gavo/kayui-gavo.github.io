@@ -121,7 +121,7 @@
 
     if (!document.querySelector('script[data-education-language-switch]')) {
       const script = document.createElement('script');
-      script.src = '/assets/education-language-switch.js?v=20260814ao';
+      script.src = '/assets/education-language-switch.js?v=20260821a';
       script.defer = true;
       script.dataset.educationLanguageSwitch = 'true';
       document.head.appendChild(script);
