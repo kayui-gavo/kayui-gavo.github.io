@@ -34,7 +34,7 @@
 
       const copy = systemCard.querySelector('.year-course-copy');
       if (copy) {
-        copy.textContent = '24 回 × 2h。按力学、波动、热学、电磁学建立完整知识体系，把实验、图表和综合题放回对应知识框架中训练。';
+        copy.textContent = '24 回 × 2h。按力学、波动、热学、电磁学建立完整体系，并在对应章节穿插实验、图表与综合题训练。';
       }
     }
 
@@ -47,7 +47,7 @@
 
       const copy = practiceCard.querySelector('.year-course-copy');
       if (copy) {
-        copy.textContent = '12 回 × 2h。前半按高频题型和实验资料题集中演习，后半安排 5 年份真题精讲，训练整卷节奏、取舍与易错判断。';
+        copy.textContent = '12 回 × 2h。前半集中训练高频题型与实验资料题，后半以 5 年份真题精讲进入整卷演习，训练答题顺序、时间分配与易错判断。';
       }
 
       const track = practiceCard.querySelector('.year-course-track');
@@ -113,7 +113,7 @@
           <div class="year-course-unit"><b>陌生模型</b><span>集中处理 EJU / 共通考试较少出现的复合模型与新颖设定，训练从研究对象、约束和基本定律出发现场建模。</span></div>
           <div class="year-course-unit"><b>原理推导</b><span>强化从定义、基本定律和已知关系自行推出结论的能力，适应题目不给现成公式、需要连续完成中间推导的设问。</span></div>
           <div class="year-course-unit"><b>数学工具</b><span>微小量、一次近似、极限、微积分、数列与三角变换不单独讲成一章，而是在对应题型中作为推导工具反复使用。</span></div>
-          <div class="year-course-unit"><b>原创模拟</b><span>配置本课程独家原创模拟题，基于历年题型、设问链与能力要求自主命制，用于检验学生面对第一次见到的综合模型时能否独立完成判断、推导和记述。</span></div>
+          <div class="year-course-unit"><b>原创模拟</b><span>配置本课程独家原创模拟题，基于历年题型、设问链与能力要求自主命制，用于检验面对未见过的综合模型时，能否独立完成判断、推导和记述。</span></div>
           <p class="year-course-note">20h 按题型结构与难点分组推进，并结合原创模拟题演习；不按力学、波动、热学、电磁学的普通章节顺序重复讲解。</p>
         `;
       }
