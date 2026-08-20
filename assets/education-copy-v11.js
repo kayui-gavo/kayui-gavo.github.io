@@ -93,7 +93,7 @@ import('./education-copy-v10.js?v=20260814aa').then(() => {
 
   /* Contact title + note under QR cards. */
   const contactTitle = document.querySelector('.contact-copy h2');
-  if (contactTitle) contactTitle.textContent = '日本学部留学咨询';
+  if (contactTitle) contactTitle.textContent = '理工科本科升学・课程咨询';
   const contactCopy = document.querySelector('.contact-copy');
   const qrGrid = document.querySelector('.qr-grid');
   if (contactCopy && qrGrid) {
