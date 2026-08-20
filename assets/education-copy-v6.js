@@ -41,7 +41,7 @@
     if (practiceCard) {
       const copy = practiceCard.querySelector('.year-course-copy');
       if (copy) {
-        copy.textContent = '12 回 × 2h。前半按高频题型与实验资料题集中训练，后半用 5 年份真题做整卷精讲，练习取舍、节奏与易错判断。';
+        copy.textContent = '12 回 × 2h。前半按高频题型与实验资料题集中训练，后半安排 5 年份真题精讲，练习整卷取舍、答题节奏与易错判断。';
       }
 
       const track = practiceCard.querySelector('.year-course-track');
@@ -60,7 +60,7 @@
       }
       if (units[1]) {
         const detail = units[1].querySelector('span');
-        if (detail) detail.textContent = '波动・热学・电磁学・原子题型：实验、图表、条件变化与综合设问を重点训练。';
+        if (detail) detail.textContent = '波动・热学・电磁学・原子题型：重点训练实验、图表、条件变化与综合设问。';
       }
       if (units[2]) {
         const label = units[2].querySelector('b');
