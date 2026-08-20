@@ -62,24 +62,38 @@
 .year-course-grid{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
+  align-items:start;
   gap:11px;
 }
 .year-course-card{
   position:relative;
+  display:flex;
+  flex-direction:column;
   min-width:0;
   padding:15px 15px 13px;
   border:1px solid rgba(31,52,72,.085);
   border-radius:17px;
   background:rgba(251,250,247,.86);
-  transition:border-color .18s ease,background .18s ease,transform .18s ease;
+  overflow:hidden;
+  transition:border-color .18s ease,background .18s ease,box-shadow .18s ease;
 }
-.year-course-card:hover{
-  border-color:rgba(31,52,72,.14);
-  background:rgba(255,255,255,.94);
+@media (hover:hover){
+  .year-course-card:hover{
+    border-color:rgba(31,52,72,.14);
+    background:rgba(255,255,255,.94);
+    box-shadow:0 8px 20px rgba(40,50,58,.035);
+  }
 }
 .year-course-card--target{
-  background:linear-gradient(180deg,rgba(244,248,250,.96),rgba(249,250,248,.92));
-  border-color:rgba(43,76,100,.13);
+  background:linear-gradient(180deg,rgba(244,248,250,.98),rgba(249,250,248,.93));
+  border-color:rgba(43,76,100,.14);
+}
+.year-course-card--target::before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto;
+  height:2px;
+  background:linear-gradient(90deg,rgba(38,74,101,.56),rgba(148,126,94,.34),transparent 86%);
 }
 .year-course-card-head{
   display:grid;
@@ -119,30 +133,37 @@
 }
 .year-course-exclusive{
   display:grid;
-  grid-template-columns:auto auto 1fr;
+  grid-template-columns:auto auto minmax(0,1fr);
   align-items:center;
   gap:6px;
   margin:0 0 9px;
   padding:7px 9px;
-  border:1px solid rgba(121,91,55,.13);
+  border:1px solid rgba(121,91,55,.14);
   border-radius:10px;
-  background:rgba(244,238,227,.68);
+  background:linear-gradient(90deg,rgba(244,238,227,.83),rgba(247,244,238,.62));
   color:#65594d;
   line-height:1.25;
 }
 .year-course-exclusive span{
-  color:#9a8062;
-  font-size:.57rem;
+  display:inline-flex;
+  align-items:center;
+  min-height:17px;
+  padding:2px 5px;
+  border-radius:999px;
+  background:rgba(126,98,65,.09);
+  color:#947a5d;
+  font-size:.54rem;
   font-weight:800;
   letter-spacing:.11em;
 }
 .year-course-exclusive strong{
-  color:#5b4938;
+  color:#584736;
   font-size:.72rem;
   white-space:nowrap;
 }
 .year-course-exclusive small{
-  color:#82786d;
+  min-width:0;
+  color:#80766b;
   font-size:.62rem;
   overflow:hidden;
   text-overflow:ellipsis;
@@ -167,10 +188,14 @@
   font-size:.68rem;
   line-height:1;
 }
-.year-course-card--target .year-course-track li{background:#e9eef1}
+.year-course-card--target .year-course-track li{
+  background:#e9eef1;
+  border:1px solid rgba(43,76,100,.045);
+}
 .year-course-track b{color:#344b5d;font-weight:700}
 .year-course-track span{color:#8a8179}
 .year-course-details{
+  margin-top:auto;
   border-top:1px solid rgba(31,52,72,.08);
   padding-top:9px;
 }
@@ -184,6 +209,7 @@
   color:#38566d;
   font-size:.75rem;
   font-weight:700;
+  outline:none;
 }
 .year-course-details summary::-webkit-details-marker{display:none}
 .year-course-details summary::after{
@@ -193,6 +219,13 @@
   font-weight:500;
 }
 .year-course-details[open] summary::after{content:"－"}
+.year-course-details summary:focus-visible{
+  border-radius:6px;
+  box-shadow:0 0 0 3px rgba(53,86,111,.10);
+}
+.year-course-details[open]{
+  border-top-color:rgba(43,76,100,.14);
+}
 .year-course-syllabus{
   display:grid;
   gap:7px;
@@ -217,6 +250,8 @@
 }
 .year-course-note{
   margin:2px 0 0;
+  padding-top:6px;
+  border-top:1px dashed rgba(31,52,72,.08);
   color:#8a8178;
   font-size:.68rem;
   line-height:1.55;
@@ -226,7 +261,7 @@
   .year-course-grid{grid-template-columns:1fr}
   .year-course-card{padding:14px 15px 12px}
   .year-course-copy{max-width:720px}
-  .year-course-exclusive{max-width:620px}
+  .year-course-exclusive{max-width:650px}
 }
 @media (max-width:720px){
   .year-courses{margin-top:16px;padding:16px 14px 14px;border-radius:18px}
