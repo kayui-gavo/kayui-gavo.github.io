@@ -5,5 +5,4 @@ https://kayui-gavo.github.io/zh-tw/
 https://kayui-gavo.github.io/cv/
 https://kayui-gavo.github.io/research/
 https://kayui-gavo.github.io/education/
-https://kayui-gavo.github.io/education/zh-cn/
 https://kayui-gavo.github.io/education/zh-tw/
