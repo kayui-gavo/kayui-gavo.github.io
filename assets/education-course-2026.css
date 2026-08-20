@@ -1,0 +1,204 @@
+/* Compact 2026 course preview for /education/. Keep this block visually secondary to the main teaching section. */
+
+.year-courses{
+  margin-top:22px;
+  padding:20px 22px 18px;
+  border:1px solid rgba(31,52,72,.10);
+  border-radius:22px;
+  background:rgba(255,255,255,.58);
+  box-shadow:0 14px 36px rgba(33,43,53,.045);
+}
+.year-courses-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:18px;
+  margin-bottom:10px;
+}
+.year-courses-title small{
+  display:block;
+  margin-bottom:4px;
+  color:#8c8177;
+  font-size:.68rem;
+  font-weight:700;
+  letter-spacing:.15em;
+}
+.year-courses-title h3{
+  margin:0;
+  color:#17344d;
+  font-size:1.28rem;
+  line-height:1.25;
+  letter-spacing:-.02em;
+}
+.year-courses-status{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  gap:8px;
+}
+.year-term{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  min-height:30px;
+  padding:5px 10px;
+  border:1px solid rgba(31,52,72,.08);
+  border-radius:999px;
+  background:#f5f1eb;
+  color:#71675f;
+  font-size:.76rem;
+  line-height:1;
+}
+.year-term b{color:#3f4e5a;font-size:.78rem}
+.year-term--next{background:#edf2f5;color:#60717f}
+.year-term--next b{color:#173f60}
+.year-courses-intro{
+  max-width:860px;
+  margin:0 0 15px;
+  color:#625d57;
+  font-size:.9rem;
+  line-height:1.7;
+}
+.year-course-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:11px;
+}
+.year-course-card{
+  position:relative;
+  min-width:0;
+  padding:15px 15px 13px;
+  border:1px solid rgba(31,52,72,.085);
+  border-radius:17px;
+  background:rgba(251,250,247,.86);
+}
+.year-course-card--target{background:rgba(244,247,248,.92)}
+.year-course-card-head{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:10px;
+  align-items:start;
+}
+.year-course-card-head small{
+  display:block;
+  margin-bottom:4px;
+  color:#8b8178;
+  font-size:.7rem;
+  font-weight:700;
+  letter-spacing:.06em;
+}
+.year-course-card h4{
+  margin:0;
+  color:#263c4f;
+  font-size:.98rem;
+  line-height:1.45;
+  letter-spacing:-.01em;
+}
+.year-course-hours{
+  display:flex;
+  align-items:baseline;
+  gap:2px;
+  color:#173f60;
+  white-space:nowrap;
+}
+.year-course-hours strong{font-size:1.45rem;line-height:1;font-weight:700;letter-spacing:-.04em}
+.year-course-hours span{font-size:.72rem;font-weight:700}
+.year-course-copy{
+  margin:9px 0 10px;
+  color:#67615a;
+  font-size:.8rem;
+  line-height:1.62;
+}
+.year-course-track{
+  display:flex;
+  flex-wrap:wrap;
+  gap:5px;
+  margin:0 0 11px;
+  padding:0;
+  list-style:none;
+}
+.year-course-track li{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  padding:5px 7px;
+  border-radius:999px;
+  background:#f0ece6;
+  color:#59544e;
+  font-size:.68rem;
+  line-height:1;
+}
+.year-course-card--target .year-course-track li{background:#e9eef1}
+.year-course-track b{color:#344b5d;font-weight:700}
+.year-course-track span{color:#8a8179}
+.year-course-details{
+  border-top:1px solid rgba(31,52,72,.08);
+  padding-top:9px;
+}
+.year-course-details summary{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  cursor:pointer;
+  list-style:none;
+  color:#38566d;
+  font-size:.75rem;
+  font-weight:700;
+}
+.year-course-details summary::-webkit-details-marker{display:none}
+.year-course-details summary::after{
+  content:"＋";
+  color:#81909b;
+  font-size:.86rem;
+  font-weight:500;
+}
+.year-course-details[open] summary::after{content:"－"}
+.year-course-syllabus{
+  display:grid;
+  gap:7px;
+  margin-top:10px;
+  padding-top:1px;
+}
+.year-course-unit{
+  display:grid;
+  grid-template-columns:58px minmax(0,1fr);
+  gap:8px;
+  align-items:start;
+}
+.year-course-unit b{
+  color:#314b60;
+  font-size:.72rem;
+  line-height:1.5;
+}
+.year-course-unit span{
+  color:#66605a;
+  font-size:.73rem;
+  line-height:1.55;
+}
+.year-course-note{
+  margin:2px 0 0;
+  color:#8a8178;
+  font-size:.68rem;
+  line-height:1.55;
+}
+
+@media (max-width:980px){
+  .year-course-grid{grid-template-columns:1fr}
+  .year-course-card{padding:14px 15px 12px}
+  .year-course-copy{max-width:720px}
+}
+@media (max-width:720px){
+  .year-courses{margin-top:16px;padding:16px 14px 14px;border-radius:18px}
+  .year-courses-head{display:grid;gap:10px;align-items:start}
+  .year-courses-status{justify-content:flex-start}
+  .year-courses-title h3{font-size:1.16rem}
+  .year-courses-intro{margin-bottom:12px;font-size:.84rem}
+  .year-course-grid{gap:9px}
+  .year-course-card-head{grid-template-columns:minmax(0,1fr) auto}
+  .year-course-hours strong{font-size:1.28rem}
+  .year-course-unit{grid-template-columns:52px minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){
+  .year-course-details summary{scroll-behavior:auto}
+}
