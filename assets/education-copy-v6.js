@@ -70,7 +70,7 @@
         ['07','力学','实验・综合专题 II','圆周运动与简谐运动的实验、图表与综合设问；多阶段运动；跨章节条件提取与建模。'],
         ['08','波动','波的基本性质','简谐振动与正弦波；振幅、周期、频率与波长；波速；横波与纵波；叠加、反射与驻波。'],
         ['09','波动','波面・射线・干涉','波面与射线；惠更斯原理；反射与折射；相位差与路程差；干涉与衍射。'],
-        ['10','波动','声音','声波的干涉与拍；弦的振动；气柱共鸣；多普勒效应。'],
+        ['10','波动','声音','声波的干涉与拍频；弦的振动；气柱共鸣；多普勒效应。'],
         ['11','波动','光','光的反射与折射；全反射；透镜成像；杨氏双缝、薄膜干涉与衍射光栅。'],
         ['12','波动','综合专题','波形与图表；驻波；声音实验；透镜与光干涉实验；波动跨单元综合。'],
         ['13','热学','理想气体的状态变化','热量与内能；气体压强；绝对温度；玻意耳定律与查理定律；理想气体状态方程；气体密度；p–V 图。'],
@@ -78,7 +78,7 @@
         ['15','热学','热力学第一定律','热量、内能与气体做功的关系；摩尔比热；定积、定压、等温与绝热变化；热循环与热机。'],
         ['16','热学','实验・综合专题','p–V 图与热过程判定；热量、功和内能的计算；气体实验与资料题；分子运动论与热机综合。'],
         ['17','电磁学','静电场・点电荷','库仑定律；点电荷产生的电场与电势；叠加原理；电场线与等势面；电势能。'],
-        ['18','电磁学','电容器','静电容量；平行板电容器；串联与并联；储存的能量；介质、极板间距与开关操作后的状态变化。'],
+        ['18','电磁学','电容器','电容（静电容量）；平行板电容器；串联与并联；储存的能量；介质、极板间距与开关操作后的状态变化。'],
         ['19','电磁学','实验・综合专题 I','电场与电势图；电容器实验；电荷—电压关系；开关操作前后的状态判断；图表与条件变化。'],
         ['20','电磁学','直流电路','电流与电阻；欧姆定律；串并联；基尔霍夫定律；电功率；电源内部电阻；半导体与二极管。'],
         ['21','电磁学','电流与磁场','直线电流、圆形电流与螺线管的磁场；电流在磁场中受到的力；洛伦兹力；带电粒子的运动。'],
@@ -111,7 +111,7 @@
         return 'exam';
       };
       const renderRows = rows => rows.map(([session, domain, title, copy]) => `
-        <div class="course-schedule-row" data-domain="${domainKey(domain)}">
+        <div class="course-schedule-row" data-domain="${domainKey(domain)}" role="listitem">
           <span class="course-session">第${session}回</span>
           <span class="course-domain">${domain}</span>
           <strong>${title}</strong>
@@ -119,7 +119,7 @@
         </div>`).join('');
       const schedule = rows => `
         <div class="course-schedule" role="list">
-          <div class="course-schedule-head" aria-hidden="true"><span>回次</span><span>分野</span><span>主题</span><span>学习内容</span></div>
+          <div class="course-schedule-head" aria-hidden="true"><span>回次</span><span>模块</span><span>主题</span><span>学习内容</span></div>
           ${renderRows(rows)}
         </div>`;
 
@@ -127,20 +127,20 @@
         <div class="year-courses-head">
           <div class="year-courses-title"><small>2026 WINTER · PHYSICS</small><h3>2026 冬学期｜开设课程</h3></div>
           <div class="year-courses-status" aria-label="2026冬学期课程信息">
-            <span class="year-term"><span>系统课</span><b>48h</b></span>
+            <span class="year-term"><span>冲刺课</span><b>48h</b></span>
             <span class="year-term"><span>刷题班</span><b>24h</b></span>
             <span class="year-term year-term--next"><span>专项课</span><b>20h</b></span>
           </div>
         </div>
-        <p class="year-courses-intro">冬学期以共通考试物理为主线：48h 冲刺系统课负责完整复习、实验图表与综合专题，24h 刷题班负责高频题型与整卷真题训练；另设 20h 东京科学大学理工学系专项课程。</p>
+        <p class="year-courses-intro">冬学期以共通考试物理为主线：48h 冲刺课程负责系统复习、实验图表与综合专题，24h 刷题班负责高频题型与整卷真题训练；另设 20h 东京科学大学理工学系专项课程。</p>
 
         <div class="year-course-grid">
           <article class="year-course-card year-course-card--wide year-course-card--primary">
             <div class="year-course-card-head">
-              <div><small>2026 冬学期｜共通考试</small><h4>物理共通考试冲刺课程</h4></div>
+              <div><small>2026 冬学期｜共通考试</small><h4>共通考试物理冲刺课程</h4></div>
               <div class="year-course-hours"><strong>48</strong><span>h</span><small>24 回 × 2h</small></div>
             </div>
-            <p class="year-course-copy">按照力学 → 波动 → 热学 → 电磁学的学习顺序完成系统复习。每个分野安排实验・综合专题，把知识点、图表、实验资料与跨章节设问放回同一套解题框架中。</p>
+            <p class="year-course-copy">按照力学 → 波动 → 热学 → 电磁学的学习顺序完成系统复习。每个模块安排实验・综合专题，把知识点、图表、实验资料与跨章节设问放回同一套解题框架中。</p>
             <div class="year-course-flow" aria-label="课程顺序"><span>力学 · 14h</span><span>波动 · 10h</span><span>热学 · 8h</span><span>电磁学 · 16h</span></div>
             <ul class="year-course-track" aria-label="课程训练重点"><li><b>基本规律</b></li><li><b>典型模型</b></li><li><b>实验・图表</b></li><li><b>综合设问</b></li></ul>
             <details class="year-course-details">
@@ -152,10 +152,10 @@
 
           <article class="year-course-card year-course-card--wide">
             <div class="year-course-card-head">
-              <div><small>2026 冬学期｜共通考试</small><h4>物理共通考试刷题班</h4></div>
+              <div><small>2026 冬学期｜共通考试</small><h4>共通考试物理刷题班</h4></div>
               <div class="year-course-hours"><strong>24</strong><span>h</span><small>12 回 × 2h</small></div>
             </div>
-            <p class="year-course-copy">前 7 回按分野集中处理高频题型，第 8–12 回进行 5 份真题整卷演练。每份真题均按“限时作答 → 逐题精讲 → 错因归类 → 补弱”完成复盘。</p>
+            <p class="year-course-copy">前 7 回按模块集中处理高频题型，第 8–12 回进行 5 份真题整卷演练。每份真题均按“限时作答 → 逐题精讲 → 错因归类 → 补弱”完成复盘。</p>
             <div class="year-course-flow" aria-label="课程顺序"><span>专题演习 · 14h</span><span>真题 I · 2h</span><span>真题 II–III · 4h</span><span>真题 IV–V · 4h</span></div>
             <ul class="year-course-track" aria-label="刷题班训练重点"><li><b>高频题型</b></li><li><b>实验资料题</b></li><li><b>5 份真题</b></li><li><b>时间分配</b></li></ul>
             <details class="year-course-details">
