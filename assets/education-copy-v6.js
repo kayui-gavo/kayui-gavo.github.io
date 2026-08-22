@@ -1,7 +1,7 @@
 (() => {
-  if (!document.querySelector('link[data-education-final="v21"]')) {
+  if (!document.querySelector('link[data-education-final="v22"]')) {
     const marker = document.createElement('link');
-    marker.dataset.educationFinal = 'v21';
+    marker.dataset.educationFinal = 'v22';
     document.head.appendChild(marker);
   }
 
@@ -30,7 +30,7 @@
         const person = data?.mainEntity;
         if (data?.['@type'] !== 'ProfilePage' || person?.['@type'] !== 'Person') return;
 
-        data.dateModified = '2026-08-22';
+        data.dateModified = '2026-08-23';
         person.alternateName = ['刘可惟', '劉可惟', '劉 可惟', 'Kewei Liu', 'LIU KEWEI', 'リュウ カユイ'];
         person.disambiguatingDescription = '旅人教育理工科讲师。京都大学工学部电气电子工程毕业，现就读东京大学大学院工学系研究科电气工程与信息系统专攻；主要指导共通考试／EJU物理、理工科校内考与理科口试。';
 
@@ -48,11 +48,11 @@
     applyEducationEntitySignals();
 
     /* Load the latest course art direction even when an older imported copy is cached. */
-    if (!document.querySelector('link[data-education-course-2026="v2"]')) {
+    if (!document.querySelector('link[data-education-course-2026="v3"]')) {
       const courseStyle = document.createElement('link');
       courseStyle.rel = 'stylesheet';
-      courseStyle.href = '/assets/education-course-2026.css?v=20260822a';
-      courseStyle.dataset.educationCourse2026 = 'v2';
+      courseStyle.href = '/assets/education-course-2026.css?v=20260823a';
+      courseStyle.dataset.educationCourse2026 = 'v3';
       document.head.appendChild(courseStyle);
     }
 
