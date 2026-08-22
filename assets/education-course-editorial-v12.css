@@ -1,0 +1,218 @@
+/*
+ * Education / 2026 winter curriculum — interactive editorial refinement v12
+ *
+ * Stronger design and interaction without card/SaaS styling. Motion and
+ * active states clarify the curriculum structure and keep the long page easy
+ * to navigate.
+ */
+
+/* Overview: arrive sooner and turn the 48/24/20 data rail into navigation. */
+#course-2026.year-courses{margin-top:44px}
+#course-2026 .year-courses-head{padding-top:30px;padding-bottom:24px}
+#course-2026 .year-courses-intro{padding-top:22px;padding-bottom:29px}
+
+#course-2026 .year-term,
+#course-2026 .year-term--next{
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+  outline:none;
+  transition:background-color .24s ease,color .24s ease;
+}
+#course-2026 .year-term::before,
+#course-2026 .year-term--next::before{
+  content:"";
+  position:absolute;
+  left:0;right:100%;bottom:0;
+  height:2px;
+  background:var(--blue-deep);
+  transition:right .34s cubic-bezier(.2,.75,.25,1);
+}
+#course-2026 .year-term::after,
+#course-2026 .year-term--next::after{
+  content:"↘";
+  position:absolute;
+  right:10px;top:9px;
+  color:rgba(47,120,159,0);
+  font-size:10px;
+  transform:translate(-3px,3px);
+  transition:color .22s ease,transform .28s ease;
+}
+#course-2026 .year-term:hover,
+#course-2026 .year-term:focus-visible,
+#course-2026 .year-term.is-current{background:rgba(47,120,159,.04)}
+#course-2026 .year-term:hover::before,
+#course-2026 .year-term:focus-visible::before,
+#course-2026 .year-term.is-current::before{right:0}
+#course-2026 .year-term:hover::after,
+#course-2026 .year-term:focus-visible::after,
+#course-2026 .year-term.is-current::after{
+  color:rgba(47,120,159,.72);
+  transform:none;
+}
+#course-2026 .year-term:focus-visible{box-shadow:inset 0 0 0 1px rgba(47,120,159,.46)}
+#course-2026 .year-term.is-current span{color:var(--blue-deep)}
+
+/* Course chapters: active reading state and subtle reveal. */
+#course-2026 .year-course-card,
+#course-2026 .year-course-card--wide,
+#course-2026 .year-course-card--target,
+#course-2026 .year-course-card--primary{
+  scroll-margin-top:92px;
+  transition:border-color .28s ease;
+}
+#course-2026.has-course-motion .year-course-card{
+  opacity:0;
+  transform:translateY(14px);
+  transition:opacity .55s cubic-bezier(.2,.75,.25,1),transform .55s cubic-bezier(.2,.75,.25,1),border-color .28s ease;
+}
+#course-2026.has-course-motion .year-course-card.is-in-view{opacity:1;transform:none}
+#course-2026 .year-course-card.is-current{border-top-color:rgba(47,120,159,.72)}
+#course-2026 .year-course-card.is-current::after{background:rgba(47,120,159,.58)}
+#course-2026 .year-course-card h4{transition:color .22s ease}
+#course-2026 .year-course-card.is-current h4{color:#213744}
+
+/* Curriculum ledger becomes tactile on pointer devices. */
+#course-2026 .year-course-flow span{
+  position:relative;
+  cursor:default;
+  transition:color .2s ease,background-color .2s ease,padding-left .24s ease;
+}
+#course-2026 .year-course-flow span:hover{
+  color:var(--blue-deep);
+  background:rgba(47,120,159,.035);
+  padding-left:15px;
+}
+#course-2026 .year-course-flow span:first-child:hover{padding-left:7px}
+#course-2026 .year-course-track li,
+#course-2026 .year-course-track li b{transition:color .2s ease}
+#course-2026 .year-course-track li:hover,
+#course-2026 .year-course-track li:hover b{color:var(--blue-deep)}
+
+/* Details: native semantics, editorial micro-motion. */
+#course-2026 .year-course-details summary{
+  position:relative;
+  cursor:pointer;
+  user-select:none;
+  transition:color .2s ease,padding-left .28s ease,background-color .2s ease;
+}
+#course-2026 .year-course-details summary:hover{
+  padding-left:8px;
+  background:rgba(47,120,159,.025);
+}
+#course-2026 .year-course-details summary::after{
+  transition:transform .32s cubic-bezier(.2,.75,.25,1),color .2s ease;
+}
+#course-2026 .year-course-details[open] summary::after{transform:rotate(45deg)}
+#course-2026 .year-course-details[open] .year-course-syllabus,
+#course-2026 .year-course-details[open] .year-course-note{animation:courseSyllabusIn .38s cubic-bezier(.2,.75,.25,1) both}
+@keyframes courseSyllabusIn{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:none}}
+
+#course-2026 .course-schedule-row{
+  position:relative;
+  transition:background-color .18s ease;
+}
+#course-2026 .course-schedule-row::after{
+  content:"";
+  position:absolute;
+  left:-10px;top:12px;bottom:12px;
+  width:2px;
+  background:var(--blue-deep);
+  transform:scaleY(0);
+  transform-origin:center;
+  opacity:.45;
+  transition:transform .24s ease;
+}
+#course-2026 .course-schedule-row:hover{background:rgba(47,120,159,.024)}
+#course-2026 .course-schedule-row:hover::after{transform:scaleY(1)}
+#course-2026 .course-schedule-row:hover strong{color:#24485f}
+
+/* Floating reading navigator: only appears while the winter catalogue is in view. */
+#course-2026 .course-float-nav{
+  position:fixed;
+  right:max(18px,calc((100vw - 1260px)/2 - 46px));
+  top:50%;
+  z-index:35;
+  display:grid;
+  gap:10px;
+  padding:9px 6px;
+  opacity:0;
+  pointer-events:none;
+  transform:translate(10px,-50%);
+  transition:opacity .28s ease,transform .28s ease;
+}
+#course-2026 .course-float-nav.is-visible{opacity:1;pointer-events:auto;transform:translate(0,-50%)}
+#course-2026 .course-float-nav button{
+  position:relative;
+  width:28px;height:28px;
+  display:grid;place-items:center;
+  padding:0;border:0;border-radius:50%;
+  background:transparent;
+  color:#9aa0a5;
+  cursor:pointer;
+  transition:color .2s ease,background-color .2s ease,transform .2s ease;
+}
+#course-2026 .course-float-nav button::after{
+  content:"";
+  width:4px;height:4px;border-radius:50%;
+  background:currentColor;
+  opacity:.34;
+}
+#course-2026 .course-float-nav button span{
+  position:absolute;
+  right:36px;
+  top:50%;
+  width:max-content;
+  padding:5px 8px;
+  border:1px solid rgba(13,15,20,.11);
+  background:rgba(251,250,247,.96);
+  color:#5d666d;
+  font-size:8.5px;
+  line-height:1;
+  letter-spacing:.03em;
+  opacity:0;
+  pointer-events:none;
+  transform:translate(5px,-50%);
+  transition:opacity .18s ease,transform .18s ease;
+}
+#course-2026 .course-float-nav button:hover,
+#course-2026 .course-float-nav button:focus-visible,
+#course-2026 .course-float-nav button.is-current{
+  color:var(--blue-deep);
+  background:rgba(47,120,159,.09);
+  outline:none;
+}
+#course-2026 .course-float-nav button:hover{transform:scale(1.08)}
+#course-2026 .course-float-nav button:hover span,
+#course-2026 .course-float-nav button:focus-visible span{opacity:1;transform:translate(0,-50%)}
+#course-2026 .course-float-nav button.is-current::after{width:7px;height:7px;opacity:.95}
+
+@media (max-width:1100px){#course-2026 .course-float-nav{display:none}}
+
+@media (max-width:767px){
+  #course-2026.year-courses{margin-top:34px!important}
+  #course-2026 .year-courses-head{padding-top:22px!important}
+  #course-2026 .year-courses-intro{padding-top:17px!important;padding-bottom:23px!important}
+  #course-2026 .year-term::after,
+  #course-2026 .year-term--next::after{right:6px;top:6px;font-size:8px}
+  #course-2026 .year-course-card,
+  #course-2026 .year-course-card--wide,
+  #course-2026 .year-course-card--target,
+  #course-2026 .year-course-card--primary{scroll-margin-top:74px}
+  #course-2026 .year-course-flow span:hover,
+  #course-2026 .year-course-flow span:first-child:hover{padding-left:8px;background:transparent}
+  #course-2026 .year-course-details summary:hover{padding-left:0;background:transparent}
+  #course-2026 .course-schedule-row::after{display:none}
+  #course-2026 .course-schedule-row:hover{background:transparent}
+}
+@media (max-width:430px){#course-2026.year-courses{margin-top:28px!important}}
+
+@media (prefers-reduced-motion:reduce){
+  #course-2026.has-course-motion .year-course-card{opacity:1;transform:none;transition:none}
+  #course-2026 .year-term,#course-2026 .year-term::before,#course-2026 .year-term::after,
+  #course-2026 .year-course-flow span,#course-2026 .year-course-details summary,
+  #course-2026 .year-course-details summary::after,#course-2026 .course-float-nav,
+  #course-2026 .course-float-nav button{transition:none!important}
+  #course-2026 .year-course-details[open] .year-course-syllabus,
+  #course-2026 .year-course-details[open] .year-course-note{animation:none}
+}
