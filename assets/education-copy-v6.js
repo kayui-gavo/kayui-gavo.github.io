@@ -1,7 +1,7 @@
 (() => {
-  if (!document.querySelector('link[data-education-final="v22"]')) {
+  if (!document.querySelector('link[data-education-final="v23"]')) {
     const marker = document.createElement('link');
-    marker.dataset.educationFinal = 'v22';
+    marker.dataset.educationFinal = 'v23';
     document.head.appendChild(marker);
   }
 
@@ -47,13 +47,21 @@
     };
     applyEducationEntitySignals();
 
-    /* Load the latest course art direction even when an older imported copy is cached. */
+    /* Load the curriculum styles directly so the final art direction does not
+       depend on a previously cached umbrella stylesheet. */
     if (!document.querySelector('link[data-education-course-2026="v3"]')) {
       const courseStyle = document.createElement('link');
       courseStyle.rel = 'stylesheet';
       courseStyle.href = '/assets/education-course-2026.css?v=20260823a';
       courseStyle.dataset.educationCourse2026 = 'v3';
       document.head.appendChild(courseStyle);
+    }
+    if (!document.querySelector('link[data-education-course-editorial="v5"]')) {
+      const editorialStyle = document.createElement('link');
+      editorialStyle.rel = 'stylesheet';
+      editorialStyle.href = '/assets/education-course-editorial-v5.css?v=20260823c';
+      editorialStyle.dataset.educationCourseEditorial = 'v5';
+      document.head.appendChild(editorialStyle);
     }
 
     const applyWinterCourseSchedule = () => {
