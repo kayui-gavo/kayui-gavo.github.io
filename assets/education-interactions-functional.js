@@ -5,6 +5,15 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
 
+  /* Always pull in the latest interactive course polish from a versioned URL. */
+  if (!document.querySelector('link[data-education-course-interactive="v12"]')) {
+    const style = document.createElement('link');
+    style.rel = 'stylesheet';
+    style.href = '/assets/education-course-editorial-v12.css?v=20260823j';
+    style.dataset.educationCourseInteractive = 'v12';
+    document.head.appendChild(style);
+  }
+
   /* Tokyo Science material evidence: the current static panel only contains text.
      Add a real, accessible image element; CSS still provides a background fallback
      in case an older cached copy of this script is running. */
@@ -23,6 +32,129 @@
       <span><b>COURSE MATERIALS</b><small>教材・原创模拟题・面试对策</small><i>↗</i></span>`;
     schoolMaterial.appendChild(visual);
   }
+
+  /* Winter curriculum: turn the hours rail into meaningful navigation, reveal
+     chapters gently, and keep a tiny reading-position navigator on large screens. */
+  const enhanceWinterCourses = () => {
+    const section = document.querySelector('#course-2026');
+    if (!section || section.dataset.interactiveEnhanced === 'true') return;
+
+    const cards = [...section.querySelectorAll('.year-course-card')].slice(0, 3);
+    const terms = [...section.querySelectorAll('.year-courses-status .year-term')].slice(0, 3);
+    if (!cards.length) return;
+
+    section.dataset.interactiveEnhanced = 'true';
+    const ids = ['winter-course-system', 'winter-course-drill', 'winter-course-tokyo-science'];
+    const labels = ['48h 系统冲刺', '24h 刷题实战', '20h 理工专项'];
+
+    cards.forEach((card, index) => {
+      card.id = card.id || ids[index];
+      const detail = card.querySelector('.year-course-details');
+      const summary = detail?.querySelector('summary');
+      if (detail && summary) {
+        summary.setAttribute('aria-expanded', String(detail.open));
+        detail.addEventListener('toggle', () => summary.setAttribute('aria-expanded', String(detail.open)));
+      }
+    });
+
+    const jumpToCard = index => {
+      const card = cards[index];
+      if (!card) return;
+      card.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      try { history.replaceState(null, '', `#${card.id}`); } catch (_) {}
+    };
+
+    terms.forEach((term, index) => {
+      if (!cards[index]) return;
+      term.setAttribute('role', 'button');
+      term.setAttribute('tabindex', '0');
+      term.setAttribute('aria-controls', cards[index].id);
+      term.setAttribute('aria-label', `${labels[index]}，跳转到课程详情`);
+      term.addEventListener('click', () => jumpToCard(index));
+      term.addEventListener('keydown', event => {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        event.preventDefault();
+        jumpToCard(index);
+      });
+    });
+
+    let floatNav = section.querySelector('.course-float-nav');
+    if (!floatNav) {
+      floatNav = document.createElement('nav');
+      floatNav.className = 'course-float-nav';
+      floatNav.setAttribute('aria-label', '冬学期物理课程快速导航');
+      labels.forEach((label, index) => {
+        if (!cards[index]) return;
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.setAttribute('aria-controls', cards[index].id);
+        button.setAttribute('aria-label', label);
+        button.innerHTML = `<span>${label}</span>`;
+        button.addEventListener('click', () => jumpToCard(index));
+        floatNav.appendChild(button);
+      });
+      section.appendChild(floatNav);
+    }
+    const floatButtons = [...floatNav.querySelectorAll('button')];
+
+    if (!reduceMotion && 'IntersectionObserver' in window) {
+      section.classList.add('has-course-motion');
+      const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-in-view');
+          revealObserver.unobserve(entry.target);
+        });
+      }, { threshold: .06, rootMargin: '0px 0px -7% 0px' });
+      cards.forEach(card => revealObserver.observe(card));
+    } else {
+      cards.forEach(card => card.classList.add('is-in-view'));
+    }
+
+    let courseFrame = 0;
+    const syncCourseState = () => {
+      courseFrame = 0;
+      const sectionRect = section.getBoundingClientRect();
+      const visible = sectionRect.top < window.innerHeight * .58 && sectionRect.bottom > window.innerHeight * .24;
+      floatNav?.classList.toggle('is-visible', visible);
+
+      const anchor = Math.min(220, window.innerHeight * .28);
+      let activeIndex = 0;
+      let bestDistance = Infinity;
+      cards.forEach((card, index) => {
+        const rect = card.getBoundingClientRect();
+        const centerBias = rect.top <= anchor && rect.bottom >= anchor
+          ? 0
+          : Math.min(Math.abs(rect.top - anchor), Math.abs(rect.bottom - anchor));
+        if (centerBias < bestDistance) {
+          bestDistance = centerBias;
+          activeIndex = index;
+        }
+      });
+
+      cards.forEach((card, index) => card.classList.toggle('is-current', index === activeIndex && visible));
+      terms.forEach((term, index) => {
+        term.classList.toggle('is-current', index === activeIndex && visible);
+        if (index === activeIndex && visible) term.setAttribute('aria-current', 'true');
+        else term.removeAttribute('aria-current');
+      });
+      floatButtons.forEach((button, index) => {
+        button.classList.toggle('is-current', index === activeIndex && visible);
+        if (index === activeIndex && visible) button.setAttribute('aria-current', 'true');
+        else button.removeAttribute('aria-current');
+      });
+    };
+
+    const requestCourseSync = () => {
+      if (courseFrame) return;
+      courseFrame = requestAnimationFrame(syncCourseState);
+    };
+    window.addEventListener('scroll', requestCourseSync, { passive: true });
+    window.addEventListener('resize', requestCourseSync, { passive: true });
+    requestAnimationFrame(syncCourseState);
+  };
+  enhanceWinterCourses();
+  window.addEventListener('education:copy-ready', enhanceWinterCourses, { once: true });
 
   /* Gallery: precise position indicator + mouse drag without opening a card by mistake. */
   const grid = document.querySelector('.student-media-grid');
