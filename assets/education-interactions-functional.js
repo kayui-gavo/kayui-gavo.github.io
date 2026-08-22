@@ -5,6 +5,25 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
 
+  /* Tokyo Science material evidence: the current static panel only contains text.
+     Add a real, accessible image element; CSS still provides a background fallback
+     in case an older cached copy of this script is running. */
+  const schoolMaterial = document.querySelector('.course-panel[data-course-panel="school"] .material-feature');
+  if (schoolMaterial && !schoolMaterial.querySelector('.tokyo-science-material-visual')) {
+    const visual = document.createElement('a');
+    visual.className = 'tokyo-science-material-visual';
+    visual.href = '/assets/tokyo-science-materials-v1.svg?v=20260823a';
+    visual.target = '_blank';
+    visual.rel = 'noopener noreferrer';
+    visual.setAttribute('aria-label', '查看东京科学大学理工学系课程资料预览');
+    visual.innerHTML = `
+      <img src="/assets/tokyo-science-materials-v1.svg?v=20260823a"
+           alt="东京科学大学理工学系物理教材、原创模拟试题与面试对策资料预览"
+           loading="lazy" decoding="async">
+      <span><b>COURSE MATERIALS</b><small>教材・原创模拟题・面试对策</small><i>↗</i></span>`;
+    schoolMaterial.appendChild(visual);
+  }
+
   /* Gallery: precise position indicator + mouse drag without opening a card by mistake. */
   const grid = document.querySelector('.student-media-grid');
   const toolbar = document.querySelector('.student-slider-toolbar');
