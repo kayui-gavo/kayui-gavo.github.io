@@ -1,0 +1,33 @@
+/* Tokyo Science material evidence — optical calibration v11 */
+
+/* The collage is 1200×720, so reserve exactly its natural 60% height instead of
+   a fixed pixel value that can overlap the caption on wide desktop columns. */
+#course-2026 .year-course-card--target .year-course-exclusive{
+  padding-top:60%;
+  background-size:100% auto;
+  background-position:center top;
+}
+
+/* Slightly separate the evidence plate from the course keywords. */
+#course-2026 .year-course-card--target .year-course-track{
+  padding-top:1px;
+}
+
+/* Make the school-panel material image feel like a document spread, not a banner. */
+.teaching-section .tokyo-science-material-visual,
+.teaching-section .course-panel[data-course-panel="school"] .material-feature::after{
+  transform-origin:center center;
+}
+
+.teaching-section .tokyo-science-material-visual img{
+  max-height:310px;
+}
+
+@media (max-width:1020px){
+  .teaching-section .tokyo-science-material-visual img{max-height:270px}
+}
+
+@media (max-width:767px){
+  .teaching-section .tokyo-science-material-visual img{max-height:none}
+  #course-2026 .year-course-card--target .year-course-exclusive{padding-top:60%}
+}
