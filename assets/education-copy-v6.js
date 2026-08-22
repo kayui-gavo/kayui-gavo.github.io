@@ -1,7 +1,7 @@
 (() => {
-  if (!document.querySelector('link[data-education-final="v24"]')) {
+  if (!document.querySelector('link[data-education-final="v25"]')) {
     const marker = document.createElement('link');
-    marker.dataset.educationFinal = 'v24';
+    marker.dataset.educationFinal = 'v25';
     document.head.appendChild(marker);
   }
 
@@ -62,6 +62,13 @@
       editorialStyle.href = '/assets/education-course-editorial-v6.css?v=20260823d';
       editorialStyle.dataset.educationCourseEditorial = 'v6';
       document.head.appendChild(editorialStyle);
+    }
+    if (!document.querySelector('link[data-education-course-editorial-final="v7"]')) {
+      const finalEditorialStyle = document.createElement('link');
+      finalEditorialStyle.rel = 'stylesheet';
+      finalEditorialStyle.href = '/assets/education-course-editorial-v7.css?v=20260823e';
+      finalEditorialStyle.dataset.educationCourseEditorialFinal = 'v7';
+      document.head.appendChild(finalEditorialStyle);
     }
 
     const applyWinterCourseSchedule = () => {
