@@ -1,37 +1,80 @@
 /* 2026 winter course schedule for /education/.
-   Editorial, compact and readable: full syllabus lives here without turning the profile into a course portal. */
+   Art direction: restrained Japanese editorial syllabus — quiet paper texture,
+   typographic hierarchy, precise tables, subtle physics-domain accents. */
 
 .year-courses{
-  margin-top:26px;
-  padding:24px;
-  border:1px solid rgba(31,52,72,.10);
-  border-radius:24px;
+  --course-ink:#233f55;
+  --course-ink-deep:#17344d;
+  --course-body:#655f58;
+  --course-muted:#8b8177;
+  --course-rule:rgba(31,52,72,.105);
+  --course-paper:#fbfaf7;
+  position:relative;
+  isolation:isolate;
+  margin-top:30px;
+  padding:30px 30px 28px;
+  border:1px solid rgba(31,52,72,.11);
+  border-radius:28px;
   background:
-    radial-gradient(circle at 90% 0%,rgba(214,226,232,.34),transparent 30%),
-    linear-gradient(180deg,rgba(255,255,255,.78),rgba(249,247,243,.72));
-  box-shadow:0 18px 46px rgba(33,43,53,.055);
+    linear-gradient(110deg,rgba(255,255,255,.62),rgba(255,255,255,0) 28%),
+    radial-gradient(circle at 94% 4%,rgba(191,210,220,.24),transparent 26%),
+    repeating-linear-gradient(0deg,rgba(39,52,61,.012) 0,rgba(39,52,61,.012) 1px,transparent 1px,transparent 8px),
+    linear-gradient(180deg,#fdfcf9 0%,#f8f6f1 100%);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.88) inset,
+    0 22px 54px rgba(33,43,53,.06);
+  overflow:hidden;
 }
+.year-courses::before{
+  content:"PHYSICS · WINTER 2026";
+  position:absolute;
+  z-index:-1;
+  top:16px;
+  right:24px;
+  color:rgba(30,61,82,.026);
+  font-size:clamp(2.5rem,6vw,5.1rem);
+  font-weight:800;
+  letter-spacing:-.055em;
+  line-height:1;
+  white-space:nowrap;
+  pointer-events:none;
+}
+.year-courses::after{
+  content:"";
+  position:absolute;
+  left:30px;
+  right:30px;
+  top:88px;
+  height:1px;
+  background:linear-gradient(90deg,rgba(34,64,86,.16),rgba(34,64,86,.045) 58%,transparent);
+  pointer-events:none;
+}
+
 .year-courses-head{
+  position:relative;
   display:flex;
   align-items:flex-end;
   justify-content:space-between;
-  gap:22px;
-  margin-bottom:10px;
+  gap:28px;
+  min-height:50px;
+  margin-bottom:23px;
+  padding-bottom:15px;
 }
 .year-courses-title small{
   display:block;
-  margin-bottom:5px;
-  color:#8c8177;
-  font-size:.66rem;
+  margin-bottom:6px;
+  color:#927e6c;
+  font-size:.64rem;
   font-weight:800;
-  letter-spacing:.17em;
+  letter-spacing:.20em;
 }
 .year-courses-title h3{
   margin:0;
-  color:#17344d;
-  font-size:clamp(1.28rem,2vw,1.55rem);
-  line-height:1.25;
-  letter-spacing:-.025em;
+  color:var(--course-ink-deep);
+  font-size:clamp(1.38rem,2.15vw,1.72rem);
+  font-weight:700;
+  line-height:1.22;
+  letter-spacing:-.03em;
 }
 .year-courses-status{
   display:flex;
@@ -40,51 +83,86 @@
   gap:7px;
 }
 .year-term{
-  display:inline-flex;
-  align-items:center;
+  display:grid;
+  grid-template-columns:auto auto;
+  align-items:baseline;
   gap:7px;
-  min-height:31px;
-  padding:5px 10px;
-  border:1px solid rgba(31,52,72,.08);
+  min-height:33px;
+  padding:6px 11px 6px 12px;
+  border:1px solid rgba(31,52,72,.075);
   border-radius:999px;
-  background:#f5f1eb;
-  color:#71675f;
-  font-size:.72rem;
+  background:rgba(248,245,240,.88);
+  box-shadow:0 1px 0 rgba(255,255,255,.74) inset;
+  color:#756b62;
+  font-size:.69rem;
   line-height:1;
 }
-.year-term b{color:#3f4e5a;font-size:.75rem}
-.year-term--next{background:#edf2f5;color:#60717f}
-.year-term--next b{color:#173f60}
+.year-term b{
+  color:#355166;
+  font-size:.78rem;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:-.01em;
+}
+.year-term--next{
+  border-color:rgba(52,82,103,.09);
+  background:rgba(237,243,246,.86);
+  color:#657783;
+}
+.year-term--next b{color:#1d4968}
 .year-courses-intro{
-  max-width:950px;
-  margin:0 0 19px;
-  color:#625d57;
-  font-size:.89rem;
-  line-height:1.75;
+  max-width:900px;
+  margin:0 0 22px;
+  color:#67615a;
+  font-size:.88rem;
+  line-height:1.78;
+  letter-spacing:.005em;
 }
 
 .year-course-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
   align-items:start;
-  gap:13px;
+  gap:15px;
 }
 .year-course-card{
   position:relative;
   display:flex;
   flex-direction:column;
   min-width:0;
-  padding:18px 18px 15px;
-  border:1px solid rgba(31,52,72,.09);
-  border-radius:19px;
-  background:rgba(252,251,248,.91);
+  padding:22px 21px 18px;
+  border:1px solid rgba(31,52,72,.085);
+  border-radius:20px;
+  background:rgba(255,255,255,.62);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.82) inset,
+    0 7px 20px rgba(42,51,57,.025);
   overflow:hidden;
-  transition:border-color .18s ease,background .18s ease,box-shadow .18s ease,transform .18s ease;
+  transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease,background .2s ease;
 }
 .year-course-card--wide{grid-column:1/-1}
+.year-course-card::after{
+  position:absolute;
+  top:11px;
+  right:16px;
+  color:rgba(27,59,81,.055);
+  font-size:3.25rem;
+  font-weight:780;
+  letter-spacing:-.075em;
+  line-height:1;
+  pointer-events:none;
+}
+.year-course-card:nth-child(1)::after{content:"01"}
+.year-course-card:nth-child(2)::after{content:"02"}
+.year-course-card:nth-child(3)::after{content:"03"}
+.year-course-card--primary{
+  border-color:rgba(37,68,90,.115);
+  background:
+    linear-gradient(100deg,rgba(244,248,249,.72),rgba(255,255,255,.70) 44%,rgba(253,252,249,.78));
+}
 .year-course-card--target{
-  background:linear-gradient(180deg,rgba(244,248,250,.98),rgba(249,250,248,.93));
-  border-color:rgba(43,76,100,.14);
+  border-color:rgba(76,83,75,.11);
+  background:
+    linear-gradient(155deg,rgba(245,248,247,.86),rgba(252,250,246,.72));
 }
 .year-course-card--target::before,
 .year-course-card--primary::before{
@@ -92,74 +170,87 @@
   position:absolute;
   inset:0 0 auto;
   height:2px;
-  background:linear-gradient(90deg,rgba(38,74,101,.60),rgba(148,126,94,.30),transparent 88%);
+  background:linear-gradient(90deg,rgba(39,78,105,.68),rgba(156,126,88,.28),transparent 90%);
 }
 @media (hover:hover){
   .year-course-card:hover{
-    border-color:rgba(31,52,72,.15);
-    background:rgba(255,255,255,.96);
-    box-shadow:0 10px 26px rgba(40,50,58,.045);
-    transform:translateY(-1px);
+    transform:translateY(-2px);
+    border-color:rgba(31,52,72,.145);
+    background-color:rgba(255,255,255,.78);
+    box-shadow:0 13px 30px rgba(40,50,58,.045);
   }
 }
+
 .year-course-card-head{
+  position:relative;
+  z-index:1;
   display:grid;
   grid-template-columns:minmax(0,1fr) auto;
-  gap:14px;
+  gap:18px;
   align-items:start;
+  padding-right:43px;
 }
 .year-course-card-head small{
   display:block;
-  margin-bottom:5px;
-  color:#8b8178;
-  font-size:.69rem;
+  margin-bottom:6px;
+  color:#97877a;
+  font-size:.67rem;
   font-weight:800;
-  letter-spacing:.07em;
+  letter-spacing:.08em;
 }
 .year-course-card h4{
   margin:0;
-  color:#263c4f;
-  font-size:1.03rem;
-  line-height:1.42;
-  letter-spacing:-.012em;
+  color:#263f52;
+  font-size:1.08rem;
+  font-weight:720;
+  line-height:1.4;
+  letter-spacing:-.018em;
 }
+.year-course-card--primary h4{font-size:1.16rem}
 .year-course-hours{
   display:grid;
   grid-template-columns:auto auto;
   align-items:baseline;
   justify-content:end;
   column-gap:2px;
-  color:#173f60;
+  min-width:70px;
+  color:#194461;
   white-space:nowrap;
 }
 .year-course-hours strong{
-  font-size:1.65rem;
-  line-height:1;
-  font-weight:720;
-  letter-spacing:-.045em;
+  font-size:1.78rem;
+  line-height:.94;
+  font-weight:700;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:-.055em;
 }
-.year-course-hours span{font-size:.72rem;font-weight:800}
+.year-course-hours span{font-size:.7rem;font-weight:800}
 .year-course-hours small{
   grid-column:1/-1;
-  margin-top:3px;
-  color:#8a8178;
-  font-size:.58rem;
+  margin-top:5px;
+  color:#968a7f;
+  font-size:.57rem;
   font-weight:700;
   text-align:right;
-  letter-spacing:.02em;
+  letter-spacing:.015em;
 }
 .year-course-copy{
-  margin:10px 0 11px;
-  max-width:980px;
-  color:#66605a;
-  font-size:.81rem;
-  line-height:1.7;
+  position:relative;
+  z-index:1;
+  max-width:930px;
+  margin:12px 0 14px;
+  color:#68625b;
+  font-size:.8rem;
+  line-height:1.74;
 }
+
 .year-course-track{
+  position:relative;
+  z-index:1;
   display:flex;
   flex-wrap:wrap;
   gap:6px;
-  margin:0 0 12px;
+  margin:0 0 14px;
   padding:0;
   list-style:none;
 }
@@ -167,174 +258,219 @@
   display:inline-flex;
   align-items:center;
   gap:5px;
-  padding:5px 8px;
-  border:1px solid rgba(42,68,89,.045);
+  min-height:25px;
+  padding:5px 9px;
+  border:1px solid rgba(42,68,89,.055);
   border-radius:999px;
-  background:#f0ece6;
-  color:#59544e;
-  font-size:.67rem;
+  background:rgba(240,237,231,.78);
+  color:#625b54;
+  font-size:.66rem;
   line-height:1;
 }
-.year-course-track b{color:#344b5d;font-weight:750}
-.year-course-track span{color:#8a8179}
-.year-course-card--target .year-course-track li{background:#e9eef1}
+.year-course-track b{color:#3c5262;font-weight:760}
+.year-course-track span{color:#948980;font-variant-numeric:tabular-nums}
+.year-course-card--target .year-course-track li{background:rgba(233,239,241,.78)}
 
 .year-course-flow{
+  position:relative;
+  z-index:1;
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:6px;
-  margin:2px 0 13px;
+  gap:0;
+  margin:1px 0 16px;
+  padding:0 1px;
+  border-top:1px solid rgba(42,68,89,.09);
+  border-bottom:1px solid rgba(42,68,89,.075);
 }
 .year-course-flow span{
   position:relative;
-  padding:7px 8px;
-  border-radius:10px;
-  background:rgba(236,239,239,.72);
-  color:#52616b;
-  font-size:.64rem;
-  font-weight:700;
+  padding:9px 10px 8px;
+  color:#60717c;
+  font-size:.63rem;
+  font-weight:760;
   line-height:1.25;
   text-align:center;
 }
-.year-course-flow span+span::before{
+.year-course-flow span+span{border-left:1px solid rgba(42,68,89,.07)}
+.year-course-flow span::after{
   content:"";
   position:absolute;
-  left:-5px;
-  top:50%;
-  width:4px;
-  height:1px;
-  background:rgba(67,88,104,.24);
+  left:28%;
+  right:28%;
+  bottom:-1px;
+  height:2px;
+  border-radius:999px;
+  background:#6f8b9c;
+  opacity:.42;
 }
+.year-course-flow span:nth-child(2)::after{background:#84958a}
+.year-course-flow span:nth-child(3)::after{background:#b2916d}
+.year-course-flow span:nth-child(4)::after{background:#8580a2}
 
 .year-course-details{
+  position:relative;
+  z-index:1;
   margin-top:auto;
-  border-top:1px solid rgba(31,52,72,.085);
-  padding-top:10px;
+  border-top:1px solid rgba(31,52,72,.09);
+  padding-top:11px;
 }
 .year-course-details summary{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:10px;
+  gap:12px;
+  min-height:30px;
   cursor:pointer;
   list-style:none;
-  color:#31536c;
-  font-size:.77rem;
+  color:#31556e;
+  font-size:.75rem;
   font-weight:800;
+  letter-spacing:.012em;
   outline:none;
 }
 .year-course-details summary::-webkit-details-marker{display:none}
 .year-course-details summary::after{
   content:"＋";
-  flex:0 0 auto;
-  color:#81909b;
-  font-size:.92rem;
+  display:grid;
+  place-items:center;
+  flex:0 0 23px;
+  width:23px;
+  height:23px;
+  border:1px solid rgba(48,79,101,.10);
+  border-radius:50%;
+  background:rgba(255,255,255,.58);
+  color:#758994;
+  font-size:.78rem;
   font-weight:500;
+  transition:transform .2s ease,background .2s ease;
 }
-.year-course-details[open] summary::after{content:"－"}
+.year-course-details[open] summary::after{
+  content:"－";
+  background:rgba(235,242,245,.76);
+  transform:rotate(180deg);
+}
 .year-course-details summary:focus-visible{
-  border-radius:6px;
+  border-radius:8px;
   box-shadow:0 0 0 3px rgba(53,86,111,.10);
 }
 .year-course-details[open]{border-top-color:rgba(43,76,100,.15)}
-.year-course-details[open] summary{padding-bottom:2px}
+.year-course-details[open] summary{padding-bottom:4px}
 .year-course-syllabus{margin-top:12px}
 
 .course-schedule{
   overflow:hidden;
-  border:1px solid rgba(31,52,72,.085);
-  border-radius:14px;
-  background:rgba(255,255,255,.64);
+  border:1px solid rgba(31,52,72,.09);
+  border-radius:15px;
+  background:rgba(255,255,255,.60);
+  box-shadow:0 1px 0 rgba(255,255,255,.72) inset;
 }
 .course-schedule-head,
 .course-schedule-row{
   display:grid;
-  grid-template-columns:54px 92px minmax(150px,.72fr) minmax(0,1.8fr);
+  grid-template-columns:58px 88px minmax(150px,.78fr) minmax(0,1.82fr);
   align-items:start;
-  column-gap:12px;
+  column-gap:14px;
 }
 .course-schedule-head{
-  padding:7px 12px;
-  background:rgba(43,65,82,.055);
-  color:#80766d;
-  font-size:.59rem;
+  padding:8px 13px 7px;
+  border-bottom:1px solid rgba(31,52,72,.07);
+  background:rgba(37,62,80,.048);
+  color:#8c8076;
+  font-size:.57rem;
   font-weight:800;
-  letter-spacing:.08em;
+  letter-spacing:.10em;
 }
 .course-schedule-row{
+  --course-accent:#6f8790;
   position:relative;
-  padding:10px 12px;
-  border-top:1px solid rgba(31,52,72,.065);
+  padding:11px 13px 11px 15px;
+  border-top:1px solid rgba(31,52,72,.058);
+  transition:background .16s ease;
 }
+.course-schedule-head + .course-schedule-row{border-top:0}
 .course-schedule-row::before{
   content:"";
   position:absolute;
-  inset:0 auto 0 0;
+  inset:8px auto 8px 0;
   width:2px;
-  background:var(--course-accent,rgba(59,86,108,.30));
-  opacity:.75;
+  border-radius:999px;
+  background:var(--course-accent);
+  opacity:.68;
 }
 .course-schedule-row[data-domain="mechanics"]{--course-accent:#55788f}
-.course-schedule-row[data-domain="waves"]{--course-accent:#7e8c83}
-.course-schedule-row[data-domain="thermal"]{--course-accent:#b18b65}
-.course-schedule-row[data-domain="em"]{--course-accent:#817b9d}
+.course-schedule-row[data-domain="waves"]{--course-accent:#7f9186}
+.course-schedule-row[data-domain="thermal"]{--course-accent:#b28c67}
+.course-schedule-row[data-domain="em"]{--course-accent:#817c9e}
 .course-schedule-row[data-domain="atomic"]{--course-accent:#9b7d75}
-.course-schedule-row[data-domain="exam"]{--course-accent:#6f8790}
+.course-schedule-row[data-domain="exam"]{--course-accent:#607e8c}
 .course-session{
-  color:#8b8178;
-  font-size:.65rem;
+  color:#958a80;
+  font-size:.64rem;
   font-weight:800;
-  letter-spacing:.05em;
-  line-height:1.55;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:.035em;
+  line-height:1.62;
 }
 .course-domain{
   display:inline-flex;
   width:max-content;
   max-width:100%;
-  padding:3px 7px;
+  padding:3px 7px 3px;
+  border:1px solid color-mix(in srgb,var(--course-accent) 12%,transparent);
   border-radius:999px;
-  background:rgba(43,67,84,.055);
-  color:#597083;
-  font-size:.61rem;
+  background:color-mix(in srgb,var(--course-accent) 8%,white);
+  color:color-mix(in srgb,var(--course-accent) 78%,#344b5d);
+  font-size:.60rem;
   font-weight:800;
-  line-height:1.25;
+  line-height:1.3;
 }
 .course-schedule-row strong{
-  color:#344b5d;
-  font-size:.73rem;
-  line-height:1.52;
+  color:#324b5d;
+  font-size:.72rem;
+  font-weight:760;
+  line-height:1.55;
 }
 .course-schedule-row p{
   margin:0;
-  color:#6d665f;
-  font-size:.7rem;
-  line-height:1.58;
+  color:#6c665f;
+  font-size:.69rem;
+  line-height:1.62;
 }
-.course-schedule-row:hover{background:rgba(247,248,247,.75)}
+@media (hover:hover){
+  .course-schedule-row:hover{background:rgba(245,248,248,.73)}
+}
+
+/* Stronger chapter-break rhythm in the 24-session system course. */
+.year-course-card--primary .course-schedule-row:nth-child(9),
+.year-course-card--primary .course-schedule-row:nth-child(14),
+.year-course-card--primary .course-schedule-row:nth-child(18){
+  border-top-color:rgba(31,52,72,.15);
+  box-shadow:0 7px 14px -14px rgba(26,46,60,.45) inset;
+}
 
 .year-course-note{
-  margin:9px 0 0;
-  padding:9px 11px;
-  border:1px solid rgba(121,91,55,.10);
-  border-radius:11px;
-  background:rgba(246,241,233,.60);
-  color:#7f746a;
-  font-size:.68rem;
-  line-height:1.6;
+  margin:10px 0 0;
+  padding:10px 12px;
+  border:1px solid rgba(121,91,55,.105);
+  border-radius:12px;
+  background:linear-gradient(90deg,rgba(246,241,233,.66),rgba(249,247,243,.48));
+  color:#7e746b;
+  font-size:.67rem;
+  line-height:1.63;
 }
 .year-course-note strong{color:#5c5045}
 .year-course-exclusive{
   display:grid;
   grid-template-columns:auto auto minmax(0,1fr);
   align-items:center;
-  gap:6px;
-  margin:0 0 10px;
+  gap:7px;
+  margin:0 0 12px;
   padding:8px 10px;
-  border:1px solid rgba(121,91,55,.14);
+  border:1px solid rgba(121,91,55,.13);
   border-radius:11px;
-  background:linear-gradient(90deg,rgba(244,238,227,.83),rgba(247,244,238,.62));
+  background:linear-gradient(90deg,rgba(244,238,227,.80),rgba(249,247,243,.48));
   color:#65594d;
-  line-height:1.25;
+  line-height:1.3;
 }
 .year-course-exclusive>span{
   display:inline-flex;
@@ -342,57 +478,87 @@
   min-height:17px;
   padding:2px 5px;
   border-radius:999px;
-  background:rgba(126,98,65,.09);
-  color:#947a5d;
-  font-size:.54rem;
-  font-weight:800;
-  letter-spacing:.11em;
+  background:rgba(126,98,65,.095);
+  color:#94785a;
+  font-size:.52rem;
+  font-weight:850;
+  letter-spacing:.12em;
 }
-.year-course-exclusive strong{color:#584736;font-size:.72rem;white-space:nowrap}
-.year-course-exclusive small{min-width:0;color:#80766b;font-size:.62rem}
+.year-course-exclusive strong{color:#584736;font-size:.71rem;white-space:nowrap}
+.year-course-exclusive small{min-width:0;color:#80766b;font-size:.61rem}
 
 .year-course-syllabus--compact{
   display:grid;
-  gap:8px;
+  gap:9px;
 }
 .year-course-unit{
   display:grid;
   grid-template-columns:82px minmax(0,1fr);
-  gap:10px;
+  gap:11px;
   align-items:start;
+  padding:1px 0;
 }
 .year-course-unit b{
   color:#314b60;
-  font-size:.72rem;
-  line-height:1.5;
+  font-size:.71rem;
+  font-weight:760;
+  line-height:1.55;
 }
 .year-course-unit span{
-  color:#66605a;
-  font-size:.73rem;
-  line-height:1.58;
+  color:#67615a;
+  font-size:.72rem;
+  line-height:1.62;
+}
+
+@supports not (color:color-mix(in srgb,black 50%,white)){
+  .course-domain{border-color:rgba(72,93,108,.10);background:#f1f4f4;color:#597083}
 }
 
 @media (max-width:980px){
+  .year-courses{padding:25px 23px 23px}
+  .year-courses::after{left:23px;right:23px}
   .year-course-grid{grid-template-columns:1fr}
   .year-course-card--wide{grid-column:auto}
-  .year-course-card{padding:16px 16px 14px}
+  .year-course-card{padding:19px 18px 16px}
   .year-course-copy{max-width:760px}
   .course-schedule-head,
-  .course-schedule-row{grid-template-columns:48px 82px minmax(135px,.75fr) minmax(0,1.6fr);column-gap:9px}
+  .course-schedule-row{
+    grid-template-columns:50px 80px minmax(132px,.77fr) minmax(0,1.55fr);
+    column-gap:10px;
+  }
 }
+
 @media (max-width:720px){
-  .year-courses{margin-top:18px;padding:17px 14px 14px;border-radius:19px}
-  .year-courses-head{display:grid;gap:10px;align-items:start}
-  .year-courses-status{justify-content:flex-start}
-  .year-courses-title h3{font-size:1.18rem}
-  .year-courses-intro{margin-bottom:13px;font-size:.84rem;line-height:1.68}
-  .year-course-grid{gap:10px}
-  .year-course-card{padding:15px 14px 13px;border-radius:16px}
-  .year-course-card-head{grid-template-columns:minmax(0,1fr) auto;gap:9px}
-  .year-course-hours strong{font-size:1.35rem}
-  .year-course-flow{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .year-course-flow span+span::before{display:none}
-  .course-schedule{border-radius:12px;background:transparent;border:0;overflow:visible}
+  .year-courses{
+    margin-top:20px;
+    padding:20px 14px 15px;
+    border-radius:21px;
+  }
+  .year-courses::before{top:12px;right:12px;font-size:2.7rem}
+  .year-courses::after{left:14px;right:14px;top:84px}
+  .year-courses-head{display:grid;gap:11px;align-items:start;margin-bottom:20px;padding-bottom:14px}
+  .year-courses-status{justify-content:flex-start;gap:6px}
+  .year-courses-title h3{font-size:1.23rem}
+  .year-courses-intro{margin-bottom:14px;font-size:.83rem;line-height:1.7}
+  .year-course-grid{gap:11px}
+  .year-course-card{padding:17px 14px 14px;border-radius:17px}
+  .year-course-card::after{top:9px;right:12px;font-size:2.6rem}
+  .year-course-card-head{grid-template-columns:minmax(0,1fr) auto;gap:10px;padding-right:34px}
+  .year-course-card h4,.year-course-card--primary h4{font-size:.98rem}
+  .year-course-hours strong{font-size:1.38rem}
+  .year-course-copy{margin-top:10px;font-size:.78rem}
+  .year-course-flow{grid-template-columns:repeat(2,minmax(0,1fr));border-bottom:0}
+  .year-course-flow span{border-bottom:1px solid rgba(42,68,89,.075)}
+  .year-course-flow span+span{border-left:1px solid rgba(42,68,89,.07)}
+  .year-course-flow span:nth-child(3){border-left:0}
+
+  .course-schedule{
+    overflow:visible;
+    border:0;
+    border-radius:0;
+    background:transparent;
+    box-shadow:none;
+  }
   .course-schedule-head{display:none}
   .course-schedule-row{
     grid-template-columns:38px minmax(0,1fr);
@@ -402,21 +568,26 @@
       "session copy";
     gap:3px 9px;
     margin-top:7px;
-    padding:10px 10px 10px 12px;
+    padding:10px 10px 10px 13px;
     border:1px solid rgba(31,52,72,.075);
     border-radius:11px;
     background:rgba(255,255,255,.58);
+    box-shadow:0 1px 0 rgba(255,255,255,.72) inset;
   }
-  .course-schedule-row:first-of-type{margin-top:0}
-  .course-session{grid-area:session;padding-top:2px}
+  .course-schedule-head + .course-schedule-row{margin-top:0}
+  .course-schedule-row::before{inset:8px auto 8px 0}
+  .course-session{grid-area:session;padding-top:2px;font-size:.62rem}
   .course-domain{grid-area:domain;margin-bottom:1px}
-  .course-schedule-row strong{grid-area:title;font-size:.74rem}
-  .course-schedule-row p{grid-area:copy;font-size:.69rem}
+  .course-schedule-row strong{grid-area:title;font-size:.72rem}
+  .course-schedule-row p{grid-area:copy;font-size:.68rem;line-height:1.58}
+  .year-course-card--primary .course-schedule-row:nth-child(9),
+  .year-course-card--primary .course-schedule-row:nth-child(14),
+  .year-course-card--primary .course-schedule-row:nth-child(18){margin-top:11px}
   .year-course-exclusive{grid-template-columns:auto auto;gap:4px 6px}
   .year-course-exclusive small{grid-column:1/-1}
-  .year-course-unit{grid-template-columns:72px minmax(0,1fr)}
+  .year-course-unit{grid-template-columns:72px minmax(0,1fr);gap:9px}
 }
+
 @media (prefers-reduced-motion:reduce){
-  .year-course-card{transition:none}
-  .year-course-details summary{scroll-behavior:auto}
+  .year-course-card,.year-course-details summary::after,.course-schedule-row{transition:none}
 }
