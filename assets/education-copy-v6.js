@@ -1,7 +1,7 @@
 (() => {
-  if (!document.querySelector('link[data-education-final="v23"]')) {
+  if (!document.querySelector('link[data-education-final="v24"]')) {
     const marker = document.createElement('link');
-    marker.dataset.educationFinal = 'v23';
+    marker.dataset.educationFinal = 'v24';
     document.head.appendChild(marker);
   }
 
@@ -56,11 +56,11 @@
       courseStyle.dataset.educationCourse2026 = 'v3';
       document.head.appendChild(courseStyle);
     }
-    if (!document.querySelector('link[data-education-course-editorial="v5"]')) {
+    if (!document.querySelector('link[data-education-course-editorial="v6"]')) {
       const editorialStyle = document.createElement('link');
       editorialStyle.rel = 'stylesheet';
-      editorialStyle.href = '/assets/education-course-editorial-v5.css?v=20260823c';
-      editorialStyle.dataset.educationCourseEditorial = 'v5';
+      editorialStyle.href = '/assets/education-course-editorial-v6.css?v=20260823d';
+      editorialStyle.dataset.educationCourseEditorial = 'v6';
       document.head.appendChild(editorialStyle);
     }
 
@@ -133,37 +133,37 @@
 
       coursePreview.innerHTML = `
         <div class="year-courses-head">
-          <div class="year-courses-title"><small>2026 WINTER · PHYSICS</small><h3>2026 冬学期｜开设课程</h3></div>
+          <div class="year-courses-title"><small>2026 WINTER · PHYSICS</small><h3>2026 冬学期｜物理课程</h3></div>
           <div class="year-courses-status" aria-label="2026冬学期课程信息">
-            <span class="year-term"><span>冲刺课</span><b>48h</b></span>
-            <span class="year-term"><span>刷题班</span><b>24h</b></span>
-            <span class="year-term year-term--next"><span>专项课</span><b>20h</b></span>
+            <span class="year-term"><span>系统冲刺</span><b>48h</b></span>
+            <span class="year-term"><span>刷题实战</span><b>24h</b></span>
+            <span class="year-term year-term--next"><span>理工专项</span><b>20h</b></span>
           </div>
         </div>
-        <p class="year-courses-intro">冬学期以共通考试物理为主线：48h 冲刺课程负责系统复习、实验图表与综合专题，24h 刷题班负责高频题型与整卷真题训练；另设 20h 东京科学大学理工学系专项课程。</p>
+        <p class="year-courses-intro">2026 冬学期共开设三条物理课程：48h 系统冲刺完成共通考试核心范围与实验・资料题复习，24h 刷题班进入高频专题与整卷真题训练，另设 20h 东京科学大学理工学系专项课程。</p>
 
         <div class="year-course-grid">
           <article class="year-course-card year-course-card--wide year-course-card--primary">
             <div class="year-course-card-head">
-              <div><small>2026 冬学期｜共通考试</small><h4>共通考试物理冲刺课程</h4></div>
+              <div><small>共通考试｜系统冲刺</small><h4>共通考试物理冲刺课程</h4></div>
               <div class="year-course-hours"><strong>48</strong><span>h</span><small>24 回 × 2h</small></div>
             </div>
-            <p class="year-course-copy">按照力学 → 波动 → 热学 → 电磁学的学习顺序完成系统复习。每个模块安排实验・综合专题，把知识点、图表、实验资料与跨章节设问放回同一套解题框架中。</p>
+            <p class="year-course-copy">按力学 → 波动 → 热学 → 电磁学推进，从基本规律、典型模型到实验资料与综合设问逐层复习。每个模块均安排实验・综合专题，把知识理解、图表判读与考场判断连成完整训练链。</p>
             <div class="year-course-flow" aria-label="课程顺序"><span>力学 · 14h</span><span>波动 · 10h</span><span>热学 · 8h</span><span>电磁学 · 16h</span></div>
             <ul class="year-course-track" aria-label="课程训练重点"><li><b>基本规律</b></li><li><b>典型模型</b></li><li><b>实验・图表</b></li><li><b>综合设问</b></li></ul>
             <details class="year-course-details">
               <summary>查看完整 24 回课表</summary>
               <div class="year-course-syllabus">${schedule(systemRows)}</div>
-              <p class="year-course-note"><strong>录播补充：</strong>交流电与原子物理不安排同步班课，统一通过录播学习；两部分均分别提供讲义课与习题课录播。</p>
+              <p class="year-course-note"><strong>录播补充：</strong>交流电与原子物理采用录播学习；两部分均分别提供讲义课与习题课，不占用 48h 同步班课时。</p>
             </details>
           </article>
 
           <article class="year-course-card year-course-card--wide">
             <div class="year-course-card-head">
-              <div><small>2026 冬学期｜共通考试</small><h4>共通考试物理刷题班</h4></div>
+              <div><small>共通考试｜刷题实战</small><h4>共通考试物理刷题班</h4></div>
               <div class="year-course-hours"><strong>24</strong><span>h</span><small>12 回 × 2h</small></div>
             </div>
-            <p class="year-course-copy">前 7 回按模块集中处理高频题型，第 8–12 回进行 5 份真题整卷演练。每份真题均按“限时作答 → 逐题精讲 → 错因归类 → 补弱”完成复盘。</p>
+            <p class="year-course-copy">前 7 回按模块集中训练高频模型、实验与资料题；第 8–12 回进入 5 份真题整卷限时演练。每份试卷逐题复盘失分原因，同时调整答题顺序、时间分配与考场取舍。</p>
             <div class="year-course-flow" aria-label="课程顺序"><span>专题演习 · 14h</span><span>真题 I · 2h</span><span>真题 II–III · 4h</span><span>真题 IV–V · 4h</span></div>
             <ul class="year-course-track" aria-label="刷题班训练重点"><li><b>高频题型</b></li><li><b>实验资料题</b></li><li><b>5 份真题</b></li><li><b>时间分配</b></li></ul>
             <details class="year-course-details">
@@ -174,10 +174,10 @@
 
           <article class="year-course-card year-course-card--wide year-course-card--target">
             <div class="year-course-card-head">
-              <div><small>2026 年度｜理工学系专项</small><h4>东京科学大学 理工学系</h4></div>
+              <div><small>东京科学大学｜理工学系专项</small><h4>东京科学大学 理工学系</h4></div>
               <div class="year-course-hours"><strong>20</strong><span>h</span><small>10 回 × 2h</small></div>
             </div>
-            <p class="year-course-copy">按照校内考的题型与设问结构重新组织训练，集中补强 EJU / 共通考试较少覆盖的陌生模型、原理推导、近似处理与长文建模。</p>
+            <p class="year-course-copy">基于历年校内考的题型与设问结构，集中训练陌生模型、原理推导、近似处理、数学工具与书面记述，并通过原创模拟题检验面对未见综合题时的迁移能力。</p>
             <div class="year-course-exclusive"><span>ORIGINAL</span><strong>原创模拟题</strong><small>基于历年题型与设问结构自主命制</small></div>
             <ul class="year-course-track" aria-label="东京科学大学理工学系课程训练重点"><li><b>题型归类</b></li><li><b>陌生模型</b></li><li><b>原理推导</b></li><li><b>数学工具</b></li><li><b>原创模拟</b></li></ul>
             <details class="year-course-details">
@@ -192,6 +192,17 @@
             </details>
           </article>
         </div>`;
+
+      /* Keep the long profile page calm: opening one detailed syllabus closes the others. */
+      const detailBlocks = [...coursePreview.querySelectorAll('.year-course-details')];
+      detailBlocks.forEach(current => {
+        current.addEventListener('toggle', () => {
+          if (!current.open) return;
+          detailBlocks.forEach(other => {
+            if (other !== current) other.open = false;
+          });
+        });
+      });
     };
     applyWinterCourseSchedule();
 
