@@ -1,0 +1,140 @@
+/*
+ * Education teaching + 2026 winter curriculum — editorial refinement v8
+ * Pull the winter curriculum upward without sacrificing the editorial hierarchy.
+ * This is a spacing/rhythm pass only: no return to card-style UI.
+ */
+
+/* Desktop: the winter course catalogue should arrive sooner after the teaching method. */
+.teaching-section{
+  padding-top:82px;
+  padding-bottom:88px;
+}
+
+.teaching-section .principle-grid-specific{
+  margin-top:46px;
+}
+
+.teaching-section .principle-grid-specific .principle{
+  min-height:170px;
+  padding-top:23px;
+  padding-bottom:24px;
+}
+
+.teaching-section .principle-grid-specific .principle h3{
+  margin-top:17px;
+}
+
+.teaching-section .principle-grid-specific .principle p{
+  margin-top:10px;
+}
+
+.teaching-section .course-stage{
+  margin-top:50px;
+}
+
+.teaching-section .course-tab{
+  padding-top:24px;
+  padding-bottom:23px;
+}
+
+.teaching-section .course-panel{
+  padding-top:30px;
+  padding-bottom:31px;
+}
+
+.teaching-section .course-panel>p{
+  margin-top:11px;
+}
+
+.teaching-section .course-list{
+  margin-top:22px;
+}
+
+.teaching-section .course-list li{
+  min-height:46px;
+  padding-top:12px;
+  padding-bottom:11px;
+}
+
+.teaching-section .material-note,
+.teaching-section .material-feature{
+  margin-top:20px;
+}
+
+/* v7 left more than 100px between the pathway and winter syllabus.
+   54px keeps the section break intentional while removing the long dead scroll. */
+#course-2026.year-courses{
+  margin-top:54px;
+}
+
+@media (max-width:900px) and (min-width:768px){
+  .teaching-section{
+    padding-top:74px;
+  }
+
+  .teaching-section .principle-grid-specific{
+    margin-top:42px;
+  }
+
+  .teaching-section .course-stage{
+    margin-top:46px;
+  }
+
+  #course-2026.year-courses{
+    margin-top:48px;
+  }
+}
+
+@media (max-width:767px){
+  .teaching-section{
+    padding-top:58px;
+    padding-bottom:66px;
+  }
+
+  .teaching-section .editorial-side{
+    margin-top:22px;
+  }
+
+  .teaching-section .principle-grid-specific{
+    margin-top:32px;
+  }
+
+  .teaching-section .principle-grid-specific .principle{
+    min-height:0;
+    padding-top:18px;
+    padding-bottom:18px;
+  }
+
+  .teaching-section .course-stage{
+    margin-top:38px;
+  }
+
+  .teaching-section .course-tab{
+    padding-top:14px;
+    padding-bottom:13px;
+  }
+
+  .teaching-section .course-panel{
+    padding-top:23px;
+    padding-bottom:24px;
+  }
+
+  .teaching-section .course-list{
+    margin-top:18px;
+  }
+
+  .teaching-section .material-note,
+  .teaching-section .material-feature{
+    margin-top:17px;
+  }
+
+  #course-2026.year-courses{
+    margin-top:42px!important;
+  }
+}
+
+@media (max-width:430px){
+  #course-2026.year-courses{
+    margin-top:36px!important;
+  }
+}
