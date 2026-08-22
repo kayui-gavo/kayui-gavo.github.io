@@ -1,0 +1,823 @@
+/*
+ * Education teaching + 2026 winter curriculum — editorial refinement v7
+ *
+ * Final calibration pass: improve optical hierarchy, readability, responsive
+ * behavior and the legacy mobile hotfix interaction without reintroducing
+ * card-style UI.  This file intentionally sits after v4–v6.
+ */
+
+/* ========================================================================== */
+/* 1. Teaching block: optical balance                                        */
+/* ========================================================================== */
+
+.teaching-section .editorial-head{
+  grid-template-columns:minmax(0,1fr) 340px;
+  gap:96px;
+}
+
+.teaching-section .editorial-head h2{
+  max-width:800px;
+  font-size:clamp(36px,4.15vw,58px);
+  line-height:1.055;
+}
+
+.teaching-section .editorial-head>div>p:last-child{
+  max-width:735px;
+  color:#5d6369;
+  font-size:14.25px;
+  line-height:1.9;
+}
+
+.teaching-section .editorial-side{
+  padding-top:16px;
+  color:#60676d;
+  font-size:12.75px;
+  line-height:1.9;
+}
+
+.teaching-section .editorial-side::before{
+  margin-bottom:12px;
+  color:#718794;
+  font-size:8px;
+  letter-spacing:.185em;
+}
+
+.teaching-section .principle-grid-specific{
+  margin-top:56px;
+}
+
+.teaching-section .principle-grid-specific .principle{
+  min-height:188px;
+  padding-top:27px;
+  padding-bottom:30px;
+}
+
+.teaching-section .principle-grid-specific .principle h3{
+  max-width:315px;
+  margin-top:21px;
+  font-size:23.5px;
+  line-height:1.2;
+}
+
+.teaching-section .principle-grid-specific .principle p{
+  max-width:340px;
+  color:#62686e;
+  font-size:12.75px;
+  line-height:1.84;
+}
+
+/* ========================================================================== */
+/* 2. Teaching pathway: make it read like an index + article                 */
+/* ========================================================================== */
+
+.teaching-section .course-stage{
+  grid-template-columns:236px minmax(0,1fr);
+  margin-top:68px;
+}
+
+.teaching-section .course-tab{
+  padding:29px 24px 28px 0;
+}
+
+.teaching-section .course-tab::after{
+  right:17px;
+  top:18px;
+  color:rgba(13,15,20,.075);
+  font-size:29px;
+}
+
+.teaching-section .course-tab[aria-selected="true"]::after{
+  color:rgba(47,120,159,.12);
+}
+
+.teaching-section .course-tab strong{
+  max-width:160px;
+  font-size:16.5px;
+}
+
+.teaching-section .course-panel{
+  padding:37px 0 39px 52px;
+}
+
+.teaching-section .course-panel h3{
+  max-width:700px;
+  font-size:31px;
+  line-height:1.15;
+}
+
+.teaching-section .course-panel>p{
+  max-width:745px;
+  color:#5e656b;
+  font-size:13.25px;
+  line-height:1.88;
+}
+
+.teaching-section .course-list{
+  max-width:780px;
+  margin-top:29px;
+}
+
+.teaching-section .course-list li{
+  min-height:50px;
+  padding-top:15px;
+  padding-bottom:14px;
+  color:#545b62;
+  font-size:12px;
+  line-height:1.6;
+}
+
+.teaching-section .material-note,
+.teaching-section .material-feature{
+  max-width:745px;
+  margin-top:27px;
+  padding-left:18px;
+}
+
+.teaching-section .material-feature>div:first-child strong{
+  font-size:14.5px;
+}
+
+.teaching-section .material-feature>div:first-child span,
+.teaching-section .material-feature>p{
+  font-size:11px;
+}
+
+.teaching-section .material-index span{
+  color:#697077;
+  font-size:9.75px;
+}
+
+/* ========================================================================== */
+/* 3. Winter masthead: treat hours as editorial data, not badges              */
+/* ========================================================================== */
+
+#course-2026.year-courses{
+  margin-top:108px;
+}
+
+#course-2026.year-courses::before{
+  width:72px;
+  height:3px;
+  top:-4px;
+}
+
+#course-2026 .year-courses-head{
+  grid-template-columns:minmax(0,1fr) 444px;
+  gap:78px;
+  padding:36px 0 30px;
+}
+
+#course-2026 .year-courses-title small{
+  margin-bottom:12px;
+  font-size:8px;
+  letter-spacing:.235em;
+}
+
+#course-2026 .year-courses-title h3{
+  max-width:690px;
+  font-size:clamp(42px,4.3vw,59px);
+  line-height:1;
+}
+
+#course-2026 .year-courses-status{
+  min-height:98px;
+}
+
+#course-2026 .year-term,
+#course-2026 .year-term--next{
+  justify-content:center;
+  padding:13px 16px 12px;
+}
+
+/* Split the unit optically: the DOM still contains accessible “48h/24h/20h”. */
+#course-2026 .year-term b{
+  display:flex;
+  align-items:flex-end;
+  gap:3px;
+  font-size:0;
+  line-height:1;
+}
+
+#course-2026 .year-term b::before{
+  color:var(--ink);
+  font-family:var(--display);
+  font-size:40px;
+  font-weight:700;
+  line-height:.86;
+  letter-spacing:-.07em;
+}
+
+#course-2026 .year-term b::after{
+  content:"h";
+  padding-bottom:2px;
+  color:var(--blue-deep);
+  font-family:var(--display);
+  font-size:10px;
+  font-weight:750;
+  line-height:1;
+  letter-spacing:0;
+}
+
+#course-2026 .year-term:nth-child(1) b::before{content:"48"}
+#course-2026 .year-term:nth-child(2) b::before{content:"24"}
+#course-2026 .year-term:nth-child(3) b::before{content:"20"}
+
+#course-2026 .year-term span{
+  margin-top:7px;
+  color:#727980;
+  font-size:8.25px;
+  letter-spacing:.085em;
+}
+
+#course-2026 .year-courses-intro{
+  display:grid;
+  grid-template-columns:88px minmax(0,760px);
+  gap:24px;
+  max-width:920px;
+  padding:29px 0 40px;
+  color:#545c62;
+  font-size:13.25px;
+  line-height:1.9;
+}
+
+#course-2026 .year-courses-intro::before{
+  position:static;
+  align-self:start;
+  margin-top:5px;
+  color:#91979c;
+  font-size:7.5px;
+  line-height:1.2;
+}
+
+/* ========================================================================== */
+/* 4. Course chapters: stronger hierarchy, less visual noise                 */
+/* ========================================================================== */
+
+#course-2026 .year-course-card,
+#course-2026 .year-course-card--wide,
+#course-2026 .year-course-card--target,
+#course-2026 .year-course-card--primary{
+  grid-template-columns:minmax(0,1.1fr) minmax(300px,.70fr);
+  column-gap:82px;
+  padding:52px 0 47px 94px;
+}
+
+#course-2026 .year-course-card::before,
+#course-2026 .year-course-card--target::before,
+#course-2026 .year-course-card--primary::before{
+  top:59px;
+  color:#6b7278;
+}
+
+#course-2026 .year-course-card::after{
+  top:52px;
+  bottom:47px;
+  background:rgba(13,15,20,.13);
+}
+
+#course-2026 .year-course-card--target::after{
+  background:rgba(47,120,159,.48);
+}
+
+#course-2026 .year-course-card-head{
+  grid-template-columns:minmax(0,1fr) 172px;
+  gap:42px;
+  padding-bottom:9px;
+}
+
+#course-2026 .year-course-card-head > div:first-child small{
+  margin-bottom:11px;
+  color:#80878d;
+  font-size:8.25px;
+  letter-spacing:.105em;
+}
+
+#course-2026 .year-course-card--target .year-course-card-head > div:first-child small{
+  color:#57788d;
+}
+
+#course-2026 .year-course-card h4{
+  max-width:790px;
+  font-size:clamp(33px,3.2vw,45px);
+  line-height:1.06;
+}
+
+#course-2026 .year-course-hours{
+  min-width:150px;
+}
+
+#course-2026 .year-course-hours strong{
+  font-size:62px;
+}
+
+#course-2026 .year-course-copy{
+  max-width:630px;
+  margin-top:28px;
+  padding-right:18px;
+  color:#50575d;
+  font-size:13.5px;
+  line-height:1.92;
+}
+
+/* The structure strip should read as a ledger, not a progress widget. */
+#course-2026 .year-course-flow{
+  margin-top:30px;
+  border-top:1px solid var(--ink);
+  border-bottom:1px solid rgba(13,15,20,.15);
+}
+
+#course-2026 .year-course-flow span{
+  min-height:56px;
+  padding-top:13px;
+  padding-bottom:11px;
+  color:#485057;
+  font-size:10.25px;
+}
+
+#course-2026 .year-course-flow span::after{
+  display:none;
+}
+
+/* 24h is conceptually two phases.  Collapse the four micro-segments visually. */
+#course-2026 .year-course-card:nth-child(2) .year-course-flow{
+  grid-template-columns:14fr 10fr;
+}
+
+#course-2026 .year-course-card:nth-child(2) .year-course-flow span{
+  display:none;
+}
+
+#course-2026 .year-course-card:nth-child(2) .year-course-flow::before,
+#course-2026 .year-course-card:nth-child(2) .year-course-flow::after{
+  display:flex;
+  align-items:center;
+  min-height:56px;
+  padding:13px 12px 11px;
+  color:#485057;
+  font-size:10.25px;
+  font-weight:680;
+  line-height:1.35;
+}
+
+#course-2026 .year-course-card:nth-child(2) .year-course-flow::before{
+  content:"专题演习 · 14h";
+  padding-left:0;
+  border-right:1px solid var(--line);
+}
+
+#course-2026 .year-course-card:nth-child(2) .year-course-flow::after{
+  content:"真题整卷 · 10h";
+}
+
+#course-2026 .year-course-track,
+#course-2026 .year-course-card--target .year-course-track{
+  margin-top:15px;
+}
+
+#course-2026 .year-course-track li,
+#course-2026 .year-course-card--target .year-course-track li{
+  color:#767d83;
+  font-size:9.25px;
+}
+
+#course-2026 .year-course-track b{
+  color:#596168;
+}
+
+#course-2026 .year-course-exclusive{
+  margin-top:31px;
+  padding:13px 0 12px;
+}
+
+#course-2026 .year-course-exclusive strong{
+  font-size:11.5px;
+}
+
+#course-2026 .year-course-exclusive small{
+  font-size:9.25px;
+}
+
+/* ========================================================================== */
+/* 5. Details and full syllabus: prioritize reading                          */
+/* ========================================================================== */
+
+#course-2026 .year-course-details{
+  margin-top:34px;
+}
+
+#course-2026 .year-course-details summary{
+  min-height:62px;
+  grid-template-columns:82px minmax(0,1fr) auto;
+  column-gap:24px;
+  font-size:11px;
+}
+
+#course-2026 .year-course-details summary::before{
+  margin-right:0;
+  color:#92989d;
+  font-size:7.25px;
+}
+
+#course-2026 .year-course-details summary::after{
+  font-size:16px;
+}
+
+#course-2026 .course-schedule-head,
+#course-2026 .course-schedule-row{
+  grid-template-columns:68px 92px minmax(190px,.82fr) minmax(0,1.65fr);
+  column-gap:26px;
+}
+
+#course-2026 .course-schedule-head{
+  padding:15px 0 11px;
+  font-size:8px;
+}
+
+#course-2026 .course-schedule-row{
+  min-height:64px;
+  padding:15px 0 14px;
+}
+
+#course-2026 .course-schedule-row:not([data-domain="waves"])+.course-schedule-row[data-domain="waves"],
+#course-2026 .course-schedule-row:not([data-domain="thermal"])+.course-schedule-row[data-domain="thermal"],
+#course-2026 .course-schedule-row:not([data-domain="em"])+.course-schedule-row[data-domain="em"],
+#course-2026 .course-schedule-row:not([data-domain="atomic"])+.course-schedule-row[data-domain="atomic"],
+#course-2026 .course-schedule-row:not([data-domain="exam"])+.course-schedule-row[data-domain="exam"]{
+  margin-top:14px;
+  padding-top:22px;
+  border-top-color:rgba(13,15,20,.48);
+}
+
+#course-2026 .course-session,
+#course-2026 .course-domain{
+  font-size:9.5px;
+}
+
+#course-2026 .course-domain::before{
+  box-shadow:none;
+}
+
+#course-2026 .course-schedule-row strong{
+  color:#2f373e;
+  font-size:12.25px;
+  line-height:1.62;
+}
+
+#course-2026 .course-schedule-row p{
+  max-width:700px;
+  color:#5c646a;
+  font-size:11.75px;
+  line-height:1.76;
+  text-wrap:pretty;
+}
+
+#course-2026 .year-course-note{
+  max-width:800px;
+  margin-top:21px;
+  color:#70777d;
+  font-size:10.25px;
+}
+
+#course-2026 .year-course-unit{
+  grid-template-columns:132px minmax(0,1fr);
+  gap:36px;
+  padding:20px 0 19px;
+}
+
+#course-2026 .year-course-unit b{
+  font-size:10.5px;
+}
+
+#course-2026 .year-course-unit span{
+  max-width:790px;
+  font-size:11.75px;
+  line-height:1.78;
+}
+
+/* ========================================================================== */
+/* 6. Intermediate widths: stack before the two-column overview gets cramped */
+/* ========================================================================== */
+
+@media (max-width:900px) and (min-width:721px){
+  .teaching-section .editorial-head{
+    grid-template-columns:minmax(0,1fr) 290px;
+    gap:44px;
+  }
+
+  .teaching-section .course-stage{
+    grid-template-columns:210px minmax(0,1fr);
+  }
+
+  .teaching-section .course-panel{
+    padding-left:36px;
+  }
+
+  #course-2026 .year-courses-head{
+    grid-template-columns:minmax(0,1fr) 330px;
+    gap:34px;
+  }
+
+  #course-2026 .year-course-card,
+  #course-2026 .year-course-card--wide,
+  #course-2026 .year-course-card--target,
+  #course-2026 .year-course-card--primary{
+    display:block;
+    padding-left:72px;
+  }
+
+  #course-2026 .year-course-card::after{left:34px}
+
+  #course-2026 .year-course-copy{
+    max-width:720px;
+    padding-right:0;
+  }
+
+  #course-2026 .year-course-flow,
+  #course-2026 .year-course-exclusive{
+    margin-top:24px;
+  }
+
+  #course-2026 .year-course-details{
+    margin-top:25px;
+  }
+
+  #course-2026 .course-schedule-head,
+  #course-2026 .course-schedule-row{
+    grid-template-columns:54px 76px minmax(150px,.82fr) minmax(0,1.45fr);
+    column-gap:15px;
+  }
+}
+
+/* ========================================================================== */
+/* 7. Mobile: deliberately override the old v31 !important safety layer      */
+/* ========================================================================== */
+
+@media (max-width:767px){
+  .teaching-section .editorial-head{
+    display:block;
+  }
+
+  .teaching-section .editorial-head h2{
+    font-size:clamp(34px,10vw,46px);
+  }
+
+  .teaching-section .editorial-head>div>p:last-child{
+    font-size:13px;
+    line-height:1.84;
+  }
+
+  .teaching-section .editorial-side{
+    margin-top:28px;
+    font-size:12px;
+  }
+
+  .teaching-section .principle-grid-specific .principle p{
+    font-size:12px;
+  }
+
+  .teaching-section .course-tabs{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .teaching-section .course-panel>p{
+    font-size:12.5px;
+  }
+
+  .teaching-section .course-list li{
+    font-size:11.5px;
+  }
+
+  #course-2026 .year-courses-head{
+    display:block!important;
+    align-items:start!important;
+  }
+
+  #course-2026 .year-courses-status{
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    min-width:0!important;
+  }
+
+  #course-2026 .year-term,
+  #course-2026 .year-term--next{
+    display:flex!important;
+    min-height:72px!important;
+    flex-wrap:nowrap!important;
+    line-height:1.1!important;
+  }
+
+  #course-2026 .year-term b{
+    display:flex!important;
+    font-size:0!important;
+    white-space:nowrap!important;
+  }
+
+  #course-2026 .year-term b::before{
+    font-size:29px;
+  }
+
+  #course-2026 .year-term b::after{
+    font-size:8px;
+  }
+
+  #course-2026 .year-courses-intro{
+    display:block;
+    padding:23px 0 30px;
+    font-size:12.5px;
+  }
+
+  #course-2026 .year-courses-intro::before{display:none}
+
+  #course-2026 .year-course-card,
+  #course-2026 .year-course-card--wide,
+  #course-2026 .year-course-card--target,
+  #course-2026 .year-course-card--primary{
+    display:block!important;
+    height:auto!important;
+    min-height:0!important;
+    padding:35px 0 33px 45px;
+    overflow:visible!important;
+  }
+
+  #course-2026 .year-course-card-head{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) 74px!important;
+    gap:12px!important;
+    align-items:start!important;
+  }
+
+  #course-2026 .year-course-card h4{
+    padding-right:0!important;
+    font-size:26px;
+    line-height:1.1;
+  }
+
+  #course-2026 .year-course-hours{
+    align-self:start!important;
+    justify-self:end!important;
+    min-width:0!important;
+    height:auto!important;
+  }
+
+  #course-2026 .year-course-hours strong{
+    font-size:40px!important;
+    line-height:.82!important;
+    white-space:nowrap!important;
+  }
+
+  #course-2026 .year-course-hours span{
+    font-size:9px!important;
+    white-space:nowrap!important;
+  }
+
+  #course-2026 .year-course-hours small{
+    margin-top:6px!important;
+    font-size:7.5px!important;
+    white-space:nowrap!important;
+  }
+
+  #course-2026 .year-course-copy{
+    font-size:12.25px;
+    line-height:1.82;
+  }
+
+  #course-2026 .year-course-flow,
+  #course-2026 .year-course-card:nth-child(1) .year-course-flow,
+  #course-2026 .year-course-card:nth-child(2) .year-course-flow{
+    display:grid!important;
+    margin-top:20px;
+  }
+
+  #course-2026 .year-course-card:nth-child(2) .year-course-flow{
+    grid-template-columns:14fr 10fr!important;
+  }
+
+  #course-2026 .year-course-card:nth-child(2) .year-course-flow::before,
+  #course-2026 .year-course-card:nth-child(2) .year-course-flow::after{
+    min-height:45px;
+    padding:10px 8px 9px;
+    font-size:9.5px;
+  }
+
+  #course-2026 .year-course-track{
+    display:flex!important;
+    height:auto!important;
+    min-height:0!important;
+  }
+
+  #course-2026 .year-course-exclusive{
+    display:grid!important;
+    grid-template-columns:auto minmax(0,1fr)!important;
+    height:auto!important;
+    overflow:visible!important;
+  }
+
+  #course-2026 .year-course-exclusive>span{
+    grid-column:1!important;
+    white-space:nowrap!important;
+  }
+
+  #course-2026 .year-course-exclusive strong{
+    grid-column:2!important;
+    white-space:normal!important;
+  }
+
+  #course-2026 .year-course-exclusive small{
+    grid-column:1/-1!important;
+  }
+
+  #course-2026 .year-course-details{
+    height:auto!important;
+    min-height:0!important;
+    overflow:visible!important;
+  }
+
+  #course-2026 .year-course-details summary{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) auto!important;
+    min-height:54px!important;
+    height:auto!important;
+    line-height:1.4!important;
+  }
+
+  #course-2026 .year-course-details summary::before{display:none}
+
+  #course-2026 .course-schedule-row strong{
+    font-size:11.25px;
+  }
+
+  #course-2026 .course-schedule-row p{
+    font-size:11px;
+    line-height:1.73;
+  }
+
+  #course-2026 .year-course-unit{
+    display:grid!important;
+    grid-template-columns:92px minmax(0,1fr)!important;
+    gap:17px!important;
+    height:auto!important;
+    min-height:0!important;
+  }
+
+  #course-2026 .year-course-unit b,
+  #course-2026 .year-course-unit span{
+    height:auto!important;
+    min-height:0!important;
+  }
+}
+
+@media (max-width:430px){
+  #course-2026 .year-courses-title h3{
+    font-size:33px;
+  }
+
+  #course-2026 .year-course-card-head{
+    grid-template-columns:minmax(0,1fr) 64px!important;
+  }
+
+  #course-2026 .year-course-card h4{
+    font-size:23.5px;
+  }
+
+  #course-2026 .year-course-hours strong{
+    font-size:34px!important;
+  }
+
+  #course-2026 .year-course-unit{
+    grid-template-columns:80px minmax(0,1fr)!important;
+    gap:14px!important;
+  }
+}
+
+@media (max-width:360px){
+  #course-2026 .year-course-card-head{
+    grid-template-columns:1fr!important;
+  }
+
+  #course-2026 .year-course-hours{
+    justify-self:start!important;
+    margin-top:8px!important;
+  }
+
+  #course-2026 .year-course-exclusive{
+    grid-template-columns:1fr!important;
+  }
+
+  #course-2026 .year-course-exclusive>span,
+  #course-2026 .year-course-exclusive strong,
+  #course-2026 .year-course-exclusive small{
+    grid-column:1!important;
+  }
+
+  #course-2026 .year-course-unit{
+    grid-template-columns:1fr!important;
+    gap:4px!important;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  #course-2026 *,
+  .teaching-section .course-tab{
+    transition:none!important;
+  }
+}
