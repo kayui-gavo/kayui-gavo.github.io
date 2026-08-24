@@ -1,0 +1,173 @@
+/*
+ * Education / 2026 winter curriculum — reading experience refinement v13
+ *
+ * Turn the long curriculum into a guided reading experience: the existing blue
+ * editorial rule doubles as scroll progress, open syllabi keep their column
+ * header visible on desktop, and long schedules end with compact controls.
+ */
+
+#course-2026.year-courses{
+  --course-progress:72px;
+}
+
+/* Reuse the existing blue top rule as a quiet progress indicator. */
+#course-2026.year-courses::before{
+  width:var(--course-progress);
+  max-width:100%;
+  transition:width .12s linear;
+}
+
+/* The data rail should feel like a true course selector. */
+#course-2026 .year-term b::before{
+  transform-origin:left bottom;
+  transition:transform .24s cubic-bezier(.2,.75,.25,1),color .2s ease;
+}
+#course-2026 .year-term:hover b::before,
+#course-2026 .year-term:focus-visible b::before,
+#course-2026 .year-term.is-current b::before{
+  transform:translateY(-1px) scale(1.035);
+  color:#203b4d;
+}
+#course-2026 .year-term.is-current::after{content:"↓"}
+
+/* Current chapter: strengthen hierarchy without turning it into a card. */
+#course-2026 .year-course-card h4{
+  position:relative;
+  width:fit-content;
+}
+#course-2026 .year-course-card h4::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-8px;
+  width:0;
+  height:1px;
+  background:rgba(47,120,159,.68);
+  transition:width .34s cubic-bezier(.2,.75,.25,1);
+}
+#course-2026 .year-course-card.is-current h4::after{width:42px}
+
+/* Give the three chapter reveals a slightly different cadence. */
+#course-2026.has-course-motion .year-course-card:nth-child(2){transition-delay:.035s}
+#course-2026.has-course-motion .year-course-card:nth-child(3){transition-delay:.07s}
+
+/* Open syllabus: the column labels remain available while scanning many rows. */
+@media (min-width:768px){
+  #course-2026 .year-course-details[open] .course-schedule-head{
+    position:sticky;
+    top:62px;
+    z-index:8;
+    margin:0;
+    border-bottom:1px solid rgba(13,15,20,.22);
+    background:color-mix(in srgb,var(--paper,#fbfaf7) 94%,transparent);
+    -webkit-backdrop-filter:blur(10px);
+    backdrop-filter:blur(10px);
+  }
+}
+
+#course-2026 .year-course-details[open] summary{
+  color:#263d4c;
+}
+#course-2026 .year-course-details[open] summary::before{
+  color:var(--blue-deep);
+}
+
+/* Long-syllabus footer: useful controls, styled like folio navigation. */
+#course-2026 .course-syllabus-footer{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto auto;
+  align-items:center;
+  gap:22px;
+  min-height:58px;
+  margin-top:5px;
+  padding:14px 0 3px;
+  border-top:1px solid rgba(13,15,20,.18);
+}
+#course-2026 .course-syllabus-footer small{
+  color:#92979b;
+  font-family:var(--display);
+  font-size:7.5px;
+  font-weight:750;
+  line-height:1.4;
+  letter-spacing:.16em;
+}
+#course-2026 .course-syllabus-footer button{
+  position:relative;
+  appearance:none;
+  padding:4px 0;
+  border:0;
+  background:transparent;
+  color:#5f6870;
+  font:650 9.5px/1.4 var(--sans);
+  letter-spacing:.015em;
+  cursor:pointer;
+  transition:color .2s ease,transform .2s ease;
+}
+#course-2026 .course-syllabus-footer button::after{
+  content:"";
+  position:absolute;
+  left:0;right:100%;bottom:0;
+  height:1px;
+  background:var(--blue-deep);
+  transition:right .24s ease;
+}
+#course-2026 .course-syllabus-footer button:hover,
+#course-2026 .course-syllabus-footer button:focus-visible{
+  color:var(--blue-deep);
+  outline:none;
+  transform:translateY(-1px);
+}
+#course-2026 .course-syllabus-footer button:hover::after,
+#course-2026 .course-syllabus-footer button:focus-visible::after{right:0}
+
+/* The schedule should read like a typeset index, with a stronger title column. */
+#course-2026 .course-schedule-row strong{
+  letter-spacing:-.012em;
+}
+#course-2026 .course-schedule-row:hover .course-session,
+#course-2026 .course-schedule-row:hover .course-domain{
+  color:#42677d;
+}
+
+/* Floating navigation: keep the active course legible without requiring hover. */
+@media (min-width:1280px){
+  #course-2026 .course-float-nav button.is-current span{
+    opacity:.62;
+    transform:translate(0,-50%);
+  }
+  #course-2026 .course-float-nav button.is-current:hover span,
+  #course-2026 .course-float-nav button.is-current:focus-visible span{opacity:1}
+}
+
+@media (max-width:767px){
+  #course-2026.year-courses{--course-progress:52px}
+  #course-2026.year-courses::before{
+    width:var(--course-progress)!important;
+    transition:none;
+  }
+  #course-2026 .year-term:hover b::before,
+  #course-2026 .year-term:focus-visible b::before,
+  #course-2026 .year-term.is-current b::before{transform:none}
+  #course-2026 .year-course-card h4::after{bottom:-6px}
+  #course-2026 .year-course-card.is-current h4::after{width:30px}
+  #course-2026 .course-syllabus-footer{
+    grid-template-columns:1fr 1fr;
+    gap:8px 18px;
+    min-height:0;
+    margin-top:4px;
+    padding-top:13px;
+  }
+  #course-2026 .course-syllabus-footer small{
+    grid-column:1/-1;
+  }
+  #course-2026 .course-syllabus-footer button:first-of-type{text-align:left}
+  #course-2026 .course-syllabus-footer button:last-child{text-align:right}
+}
+
+@media (prefers-reduced-motion:reduce){
+  #course-2026.year-courses::before,
+  #course-2026 .year-term b::before,
+  #course-2026 .year-course-card h4::after,
+  #course-2026 .course-syllabus-footer button,
+  #course-2026 .course-syllabus-footer button::after{transition:none!important}
+}
