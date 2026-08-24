@@ -5,12 +5,19 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
 
-  /* Always pull in the latest interactive course polish from a versioned URL. */
+  /* Always pull in the latest interactive course polish from versioned URLs. */
   if (!document.querySelector('link[data-education-course-interactive="v12"]')) {
     const style = document.createElement('link');
     style.rel = 'stylesheet';
     style.href = '/assets/education-course-editorial-v12.css?v=20260823j';
     style.dataset.educationCourseInteractive = 'v12';
+    document.head.appendChild(style);
+  }
+  if (!document.querySelector('link[data-education-course-reading="v13"]')) {
+    const style = document.createElement('link');
+    style.rel = 'stylesheet';
+    style.href = '/assets/education-course-editorial-v13.css?v=20260824a';
+    style.dataset.educationCourseReading = 'v13';
     document.head.appendChild(style);
   }
 
@@ -34,7 +41,8 @@
   }
 
   /* Winter curriculum: turn the hours rail into meaningful navigation, reveal
-     chapters gently, and keep a tiny reading-position navigator on large screens. */
+     chapters gently, keep reading position visible, and make long syllabi easy
+     to exit without forcing a long reverse scroll. */
   const enhanceWinterCourses = () => {
     const section = document.querySelector('#course-2026');
     if (!section || section.dataset.interactiveEnhanced === 'true') return;
@@ -46,16 +54,7 @@
     section.dataset.interactiveEnhanced = 'true';
     const ids = ['winter-course-system', 'winter-course-drill', 'winter-course-tokyo-science'];
     const labels = ['48h 系统冲刺', '24h 刷题实战', '20h 理工专项'];
-
-    cards.forEach((card, index) => {
-      card.id = card.id || ids[index];
-      const detail = card.querySelector('.year-course-details');
-      const summary = detail?.querySelector('summary');
-      if (detail && summary) {
-        summary.setAttribute('aria-expanded', String(detail.open));
-        detail.addEventListener('toggle', () => summary.setAttribute('aria-expanded', String(detail.open)));
-      }
-    });
+    let courseFrame = 0;
 
     const jumpToCard = index => {
       const card = cards[index];
@@ -63,6 +62,44 @@
       card.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
       try { history.replaceState(null, '', `#${card.id}`); } catch (_) {}
     };
+
+    const requestCourseSync = () => {
+      if (courseFrame) return;
+      courseFrame = requestAnimationFrame(syncCourseState);
+    };
+
+    cards.forEach((card, index) => {
+      card.id = card.id || ids[index];
+      const detail = card.querySelector('.year-course-details');
+      const summary = detail?.querySelector('summary');
+      if (!detail || !summary) return;
+
+      summary.setAttribute('aria-expanded', String(detail.open));
+
+      if (!detail.querySelector('.course-syllabus-footer')) {
+        const footer = document.createElement('div');
+        footer.className = 'course-syllabus-footer';
+        footer.innerHTML = `
+          <small>COURSE ${String(index + 1).padStart(2, '0')} / ${String(cards.length).padStart(2, '0')}</small>
+          <button type="button" data-course-action="collapse">收起课表 ↑</button>
+          <button type="button" data-course-action="top">返回课程标题 ↑</button>`;
+        detail.appendChild(footer);
+
+        footer.querySelector('[data-course-action="collapse"]')?.addEventListener('click', () => {
+          detail.open = false;
+          summary.focus({ preventScroll: true });
+          card.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+        });
+        footer.querySelector('[data-course-action="top"]')?.addEventListener('click', () => {
+          card.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+        });
+      }
+
+      detail.addEventListener('toggle', () => {
+        summary.setAttribute('aria-expanded', String(detail.open));
+        requestAnimationFrame(requestCourseSync);
+      });
+    });
 
     terms.forEach((term, index) => {
       if (!cards[index]) return;
@@ -76,6 +113,15 @@
         event.preventDefault();
         jumpToCard(index);
       });
+    });
+
+    section.addEventListener('keydown', event => {
+      if (event.key !== 'Escape') return;
+      const openDetail = event.target.closest?.('.year-course-details[open]');
+      if (!openDetail) return;
+      event.preventDefault();
+      openDetail.open = false;
+      openDetail.querySelector('summary')?.focus({ preventScroll: true });
     });
 
     let floatNav = section.querySelector('.course-float-nav');
@@ -111,12 +157,19 @@
       cards.forEach(card => card.classList.add('is-in-view'));
     }
 
-    let courseFrame = 0;
-    const syncCourseState = () => {
+    function syncCourseState() {
       courseFrame = 0;
       const sectionRect = section.getBoundingClientRect();
       const visible = sectionRect.top < window.innerHeight * .58 && sectionRect.bottom > window.innerHeight * .24;
       floatNav?.classList.toggle('is-visible', visible);
+
+      if (window.innerWidth >= 768) {
+        const start = Math.min(220, window.innerHeight * .28);
+        const travel = Math.max(1, sectionRect.height - window.innerHeight * .56);
+        const progressed = Math.min(travel, Math.max(0, start - sectionRect.top));
+        const ratio = Math.min(1, Math.max(0, progressed / travel));
+        section.style.setProperty('--course-progress', `${Math.max(6, ratio * 100).toFixed(2)}%`);
+      }
 
       const anchor = Math.min(220, window.innerHeight * .28);
       let activeIndex = 0;
@@ -143,12 +196,8 @@
         if (index === activeIndex && visible) button.setAttribute('aria-current', 'true');
         else button.removeAttribute('aria-current');
       });
-    };
+    }
 
-    const requestCourseSync = () => {
-      if (courseFrame) return;
-      courseFrame = requestAnimationFrame(syncCourseState);
-    };
     window.addEventListener('scroll', requestCourseSync, { passive: true });
     window.addEventListener('resize', requestCourseSync, { passive: true });
     requestAnimationFrame(syncCourseState);
