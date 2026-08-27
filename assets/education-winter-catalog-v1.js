@@ -2,7 +2,7 @@
   if (window.__educationWinterCatalogV2) return;
   window.__educationWinterCatalogV2 = true;
 
-  const STYLE_HREF = '/assets/education-winter-catalog-v1.css?v=20260828c';
+  const STYLE_HREF = '/assets/education-winter-catalog-v1.css?v=20260828d';
   if (!document.querySelector('link[data-education-winter-catalog="v2"]')) {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
