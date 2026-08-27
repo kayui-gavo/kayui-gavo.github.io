@@ -27,7 +27,7 @@
 
   const boot = async () => {
     try {
-      const response = await fetch('/education/?localeSource=20260814', { cache:'no-cache' });
+      const response = await fetch('/education/?localeSource=20260828a', { cache:'no-cache' });
       if (!response.ok) throw new Error(`education source ${response.status}`);
       const source = await response.text();
       const parsed = new DOMParser().parseFromString(source, 'text/html');
@@ -38,11 +38,11 @@
 
       await loadScript('/assets/education.js?v=20260813r');
       const ready = waitCopyReady();
-      await loadScript('/assets/education-copy-v6.js?v=20260814ao');
+      await loadScript('/assets/education-copy-v6.js?v=20260828d');
       await ready;
-      await loadScript('/assets/education-language-switch.js?v=20260814ao');
+      await loadScript('/assets/education-language-switch.js?v=20260821a');
       if (isTraditional) {
-        await loadScript('/assets/education-locale-zh-tw.js?v=20260814ap');
+        await loadScript('/assets/education-locale-zh-tw.js?v=20260828a');
         window.applyEducationZhTW?.();
       }
     } catch (error) {
