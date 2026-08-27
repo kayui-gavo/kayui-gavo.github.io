@@ -1,0 +1,21 @@
+/* Final Traditional Chinese locale safeguard.
+   This file is loaded directly by /education/zh-tw/ after all shared styles. */
+html[data-education-locale="zh-TW"] .hero-thesis{
+  font-size:clamp(37px,3.25vw,48px)!important;
+  line-height:1.17!important;
+  letter-spacing:-.034em!important;
+  font-weight:620!important;
+  color:#111317!important;
+  white-space:normal!important;
+}
+html[data-education-locale="zh-TW"] .hero-thesis::before,
+html[lang^="zh-Hant"] .hero-thesis::before{
+  content:none!important;
+  display:none!important;
+}
+@media(max-width:767px){
+  html[data-education-locale="zh-TW"] .hero-thesis{font-size:29px!important;line-height:1.19!important}
+}
+@media(max-width:390px){
+  html[data-education-locale="zh-TW"] .hero-thesis{font-size:27px!important}
+}
