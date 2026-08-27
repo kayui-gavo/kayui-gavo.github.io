@@ -1,11 +1,11 @@
 (() => {
-  if (!document.querySelector('link[data-education-final="v27"]')) {
+  if (!document.querySelector('link[data-education-final="v28"]')) {
     const marker = document.createElement('link');
-    marker.dataset.educationFinal = 'v27';
+    marker.dataset.educationFinal = 'v28';
     document.head.appendChild(marker);
   }
 
-  import('./education-copy-v11.js?v=20260828b').then(async () => {
+  import('./education-copy-v11.js?v=20260828c').then(async () => {
     /* Keep the visible page unchanged while making the person entity explicit. */
     const applyEducationEntitySignals = () => {
       const alternates = [
@@ -270,7 +270,7 @@
 
     if (!document.querySelector('script[data-education-interactions-functional]')) {
       const script = document.createElement('script');
-      script.src = '/assets/education-interactions-functional.js?v=20260824a';
+      script.src = '/assets/education-interactions-functional.js?v=20260828c';
       script.defer = true;
       script.dataset.educationInteractionsFunctional = 'true';
       document.head.appendChild(script);
