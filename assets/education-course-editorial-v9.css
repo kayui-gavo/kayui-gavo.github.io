@@ -1,30 +1,21 @@
 /*
  * Education teaching + winter curriculum — editorial refinement v9
- * Restore the Tokyo Science material evidence as visible document previews.
- * The artwork is a web preview based on the actual textbook / mock exam / interview-guide covers;
- * it is intentionally not presented as a screenshot of the source files.
+ * Authentic-material policy: this layer must never fabricate textbook,
+ * mock-exam, or interview-guide covers. Real document imagery is inserted
+ * only when an actual source image/page is available.
  */
 
 /* --------------------------------------------------------------------------
-   Tokyo Science material evidence inside the school-exam teaching pathway
+   Tokyo Science material feature — typography only until real source media
    -------------------------------------------------------------------------- */
 .teaching-section .course-panel[data-course-panel="school"] .material-feature{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(300px,390px);
-  grid-template-rows:auto auto auto;
-  column-gap:38px;
-  align-items:start;
+  display:block;
+  position:relative;
   max-width:none;
   margin-top:29px;
   padding:22px 0 0;
   border-left:0;
   border-top:1px solid var(--ink);
-}
-
-.teaching-section .course-panel[data-course-panel="school"] .material-feature>div:first-child,
-.teaching-section .course-panel[data-course-panel="school"] .material-feature>p,
-.teaching-section .course-panel[data-course-panel="school"] .material-feature>.material-index{
-  grid-column:1;
 }
 
 .teaching-section .course-panel[data-course-panel="school"] .material-feature>div:first-child{
@@ -61,7 +52,7 @@
 }
 
 .teaching-section .course-panel[data-course-panel="school"] .material-feature>p{
-  max-width:610px;
+  max-width:680px;
   margin:13px 0 0 64px;
   color:#626a71;
   font-size:11.25px;
@@ -72,42 +63,16 @@
   margin:13px 0 0 64px;
 }
 
+/* Explicitly neutralize all legacy pseudo-document artwork. */
+.teaching-section .course-panel[data-course-panel="school"] .material-feature::before,
 .teaching-section .course-panel[data-course-panel="school"] .material-feature::after{
-  content:"";
-  grid-column:2;
-  grid-row:1 / span 3;
-  align-self:start;
-  display:block;
-  width:100%;
-  min-height:252px;
-  margin-top:-7px;
-  background:url('./tokyo-science-materials-v1.svg?v=20260823a') center top / contain no-repeat;
-  filter:saturate(.92) contrast(.99);
-}
-
-/* Let the document artwork breathe: it should read as evidence, not decoration. */
-.teaching-section .course-panel[data-course-panel="school"] .material-feature::before{
-  content:"ACTUAL COURSE MATERIALS";
-  position:absolute;
-  left:auto;
-  right:0;
-  top:7px;
-  color:#9aa0a5;
-  font-family:var(--display);
-  font-size:6.5px;
-  font-weight:700;
-  letter-spacing:.18em;
-  pointer-events:none;
-}
-
-.teaching-section .course-panel[data-course-panel="school"] .material-feature{
-  position:relative;
+  content:none!important;
+  display:none!important;
+  background:none!important;
 }
 
 /* --------------------------------------------------------------------------
-   Keep the Tokyo Science evidence visible even before the school-exam tab is opened.
-   The third winter course uses the same three real-material cover motifs as a compact
-   editorial plate in its right-hand information column.
+   Target-course evidence label — no synthetic cover art
    -------------------------------------------------------------------------- */
 #course-2026 .year-course-card--target .year-course-exclusive{
   display:grid;
@@ -116,10 +81,10 @@
   width:100%;
   min-height:0;
   margin-top:28px;
-  padding:218px 0 12px;
-  border-top:0;
+  padding:12px 0;
+  border-top:1px solid rgba(13,15,20,.13);
   border-bottom:1px solid rgba(13,15,20,.16);
-  background:url('./tokyo-science-materials-v1.svg?v=20260823a') center top / 100% auto no-repeat;
+  background:none!important;
 }
 
 #course-2026 .year-course-card--target .year-course-exclusive>span{
@@ -171,7 +136,6 @@
   color:#3f6177;
 }
 
-/* Preserve clean baseline alignment in the long 24-row syllabus. */
 #course-2026 .course-schedule-row strong,
 #course-2026 .course-schedule-row p{
   text-wrap:pretty;
@@ -181,40 +145,10 @@
   color:#426f88;
 }
 
-/* --------------------------------------------------------------------------
-   Responsive material plate
-   -------------------------------------------------------------------------- */
-@media (max-width:1020px){
-  .teaching-section .course-panel[data-course-panel="school"] .material-feature{
-    grid-template-columns:minmax(0,1fr) minmax(250px,315px);
-    column-gap:28px;
-  }
-
-  .teaching-section .course-panel[data-course-panel="school"] .material-feature::after{
-    min-height:214px;
-  }
-
-  #course-2026 .year-course-card--target .year-course-exclusive{
-    padding-top:190px;
-  }
-}
-
 @media (max-width:767px){
   .teaching-section .course-panel[data-course-panel="school"] .material-feature{
-    display:grid;
-    grid-template-columns:1fr;
-    grid-template-rows:auto;
-    gap:0;
     margin-top:23px;
     padding-top:18px;
-  }
-
-  .teaching-section .course-panel[data-course-panel="school"] .material-feature>div:first-child,
-  .teaching-section .course-panel[data-course-panel="school"] .material-feature>p,
-  .teaching-section .course-panel[data-course-panel="school"] .material-feature>.material-index,
-  .teaching-section .course-panel[data-course-panel="school"] .material-feature::after{
-    grid-column:1;
-    grid-row:auto;
   }
 
   .teaching-section .course-panel[data-course-panel="school"] .material-feature>p,
@@ -222,22 +156,9 @@
     margin-left:0;
   }
 
-  .teaching-section .course-panel[data-course-panel="school"] .material-feature::before{
-    display:none;
-  }
-
-  .teaching-section .course-panel[data-course-panel="school"] .material-feature::after{
-    order:4;
-    min-height:0;
-    aspect-ratio:1200 / 720;
-    margin:18px 0 0;
-    background-size:contain;
-  }
-
   #course-2026 .year-course-card--target .year-course-exclusive{
     margin-top:21px;
-    padding-top:60%;
-    background-size:100% auto;
+    padding:11px 0;
   }
 }
 
@@ -255,9 +176,5 @@
 
   .teaching-section .course-panel[data-course-panel="school"] .material-feature>div:first-child strong{
     font-size:17px;
-  }
-
-  #course-2026 .year-course-card--target .year-course-exclusive{
-    padding-top:62%;
   }
 }
