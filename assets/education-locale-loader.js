@@ -22,12 +22,12 @@
       resolve();
     };
     window.addEventListener('education:copy-ready', finish, { once:true });
-    window.setTimeout(finish, 1600);
+    window.setTimeout(finish, 1800);
   });
 
   const boot = async () => {
     try {
-      const response = await fetch('/education/?localeSource=20260828a', { cache:'no-cache' });
+      const response = await fetch('/education/?localeSource=20260828f', { cache:'no-cache' });
       if (!response.ok) throw new Error(`education source ${response.status}`);
       const source = await response.text();
       const parsed = new DOMParser().parseFromString(source, 'text/html');
@@ -42,8 +42,11 @@
       await ready;
       await loadScript('/assets/education-language-switch.js?v=20260821a');
       if (isTraditional) {
-        await loadScript('/assets/education-locale-zh-tw.js?v=20260828a');
+        await loadScript('/assets/education-locale-zh-tw.js?v=20260828f');
         window.applyEducationZhTW?.();
+        requestAnimationFrame(() => window.applyEducationZhTW?.());
+        window.setTimeout(() => window.applyEducationZhTW?.(), 600);
+        window.setTimeout(() => window.applyEducationZhTW?.(), 2200);
       }
     } catch (error) {
       console.error('[education locale]', error);
