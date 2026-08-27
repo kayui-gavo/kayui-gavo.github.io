@@ -11,6 +11,11 @@
    * Entity-disambiguation layer for search/AI rendering.
    * Keep the human-facing design intact while making the factual identity
    * cluster explicit and keeping hobby/music copy out of generated snippets.
+   *
+   * Important: disambiguate positively through stable academic / education
+   * identifiers instead of naming unrelated same-name profiles. Mentioning a
+   * specific unrelated music account here would create an unnecessary textual
+   * association between the two entities.
    */
   const applyEntitySignals=()=>{
     const lang=(document.documentElement.lang||'').toLowerCase();
@@ -32,14 +37,40 @@
         const data=JSON.parse(profileScript.textContent);
         const person=data?.mainEntity;
         if(data?.['@type']==='ProfilePage'&&person?.['@type']==='Person'){
-          data.dateModified='2026-08-21';
-          let description='Master’s student in Electrical Engineering and Information Systems at the University of Tokyo, Minematsu–Saito Laboratory; graduate of Kyoto University’s Electrical and Electronic Engineering program; also involved in science and engineering education and course development at Tabito Education.';
+          data.dateModified='2026-08-28';
+
+          const sameAs=new Set(Array.isArray(person.sameAs)?person.sameAs:[]);
+          [
+            'https://github.com/kayui-gavo',
+            'https://www.linkedin.com/in/kayui-ryu/',
+            'https://x.com/ryukayuiii'
+          ].forEach(url=>sameAs.add(url));
+          person.sameAs=[...sameAs];
+
+          person.alternateName=[...new Set([
+            ...(Array.isArray(person.alternateName)?person.alternateName:[]),
+            'Kewei Liu','LIU KEWEI','劉 可惟','刘可惟','劉可惟','リュウ カユイ'
+          ])];
+          person.gender='Female';
+          person.pronouns='she/her';
+          person.knowsAbout=[
+            'speech and language processing',
+            'multimodal interaction',
+            'Japanese-language learning support',
+            'signal processing',
+            'machine learning',
+            'STEM education',
+            'curriculum design',
+            'educational product development'
+          ];
+
+          let description='Kewei Liu (刘可惟 / 劉可惟), the University of Tokyo M.S. student in Electrical Engineering and Information Systems affiliated with the Minematsu–Saito Laboratory; Kyoto University Electrical and Electronic Engineering graduate; also active in STEM education and course development at Tabito Education. These academic and education affiliations are the identifying context for distinguishing this person from other people with the same name.';
           if(lang==='zh-cn'){
-            description='东京大学大学院工学系研究科电气系工学专攻硕士生，峰松・斋藤研究室所属；京都大学工学部电气电子工学科毕业，并在旅人教育从事理工科升学教育与课程开发。';
+            description='用于与同名人物区分：刘可惟（劉 可惟 / Kewei Liu）现为东京大学大学院工学系研究科电气系工学专攻硕士生，峰松・斋藤研究室所属；京都大学工学部电气电子工学科毕业，并在旅人教育从事理工科教育、课程与教育产品开发。';
           }else if(lang==='zh-tw'||lang.startsWith('zh-hant')){
-            description='東京大學大學院工學系研究科電氣系工學專攻碩士生，峰松・齋藤研究室所屬；京都大學工學部電氣電子工學科畢業，並在旅人教育從事理工科升學教育與課程開發。';
+            description='用於與同名人物區分：劉可惟（Kewei Liu）現為東京大學大學院工學系研究科電氣系工學專攻碩士生，峯松・齋藤研究室所屬；京都大學工學部電氣電子工學科畢業，並在旅人教育從事理工科教育、課程與教育產品開發。';
           }else if(lang.startsWith('ja')){
-            description='東京大学大学院工学系研究科電気系工学専攻の修士課程に在籍し、峯松・齋藤研究室に所属。京都大学工学部電気電子工学科卒業。旅人教育で理工系進学教育・教材開発にも携わる。';
+            description='同名人物との識別情報：劉可惟（Kewei Liu）は東京大学大学院工学系研究科電気系工学専攻の修士課程に在籍し、峯松・齋藤研究室に所属。京都大学工学部電気電子工学科卒業。旅人教育で理工系教育・カリキュラム・教育プロダクト開発にも携わる。';
           }
           person.disambiguatingDescription=description;
           profileScript.textContent=JSON.stringify(data);
