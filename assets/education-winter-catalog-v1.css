@@ -1,0 +1,604 @@
+/*
+ * 2026 winter course catalog v1
+ * Compact three-course selector inspired by an editorial course guide.
+ * Replaces the long stacked course cards with one active course at a time.
+ */
+
+/* --------------------------------------------------------------------------
+   Tighten the teaching lead-in so the winter catalog appears much sooner.
+   -------------------------------------------------------------------------- */
+.teaching-section .principle-grid-specific{
+  margin-top:38px!important;
+  margin-bottom:0!important;
+}
+.teaching-section .course-stage{
+  margin-top:42px!important;
+  min-height:0!important;
+  padding-top:0!important;
+  padding-bottom:0!important;
+}
+.teaching-section .course-panels,
+.teaching-section .course-panel{
+  min-height:0!important;
+}
+.teaching-section .course-panel .material-feature{
+  margin-top:22px!important;
+  padding-top:16px!important;
+}
+/* Do not duplicate the material gallery here: the real material evidence now
+   belongs to the Tokyo Science winter-course panel below. */
+.teaching-section .course-panel[data-course-panel="school"] .material-feature::before,
+.teaching-section .course-panel[data-course-panel="school"] .material-feature::after,
+.teaching-section .course-panel[data-course-panel="school"] .tokyo-science-material-visual,
+.teaching-section .course-panel[data-course-panel="school"] .material-evidence{
+  content:none!important;
+  display:none!important;
+}
+
+/* --------------------------------------------------------------------------
+   Catalog shell
+   -------------------------------------------------------------------------- */
+#course-2026.winter-catalog{
+  --wc-line:rgba(27,54,70,.20);
+  --wc-line-strong:rgba(27,54,70,.36);
+  --wc-ink:#173548;
+  --wc-muted:#6f818c;
+  --wc-blue:#2677a1;
+  position:relative;
+  margin-top:46px!important;
+  padding:0!important;
+  border-top:0!important;
+  border-bottom:1px solid var(--wc-line-strong)!important;
+  background:transparent!important;
+}
+#course-2026.winter-catalog::before,
+#course-2026.winter-catalog::after{display:none!important;content:none!important}
+
+#course-2026 .winter-catalog-head{
+  display:grid;
+  grid-template-columns:210px minmax(0,1fr);
+  gap:36px;
+  align-items:end;
+  min-height:104px;
+  padding:0 0 24px;
+  border-bottom:1px solid var(--wc-line-strong);
+}
+#course-2026 .winter-catalog-head h3{
+  margin:0;
+  color:var(--wc-ink);
+  font-family:var(--display);
+  font-size:clamp(38px,4.1vw,60px);
+  font-weight:800;
+  line-height:.94;
+  letter-spacing:-.055em;
+}
+#course-2026 .winter-catalog-head p{
+  max-width:850px;
+  margin:0 0 3px;
+  color:#607681;
+  font-size:13px;
+  line-height:1.85;
+  text-wrap:pretty;
+}
+#course-2026 .winter-catalog-head p strong{
+  margin-right:10px;
+  color:var(--wc-ink);
+  font-weight:750;
+}
+
+#course-2026 .winter-catalog-body{
+  display:grid;
+  grid-template-columns:310px minmax(0,1fr);
+  min-height:560px;
+}
+
+/* --------------------------------------------------------------------------
+   Left selector
+   -------------------------------------------------------------------------- */
+#course-2026 .winter-course-nav{
+  display:grid;
+  grid-template-rows:repeat(3,1fr);
+  border-right:1px solid var(--wc-line);
+}
+#course-2026 .winter-course-tab{
+  position:relative;
+  display:grid;
+  grid-template-columns:42px minmax(0,1fr);
+  gap:16px;
+  align-content:center;
+  width:100%;
+  min-height:0;
+  padding:25px 26px 25px 4px;
+  border:0;
+  border-bottom:1px solid var(--wc-line);
+  background:transparent;
+  color:var(--wc-ink);
+  text-align:left;
+  cursor:pointer;
+  transition:background .2s ease,color .2s ease;
+}
+#course-2026 .winter-course-tab:last-child{border-bottom:0}
+#course-2026 .winter-course-tab::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:25%;
+  bottom:25%;
+  width:3px;
+  background:var(--wc-blue);
+  transform:scaleY(0);
+  transform-origin:center;
+  transition:transform .22s cubic-bezier(.2,.75,.25,1);
+}
+#course-2026 .winter-course-tab:hover{background:rgba(38,119,161,.035)}
+#course-2026 .winter-course-tab[aria-selected="true"]{
+  background:rgba(38,119,161,.025);
+}
+#course-2026 .winter-course-tab[aria-selected="true"]::before{transform:scaleY(1)}
+#course-2026 .winter-course-tab:focus-visible{
+  outline:2px solid rgba(38,119,161,.32);
+  outline-offset:-2px;
+}
+#course-2026 .winter-course-tab .winter-tab-no{
+  color:#9aabb4;
+  font:650 12px/1 var(--display);
+  letter-spacing:.02em;
+}
+#course-2026 .winter-course-tab[aria-selected="true"] .winter-tab-no{color:var(--wc-blue)}
+#course-2026 .winter-course-tab strong{
+  display:block;
+  color:inherit;
+  font-size:16px;
+  font-weight:760;
+  line-height:1.45;
+  letter-spacing:-.015em;
+}
+#course-2026 .winter-course-tab small{
+  display:block;
+  margin-top:7px;
+  color:#7d8d96;
+  font-size:10.5px;
+  font-weight:500;
+  line-height:1.5;
+}
+
+/* --------------------------------------------------------------------------
+   Active panel: concise copy + substantial visual, never three stacked cards.
+   -------------------------------------------------------------------------- */
+#course-2026 .winter-course-stage{
+  position:relative;
+  min-width:0;
+}
+#course-2026 .winter-course-view{
+  display:grid;
+  grid-template-columns:minmax(300px,.72fr) minmax(420px,1.28fr);
+  min-height:560px;
+}
+#course-2026 .winter-course-view[hidden]{display:none!important}
+#course-2026 .winter-course-copy{
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  padding:48px 42px 34px 48px;
+  border-right:1px solid var(--wc-line);
+}
+#course-2026 .winter-course-index{
+  margin:0 0 21px;
+  color:#8ca0aa;
+  font:700 9px/1 var(--display);
+  letter-spacing:.16em;
+}
+#course-2026 .winter-course-index b{
+  color:var(--wc-blue);
+  font-size:13px;
+  letter-spacing:.04em;
+}
+#course-2026 .winter-course-copy h4{
+  max-width:490px;
+  margin:0;
+  color:var(--wc-ink);
+  font-family:var(--display);
+  font-size:clamp(30px,3.15vw,48px);
+  font-weight:820;
+  line-height:1.08;
+  letter-spacing:-.047em;
+  text-wrap:balance;
+}
+#course-2026 .winter-course-lead{
+  max-width:500px;
+  margin:21px 0 0;
+  color:#566f7c;
+  font-size:12.4px;
+  line-height:1.92;
+  text-wrap:pretty;
+}
+#course-2026 .winter-focus-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px 17px;
+  margin:28px 0 0;
+  padding:0;
+  list-style:none;
+}
+#course-2026 .winter-focus-list li{
+  position:relative;
+  padding-left:13px;
+  color:#315b72;
+  font-size:10px;
+  font-weight:690;
+  line-height:1.45;
+  white-space:nowrap;
+}
+#course-2026 .winter-focus-list li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:.57em;
+  width:5px;
+  height:5px;
+  border:1px solid rgba(38,119,161,.64);
+}
+#course-2026 .winter-course-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:0;
+  margin:auto 0 0;
+  padding-top:24px;
+  border-top:1px solid var(--wc-line);
+}
+#course-2026 .winter-course-meta span{
+  display:flex;
+  align-items:center;
+  min-height:22px;
+  padding:0 14px;
+  border-right:1px solid var(--wc-line);
+  color:#667c87;
+  font-size:9.5px;
+  font-weight:620;
+  line-height:1.4;
+}
+#course-2026 .winter-course-meta span:first-child{padding-left:0}
+#course-2026 .winter-course-meta span:last-child{border-right:0}
+
+#course-2026 .winter-detail{
+  margin-top:21px;
+  border-top:1px solid var(--wc-line);
+}
+#course-2026 .winter-detail summary{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  min-height:44px;
+  color:#2b6584;
+  font-size:10px;
+  font-weight:720;
+  cursor:pointer;
+  list-style:none;
+}
+#course-2026 .winter-detail summary::-webkit-details-marker{display:none}
+#course-2026 .winter-detail summary::after{
+  content:"＋";
+  font-size:13px;
+  font-weight:400;
+}
+#course-2026 .winter-detail[open] summary::after{content:"−"}
+#course-2026 .winter-detail-scroll{
+  max-height:310px;
+  overflow:auto;
+  overscroll-behavior:contain;
+  padding:0 8px 7px 0;
+  scrollbar-width:thin;
+}
+#course-2026 .winter-detail-scroll .course-schedule-head{
+  position:sticky!important;
+  top:0!important;
+  z-index:2;
+  background:var(--paper,#fbfaf7)!important;
+}
+#course-2026 .winter-detail-scroll .course-syllabus-footer{display:none!important}
+#course-2026 .winter-detail-scroll .course-schedule-row{
+  min-height:58px!important;
+}
+#course-2026 .winter-detail-scroll .year-course-unit{
+  grid-template-columns:92px minmax(0,1fr)!important;
+  min-height:62px!important;
+  padding:14px 0!important;
+}
+#course-2026 .winter-detail-scroll .year-course-note{
+  margin:13px 0 2px!important;
+  padding:0 0 0 12px!important;
+}
+
+/* --------------------------------------------------------------------------
+   Right visuals for the first two courses: information, not fake screenshots.
+   -------------------------------------------------------------------------- */
+#course-2026 .winter-course-visual{
+  min-width:0;
+  padding:26px;
+  background:#f0f3f3;
+}
+#course-2026 .winter-visual-board{
+  position:relative;
+  height:100%;
+  min-height:508px;
+  overflow:hidden;
+  border:1px solid rgba(23,53,72,.12);
+  background:#f9faf9;
+}
+#course-2026 .winter-visual-label{
+  position:absolute;
+  z-index:3;
+  left:22px;
+  top:20px;
+  margin:0;
+  color:#84959e;
+  font:750 7px/1.3 var(--display);
+  letter-spacing:.18em;
+}
+
+#course-2026 .winter-system-map{
+  display:grid;
+  grid-template-rows:auto 1fr auto;
+  height:100%;
+  padding:62px 34px 29px;
+}
+#course-2026 .winter-system-map h5,
+#course-2026 .winter-drill-board h5{
+  margin:0;
+  color:var(--wc-ink);
+  font-family:var(--display);
+  font-size:24px;
+  font-weight:780;
+  letter-spacing:-.035em;
+}
+#course-2026 .winter-system-map>p,
+#course-2026 .winter-drill-board>p{
+  margin:8px 0 0;
+  color:#778a94;
+  font-size:9.5px;
+  line-height:1.7;
+}
+#course-2026 .winter-map-grid{
+  display:grid;
+  grid-template-columns:14fr 10fr 8fr 16fr;
+  align-items:end;
+  gap:7px;
+  margin:40px 0 28px;
+}
+#course-2026 .winter-map-unit{
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  min-width:0;
+  padding:17px 12px;
+  border-top:2px solid #305d74;
+  background:linear-gradient(to bottom,rgba(48,93,116,.045),rgba(48,93,116,.012));
+}
+#course-2026 .winter-map-unit:nth-child(1){height:72%}
+#course-2026 .winter-map-unit:nth-child(2){height:58%}
+#course-2026 .winter-map-unit:nth-child(3){height:48%}
+#course-2026 .winter-map-unit:nth-child(4){height:84%}
+#course-2026 .winter-map-unit b{
+  color:#264d63;
+  font-size:12px;
+}
+#course-2026 .winter-map-unit span{
+  margin-top:5px;
+  color:#86959d;
+  font:620 9px/1.4 var(--display);
+}
+#course-2026 .winter-map-caption{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  padding-top:15px;
+  border-top:1px solid var(--wc-line);
+  color:#6e838e;
+  font-size:8.5px;
+  line-height:1.55;
+}
+
+#course-2026 .winter-drill-board{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  padding:62px 34px 30px;
+}
+#course-2026 .winter-drill-sequence{
+  display:grid;
+  grid-template-columns:1.4fr 1fr;
+  gap:12px;
+  margin-top:36px;
+  flex:1;
+}
+#course-2026 .winter-drill-phase{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:26px 24px 22px;
+  border:1px solid var(--wc-line);
+  background:white;
+}
+#course-2026 .winter-drill-phase small{
+  color:#90a0a8;
+  font:750 7px/1.3 var(--display);
+  letter-spacing:.16em;
+}
+#course-2026 .winter-drill-phase strong{
+  display:block;
+  margin-top:12px;
+  color:var(--wc-ink);
+  font-family:var(--display);
+  font-size:25px;
+  line-height:1.1;
+  letter-spacing:-.04em;
+}
+#course-2026 .winter-drill-phase b{
+  color:#2c6f93;
+  font:800 56px/.9 var(--display);
+  letter-spacing:-.06em;
+}
+#course-2026 .winter-drill-phase span{
+  color:#6f838e;
+  font-size:9px;
+  line-height:1.7;
+}
+
+/* --------------------------------------------------------------------------
+   Tokyo Science: only authentic assets from site/images/tokyo-science-2026/.
+   -------------------------------------------------------------------------- */
+#course-2026 .winter-material-collage{
+  display:grid;
+  grid-template-columns:minmax(0,1.55fr) minmax(170px,.72fr);
+  grid-template-rows:1fr 1fr;
+  gap:10px;
+  height:100%;
+  min-height:508px;
+}
+#course-2026 .winter-material-shot{
+  position:relative;
+  min-width:0;
+  min-height:0;
+  overflow:hidden;
+  border:1px solid rgba(23,53,72,.14);
+  background:#fff;
+  color:inherit;
+  text-decoration:none;
+}
+#course-2026 .winter-material-shot--hero{grid-row:1 / 3}
+#course-2026 .winter-material-shot img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+  background:#f7f7f4;
+  transition:transform .32s cubic-bezier(.2,.75,.25,1),filter .25s ease;
+}
+#course-2026 .winter-material-shot--hero img{object-position:center top}
+#course-2026 .winter-material-shot span{
+  position:absolute;
+  left:0;right:0;bottom:0;
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:11px 13px;
+  background:linear-gradient(to top,rgba(18,35,45,.76),rgba(18,35,45,0));
+  color:white;
+  font-size:8px;
+  font-weight:650;
+  line-height:1.35;
+  opacity:0;
+  transform:translateY(4px);
+  transition:opacity .22s ease,transform .22s ease;
+}
+#course-2026 .winter-material-shot:hover img,
+#course-2026 .winter-material-shot:focus-visible img{transform:scale(1.018);filter:contrast(1.025)}
+#course-2026 .winter-material-shot:hover span,
+#course-2026 .winter-material-shot:focus-visible span{opacity:1;transform:none}
+#course-2026 .winter-material-shot:focus-visible{outline:2px solid rgba(38,119,161,.46);outline-offset:-2px}
+
+/* Fade only the newly selected panel, never translate the page vertically. */
+#course-2026 .winter-course-view.is-entering{
+  animation:winterCatalogIn .24s ease both;
+}
+@keyframes winterCatalogIn{
+  from{opacity:.35}
+  to{opacity:1}
+}
+
+/* --------------------------------------------------------------------------
+   Responsive: keep the compact selector, then stack only on narrow screens.
+   -------------------------------------------------------------------------- */
+@media (max-width:1180px){
+  #course-2026 .winter-catalog-body{grid-template-columns:270px minmax(0,1fr)}
+  #course-2026 .winter-course-view{grid-template-columns:minmax(280px,.78fr) minmax(350px,1.22fr)}
+  #course-2026 .winter-course-copy{padding:40px 32px 30px 38px}
+  #course-2026 .winter-course-visual{padding:20px}
+}
+
+@media (max-width:930px){
+  #course-2026 .winter-catalog-head{grid-template-columns:160px minmax(0,1fr);gap:28px}
+  #course-2026 .winter-catalog-body{grid-template-columns:1fr;min-height:0}
+  #course-2026 .winter-course-nav{
+    grid-template-columns:repeat(3,1fr);
+    grid-template-rows:none;
+    border-right:0;
+    border-bottom:1px solid var(--wc-line);
+  }
+  #course-2026 .winter-course-tab{
+    grid-template-columns:26px minmax(0,1fr);
+    gap:9px;
+    min-height:94px;
+    padding:17px 14px;
+    border-right:1px solid var(--wc-line);
+    border-bottom:0;
+  }
+  #course-2026 .winter-course-tab:last-child{border-right:0}
+  #course-2026 .winter-course-tab::before{top:auto;bottom:0;left:14px;right:14px;width:auto;height:3px;transform:scaleX(0)}
+  #course-2026 .winter-course-tab[aria-selected="true"]::before{transform:scaleX(1)}
+  #course-2026 .winter-course-tab strong{font-size:13px}
+  #course-2026 .winter-course-tab small{font-size:8.7px}
+  #course-2026 .winter-course-view{min-height:0;grid-template-columns:minmax(270px,.82fr) minmax(360px,1.18fr)}
+  #course-2026 .winter-course-copy{padding:36px 28px 28px 32px}
+  #course-2026 .winter-visual-board,
+  #course-2026 .winter-material-collage{min-height:430px}
+}
+
+@media (max-width:720px){
+  .teaching-section .course-stage{margin-top:34px!important}
+  #course-2026.winter-catalog{margin-top:34px!important}
+  #course-2026 .winter-catalog-head{
+    display:block;
+    min-height:0;
+    padding-bottom:18px;
+  }
+  #course-2026 .winter-catalog-head h3{font-size:36px}
+  #course-2026 .winter-catalog-head p{margin-top:12px;font-size:11.5px;line-height:1.7}
+  #course-2026 .winter-course-nav{
+    display:flex;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  #course-2026 .winter-course-nav::-webkit-scrollbar{display:none}
+  #course-2026 .winter-course-tab{
+    flex:0 0 78%;
+    min-height:84px;
+  }
+  #course-2026 .winter-course-view{display:block}
+  #course-2026 .winter-course-copy{
+    padding:30px 0 26px;
+    border-right:0;
+  }
+  #course-2026 .winter-course-copy h4{font-size:32px}
+  #course-2026 .winter-course-lead{font-size:11.7px}
+  #course-2026 .winter-course-meta{margin-top:25px}
+  #course-2026 .winter-course-visual{margin:0 -1px;padding:12px}
+  #course-2026 .winter-visual-board,
+  #course-2026 .winter-material-collage{min-height:390px}
+  #course-2026 .winter-material-collage{grid-template-columns:minmax(0,1.45fr) minmax(115px,.72fr);gap:7px}
+  #course-2026 .winter-detail-scroll{max-height:320px}
+}
+
+@media (max-width:430px){
+  #course-2026 .winter-course-tab{flex-basis:88%}
+  #course-2026 .winter-course-copy h4{font-size:28px}
+  #course-2026 .winter-focus-list{gap:6px 12px}
+  #course-2026 .winter-course-meta span{padding:0 9px;font-size:8.8px}
+  #course-2026 .winter-visual-board,
+  #course-2026 .winter-material-collage{min-height:330px}
+  #course-2026 .winter-system-map,
+  #course-2026 .winter-drill-board{padding:50px 18px 20px}
+  #course-2026 .winter-map-grid{margin-top:28px}
+  #course-2026 .winter-drill-sequence{gap:7px;margin-top:24px}
+  #course-2026 .winter-drill-phase{padding:18px 14px}
+  #course-2026 .winter-drill-phase b{font-size:42px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  #course-2026 .winter-course-tab,
+  #course-2026 .winter-course-tab::before,
+  #course-2026 .winter-material-shot img,
+  #course-2026 .winter-material-shot span{transition:none!important}
+  #course-2026 .winter-course-view.is-entering{animation:none!important}
+}
