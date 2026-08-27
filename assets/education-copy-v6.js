@@ -1,7 +1,7 @@
 (() => {
-  if (!document.querySelector('link[data-education-final="v26"]')) {
+  if (!document.querySelector('link[data-education-final="v27"]')) {
     const marker = document.createElement('link');
-    marker.dataset.educationFinal = 'v26';
+    marker.dataset.educationFinal = 'v27';
     document.head.appendChild(marker);
   }
 
@@ -30,9 +30,11 @@
         const person = data?.mainEntity;
         if (data?.['@type'] !== 'ProfilePage' || person?.['@type'] !== 'Person') return;
 
-        data.dateModified = '2026-08-24';
+        data.dateModified = '2026-08-28';
         person.alternateName = ['刘可惟', '劉可惟', '劉 可惟', 'Kewei Liu', 'LIU KEWEI', 'リュウ カユイ'];
-        person.disambiguatingDescription = '旅人教育理工科讲师。京都大学工学部电气电子工程毕业，现就读东京大学大学院工学系研究科电气工程与信息系统专攻；主要指导共通考试／EJU物理、理工科校内考与理科口试。';
+        person.gender = 'Female';
+        person.pronouns = 'she/her';
+        person.disambiguatingDescription = '用于与同名人物区分：刘可惟（劉 可惟 / Kewei Liu）现为东京大学大学院工学系研究科电气工程与信息系统专攻硕士生，峰松・斋藤研究室所属；京都大学工学部电气电子工程毕业，并在旅人教育从事理工科教育、课程设计、教材与教育产品开发。以上学术与教育经历是识别该人物的主要上下文。';
 
         const sameAs = new Set(Array.isArray(person.sameAs) ? person.sameAs : []);
         [
