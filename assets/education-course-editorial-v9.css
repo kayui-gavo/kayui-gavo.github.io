@@ -63,15 +63,39 @@
   margin:13px 0 0 64px;
 }
 
-/* Explicitly neutralize all legacy pseudo-document artwork. */
-.teaching-section .course-panel[data-course-panel="school"] .material-feature::before,
-.teaching-section .course-panel[data-course-panel="school"] .material-feature::after{
-  content:none!important;
-  display:none!important;
-  background:none!important;
+/* Never reintroduce the old fabricated SVG preview. The visual below is composed
+   only from actual 2026 course-document WebP files stored in the TABITO site repo. */
+.teaching-section .course-panel[data-course-panel="school"] .material-feature::before{
+  content:"2026 · REAL COURSE MATERIALS";
+  display:block!important;
+  margin:22px 0 9px;
+  color:#92989d;
+  font-family:var(--display);
+  font-size:6.5px;
+  font-weight:750;
+  letter-spacing:.18em;
 }
 
-/* Authentic 2026 Tokyo Science course material spread. */
+.teaching-section .course-panel[data-course-panel="school"] .material-feature::after{
+  content:""!important;
+  display:block!important;
+  width:100%;
+  min-height:272px;
+  border-top:1px solid rgba(13,15,20,.11);
+  border-bottom:1px solid rgba(13,15,20,.11);
+  background-color:transparent!important;
+  background-image:
+    url('https://raw.githubusercontent.com/kayui-gavo/tabitoedu-website/gh-pages/site/images/tokyo-science-2026/tokyo-science-2026-original-mock-exam-cover.webp'),
+    url('https://raw.githubusercontent.com/kayui-gavo/tabitoedu-website/gh-pages/site/images/tokyo-science-2026/tokyo-science-2026-original-physics-q2-part1.webp'),
+    url('https://raw.githubusercontent.com/kayui-gavo/tabitoedu-website/gh-pages/site/images/tokyo-science-2026/tokyo-science-2026-original-physics-q2-part2.webp'),
+    url('https://raw.githubusercontent.com/kayui-gavo/tabitoedu-website/gh-pages/site/images/tokyo-science-2026/tokyo-science-2026-interview-training-cover.webp')!important;
+  background-repeat:no-repeat!important;
+  background-position:0 50%,31% 50%,67% 50%,100% 50%!important;
+  background-size:20% auto,25% auto,25% auto,20% auto!important;
+  filter:saturate(.96) contrast(1.01);
+}
+
+/* Optional semantic gallery markup uses the same source material when present. */
 .teaching-section .material-evidence{
   margin:26px 0 0;
   padding:18px 0 0;
@@ -157,9 +181,7 @@
   box-shadow:0 15px 34px rgba(13,15,20,.12);
 }
 
-.teaching-section .material-shot:focus-visible{
-  outline:none;
-}
+.teaching-section .material-shot:focus-visible{outline:none}
 
 .teaching-section .material-evidence-caption{
   display:grid;
@@ -260,6 +282,11 @@
 }
 
 @media (max-width:920px){
+  .teaching-section .course-panel[data-course-panel="school"] .material-feature::after{
+    min-height:238px;
+    background-position:0 50%,30% 50%,68% 50%,100% 50%!important;
+    background-size:21% auto,25% auto,25% auto,21% auto!important;
+  }
   .teaching-section .material-evidence-grid{
     grid-template-columns:repeat(2,minmax(0,1fr));
     gap:14px;
@@ -279,6 +306,16 @@
   .teaching-section .course-panel[data-course-panel="school"] .material-feature>p,
   .teaching-section .course-panel[data-course-panel="school"] .material-feature>.material-index{
     margin-left:0;
+  }
+
+  .teaching-section .course-panel[data-course-panel="school"] .material-feature::before{
+    margin-top:18px;
+  }
+
+  .teaching-section .course-panel[data-course-panel="school"] .material-feature::after{
+    min-height:430px;
+    background-position:4% 7%,96% 7%,4% 93%,96% 93%!important;
+    background-size:43% auto,43% auto,43% auto,43% auto!important;
   }
 
   .teaching-section .material-evidence{
@@ -325,14 +362,16 @@
     font-size:17px;
   }
 
+  .teaching-section .course-panel[data-course-panel="school"] .material-feature::after{
+    min-height:370px;
+  }
+
   .teaching-section .material-evidence-grid{
     grid-template-columns:1fr 1fr;
     gap:11px 9px;
   }
 
-  .teaching-section .material-shot span{
-    font-size:8px;
-  }
+  .teaching-section .material-shot span{font-size:8px}
 
   .teaching-section .material-evidence-caption{
     grid-template-columns:1fr;
