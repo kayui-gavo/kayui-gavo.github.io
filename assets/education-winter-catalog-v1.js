@@ -2,7 +2,7 @@
   if (window.__educationWinterCatalogV1) return;
   window.__educationWinterCatalogV1 = true;
 
-  const STYLE_HREF = '/assets/education-winter-catalog-v1.css?v=20260828a';
+  const STYLE_HREF = '/assets/education-winter-catalog-v1.css?v=20260828b';
   if (!document.querySelector('link[data-education-winter-catalog="v1"]')) {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
@@ -13,16 +13,6 @@
 
   const materialBase = 'https://raw.githubusercontent.com/kayui-gavo/tabitoedu-website/gh-pages/site/images/tokyo-science-2026';
   const material = file => `${materialBase}/${file}`;
-
-  const removeSyntheticMaterialVisuals = () => {
-    document.querySelectorAll('.tokyo-science-material-visual').forEach(node => node.remove());
-  };
-  removeSyntheticMaterialVisuals();
-  const materialFeature = document.querySelector('.course-panel[data-course-panel="school"] .material-feature');
-  if (materialFeature && 'MutationObserver' in window) {
-    const syntheticGuard = new MutationObserver(removeSyntheticMaterialVisuals);
-    syntheticGuard.observe(materialFeature, { childList: true, subtree: true });
-  }
 
   const buildCatalog = () => {
     const root = document.querySelector('#course-2026');
@@ -190,7 +180,7 @@
       });
     });
 
-    removeSyntheticMaterialVisuals();
+    document.querySelectorAll('.tokyo-science-material-visual').forEach(node => node.remove());
   };
 
   const scheduleBuild = () => requestAnimationFrame(buildCatalog);
