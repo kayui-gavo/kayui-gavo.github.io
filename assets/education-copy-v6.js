@@ -5,7 +5,7 @@
     document.head.appendChild(marker);
   }
 
-  import('./education-copy-v11.js?v=20260814af').then(async () => {
+  import('./education-copy-v11.js?v=20260828b').then(async () => {
     /* Keep the visible page unchanged while making the person entity explicit. */
     const applyEducationEntitySignals = () => {
       const alternates = [
