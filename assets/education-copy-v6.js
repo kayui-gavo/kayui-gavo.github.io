@@ -1,11 +1,11 @@
 (() => {
-  if (!document.querySelector('link[data-education-final="v29"]')) {
+  if (!document.querySelector('link[data-education-final="v30"]')) {
     const marker = document.createElement('link');
-    marker.dataset.educationFinal = 'v29';
+    marker.dataset.educationFinal = 'v30';
     document.head.appendChild(marker);
   }
 
-  import('./education-copy-v11.js?v=20260828d').then(async () => {
+  import('./education-copy-v11.js?v=20260828e').then(async () => {
     /* Keep the visible page unchanged while making the person entity explicit. */
     const applyEducationEntitySignals = () => {
       const alternates = [
