@@ -6,7 +6,7 @@
   const phraseMap = new Map([
     ['日本学部留学咨询','日本學部留學諮詢'],
     ['先看懂现象，再决定用哪条公式。','先看懂現象，再決定用哪條公式。'],
-    ['从数学表达回到物理现象，从基本模型走向复杂问题。','從數學式看懂物理現象，從基本模型拆解複雜問題。'],
+    ['从数学表达回到物理现象，从基本模型走向复杂问题。','從數學表達回到物理現象，從基本模型走向複雜問題。'],
     ['旅人教育官网','旅人教育官網'],['官方网站','官方網站'],['官方内容与账号','官方內容與帳號'],
     ['小红书','小紅書'],['微信公众号','微信公眾號'],['百度百科','百度百科'],
     ['信息通信','資訊通訊'],['信息工程','資訊工程'],['信息系统','資訊系統'],['多模态信息处理','多模態資訊處理'],
@@ -41,7 +41,7 @@
     '毕':'畢','设':'設','计':'計','备':'備','签':'簽','证':'證','确':'確','认':'認','问':'問','关':'關','块':'塊','较':'較','给':'給','该':'該',
     '届':'屆','员':'員','别':'別','层':'層','优':'優','势':'勢','换':'換','额':'額','记':'記','稳':'穩','准':'準',
     '获':'獲','属':'屬','围':'圍','汇':'匯','归':'歸','谐':'諧','摆':'擺','递':'遞','减':'減','误':'誤','读':'讀','懂':'懂',
-    '繁':'繁','径':'徑','载':'載','冲':'衝','联':'聯','质':'質','热':'熱','决':'決','条':'條'
+    '繁':'繁','径':'徑','载':'載','冲':'衝','联':'聯','质':'質','热':'熱','决':'決','条':'條','杂':'雜'
   };
 
   const convert = input => {
@@ -81,6 +81,12 @@
     });
   };
 
+  const enforceHeroTraditional = () => {
+    const thesis = document.querySelector('.hero-thesis');
+    if (!thesis) return;
+    thesis.innerHTML = '從數學表達回到物理現象，<br>從基本模型走向複雜問題。';
+  };
+
   const apply = () => {
     document.documentElement.lang = 'zh-Hant-TW';
     convertTree(document.body);
@@ -88,8 +94,7 @@
     personal.forEach(a => { a.href = '/zh-tw/'; a.textContent = convert(a.textContent); });
     const contactTitle = document.querySelector('.contact-copy h2');
     if (contactTitle) contactTitle.textContent = '日本學部留學諮詢';
-    const thesis = document.querySelector('.hero-thesis');
-    if (thesis) thesis.innerHTML = '先看懂現象，<br>再決定用哪條<em>公式</em>。';
+    enforceHeroTraditional();
   };
 
   let scheduled = false;
@@ -98,9 +103,20 @@
     scheduled = true;
     requestAnimationFrame(() => { scheduled = false; apply(); });
   };
+
   apply();
   const observer = new MutationObserver(scheduleApply);
   observer.observe(document.body, { childList:true, subtree:true, characterData:true });
-  window.setTimeout(() => observer.disconnect(), 3500);
+
+  /* Several education scripts rewrite the hero copy asynchronously. Re-apply
+     after those late writes so the Traditional-Chinese page can never fall back
+     to a Simplified-Chinese slogan. */
+  [0, 120, 400, 900, 1800, 3200, 6000].forEach(delay => {
+    window.setTimeout(() => {
+      apply();
+      enforceHeroTraditional();
+    }, delay);
+  });
+  window.setTimeout(() => observer.disconnect(), 8000);
   window.applyEducationZhTW = apply;
 })();
