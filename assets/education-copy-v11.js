@@ -1,3 +1,5 @@
+import('./education-winter-catalog-v1.js?v=20260828a');
+
 import('./education-copy-v10.js?v=20260814aa').then(() => {
   /* One final stylesheet, loaded last. */
   if (!document.querySelector('link[data-education-final="v20"]')) {
