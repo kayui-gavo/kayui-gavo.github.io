@@ -6,7 +6,7 @@
  */
 
 /* --------------------------------------------------------------------------
-   Tokyo Science material feature — typography only until real source media
+   Tokyo Science material feature — real course documents only
    -------------------------------------------------------------------------- */
 .teaching-section .course-panel[data-course-panel="school"] .material-feature{
   display:block;
@@ -69,6 +69,120 @@
   content:none!important;
   display:none!important;
   background:none!important;
+}
+
+/* Authentic 2026 Tokyo Science course material spread. */
+.teaching-section .material-evidence{
+  margin:26px 0 0;
+  padding:18px 0 0;
+  border-top:1px solid rgba(13,15,20,.14);
+}
+
+.teaching-section .material-evidence-head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:24px;
+  margin-bottom:15px;
+}
+
+.teaching-section .material-evidence-head small{
+  color:var(--blue-deep);
+  font-family:var(--display);
+  font-size:7.5px;
+  font-weight:800;
+  letter-spacing:.17em;
+}
+
+.teaching-section .material-evidence-head span{
+  color:#81878c;
+  font-size:9px;
+  line-height:1.5;
+  text-align:right;
+}
+
+.teaching-section .material-evidence-grid{
+  display:grid;
+  grid-template-columns:.86fr 1.14fr 1.14fr .86fr;
+  gap:11px;
+  align-items:end;
+}
+
+.teaching-section .material-shot{
+  display:grid;
+  grid-template-rows:minmax(0,1fr) auto;
+  gap:8px;
+  min-width:0;
+  color:inherit;
+  text-decoration:none;
+}
+
+.teaching-section .material-shot-frame{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:196px;
+  overflow:hidden;
+  border:1px solid rgba(13,15,20,.13);
+  background:#f7f7f5;
+  box-shadow:0 10px 28px rgba(13,15,20,.08);
+  transition:transform .24s cubic-bezier(.2,.75,.25,1),box-shadow .24s ease,border-color .24s ease;
+}
+
+.teaching-section .material-shot--page .material-shot-frame{
+  min-height:232px;
+}
+
+.teaching-section .material-shot img{
+  display:block;
+  width:100%;
+  height:100%;
+  max-height:292px;
+  object-fit:contain;
+  object-position:center top;
+}
+
+.teaching-section .material-shot span{
+  color:#757d83;
+  font-size:8.75px;
+  line-height:1.45;
+  letter-spacing:.015em;
+}
+
+.teaching-section .material-shot:hover .material-shot-frame,
+.teaching-section .material-shot:focus-visible .material-shot-frame{
+  transform:translateY(-3px);
+  border-color:rgba(47,120,159,.38);
+  box-shadow:0 15px 34px rgba(13,15,20,.12);
+}
+
+.teaching-section .material-shot:focus-visible{
+  outline:none;
+}
+
+.teaching-section .material-evidence-caption{
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr);
+  gap:8px 16px;
+  align-items:baseline;
+  margin-top:15px;
+  padding-top:11px;
+  border-top:1px solid rgba(13,15,20,.1);
+}
+
+.teaching-section .material-evidence-caption small{
+  color:#8c9296;
+  font-family:var(--display);
+  font-size:7px;
+  font-weight:750;
+  letter-spacing:.16em;
+}
+
+.teaching-section .material-evidence-caption span{
+  color:#6d747a;
+  font-size:9.5px;
+  line-height:1.65;
 }
 
 /* --------------------------------------------------------------------------
@@ -145,6 +259,17 @@
   color:#426f88;
 }
 
+@media (max-width:920px){
+  .teaching-section .material-evidence-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:14px;
+  }
+  .teaching-section .material-shot-frame,
+  .teaching-section .material-shot--page .material-shot-frame{
+    min-height:220px;
+  }
+}
+
 @media (max-width:767px){
   .teaching-section .course-panel[data-course-panel="school"] .material-feature{
     margin-top:23px;
@@ -154,6 +279,28 @@
   .teaching-section .course-panel[data-course-panel="school"] .material-feature>p,
   .teaching-section .course-panel[data-course-panel="school"] .material-feature>.material-index{
     margin-left:0;
+  }
+
+  .teaching-section .material-evidence{
+    margin-top:22px;
+    padding-top:15px;
+  }
+
+  .teaching-section .material-evidence-head{
+    display:block;
+    margin-bottom:12px;
+  }
+
+  .teaching-section .material-evidence-head span{
+    display:block;
+    margin-top:4px;
+    text-align:left;
+  }
+
+  .teaching-section .material-shot-frame,
+  .teaching-section .material-shot--page .material-shot-frame{
+    min-height:0;
+    aspect-ratio:4 / 5.35;
   }
 
   #course-2026 .year-course-card--target .year-course-exclusive{
@@ -177,4 +324,22 @@
   .teaching-section .course-panel[data-course-panel="school"] .material-feature>div:first-child strong{
     font-size:17px;
   }
+
+  .teaching-section .material-evidence-grid{
+    grid-template-columns:1fr 1fr;
+    gap:11px 9px;
+  }
+
+  .teaching-section .material-shot span{
+    font-size:8px;
+  }
+
+  .teaching-section .material-evidence-caption{
+    grid-template-columns:1fr;
+    gap:4px;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .teaching-section .material-shot-frame{transition:none!important}
 }
