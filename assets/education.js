@@ -53,6 +53,9 @@
     const hero = document.querySelector('#top');
     if (!hero) return;
 
+    const posterSrc = '/assets/course-autumn-2026.webp?v=20260906b';
+    const posterLarge = '/assets/course-autumn-2026-large.webp?v=20260906b';
+
     const section = document.createElement('section');
     section.className = 'featured-course section-shell';
     section.id = 'featured-course';
@@ -60,7 +63,11 @@
     section.innerHTML = `
       <div class="featured-course-inner">
         <figure class="featured-course-poster">
-          <img src="/assets/course-autumn-2026.jpg?v=20260906a" alt="旅人教育 2026 秋季共通考试物理秋季强化课程海报" loading="eager" decoding="async">
+          <button class="featured-course-poster-button" type="button" aria-haspopup="dialog" aria-controls="course-poster-lightbox" aria-label="查看 2026 秋季共通考试物理课程海报大图">
+            <img src="${posterSrc}" srcset="${posterSrc} 600w, ${posterLarge} 900w" sizes="(max-width:767px) min(100vw - 30px, 360px), 220px" alt="旅人教育 2026 秋季共通考试物理秋季强化课程海报" loading="eager" decoding="async">
+            <span class="featured-course-poster-zoom">查看大图</span>
+          </button>
+          <figcaption class="featured-course-poster-hint">点按海报可查看完整大图</figcaption>
         </figure>
         <div class="featured-course-copy">
           <p class="kicker">近期主推课程 · 2026 秋季</p>
@@ -83,6 +90,55 @@
         </div>
       </div>`;
     hero.insertAdjacentElement('afterend', section);
+
+    const lightbox = document.createElement('div');
+    lightbox.className = 'course-poster-lightbox';
+    lightbox.id = 'course-poster-lightbox';
+    lightbox.hidden = true;
+    lightbox.setAttribute('role', 'dialog');
+    lightbox.setAttribute('aria-modal', 'true');
+    lightbox.setAttribute('aria-labelledby', 'course-poster-lightbox-title');
+    lightbox.innerHTML = `
+      <button class="course-poster-lightbox-backdrop" type="button" aria-label="关闭海报大图"></button>
+      <div class="course-poster-lightbox-frame">
+        <div class="course-poster-lightbox-toolbar">
+          <span class="course-poster-lightbox-title" id="course-poster-lightbox-title">2026 秋季｜共通考试物理 秋季强化课程</span>
+          <button class="course-poster-lightbox-close" type="button" aria-label="关闭海报大图">×</button>
+        </div>
+        <div class="course-poster-lightbox-scroll">
+          <img src="${posterLarge}" alt="旅人教育 2026 秋季共通考试物理秋季强化课程完整海报">
+        </div>
+        <p class="course-poster-lightbox-caption">手机端可双指缩放；点击背景或右上角 × 关闭</p>
+      </div>`;
+    document.body.appendChild(lightbox);
+
+    const trigger = section.querySelector('.featured-course-poster-button');
+    const closeButton = lightbox.querySelector('.course-poster-lightbox-close');
+    const backdrop = lightbox.querySelector('.course-poster-lightbox-backdrop');
+    let previousFocus = null;
+
+    const openPoster = () => {
+      previousFocus = document.activeElement;
+      lightbox.hidden = false;
+      body.classList.add('course-poster-open');
+      requestAnimationFrame(() => closeButton?.focus({ preventScroll: true }));
+    };
+    const closePoster = () => {
+      if (lightbox.hidden) return;
+      lightbox.hidden = true;
+      body.classList.remove('course-poster-open');
+      previousFocus?.focus?.({ preventScroll: true });
+    };
+
+    trigger?.addEventListener('click', openPoster);
+    closeButton?.addEventListener('click', closePoster);
+    backdrop?.addEventListener('click', closePoster);
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && !lightbox.hidden) {
+        event.preventDefault();
+        closePoster();
+      }
+    });
 
     const mobileNav = document.querySelector('.mobile-jump-nav');
     if (mobileNav && !mobileNav.querySelector('a[href="#featured-course"]')) {
