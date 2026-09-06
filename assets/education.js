@@ -53,8 +53,12 @@
     const hero = document.querySelector('#top');
     if (!hero) return;
 
-    const posterSrc = '/assets/course-autumn-2026.webp?v=20260906b';
-    const posterLarge = '/assets/course-autumn-2026-large.webp?v=20260906b';
+    /* These two .webp paths intentionally store compact base64 text. Hydrating them
+       into data URLs lets GitHub Pages deliver a crisp poster without relying on
+       the tiny legacy thumbnail. */
+    const posterPreviewData = '/assets/course-autumn-2026.webp?v=20260906c';
+    const posterLargeData = '/assets/course-autumn-2026-large.webp?v=20260906c';
+    const posterFallback = '/assets/course-autumn-2026.jpg?v=20260906c';
 
     const section = document.createElement('section');
     section.className = 'featured-course section-shell';
@@ -64,7 +68,7 @@
       <div class="featured-course-inner">
         <figure class="featured-course-poster">
           <button class="featured-course-poster-button" type="button" aria-haspopup="dialog" aria-controls="course-poster-lightbox" aria-label="查看 2026 秋季共通考试物理课程海报大图">
-            <img src="${posterSrc}" srcset="${posterSrc} 600w, ${posterLarge} 900w" sizes="(max-width:767px) min(100vw - 30px, 360px), 220px" alt="旅人教育 2026 秋季共通考试物理秋季强化课程海报" loading="eager" decoding="async">
+            <img src="${posterFallback}" data-poster-b64="${posterPreviewData}" alt="旅人教育 2026 秋季共通考试物理秋季强化课程海报" loading="eager" decoding="async">
             <span class="featured-course-poster-zoom">查看大图</span>
           </button>
           <figcaption class="featured-course-poster-hint">点按海报可查看完整大图</figcaption>
@@ -106,11 +110,29 @@
           <button class="course-poster-lightbox-close" type="button" aria-label="关闭海报大图">×</button>
         </div>
         <div class="course-poster-lightbox-scroll">
-          <img src="${posterLarge}" alt="旅人教育 2026 秋季共通考试物理秋季强化课程完整海报">
+          <img src="${posterFallback}" data-poster-b64="${posterLargeData}" alt="旅人教育 2026 秋季共通考试物理秋季强化课程完整海报">
         </div>
         <p class="course-poster-lightbox-caption">手机端可双指缩放；点击背景或右上角 × 关闭</p>
       </div>`;
     document.body.appendChild(lightbox);
+
+    const hydratePoster = async img => {
+      if (!img || img.dataset.posterHydrated === 'true') return;
+      const source = img.dataset.posterB64;
+      if (!source) return;
+      try {
+        const response = await fetch(source, { cache: 'force-cache' });
+        if (!response.ok) return;
+        const encoded = (await response.text()).replace(/\s+/g, '');
+        if (!encoded.startsWith('UklGR') || encoded.length < 1000) return;
+        img.src = `data:image/webp;base64,${encoded}`;
+        img.dataset.posterHydrated = 'true';
+      } catch (_) {}
+    };
+
+    const previewImage = section.querySelector('.featured-course-poster img');
+    const largeImage = lightbox.querySelector('.course-poster-lightbox-scroll img');
+    hydratePoster(previewImage);
 
     const trigger = section.querySelector('.featured-course-poster-button');
     const closeButton = lightbox.querySelector('.course-poster-lightbox-close');
@@ -121,6 +143,7 @@
       previousFocus = document.activeElement;
       lightbox.hidden = false;
       body.classList.add('course-poster-open');
+      hydratePoster(largeImage);
       requestAnimationFrame(() => closeButton?.focus({ preventScroll: true }));
     };
     const closePoster = () => {
