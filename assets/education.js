@@ -48,6 +48,52 @@
   setText('.student-voices-head > p', '以下为过往教学、考前准备与录取反馈节选。姓名、头像及其他可识别个人信息均已隐去；记录仅用于展示实际指导过程与反馈。');
   setText('.contact-copy > p', '咨询共通考试 / EJU 物理、理工科校内考、理科口试或报考规划时，请附上年级、目标校、目前成绩和希望解决的问题，便于判断适合的课程与准备顺序。');
 
+  const installFeaturedCourse = () => {
+    if (document.querySelector('#featured-course')) return;
+    const hero = document.querySelector('#top');
+    if (!hero) return;
+
+    const section = document.createElement('section');
+    section.className = 'featured-course section-shell';
+    section.id = 'featured-course';
+    section.setAttribute('aria-labelledby', 'featured-course-title');
+    section.innerHTML = `
+      <div class="featured-course-inner">
+        <figure class="featured-course-poster">
+          <img src="/assets/course-autumn-2026.jpg?v=20260906a" alt="旅人教育 2026 秋季共通考试物理秋季强化课程海报" loading="eager" decoding="async">
+        </figure>
+        <div class="featured-course-copy">
+          <p class="kicker">近期主推课程 · 2026 秋季</p>
+          <h2 id="featured-course-title">共通考试物理｜秋季强化课程</h2>
+          <p class="featured-course-lede">9 月开课。Yui 老师 × Kim 老师共同授课，讲座 44h + 实战 25h；课程覆盖力学、波动、热学、电磁学・原子，并安排共通考试实战贯穿各单元。</p>
+          <div class="featured-course-metrics" aria-label="课程时数与开课时间">
+            <span><strong>44h</strong><small>讲座</small></span>
+            <span><strong>25h</strong><small>实战</small></span>
+            <span><strong>9月</strong><small>开课</small></span>
+          </div>
+          <div class="featured-course-meta">
+            <span>周四晚・周六下午</span>
+            <span>线下 + 线上同步</span>
+            <span>力学・波动・热学・电磁学・原子</span>
+          </div>
+          <div class="featured-course-actions">
+            <a class="btn btn-primary" href="#contact"><span>咨询秋季课程</span><i>↗</i></a>
+            <span class="featured-course-note">课程详情与班型可在咨询时确认。</span>
+          </div>
+        </div>
+      </div>`;
+    hero.insertAdjacentElement('afterend', section);
+
+    const mobileNav = document.querySelector('.mobile-jump-nav');
+    if (mobileNav && !mobileNav.querySelector('a[href="#featured-course"]')) {
+      const link = document.createElement('a');
+      link.href = '#featured-course';
+      link.textContent = '秋季课';
+      mobileNav.prepend(link);
+    }
+  };
+  installFeaturedCourse();
+
   const portrait = document.querySelector('.portrait-frame img');
   if (portrait) {
     portrait.loading = 'eager';
