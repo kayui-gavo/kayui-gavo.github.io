@@ -1,0 +1,151 @@
+/* 2026-09-06 lecturer-page refinement.
+   The established desktop layout is preserved. The featured course is new; the remaining changes are narrow-screen rhythm and hierarchy. */
+
+.featured-course{padding-top:12px;padding-bottom:18px}
+.featured-course-inner{
+  max-width:1180px;margin:0 auto;padding:20px 24px;
+  display:grid;grid-template-columns:132px minmax(0,1fr);gap:24px;align-items:center;
+  border-top:1px solid rgba(20,53,92,.17);border-bottom:1px solid rgba(20,53,92,.17);
+  background:linear-gradient(90deg,rgba(248,244,234,.72),rgba(255,255,255,.42));
+}
+.featured-course-poster{margin:0;position:relative}
+.featured-course-poster img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;box-shadow:0 10px 28px rgba(17,48,83,.11)}
+.featured-course-poster::after{content:"";position:absolute;inset:-7px 7px 7px -7px;border:1px solid rgba(184,143,66,.2);pointer-events:none}
+.featured-course-copy{min-width:0}
+.featured-course-copy .kicker{margin-bottom:5px;color:#9a711f;letter-spacing:.08em}
+.featured-course-copy h2{margin:0;color:#0f3765;font-family:var(--serif,serif);font-weight:500;font-size:clamp(26px,2.25vw,34px);line-height:1.17;letter-spacing:-.02em}
+.featured-course-lede{max-width:780px;margin:9px 0 0;color:#46515e;font-size:14px;line-height:1.72}
+.featured-course-metrics{display:flex;align-items:stretch;gap:0;margin-top:13px;border-top:1px solid rgba(20,53,92,.13);border-bottom:1px solid rgba(20,53,92,.13);max-width:520px}
+.featured-course-metrics span{display:grid;grid-template-columns:auto auto;align-items:baseline;column-gap:6px;min-width:0;padding:7px 18px 7px 0;margin-right:18px;border-right:1px solid rgba(20,53,92,.12)}
+.featured-course-metrics span:last-child{border-right:0;margin-right:0}
+.featured-course-metrics strong{font-family:var(--serif,serif);font-weight:500;font-size:22px;color:#0f3765;line-height:1}
+.featured-course-metrics small{font-size:11px;color:#6c6c69}
+.featured-course-meta{display:flex;flex-wrap:wrap;gap:7px 18px;margin-top:10px;font-size:12px;color:#646967}
+.featured-course-meta span{position:relative;padding-left:12px}
+.featured-course-meta span::before{content:"";position:absolute;left:0;top:.62em;width:4px;height:4px;border-radius:50%;background:#b28a34}
+.featured-course-actions{display:flex;align-items:center;gap:16px;margin-top:13px}
+.featured-course-actions .btn{min-height:39px;padding-top:8px;padding-bottom:8px}
+.featured-course-note{font-size:11.5px;color:#77746e}
+
+@media (max-width:767px){
+  :root{--mobile-pad:18px}
+  .site-header{box-shadow:0 1px 0 rgba(16,48,84,.07)}
+  .nav{min-height:52px!important;padding-top:8px!important;padding-bottom:8px!important}
+  .brand strong{font-size:17px!important}
+  .brand span{font-size:10.5px!important}
+  .mobile-jump-nav{padding-left:var(--mobile-pad)!important;padding-right:var(--mobile-pad)!important;gap:0!important;border-top:1px solid rgba(16,48,84,.055)!important}
+  .mobile-jump-nav a{padding:8px 12px!important;font-size:11px!important;letter-spacing:.015em!important}
+  .mobile-jump-nav a:first-child{padding-left:0!important;color:#9a711f!important;font-weight:650!important}
+
+  /* Teacher identity first: short, confident, and easy to scan before the course offer. */
+  .hero{padding-top:26px!important;padding-bottom:20px!important;gap:20px!important}
+  .hero-role{margin-bottom:7px!important;font-size:11px!important}
+  .hero-name{font-size:clamp(50px,15vw,64px)!important;line-height:.94!important;letter-spacing:-.05em!important}
+  .hero-focus{margin-top:10px!important;font-size:13px!important;line-height:1.55!important}
+  .hero-thesis{margin-top:17px!important;font-size:clamp(27px,8.2vw,34px)!important;line-height:1.2!important;letter-spacing:-.025em!important}
+  .hero-intro{margin-top:12px!important;font-size:13.5px!important;line-height:1.72!important;color:#555d63!important}
+  .hero-visual{margin-top:1px!important}
+  .portrait-stage{max-width:272px!important;margin-left:auto!important;margin-right:auto!important}
+  .hero-visual figcaption{margin-top:11px!important}
+  .hero-proof{gap:0!important;border-top:1px solid rgba(16,48,84,.12)!important;border-bottom:1px solid rgba(16,48,84,.12)!important}
+  .proof-item{padding:9px 10px!important}
+  .proof-item strong{font-size:27px!important;line-height:1!important}
+  .proof-item small,.proof-item span{font-size:10.5px!important}
+  .hero-caption{margin-top:8px!important;font-size:11px!important;line-height:1.58!important}
+  .hero-highlights{display:block!important;margin-top:2px!important;border-bottom:1px solid rgba(16,48,84,.12)!important}
+  .hero-highlight{display:grid!important;grid-template-columns:110px minmax(0,1fr)!important;gap:12px!important;padding:9px 0!important;border-top:1px solid rgba(16,48,84,.12)!important}
+  .hero-highlight small{font-size:10.5px!important;line-height:1.45!important;color:#7c705d!important}
+  .hero-highlight strong{font-size:12px!important;line-height:1.5!important;font-weight:600!important}
+  .hero-education{margin-top:12px!important;gap:8px!important}
+  .hero-education>div{padding:9px 0!important;border-top:1px solid rgba(16,48,84,.09)!important}
+  .hero-education strong{font-size:12.5px!important}
+  .hero-education span{margin-top:2px!important;font-size:11px!important;line-height:1.45!important}
+  .hero-actions{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important;margin-top:13px!important}
+  .hero-actions .btn{width:100%!important;justify-content:center!important;min-height:44px!important;padding:10px 12px!important}
+  .hero-actions .text-link{grid-column:1/-1!important;margin-top:2px!important;font-size:11.5px!important}
+
+  /* Immediate current-offer block. It comes before historical proof so the user's eye follows:
+     who teaches -> what is open now -> why trust the teacher -> how they teach. */
+  .featured-course{padding:2px var(--mobile-pad) 24px!important}
+  .featured-course-inner{
+    padding:15px 0 14px!important;grid-template-columns:96px minmax(0,1fr)!important;gap:15px!important;
+    align-items:start!important;background:transparent!important;border-top:1px solid rgba(16,48,84,.17)!important;border-bottom:1px solid rgba(16,48,84,.17)!important
+  }
+  .featured-course-poster{grid-row:1/4!important;margin-top:2px!important}
+  .featured-course-poster::after{inset:-5px 5px 5px -5px!important}
+  .featured-course-copy{display:contents!important}
+  .featured-course-copy .kicker{grid-column:2!important;margin:0 0 1px!important;font-size:10.5px!important;line-height:1.3!important}
+  .featured-course-copy h2{grid-column:2!important;margin:0!important;font-size:21px!important;line-height:1.2!important;letter-spacing:-.025em!important}
+  .featured-course-lede{grid-column:1/-1!important;margin:4px 0 0!important;font-size:12.3px!important;line-height:1.65!important}
+  .featured-course-metrics{grid-column:1/-1!important;max-width:none!important;margin-top:5px!important;display:grid!important;grid-template-columns:repeat(3,1fr)!important}
+  .featured-course-metrics span{display:flex!important;align-items:baseline!important;justify-content:center!important;gap:5px!important;margin:0!important;padding:8px 4px!important;border-right:1px solid rgba(16,48,84,.12)!important}
+  .featured-course-metrics span:last-child{border-right:0!important}
+  .featured-course-metrics strong{font-size:20px!important}
+  .featured-course-metrics small{font-size:10px!important}
+  .featured-course-meta{grid-column:1/-1!important;margin-top:3px!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:5px 10px!important;font-size:11px!important;line-height:1.45!important}
+  .featured-course-actions{grid-column:1/-1!important;display:grid!important;grid-template-columns:1fr!important;gap:7px!important;margin-top:5px!important}
+  .featured-course-actions .btn{width:100%!important;min-height:44px!important;justify-content:center!important}
+  .featured-course-note{font-size:10.5px!important;line-height:1.45!important}
+
+  .record-section{padding-top:27px!important}
+  .record-head{display:block!important}
+  .record-head>p{margin-top:8px!important;font-size:12.5px!important;line-height:1.65!important}
+  .school-records{margin-top:15px!important}
+  .record-stat{padding-top:11px!important;padding-bottom:11px!important}
+  .record-stat strong{font-size:12px!important}
+  .record-stat b{font-size:18px!important}
+  .eju-row{margin-top:12px!important}
+  .record-proof-strip{margin-top:12px!important}
+  .proof-quote strong{font-size:12.5px!important;line-height:1.55!important}
+
+  .editorial-head{padding-top:32px!important}
+  .editorial-head h2,.planning-head h2,.student-voices-head h2,.graduate-copy h2,.experience-head h2,.contact-copy h2{line-height:1.2!important;letter-spacing:-.02em!important}
+  .editorial-head>div>p:not(.kicker),.editorial-side,.planning-head>p,.student-voices-head>p{font-size:12.8px!important;line-height:1.7!important}
+  .principle-grid-specific{margin-top:15px!important}
+  .principle{padding-top:12px!important;padding-bottom:12px!important}
+  .principle h3{font-size:15px!important;line-height:1.35!important}
+  .principle p{font-size:12.3px!important;line-height:1.65!important}
+
+  .course-stage{margin-top:20px!important}
+  .course-tabs{gap:0!important}
+  .course-tab{min-height:66px!important;padding:10px 11px!important}
+  .course-tab strong{font-size:12.5px!important;line-height:1.35!important}
+  .course-tab small{font-size:9.8px!important}
+  .course-panel{padding:17px 14px!important}
+  .course-panel h3{font-size:17px!important;line-height:1.35!important}
+  .course-panel p,.course-list li{font-size:12.2px!important;line-height:1.65!important}
+
+  .year-courses{margin-top:24px!important;padding-top:22px!important}
+  .year-courses-title h3{font-size:21px!important;line-height:1.2!important}
+  .year-courses-intro{font-size:12.5px!important;line-height:1.65!important}
+  .year-course-grid{gap:12px!important}
+  .year-course-card{padding:15px 14px!important}
+  .year-course-card h4{font-size:17px!important;line-height:1.3!important}
+  .year-course-copy{font-size:12px!important;line-height:1.62!important}
+  .year-course-track{margin-top:10px!important}
+
+  .planning-section,.student-voices-section,.graduate-section,.experience-section,.contact-section{padding-top:38px!important;padding-bottom:38px!important}
+  .planning-card{padding-top:15px!important;padding-bottom:15px!important}
+  .planning-card h3{font-size:16px!important;line-height:1.35!important}
+  .planning-card p,.selection-list li,.clean-list li{font-size:12.2px!important;line-height:1.65!important}
+  .student-record-collage{margin-top:15px!important}
+  .graduate-copy>p,.graduate-subjects,.scope-row,.experience-summary-inline,.exp-responsibilities li,.tabito-info p,.contact-copy p{font-size:12.3px!important;line-height:1.65!important}
+  .contact-grid{gap:22px!important}
+}
+
+@media (max-width:430px){
+  :root{--mobile-pad:15px}
+  .featured-course-inner{grid-template-columns:88px minmax(0,1fr)!important;gap:13px!important}
+  .featured-course-copy h2{font-size:19.5px!important}
+  .featured-course-meta{grid-template-columns:1fr!important}
+  .hero-highlight{grid-template-columns:96px minmax(0,1fr)!important;gap:9px!important}
+  .mobile-jump-nav a{padding-left:10px!important;padding-right:10px!important}
+}
+
+@media (max-width:360px){
+  :root{--mobile-pad:13px}
+  .featured-course-inner{grid-template-columns:78px minmax(0,1fr)!important;gap:11px!important}
+  .featured-course-copy h2{font-size:18px!important}
+  .hero-actions{grid-template-columns:1fr!important}
+  .hero-actions .text-link{grid-column:1!important}
+}
