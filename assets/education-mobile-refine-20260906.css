@@ -26,6 +26,133 @@
   border-top:1px solid var(--lecturer-rule);
   border-bottom:1px solid var(--lecturer-rule);
 }
+
+.featured-course-poster{
+  width:100%;
+  max-width:220px;
+  margin:0;
+  justify-self:center;
+}
+.featured-course-poster-button{
+  position:relative;
+  display:block;
+  width:100%;
+  margin:0;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:inherit;
+  cursor:zoom-in;
+}
+.featured-course-poster-button img{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:3/4;
+  object-fit:cover;
+  background:#f2efe7;
+  box-shadow:0 12px 28px rgba(19,43,70,.10);
+}
+.featured-course-poster-zoom{
+  position:absolute;
+  right:8px;
+  bottom:8px;
+  display:inline-flex;
+  align-items:center;
+  padding:6px 9px;
+  border-radius:999px;
+  background:rgba(18,54,95,.92);
+  color:#fff;
+  font-size:10px;
+  line-height:1;
+  letter-spacing:.02em;
+}
+.featured-course-poster-hint{
+  margin:8px 0 0;
+  color:#77736d;
+  font-size:10.5px;
+  line-height:1.4;
+  text-align:center;
+}
+
+.course-poster-lightbox[hidden]{display:none!important}
+.course-poster-lightbox{
+  position:fixed;
+  inset:0;
+  z-index:1250;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding:24px;
+  background:rgba(8,16,27,.88);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+.course-poster-lightbox-backdrop{
+  position:absolute;
+  inset:0;
+  border:0;
+  background:transparent;
+  cursor:zoom-out;
+}
+.course-poster-lightbox-frame{
+  position:relative;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  width:min(760px,100%);
+  height:min(940px,calc(100svh - 48px));
+  pointer-events:none;
+}
+.course-poster-lightbox-toolbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  min-height:44px;
+  margin-bottom:8px;
+  color:#fff;
+  pointer-events:auto;
+}
+.course-poster-lightbox-toolbar>span{
+  font-size:11px;
+  line-height:1.4;
+  opacity:.82;
+}
+.course-poster-lightbox-close{
+  display:grid;
+  place-items:center;
+  flex:none;
+  width:42px;
+  height:42px;
+  padding:0;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:50%;
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  font-size:23px;
+  cursor:pointer;
+}
+.course-poster-lightbox-scroll{
+  min-height:0;
+  overflow:auto;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding-bottom:8px;
+  pointer-events:auto;
+  -webkit-overflow-scrolling:touch;
+  touch-action:pan-x pan-y pinch-zoom;
+}
+.course-poster-lightbox-scroll img{
+  display:block;
+  width:min(620px,94vw);
+  height:auto;
+  max-width:none;
+  background:#fff;
+  box-shadow:0 24px 70px rgba(0,0,0,.32);
+}
+body.course-poster-open{overflow:hidden!important}
 .featured-course-cover{
   position:relative;
   display:flex;
@@ -663,48 +790,28 @@
     border-top:1px solid rgba(17,47,81,.15)!important;
     border-bottom:1px solid rgba(17,47,81,.15)!important;
   }
-  .featured-course-cover{
+  .featured-course-poster{
     grid-row:1 / span 2!important;
     width:112px!important;
+    max-width:112px!important;
+    margin:0!important;
+    align-self:start!important;
+  }
+  .featured-course-poster-button img{
+    width:112px!important;
     aspect-ratio:3/4!important;
-    padding:11px 10px 9px!important;
-    box-shadow:0 7px 18px rgba(19,43,70,.08)!important;
+    object-fit:cover!important;
+    box-shadow:0 7px 18px rgba(19,43,70,.09)!important;
   }
-  .featured-course-cover::before{
-    width:92px!important;
-    height:92px!important;
-    right:-43px!important;
-    bottom:27px!important;
-  }
-  .featured-course-cover::after{
-    left:10px!important;
-    right:10px!important;
-    bottom:34px!important;
-  }
-  .featured-course-cover-top{font-size:7px!important}
-  .featured-course-brand{
-    width:51px!important;
-    margin:8px 0 15px!important;
-  }
-  .featured-course-cover-subject{
-    margin-bottom:2px!important;
+  .featured-course-poster-zoom{
+    right:6px!important;
+    bottom:6px!important;
+    padding:5px 7px!important;
     font-size:8.5px!important;
   }
-  .featured-course-cover strong{
-    max-width:86px!important;
-    font-size:15.5px!important;
-    line-height:1.18!important;
-  }
-  .featured-course-cover-rule{
-    width:22px!important;
-    margin:8px 0 7px!important;
-  }
-  .featured-course-cover-hours{font-size:7.8px!important}
-  .featured-course-cover-open{
-    left:10px!important;
-    bottom:8px!important;
-    gap:4px!important;
-    font-size:7.5px!important;
+  .featured-course-poster-hint{
+    margin-top:6px!important;
+    font-size:8.8px!important;
   }
   .featured-course-copy{
     display:contents!important;
@@ -781,6 +888,29 @@
     padding:9px 9px!important;
     justify-content:center!important;
     font-size:10.8px!important;
+  }
+
+  .course-poster-lightbox{
+    padding:8px!important;
+    align-items:stretch!important;
+  }
+  .course-poster-lightbox-frame{
+    width:100%!important;
+    height:100%!important;
+  }
+  .course-poster-lightbox-toolbar{
+    margin:0 0 6px!important;
+    padding-left:4px!important;
+  }
+  .course-poster-lightbox-toolbar>span{
+    max-width:calc(100% - 56px)!important;
+    font-size:10px!important;
+  }
+  .course-poster-lightbox-scroll{
+    align-items:flex-start!important;
+  }
+  .course-poster-lightbox-scroll img{
+    width:min(520px,96vw)!important;
   }
 
   /* Course dialog: true text, no raster zoom. */
@@ -1313,7 +1443,8 @@
   .hero-actions{grid-template-columns:1fr!important}
   .hero-actions .text-link{grid-column:1!important}
   .featured-course-inner{grid-template-columns:100px minmax(0,1fr)!important;gap:11px!important}
-  .featured-course-cover{width:100px!important}
+  .featured-course-poster{width:100px!important;max-width:100px!important}
+  .featured-course-poster-button img{width:100px!important}
   .featured-course-copy h2{font-size:18.3px!important}
   .featured-course-actions{grid-template-columns:1fr!important}
   .school-records{grid-template-columns:1fr!important}
@@ -1330,7 +1461,7 @@
 
 @media (prefers-reduced-motion:reduce){
   .mobile-consult-bar,
-  .featured-course-cover{
+  .featured-course-poster-button{
     transition:none!important;
   }
 }
