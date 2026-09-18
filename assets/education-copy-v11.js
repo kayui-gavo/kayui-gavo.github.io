@@ -1,4 +1,4 @@
-import('./education-copy-v10.js?v=20260814aa').then(() => {
+import('./education-copy-v10.js?v=20260919e').then(() => {
   /* One final stylesheet, loaded last. */
   if (!document.querySelector('link[data-education-final="v20"]')) {
     const css = document.createElement('link');
