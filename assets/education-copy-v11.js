@@ -1,13 +1,3 @@
-import('./education-winter-catalog-v1.js?v=20260828d');
-
-if (!document.querySelector('link[data-education-winter-readability="v1"]')) {
-  const css = document.createElement('link');
-  css.rel = 'stylesheet';
-  css.href = '/assets/education-winter-catalog-readability.css?v=20260828e';
-  css.dataset.educationWinterReadability = 'v1';
-  document.head.appendChild(css);
-}
-
 import('./education-copy-v10.js?v=20260814aa').then(() => {
   /* One final stylesheet, loaded last. */
   if (!document.querySelector('link[data-education-final="v20"]')) {
@@ -87,7 +77,7 @@ import('./education-copy-v10.js?v=20260814aa').then(() => {
     feedback.style.setProperty('visibility','visible','important');
     feedback.style.setProperty('opacity','1','important');
     feedback.style.setProperty('width','100%','important');
-    feedback.style.setProperty('height','490px','important');
+    feedback.style.setProperty('height','auto','important');
     feedback.style.setProperty('object-fit','contain','important');
     feedback.style.setProperty('object-position','center top','important');
     let fallback = false;
