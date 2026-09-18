@@ -1,4 +1,4 @@
-await import('./education-copy-v9.js?v=20260814x');
+await import('./education-copy-v9.js?v=20260919e');
 
 /* Rebuild the experience timeline only after v9 has fully finished. */
 const list = document.querySelector('.experience-list');
