@@ -11,6 +11,22 @@
   --lecturer-paper:#fbfaf7;
 }
 
+/* Profile heading: factual descriptor, intentionally quieter than the name. */
+.hero-thesis{
+  max-width:720px;
+  margin-top:22px!important;
+  color:#29445f!important;
+  font-family:inherit!important;
+  font-size:clamp(20px,1.8vw,26px)!important;
+  line-height:1.35!important;
+  font-weight:620!important;
+  letter-spacing:.01em!important;
+}
+.hero-thesis em{
+  font-style:normal!important;
+  color:inherit!important;
+}
+
 /* ---------- Current course ---------- */
 .featured-course{
   padding:18px 0 28px;
@@ -669,11 +685,12 @@ body.course-poster-open{overflow:hidden!important}
   }
   .hero-focus strong{font-size:15px!important}
   .hero-thesis{
-    max-width:330px!important;
-    margin-top:15px!important;
-    font-size:clamp(25px,7.4vw,31px)!important;
-    line-height:1.19!important;
-    letter-spacing:-.026em!important;
+    max-width:none!important;
+    margin-top:13px!important;
+    font-size:20px!important;
+    line-height:1.35!important;
+    font-weight:620!important;
+    letter-spacing:.005em!important;
   }
   .hero-intro{
     max-width:620px!important;
@@ -1438,7 +1455,7 @@ body.course-poster-open{overflow:hidden!important}
 @media (max-width:390px){
   :root{--lecturer-mobile-gutter:13px}
   .hero-name{font-size:45px!important}
-  .hero-thesis{font-size:24px!important}
+  .hero-thesis{font-size:19px!important}
   .hero-education{grid-template-columns:1fr!important}
   .hero-actions{grid-template-columns:1fr!important}
   .hero-actions .text-link{grid-column:1!important}
