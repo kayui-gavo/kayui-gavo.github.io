@@ -59,15 +59,13 @@
     section.setAttribute('aria-labelledby', 'featured-course-title');
     section.innerHTML = `
       <div class="featured-course-inner">
-        <button class="featured-course-cover" type="button" aria-haspopup="dialog" aria-controls="course-detail-dialog" aria-label="查看 2026 秋季共通考试物理课程完整信息">
-          <span class="featured-course-cover-top">2026 AUTUMN</span>
-          <img class="featured-course-brand" src="/assets/tabito-brand-lockup.svg" alt="" aria-hidden="true">
-          <span class="featured-course-cover-subject">共通考试物理</span>
-          <strong>秋季强化课程</strong>
-          <span class="featured-course-cover-rule" aria-hidden="true"></span>
-          <span class="featured-course-cover-hours">44h 讲座 · 25h 实战</span>
-          <span class="featured-course-cover-open">完整课程信息 <i>↗</i></span>
-        </button>
+        <figure class="featured-course-poster">
+          <button class="featured-course-poster-button" type="button" aria-haspopup="dialog" aria-controls="course-poster-lightbox" aria-label="查看 2026 秋季共通考试物理课程海报">
+            <img src="/assets/course-autumn-2026.jpg?v=20260919d" alt="旅人教育 2026 秋季共通考试物理秋季强化课程海报" loading="eager" decoding="async">
+            <span class="featured-course-poster-zoom">查看海报</span>
+          </button>
+          <figcaption class="featured-course-poster-hint">课程海报 · 点击查看</figcaption>
+        </figure>
 
         <div class="featured-course-copy">
           <p class="kicker">近期主推课程 · 2026 秋季</p>
@@ -93,6 +91,26 @@
         </div>
       </div>`;
     hero.insertAdjacentElement('afterend', section);
+
+    const posterLightbox = document.createElement('div');
+    posterLightbox.className = 'course-poster-lightbox';
+    posterLightbox.id = 'course-poster-lightbox';
+    posterLightbox.hidden = true;
+    posterLightbox.setAttribute('role', 'dialog');
+    posterLightbox.setAttribute('aria-modal', 'true');
+    posterLightbox.setAttribute('aria-labelledby', 'course-poster-lightbox-title');
+    posterLightbox.innerHTML = `
+      <button class="course-poster-lightbox-backdrop" type="button" aria-label="关闭课程海报"></button>
+      <div class="course-poster-lightbox-frame">
+        <div class="course-poster-lightbox-toolbar">
+          <span id="course-poster-lightbox-title">2026 秋季｜共通考试物理 秋季强化课程</span>
+          <button class="course-poster-lightbox-close" type="button" aria-label="关闭课程海报">×</button>
+        </div>
+        <div class="course-poster-lightbox-scroll">
+          <img src="/assets/course-autumn-2026.jpg?v=20260919d" alt="旅人教育 2026 秋季共通考试物理秋季强化课程海报">
+        </div>
+      </div>`;
+    document.body.appendChild(posterLightbox);
 
     const dialog = document.createElement('div');
     dialog.className = 'course-detail-dialog';
@@ -155,7 +173,6 @@
     document.body.appendChild(dialog);
 
     const triggers = [
-      section.querySelector('.featured-course-cover'),
       section.querySelector('.featured-course-detail-trigger')
     ].filter(Boolean);
     const closeButton = dialog.querySelector('.course-detail-close');
@@ -176,12 +193,38 @@
       previousFocus?.focus?.({ preventScroll: true });
     };
 
+    const posterTrigger = section.querySelector('.featured-course-poster-button');
+    const posterClose = posterLightbox.querySelector('.course-poster-lightbox-close');
+    const posterBackdrop = posterLightbox.querySelector('.course-poster-lightbox-backdrop');
+    let posterPreviousFocus = null;
+    const openPoster = () => {
+      posterPreviousFocus = document.activeElement;
+      posterLightbox.hidden = false;
+      body.classList.add('course-poster-open');
+      requestAnimationFrame(() => posterClose?.focus({ preventScroll: true }));
+    };
+    const closePoster = () => {
+      if (posterLightbox.hidden) return;
+      posterLightbox.hidden = true;
+      body.classList.remove('course-poster-open');
+      posterPreviousFocus?.focus?.({ preventScroll: true });
+    };
+    posterTrigger?.addEventListener('click', openPoster);
+    posterClose?.addEventListener('click', closePoster);
+    posterBackdrop?.addEventListener('click', closePoster);
+
     triggers.forEach(node => node.addEventListener('click', openDialog));
     closeButton?.addEventListener('click', closeDialog);
     backdrop?.addEventListener('click', closeDialog);
     contactLink?.addEventListener('click', closeDialog);
     document.addEventListener('keydown', event => {
-      if (event.key === 'Escape' && !dialog.hidden) {
+      if (event.key !== 'Escape') return;
+      if (!posterLightbox.hidden) {
+        event.preventDefault();
+        closePoster();
+        return;
+      }
+      if (!dialog.hidden) {
         event.preventDefault();
         closeDialog();
       }
