@@ -1119,6 +1119,7 @@
     scrollbar-width:none;
   }
   .student-media-grid::-webkit-scrollbar{display:none}
+  .student-slider-toolbar{display:none!important}
   .student-media-grid .student-shot{
     flex:0 0 min(78vw,320px)!important;
     scroll-snap-align:start;
