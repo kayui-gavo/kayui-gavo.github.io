@@ -5,19 +5,19 @@
   };
 
   /* Hero / results */
-  setText('.hero-intro', '共通考试与 EJU 阶段，重点打牢基本规律、实验图表和典型题型；进入理工科校内考后，再根据目标院校真题补充近似处理、微积分、数列与三角变换等方法，训练从题干中提取条件、组织推导并规范作答。');
+  setText('.hero-intro', '主要负责共通考试 / EJU 物理、理工科校内考和理科口试。共通考试 / EJU 课程包括基本规律、实验图表、典型题型和综合题；校内考根据目标院校真题补充近似、微积分、数列、三角变换等常用方法，并训练长题干、推导和书面作答。');
   setText('.record-proof-strip .proof-quote strong', '每年根据目标院校真题，调整课程重点、练习顺序和书面作答训练。');
 
   /* Teaching copy: describe the actual class style, not abstract slogans. */
-  setText('.editorial-head h2', '从现象理解公式，把同类题型练透。');
-  setText('.editorial-head > div > p:last-child', '基础阶段会结合现象、图像和实验说明公式的含义与使用条件，再通过典型题掌握常见用法。同一知识点的典型题和变式会集中安排，让学生在对比中看清条件变化会怎样影响解法；进入校内考后，再根据目标院校真题补充必要的数学方法。');
-  setText('.editorial-side', '理工科校内考的长题干和综合题，还需要专门训练读题、近似处理、推导步骤和书面表达，把会做的题完整、清楚地写在答卷上。');
+  setText('.editorial-head h2', '物理课程与训练内容');
+  setText('.editorial-head > div > p:last-child', '共通考试 / EJU 课程以高中物理范围为主，包含基本定律、典型题型、实验与图表题、单位和数量级。理工科校内考根据目标院校真题增加近似处理、微积分、数列、三角变换等内容，并安排长题干、推导和记述训练。');
+  setText('.editorial-side', '公式会结合现象、图像和实验说明适用条件；同一知识点的典型题与变式集中安排，便于比较题设变化对应的处理方法。');
 
   const principles = document.querySelectorAll('.principle-grid-specific .principle');
   const principleCopy = [
-    ['公式结合现象与图像讲解', '先结合现象、图像和实验说明公式的含义与使用条件，再进入例题和练习。'],
-    ['同一知识点集中练变式', '把常见题型和变式放在一起练，比较条件变化对解法的影响，形成稳定的解题思路。'],
-    ['结合目标院校真题训练', '根据历年真题训练读题、近似处理、推导过程和书面作答，并补充必要的数学方法。']
+    ['公式与适用条件', '结合现象、图像和实验说明公式的含义、来源和适用条件。'],
+    ['典型题与变式', '同一知识点的典型题和变式集中练习，比较题设变化对应的处理方法。'],
+    ['推导与书面作答', '根据目标院校历年真题训练条件提取、近似处理、推导步骤和书面作答。']
   ];
   principles.forEach((item, i) => {
     if (!principleCopy[i]) return;
@@ -28,15 +28,15 @@
   });
 
   const tabs = document.querySelectorAll('.course-tab');
-  if (tabs[0]?.querySelector('strong')) tabs[0].querySelector('strong').textContent = '基础与实验题训练';
-  if (tabs[1]?.querySelector('strong')) tabs[1].querySelector('strong').textContent = '推导与书面作答';
+  if (tabs[0]?.querySelector('strong')) tabs[0].querySelector('strong').textContent = '基础・实验・综合';
+  if (tabs[1]?.querySelector('strong')) tabs[1].querySelector('strong').textContent = '数学方法・推导・记述';
 
   const commonPanel = document.querySelector('[data-course-panel="common"]');
   if (commonPanel) {
     const h3 = commonPanel.querySelector('h3');
     const p = commonPanel.querySelector(':scope > p');
-    if (h3) h3.textContent = '打牢基础，重点训练实验与图表题。';
-    if (p) p.textContent = '共通考试与 EJU 课程以稳定得分为目标，系统梳理基本定律和典型题型，并重点训练实验与图表题、单位与数量级，以及常见变式和综合题。';
+    if (h3) h3.textContent = '共通考试 / EJU 物理';
+    if (p) p.textContent = '课程系统整理基本定律与典型题型，并训练实验、图表、单位、数量级、文字条件和常见综合题。';
     const items = commonPanel.querySelectorAll('.course-list li');
     const copy = ['基本定律与典型题型','实验与图表题','单位与数量级','常见变式与综合题'];
     items.forEach((item, i) => { if (copy[i]) item.textContent = copy[i]; });
@@ -46,20 +46,20 @@
   if (schoolPanel) {
     const h3 = schoolPanel.querySelector('h3');
     const p = schoolPanel.querySelector(':scope > p');
-    if (h3) h3.textContent = '结合目标院校真题，训练推导与书面作答。';
-    if (p) p.textContent = '以高中物理为起点，根据目标院校历年真题补充近似处理、微积分、数列、三角变换等常用方法，并训练长题干的读题、推导过程和规范书写。';
+    if (h3) h3.textContent = '理工科校内考物理';
+    if (p) p.textContent = '根据目标院校历年真题补充近似处理、微积分、数列、三角变换等常用方法，并训练长题干、推导过程和规范书写。';
   }
   setText('.material-feature > p', '按校内考常见的数学方法、近似方法和综合题型编排专题，配合典型例题与变式练习，方便课堂讲解后继续巩固。');
   const materialIndex = document.querySelectorAll('.material-index span');
   if (materialIndex[2]) materialIndex[2].textContent = '校内考常用数学方法';
 
   /* Admissions planning */
-  setText('.planning-head h2', '结合学生情况与院校选拔方式，制定针对性的升学方案。');
-  setText('.planning-head > p', '综合学生当前成绩、目标专业、可用考试成绩和备考时间，逐校比较材料审查、校内考、面试或口试，以及 EJU、共通考试和英语成绩的计分方式，确定更合适的报考组合与备考重点。');
-  setText('.planning-strategy h3', '院校选拔方式与报考方案');
-  setText('.planning-punch', '结合目标专业和学生优势，确定更合适的院校、选拔方式与备考顺序。');
-  setText('.planning-interview h3', '志望理由、面试与口试准备');
-  setText('.planning-interview > p', '从目标学部、学科的课程设置、研究室和教授信息入手，结合学生经历整理志望理由，再据此准备面试与专业问答，使书面材料与现场回答保持一致。');
+  setText('.planning-head h2', '本科报考与选拔方式');
+  setText('.planning-head > p', '根据当前成绩、目标专业、可用考试成绩和备考时间，逐校整理材料审查、校内考、面试 / 口试，以及 EJU、共通考试和英语成绩的要求与计分方式。');
+  setText('.planning-strategy h3', '院校选拔方式与配点');
+  setText('.planning-punch', '报考方案根据目标专业、现有成绩、考试日程和各项成绩的计分方式确定。');
+  setText('.planning-interview h3', '志望理由・面试・理科口试');
+  setText('.planning-interview > p', '根据目标学部、学科、课程、研究室与教授信息整理志望理由，并结合本人经历准备面试追问和专业口试。书面材料与现场回答保持事实和志望方向一致。');
 
   const selectionItems = document.querySelectorAll('.planning-strategy .selection-list li');
   const selectionCopy = [
