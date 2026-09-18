@@ -21,17 +21,17 @@
 
   /* Copy pass: keep the page concise, concrete and natural in Chinese. */
   const heroThesis = document.querySelector('.hero-thesis');
-  if (heroThesis) heroThesis.textContent = '从数学表达回到物理现象，从基本模型走向复杂问题。';
-  setText('.hero-intro', '共通考试与 EJU 阶段，先把基本规律、实验图表和典型模型练到稳定；进入理工科校内考后，再训练条件提取、近似、推导与记述。');
-  setText('.editorial-head h2', '理解原理，识别模型，独立推导。');
-  setText('.editorial-head > div > p:last-child', '基础阶段先讲清公式的物理意义、成立条件和典型模型；进入校内考后，再把不同章节里反复出现的结构串起来。弹簧、单摆、浮体与 LC 回路都可以归入简谐运动；驻波可以借助三角变换重新推导；重复过程常会落到数列与递推。');
-  setText('.editorial-side', '难题考验的是条件提取、近似判断和推导组织。读懂题目后，还要明确研究对象与约束，选定定律，把中间步骤完整写出来。');
+  if (heroThesis) heroThesis.textContent = '物理课程・本科入试指导';
+  setText('.hero-intro', '主要负责共通考试 / EJU 物理、理工科校内考和理科口试。共通考试 / EJU 课程包括基本规律、实验图表、典型题型和综合题；校内考根据目标院校真题补充近似、微积分、数列、三角变换等常用方法，并训练长题干、推导和书面作答。');
+  setText('.editorial-head h2', '物理课程与训练内容');
+  setText('.editorial-head > div > p:last-child', '共通考试 / EJU 课程以高中物理范围为主，包含基本定律、典型题型、实验与图表题、单位和数量级。理工科校内考根据目标院校真题增加近似处理、微积分、数列、三角变换等内容，并安排长题干、推导和记述训练。');
+  setText('.editorial-side', '公式会结合现象、图像和实验说明适用条件；同一知识点的典型题与变式集中安排，便于比较题设变化对应的处理方法。');
 
   const principles = document.querySelectorAll('.principle-grid-specific .principle');
   const principleCopy = [
-    ['公式要有来路', '理解公式从哪里来、为什么成立，也要知道它在什么条件下才能使用。'],
-    ['模型要能迁移', '看见不同章节、不同题面背后的共同结构，陌生题也能拆回熟悉的模型。'],
-    ['推导要写得完整', '明确研究对象与约束，建立方程、处理近似，把每一步推理清楚地写出来。']
+    ['公式与适用条件', '结合现象、图像和实验说明公式的含义、来源和适用条件。'],
+    ['典型题与变式', '同一知识点的典型题和变式集中练习，比较题设变化对应的处理方法。'],
+    ['推导与书面作答', '根据目标院校历年真题训练条件提取、近似处理、推导步骤和书面作答。']
   ];
   principles.forEach((item, i) => {
     if (!principleCopy[i]) return;
@@ -41,12 +41,31 @@
     if (p) p.textContent = principleCopy[i][1];
   });
 
-  setText('.planning-head h2', '先看清怎么选拔，再决定怎么准备。');
-  setText('.planning-head > p', '同一份 EJU、共通考试或英语成绩，在不同大学、不同选拔方式里的价值并不相同。先拆清哪些环节真正计分，再决定时间与精力放在哪里。');
-  setText('.planning-punch', '把最有把握的部分，放到真正决定结果的评分环节上。');
+  setText('.planning-head h2', '本科报考与选拔方式');
+  setText('.planning-head > p', '根据当前成绩、目标专业、可用考试成绩和备考时间，逐校整理材料审查、校内考、面试 / 口试，以及 EJU、共通考试和英语成绩的要求与计分方式。');
+  setText('.planning-punch', '报考方案根据目标专业、现有成绩、考试日程和各项成绩的计分方式确定。');
   setText('.student-voices-head h2', '实际教学与录取反馈');
   setText('.student-voices-head > p', '以下为过往教学、考前准备与录取反馈节选。姓名、头像及其他可识别个人信息均已隐去；记录仅用于展示实际指导过程与反馈。');
   setText('.contact-copy > p', '咨询共通考试 / EJU 物理、理工科校内考、理科口试或报考规划时，请附上年级、目标校、目前成绩和希望解决的问题，便于判断适合的课程与准备顺序。');
+  setText('.planning-strategy h3', '院校选拔方式与配点');
+  setText('.planning-interview h3', '志望理由・面试・理科口试');
+  setText('.planning-interview > p', '根据目标学部、学科、课程、研究室与教授信息整理志望理由，并结合本人经历准备面试追问和专业口试。书面材料与现场回答保持事实和志望方向一致。');
+
+  const courseTabs = document.querySelectorAll('.course-tab');
+  if (courseTabs[0]?.querySelector('strong')) courseTabs[0].querySelector('strong').textContent = '基础・实验・综合';
+  if (courseTabs[1]?.querySelector('strong')) courseTabs[1].querySelector('strong').textContent = '数学方法・推导・记述';
+
+  const commonPanel = document.querySelector('[data-course-panel="common"]');
+  if (commonPanel) {
+    setText('[data-course-panel="common"] h3', '共通考试 / EJU 物理');
+    setText('[data-course-panel="common"] > p', '课程系统整理基本定律与典型题型，并训练实验、图表、单位、数量级、文字条件和常见综合题。');
+  }
+  const schoolPanel = document.querySelector('[data-course-panel="school"]');
+  if (schoolPanel) {
+    setText('[data-course-panel="school"] h3', '理工科校内考物理');
+    setText('[data-course-panel="school"] > p', '根据目标院校历年真题补充近似处理、微积分、数列、三角变换等常用方法，并训练长题干、推导过程和规范书写。');
+  }
+
 
   const installFeaturedCourse = () => {
     if (document.querySelector('#featured-course')) return;
@@ -68,9 +87,9 @@
         </figure>
 
         <div class="featured-course-copy">
-          <p class="kicker">近期主推课程 · 2026 秋季</p>
+          <p class="kicker">2026 秋季课程</p>
           <h2 id="featured-course-title">共通考试物理｜秋季强化课程</h2>
-          <p class="featured-course-lede">9 月开课。Yui 老师 × Kim 老师共同授课，围绕力学、波动、热学、电磁学・原子推进，并把实验、资料题与共通考试实战穿插到各单元。</p>
+          <p class="featured-course-lede">9 月开课，Yui 老师与 Kim 老师共同授课。讲座 44h、实战 25h，覆盖力学、波动、热学、电磁学・原子，并包含实验、资料题、专题训练和共通考试实战。</p>
 
           <div class="featured-course-metrics" aria-label="课程时数与开课时间">
             <span><strong>44h</strong><small>讲座</small></span>
@@ -144,7 +163,7 @@
 
             <section class="course-detail-section">
               <p class="course-detail-label">COURSE</p>
-              <h3>从主干知识到实验与整卷实战</h3>
+              <h3>课程内容</h3>
               <p>课程覆盖力学、波动、热学、电磁学・原子。讲座负责把基本规律、典型模型和易混概念重新梳理清楚；实战部分集中处理实验、图表、资料题、专题训练与共通考试形式的综合设问。</p>
             </section>
 
@@ -327,7 +346,7 @@
 
   const experienceHeadCopy = document.querySelector('.experience-head > p');
   if (experienceHeadCopy) {
-    experienceHeadCopy.textContent = '从 EJU 大班、一对一到热门大学校内考，也承担过京都大学的教学支持。现于旅人教育负责本科入试物理，并参与课程设计与教材开发。';
+    experienceHeadCopy.textContent = '现于旅人教育负责本科入试物理、报考指导、课程设计与教材开发。此前在行知学园负责 EJU 物理大班、一对一和热门大学校内考，也曾在京都大学工学部承担教学支持工作。';
   }
   const experienceList = document.querySelector('.experience-list');
   if (experienceList) {
