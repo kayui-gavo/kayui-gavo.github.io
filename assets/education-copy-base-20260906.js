@@ -30,7 +30,7 @@
         const person = data?.mainEntity;
         if (data?.['@type'] !== 'ProfilePage' || person?.['@type'] !== 'Person') return;
 
-        data.dateModified = '2026-08-28';
+        data.dateModified = '2026-09-19';
         person.alternateName = ['刘可惟', '劉可惟', '劉 可惟', 'Kewei Liu', 'LIU KEWEI', 'リュウ カユイ'];
         person.gender = 'Female';
         person.pronouns = 'she/her';
