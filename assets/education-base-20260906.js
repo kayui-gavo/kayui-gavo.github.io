@@ -22,7 +22,7 @@
   /* Copy pass: keep the page concise, concrete and natural in Chinese. */
   const heroThesis = document.querySelector('.hero-thesis');
   if (heroThesis) heroThesis.textContent = '从数学表达回到物理现象，从基本模型走向复杂问题。';
-  setText('.hero-intro', '共通考试与 EJU 阶段，把基本规律、实验图表和典型模型练到稳定；进入理工科校内考后，再补充近似、微积分、数列与三角变换等工具。面对陌生设问时，要能从条件中识别模型，完成推导与记述。');
+  setText('.hero-intro', '共通考试与 EJU 阶段，先把基本规律、实验图表和典型模型练到稳定；进入理工科校内考后，再训练条件提取、近似、推导与记述。');
   setText('.editorial-head h2', '理解原理，识别模型，独立推导。');
   setText('.editorial-head > div > p:last-child', '基础阶段先讲清公式的物理意义、成立条件和典型模型；进入校内考后，再把不同章节里反复出现的结构串起来。弹簧、单摆、浮体与 LC 回路都可以归入简谐运动；驻波可以借助三角变换重新推导；重复过程常会落到数列与递推。');
   setText('.editorial-side', '难题考验的是条件提取、近似判断和推导组织。读懂题目后，还要明确研究对象与约束，选定定律，把中间步骤完整写出来。');
@@ -53,113 +53,137 @@
     const hero = document.querySelector('#top');
     if (!hero) return;
 
-    /* These two .webp paths intentionally store compact base64 text. Hydrating them
-       into data URLs lets GitHub Pages deliver a crisp poster without relying on
-       the tiny legacy thumbnail. */
-    const posterPreviewData = '/assets/course-autumn-2026.webp?v=20260906c';
-    const posterLargeData = '/assets/course-autumn-2026-large.webp?v=20260906c';
-    const posterFallback = '/assets/course-autumn-2026.jpg?v=20260906c';
-
     const section = document.createElement('section');
     section.className = 'featured-course section-shell';
     section.id = 'featured-course';
     section.setAttribute('aria-labelledby', 'featured-course-title');
     section.innerHTML = `
       <div class="featured-course-inner">
-        <figure class="featured-course-poster">
-          <button class="featured-course-poster-button" type="button" aria-haspopup="dialog" aria-controls="course-poster-lightbox" aria-label="查看 2026 秋季共通考试物理课程海报大图">
-            <img src="${posterFallback}" data-poster-b64="${posterPreviewData}" alt="旅人教育 2026 秋季共通考试物理秋季强化课程海报" loading="eager" decoding="async">
-            <span class="featured-course-poster-zoom">查看大图</span>
-          </button>
-          <figcaption class="featured-course-poster-hint">点按海报可查看完整大图</figcaption>
-        </figure>
+        <button class="featured-course-cover" type="button" aria-haspopup="dialog" aria-controls="course-detail-dialog" aria-label="查看 2026 秋季共通考试物理课程完整信息">
+          <span class="featured-course-cover-top">2026 AUTUMN</span>
+          <img class="featured-course-brand" src="/assets/tabito-brand-lockup.svg" alt="" aria-hidden="true">
+          <span class="featured-course-cover-subject">共通考试物理</span>
+          <strong>秋季强化课程</strong>
+          <span class="featured-course-cover-rule" aria-hidden="true"></span>
+          <span class="featured-course-cover-hours">44h 讲座 · 25h 实战</span>
+          <span class="featured-course-cover-open">完整课程信息 <i>↗</i></span>
+        </button>
+
         <div class="featured-course-copy">
           <p class="kicker">近期主推课程 · 2026 秋季</p>
           <h2 id="featured-course-title">共通考试物理｜秋季强化课程</h2>
-          <p class="featured-course-lede">9 月开课。Yui 老师 × Kim 老师共同授课，讲座 44h + 实战 25h；课程覆盖力学、波动、热学、电磁学・原子，并安排共通考试实战贯穿各单元。</p>
+          <p class="featured-course-lede">9 月开课。Yui 老师 × Kim 老师共同授课，围绕力学、波动、热学、电磁学・原子推进，并把实验、资料题与共通考试实战穿插到各单元。</p>
+
           <div class="featured-course-metrics" aria-label="课程时数与开课时间">
             <span><strong>44h</strong><small>讲座</small></span>
             <span><strong>25h</strong><small>实战</small></span>
             <span><strong>9月</strong><small>开课</small></span>
           </div>
-          <div class="featured-course-meta">
-            <span>周四晚・周六下午</span>
-            <span>线下 + 线上同步</span>
-            <span>力学・波动・热学・电磁学・原子</span>
+
+          <div class="featured-course-facts">
+            <div><small>授课安排</small><strong>周四晚 · 周六下午</strong></div>
+            <div><small>授课形式</small><strong>线下 + 线上同步</strong></div>
+            <div><small>课程重点</small><strong>实验 · 资料题 · 专题训练 · 实战</strong></div>
           </div>
+
           <div class="featured-course-actions">
             <a class="btn btn-primary" href="#contact"><span>咨询秋季课程</span><i>↗</i></a>
-            <span class="featured-course-note">课程详情与班型可在咨询时确认。</span>
+            <button class="btn btn-ghost featured-course-detail-trigger" type="button"><span>查看完整课程信息</span><i>＋</i></button>
           </div>
         </div>
       </div>`;
     hero.insertAdjacentElement('afterend', section);
 
-    const lightbox = document.createElement('div');
-    lightbox.className = 'course-poster-lightbox';
-    lightbox.id = 'course-poster-lightbox';
-    lightbox.hidden = true;
-    lightbox.setAttribute('role', 'dialog');
-    lightbox.setAttribute('aria-modal', 'true');
-    lightbox.setAttribute('aria-labelledby', 'course-poster-lightbox-title');
-    lightbox.innerHTML = `
-      <button class="course-poster-lightbox-backdrop" type="button" aria-label="关闭海报大图"></button>
-      <div class="course-poster-lightbox-frame">
-        <div class="course-poster-lightbox-toolbar">
-          <span class="course-poster-lightbox-title" id="course-poster-lightbox-title">2026 秋季｜共通考试物理 秋季强化课程</span>
-          <button class="course-poster-lightbox-close" type="button" aria-label="关闭海报大图">×</button>
+    const dialog = document.createElement('div');
+    dialog.className = 'course-detail-dialog';
+    dialog.id = 'course-detail-dialog';
+    dialog.hidden = true;
+    dialog.setAttribute('role', 'dialog');
+    dialog.setAttribute('aria-modal', 'true');
+    dialog.setAttribute('aria-labelledby', 'course-detail-dialog-title');
+    dialog.innerHTML = `
+      <button class="course-detail-backdrop" type="button" aria-label="关闭课程信息"></button>
+      <div class="course-detail-frame">
+        <div class="course-detail-toolbar">
+          <span>2026 AUTUMN · PHYSICS</span>
+          <button class="course-detail-close" type="button" aria-label="关闭课程信息">×</button>
         </div>
-        <div class="course-poster-lightbox-scroll">
-          <img src="${posterFallback}" data-poster-b64="${posterLargeData}" alt="旅人教育 2026 秋季共通考试物理秋季强化课程完整海报">
+        <div class="course-detail-scroll">
+          <article class="course-detail-sheet">
+            <header class="course-detail-hero">
+              <div>
+                <p>旅人教育｜2026 秋季课程</p>
+                <h2 id="course-detail-dialog-title">共通考试物理<br><strong>秋季强化课程</strong></h2>
+              </div>
+              <img src="/assets/tabito-brand-lockup.svg" alt="TABITO 旅人教育">
+            </header>
+
+            <div class="course-detail-stats" aria-label="课程核心信息">
+              <div><strong>44h</strong><span>讲座</span></div>
+              <div><strong>25h</strong><span>实战</span></div>
+              <div><strong>9月</strong><span>开课</span></div>
+            </div>
+
+            <section class="course-detail-section">
+              <p class="course-detail-label">COURSE</p>
+              <h3>从主干知识到实验与整卷实战</h3>
+              <p>课程覆盖力学、波动、热学、电磁学・原子。讲座负责把基本规律、典型模型和易混概念重新梳理清楚；实战部分集中处理实验、图表、资料题、专题训练与共通考试形式的综合设问。</p>
+            </section>
+
+            <div class="course-detail-curriculum" aria-label="课程覆盖">
+              <div><span>01</span><strong>力学</strong></div>
+              <div><span>02</span><strong>波动</strong></div>
+              <div><span>03</span><strong>热学</strong></div>
+              <div><span>04</span><strong>电磁学・原子</strong></div>
+              <div><span>05</span><strong>实验・资料题</strong></div>
+              <div><span>06</span><strong>共通考试实战</strong></div>
+            </div>
+
+            <div class="course-detail-info">
+              <div><small>授课教师</small><strong>Yui 老师 × Kim 老师</strong></div>
+              <div><small>授课时间</small><strong>周四晚 · 周六下午</strong></div>
+              <div><small>授课形式</small><strong>线下 + 线上同步</strong></div>
+            </div>
+
+            <footer class="course-detail-footer">
+              <p>具体班型、当前进度与报名方式可直接咨询。</p>
+              <a class="btn btn-primary" href="#contact" data-close-course-dialog><span>前往课程咨询</span><i>↗</i></a>
+            </footer>
+          </article>
         </div>
-        <p class="course-poster-lightbox-caption">手机端可双指缩放；点击背景或右上角 × 关闭</p>
       </div>`;
-    document.body.appendChild(lightbox);
+    document.body.appendChild(dialog);
 
-    const hydratePoster = async img => {
-      if (!img || img.dataset.posterHydrated === 'true') return;
-      const source = img.dataset.posterB64;
-      if (!source) return;
-      try {
-        const response = await fetch(source, { cache: 'force-cache' });
-        if (!response.ok) return;
-        const encoded = (await response.text()).replace(/\s+/g, '');
-        if (!encoded.startsWith('UklGR') || encoded.length < 1000) return;
-        img.src = `data:image/webp;base64,${encoded}`;
-        img.dataset.posterHydrated = 'true';
-      } catch (_) {}
-    };
-
-    const previewImage = section.querySelector('.featured-course-poster img');
-    const largeImage = lightbox.querySelector('.course-poster-lightbox-scroll img');
-    hydratePoster(previewImage);
-
-    const trigger = section.querySelector('.featured-course-poster-button');
-    const closeButton = lightbox.querySelector('.course-poster-lightbox-close');
-    const backdrop = lightbox.querySelector('.course-poster-lightbox-backdrop');
+    const triggers = [
+      section.querySelector('.featured-course-cover'),
+      section.querySelector('.featured-course-detail-trigger')
+    ].filter(Boolean);
+    const closeButton = dialog.querySelector('.course-detail-close');
+    const backdrop = dialog.querySelector('.course-detail-backdrop');
+    const contactLink = dialog.querySelector('[data-close-course-dialog]');
     let previousFocus = null;
 
-    const openPoster = () => {
+    const openDialog = () => {
       previousFocus = document.activeElement;
-      lightbox.hidden = false;
-      body.classList.add('course-poster-open');
-      hydratePoster(largeImage);
+      dialog.hidden = false;
+      body.classList.add('course-dialog-open');
       requestAnimationFrame(() => closeButton?.focus({ preventScroll: true }));
     };
-    const closePoster = () => {
-      if (lightbox.hidden) return;
-      lightbox.hidden = true;
-      body.classList.remove('course-poster-open');
+    const closeDialog = () => {
+      if (dialog.hidden) return;
+      dialog.hidden = true;
+      body.classList.remove('course-dialog-open');
       previousFocus?.focus?.({ preventScroll: true });
     };
 
-    trigger?.addEventListener('click', openPoster);
-    closeButton?.addEventListener('click', closePoster);
-    backdrop?.addEventListener('click', closePoster);
+    triggers.forEach(node => node.addEventListener('click', openDialog));
+    closeButton?.addEventListener('click', closeDialog);
+    backdrop?.addEventListener('click', closeDialog);
+    contactLink?.addEventListener('click', closeDialog);
     document.addEventListener('keydown', event => {
-      if (event.key === 'Escape' && !lightbox.hidden) {
+      if (event.key === 'Escape' && !dialog.hidden) {
         event.preventDefault();
-        closePoster();
+        closeDialog();
       }
     });
 
@@ -172,6 +196,34 @@
     }
   };
   installFeaturedCourse();
+
+  const installMobileConsult = () => {
+    if (document.querySelector('.mobile-consult-bar')) return;
+    const contact = document.querySelector('#contact');
+    const bar = document.createElement('a');
+    bar.className = 'mobile-consult-bar';
+    bar.href = '#contact';
+    bar.innerHTML = '<span><small>2026 秋季</small><strong>物理课程咨询</strong></span><i>↗</i>';
+    document.body.appendChild(bar);
+
+    let contactVisible = false;
+    if ('IntersectionObserver' in window && contact) {
+      const observer = new IntersectionObserver(entries => {
+        contactVisible = entries.some(entry => entry.isIntersecting);
+        bar.classList.toggle('is-hidden', contactVisible);
+      }, { threshold: 0.08 });
+      observer.observe(contact);
+    }
+
+    const update = () => {
+      const show = window.scrollY > Math.min(520, window.innerHeight * 0.72) && !contactVisible;
+      bar.classList.toggle('is-visible', show);
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    update();
+  };
+  installMobileConsult();
 
   const portrait = document.querySelector('.portrait-frame img');
   if (portrait) {
