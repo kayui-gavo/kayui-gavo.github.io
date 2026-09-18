@@ -15,7 +15,7 @@ import('./education-copy-v10.js?v=20260814aa').then(() => {
     planningHead.querySelectorAll('.planning-head-markers').forEach(node => node.remove());
   }
   if (planningText) {
-    planningText.innerHTML = '<span class="planning-copy-line">综合学生当前成绩、目标专业、可用考试成绩和备考时间，逐校比较材料审查、校内考、面试或口试。</span><span class="planning-copy-line">再结合 EJU、共通考试和英语成绩的计分方式，确定更合适的报考组合与备考重点。</span>';
+    planningText.innerHTML = '<span class="planning-copy-line">根据当前成绩、目标专业、可用考试成绩和备考时间，逐校整理材料审查、校内考、面试 / 口试。</span><span class="planning-copy-line">同时确认 EJU、共通考试和英语成绩的要求、换算方式与计分范围。</span>';
   }
 
   /* Student evidence copy: slightly shorter, so the final word never hangs by itself. */
