@@ -80,7 +80,7 @@
       <div class="featured-course-inner">
         <figure class="featured-course-poster">
           <button class="featured-course-poster-button" type="button" aria-haspopup="dialog" aria-controls="course-poster-lightbox" aria-label="查看 2026 秋季共通考试物理课程海报">
-            <img src="/assets/course-autumn-2026.jpg?v=20260919d" alt="旅人教育 2026 秋季共通考试物理秋季强化课程海报" loading="eager" decoding="async">
+            <img class="featured-course-poster-image" src="/assets/course-autumn-2026-hq.jpg?v=20260919h" data-fallback="/assets/course-autumn-2026.jpg?v=20260919h" alt="旅人教育 2026 秋季共通考试物理秋季强化课程海报" loading="eager" decoding="async">
             <span class="featured-course-poster-zoom">查看海报</span>
           </button>
           <figcaption class="featured-course-poster-hint">课程海报 · 点击查看</figcaption>
@@ -126,10 +126,20 @@
           <button class="course-poster-lightbox-close" type="button" aria-label="关闭课程海报">×</button>
         </div>
         <div class="course-poster-lightbox-scroll">
-          <img src="/assets/course-autumn-2026.jpg?v=20260919d" alt="旅人教育 2026 秋季共通考试物理秋季强化课程海报">
+          <img class="course-poster-lightbox-image" src="/assets/course-autumn-2026-hq.jpg?v=20260919h" data-fallback="/assets/course-autumn-2026.jpg?v=20260919h" alt="旅人教育 2026 秋季共通考试物理秋季强化课程海报">
         </div>
       </div>`;
     document.body.appendChild(posterLightbox);
+
+    [section.querySelector('.featured-course-poster-image'), posterLightbox.querySelector('.course-poster-lightbox-image')]
+      .filter(Boolean)
+      .forEach(img => {
+        img.addEventListener('error', () => {
+          if (img.dataset.fallbackUsed) return;
+          img.dataset.fallbackUsed = 'true';
+          img.src = img.dataset.fallback || '/assets/course-autumn-2026.jpg?v=20260919h';
+        }, { once: true });
+      });
 
     const dialog = document.createElement('div');
     dialog.className = 'course-detail-dialog';
