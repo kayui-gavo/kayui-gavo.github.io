@@ -1,0 +1,484 @@
+/* Final lecturer art direction — 2026-09-19
+   Scientific editorial hero + explicit teaching philosophy.
+   Keep the page factual: visual energy comes from composition, not slogans. */
+
+:root{
+  --edu-final-navy:#12365f;
+  --edu-final-ink:#202b34;
+  --edu-final-muted:#68717a;
+  --edu-final-gold:#a8833c;
+  --edu-final-rule:rgba(18,54,95,.13);
+  --edu-final-paper:#f6f3ed;
+}
+
+/* ---------------- Hero ---------------- */
+.hero{
+  position:relative!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(330px,400px)!important;
+  grid-template-areas:
+    "lead visual"
+    "detail visual"!important;
+  column-gap:70px!important;
+  row-gap:26px!important;
+  align-items:start!important;
+  align-content:start!important;
+  min-height:0!important;
+  padding:76px 0 72px!important;
+  isolation:isolate;
+  overflow:visible;
+}
+.hero::before{
+  content:"PHYSICS"!important;
+  position:absolute!important;
+  z-index:-2!important;
+  top:42px!important;
+  right:-26px!important;
+  bottom:auto!important;
+  left:auto!important;
+  width:auto!important;
+  height:auto!important;
+  background:none!important;
+  color:transparent!important;
+  -webkit-text-stroke:1px rgba(18,54,95,.085);
+  font-family:Arial,Helvetica,sans-serif!important;
+  font-size:clamp(92px,13.2vw,176px)!important;
+  font-weight:800!important;
+  line-height:.82!important;
+  letter-spacing:-.075em!important;
+  white-space:nowrap;
+  opacity:1!important;
+  pointer-events:none;
+}
+.hero::after{
+  content:""!important;
+  position:absolute!important;
+  z-index:-1!important;
+  top:134px!important;
+  right:175px!important;
+  width:285px!important;
+  height:118px!important;
+  background-repeat:no-repeat!important;
+  background-position:center!important;
+  background-size:contain!important;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 285 118'%3E%3Cpath d='M2 63 C20 63 20 39 38 39 S56 87 74 87 92 24 110 24 128 97 146 97 164 48 182 48 200 71 218 71 236 56 254 56 272 62 283 62' fill='none' stroke='%2312365f' stroke-opacity='.28' stroke-width='1.5'/%3E%3Ccircle cx='110' cy='24' r='3' fill='%23a8833c' fill-opacity='.72'/%3E%3Ccircle cx='218' cy='71' r='2.5' fill='%2312365f' fill-opacity='.42'/%3E%3C/svg%3E")!important;
+  opacity:1!important;
+  pointer-events:none;
+}
+.hero-lead{grid-area:lead!important;position:relative;z-index:2;max-width:780px}
+.hero-visual{grid-area:visual!important;position:relative!important;z-index:2;align-self:center!important;width:100%!important;margin:0!important;padding:14px 0 0!important}
+.hero-detail{grid-area:detail!important;position:relative;z-index:2;margin:0!important;max-width:760px}
+
+.hero-role{
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+  margin:0 0 13px!important;
+  font-size:11px!important;
+  letter-spacing:.08em!important;
+}
+.hero-role::before{
+  content:"01";
+  color:var(--edu-final-gold);
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:9px;
+  letter-spacing:.08em;
+}
+.hero-name{
+  margin:0!important;
+  color:#102f53!important;
+  font-size:clamp(70px,7.2vw,104px)!important;
+  line-height:.88!important;
+  letter-spacing:-.065em!important;
+  font-weight:700!important;
+}
+.hero-focus{
+  margin:18px 0 0!important;
+  color:#34495b!important;
+  font-size:13.5px!important;
+  line-height:1.55!important;
+  letter-spacing:.015em!important;
+}
+.hero-route{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:max-content;
+  max-width:100%;
+  margin-top:11px;
+  color:#777269;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:9.5px;
+  line-height:1.4;
+  letter-spacing:.08em;
+  white-space:nowrap;
+}
+.hero-route i{
+  color:var(--edu-final-gold);
+  font-style:normal;
+}
+.hero-thesis{
+  display:inline-block!important;
+  max-width:none!important;
+  margin:19px 0 0!important;
+  padding-top:10px!important;
+  border-top:1px solid var(--edu-final-rule)!important;
+  color:#29445f!important;
+  font-family:inherit!important;
+  font-size:13px!important;
+  line-height:1.4!important;
+  font-weight:650!important;
+  letter-spacing:.06em!important;
+}
+.hero-intro{
+  max-width:730px!important;
+  margin:10px 0 0!important;
+  color:#525c64!important;
+  font-size:13.5px!important;
+  line-height:1.78!important;
+}
+
+.portrait-stage{
+  position:relative!important;
+  width:min(100%,338px)!important;
+  margin:0 0 0 auto!important;
+  padding:0!important;
+}
+.portrait-stage::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:-26px -30px -22px -38px;
+  border:1px solid rgba(18,54,95,.13);
+  border-radius:50%;
+  transform:rotate(-9deg);
+}
+.portrait-stage::after{
+  content:"";
+  position:absolute;
+  z-index:4;
+  width:9px;
+  height:9px;
+  right:-22px;
+  top:28%;
+  border-radius:50%;
+  background:var(--edu-final-gold);
+  box-shadow:0 0 0 7px var(--edu-final-paper);
+}
+.portrait-frame{
+  position:relative!important;
+  overflow:hidden!important;
+  border-radius:2px!important;
+  box-shadow:0 24px 54px rgba(19,43,70,.16)!important;
+}
+.portrait-frame::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border:1px solid rgba(255,255,255,.42);
+  pointer-events:none;
+}
+.hero-visual figcaption{
+  position:relative;
+  z-index:5;
+  width:calc(100% + 34px);
+  margin:-27px 0 0 -34px!important;
+  padding:14px 16px 12px!important;
+  background:rgba(246,243,237,.96);
+  border-top:1px solid rgba(18,54,95,.13);
+  border-bottom:1px solid rgba(18,54,95,.13);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.hero-proof{
+  margin:0!important;
+  border:0!important;
+  gap:0!important;
+}
+.proof-item{
+  padding:0 16px 0 0!important;
+}
+.proof-item+.proof-item{
+  padding-left:16px!important;
+  border-left:1px solid var(--edu-final-rule)!important;
+}
+.proof-item strong{
+  color:#133b69!important;
+}
+.hero-caption{
+  margin:9px 0 0!important;
+  color:#6b6f70!important;
+  font-size:9.7px!important;
+  line-height:1.55!important;
+}
+
+.hero-highlights{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  margin:0!important;
+  border-top:1px solid var(--edu-final-rule)!important;
+  border-bottom:1px solid var(--edu-final-rule)!important;
+}
+.hero-highlight{
+  min-height:0!important;
+  padding:11px 15px 11px 0!important;
+}
+.hero-highlight+.hero-highlight{
+  padding-left:15px!important;
+  border-left:1px solid var(--edu-final-rule)!important;
+}
+.hero-highlight small{
+  color:#8b8174!important;
+  font-size:9.5px!important;
+  letter-spacing:.03em!important;
+}
+.hero-highlight strong{
+  margin-top:3px!important;
+  color:#354b5e!important;
+  font-size:11.6px!important;
+  line-height:1.5!important;
+  font-weight:620!important;
+}
+.hero-education{
+  margin-top:12px!important;
+}
+.hero-actions{
+  margin-top:13px!important;
+}
+
+/* ---------------- Teaching philosophy ---------------- */
+.teaching-section{
+  position:relative;
+}
+.teaching-philosophy{
+  display:grid;
+  grid-template-columns:minmax(220px,.72fr) minmax(0,1.28fr);
+  gap:52px;
+  margin-top:28px;
+  padding:27px 0 26px;
+  border-top:1px solid var(--edu-final-rule);
+  border-bottom:1px solid var(--edu-final-rule);
+}
+.teaching-philosophy-title .kicker{
+  margin-bottom:9px!important;
+}
+.teaching-philosophy-lead{
+  max-width:360px;
+  margin:0;
+  color:#153b66;
+  font-family:var(--serif,serif);
+  font-size:clamp(25px,2.15vw,32px);
+  line-height:1.32;
+  font-weight:520;
+  letter-spacing:-.025em;
+}
+.teaching-philosophy-copy{
+  align-self:end;
+  max-width:720px;
+}
+.teaching-philosophy-copy p{
+  margin:0;
+  color:#4e5961;
+  font-size:13.5px;
+  line-height:1.86;
+}
+.teaching-philosophy-copy p+p{
+  margin-top:8px;
+}
+
+.principle-grid-specific{
+  margin-top:21px!important;
+  border-top:0!important;
+}
+.principle-grid-specific .principle{
+  background:transparent!important;
+}
+.principle-grid-specific .principle:nth-child(2){
+  background:transparent!important;
+}
+.principle-grid-specific .principle h3{
+  color:#234563!important;
+}
+.principle-grid-specific .principle p{
+  color:#62686d!important;
+}
+
+/* Make the course poster important without pretending a low-res source is high-res. */
+.featured-course-poster-button img{
+  image-rendering:auto!important;
+}
+.featured-course-poster-hint{
+  color:#77736d!important;
+}
+
+/* ---------------- Responsive ---------------- */
+@media(max-width:900px){
+  .hero{
+    grid-template-columns:1fr 300px!important;
+    grid-template-areas:
+      "lead visual"
+      "detail detail"!important;
+    column-gap:36px!important;
+    row-gap:24px!important;
+    padding:52px 0 50px!important;
+  }
+  .hero::before{
+    top:54px!important;
+    right:-10px!important;
+    font-size:112px!important;
+  }
+  .hero::after{
+    right:82px!important;
+    top:118px!important;
+    width:230px!important;
+  }
+  .hero-name{font-size:70px!important}
+  .portrait-stage{width:270px!important}
+  .hero-visual figcaption{width:100%!important;margin:-20px 0 0!important}
+  .teaching-philosophy{
+    grid-template-columns:1fr!important;
+    gap:14px!important;
+  }
+  .teaching-philosophy-copy{max-width:760px}
+}
+
+@media(max-width:767px){
+  .hero{
+    grid-template-columns:1fr!important;
+    grid-template-areas:
+      "lead"
+      "visual"
+      "detail"!important;
+    gap:18px!important;
+    padding:29px 0 26px!important;
+    overflow:hidden!important;
+  }
+  .hero::before{
+    top:60px!important;
+    right:-22px!important;
+    font-size:92px!important;
+    -webkit-text-stroke-color:rgba(18,54,95,.07);
+  }
+  .hero::after{
+    top:136px!important;
+    right:-30px!important;
+    width:205px!important;
+    opacity:.8!important;
+  }
+  .hero-role{margin-bottom:9px!important}
+  .hero-name{
+    font-size:clamp(51px,15vw,64px)!important;
+    line-height:.9!important;
+  }
+  .hero-focus{
+    margin-top:12px!important;
+    font-size:12.2px!important;
+  }
+  .hero-route{
+    gap:7px!important;
+    margin-top:8px!important;
+    font-size:8.3px!important;
+    letter-spacing:.055em!important;
+  }
+  .hero-thesis{
+    margin-top:13px!important;
+    padding-top:8px!important;
+    font-size:11.5px!important;
+    letter-spacing:.045em!important;
+  }
+  .hero-intro{
+    margin-top:8px!important;
+    font-size:12.2px!important;
+    line-height:1.68!important;
+  }
+  .hero-visual{
+    width:min(100%,390px)!important;
+    margin:0 auto!important;
+    padding-top:5px!important;
+  }
+  .portrait-stage{
+    width:min(62vw,230px)!important;
+    margin:0 auto!important;
+  }
+  .portrait-stage::before{
+    inset:-17px -22px -16px -24px!important;
+  }
+  .portrait-stage::after{
+    width:7px!important;
+    height:7px!important;
+    right:-15px!important;
+    box-shadow:0 0 0 5px var(--edu-final-paper)!important;
+  }
+  .hero-visual figcaption{
+    width:min(100%,330px)!important;
+    margin:-18px auto 0!important;
+    padding:10px 12px 9px!important;
+  }
+  .hero-proof{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+  }
+  .proof-item{
+    padding:0 10px 0 0!important;
+  }
+  .proof-item+.proof-item{
+    padding-left:10px!important;
+  }
+  .hero-caption{
+    margin-top:7px!important;
+    font-size:9.2px!important;
+  }
+  .hero-highlights{
+    grid-template-columns:1fr!important;
+  }
+  .hero-highlight{
+    display:grid!important;
+    grid-template-columns:95px minmax(0,1fr)!important;
+    gap:10px!important;
+    padding:8px 0!important;
+  }
+  .hero-highlight+.hero-highlight{
+    padding-left:0!important;
+    border-left:0!important;
+    border-top:1px solid rgba(18,54,95,.075)!important;
+  }
+
+  .teaching-philosophy{
+    grid-template-columns:1fr!important;
+    gap:11px!important;
+    margin-top:16px!important;
+    padding:17px 0 16px!important;
+  }
+  .teaching-philosophy-lead{
+    max-width:320px!important;
+    font-size:21px!important;
+    line-height:1.34!important;
+  }
+  .teaching-philosophy-copy p{
+    font-size:11.7px!important;
+    line-height:1.68!important;
+  }
+  .teaching-philosophy-copy p+p{
+    margin-top:6px!important;
+  }
+  .principle-grid-specific{
+    margin-top:13px!important;
+  }
+}
+
+@media(prefers-reduced-motion:no-preference){
+  .portrait-stage::before{
+    animation:eduOrbit 14s ease-in-out infinite alternate;
+  }
+  .hero::after{
+    animation:eduWave 8s ease-in-out infinite alternate;
+  }
+}
+@keyframes eduOrbit{
+  from{transform:rotate(-9deg) scale(1)}
+  to{transform:rotate(-4deg) scale(1.018)}
+}
+@keyframes eduWave{
+  from{transform:translateX(0)}
+  to{transform:translateX(10px)}
+}
