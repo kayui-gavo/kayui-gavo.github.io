@@ -54,7 +54,15 @@
       event.preventDefault();setCourse(next,true);
     });
   });
-  if(courseTabs.length)setCourse(0);
+  if(courseTabs.length)setCourse(location.hash==='#course-school'?1:0);
+  $('[data-select-course]').forEach(link=>link.addEventListener('click',()=>{
+    const index=courseTabs.findIndex(tab=>tab.dataset.courseTab===link.dataset.selectCourse);
+    if(index>=0)setCourse(index);
+  }));
+  window.addEventListener('hashchange',()=>{
+    const index=location.hash==='#course-school'?1:location.hash==='#course-common'?0:-1;
+    if(index>=0)setCourse(index);
+  });
 
   // Native dialog provides focus containment and background inertness.
   const dialogs=$$('dialog');
@@ -196,7 +204,7 @@
     updateFloating();
   });
   document.addEventListener('keydown',event=>{
-    if(event.key==='Escape'&&menuOpen)setMenu(false);
+    if(event.key==='Escape'&&menuOpen){setMenu(false);menuButton?.focus({preventScroll:true});}
   });
   topButton?.addEventListener('click',()=>window.scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'}));
 

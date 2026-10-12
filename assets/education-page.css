@@ -1,6 +1,6 @@
 /* Education page: one readable stylesheet; scoped to /education/.
    Original palette retained: warm paper, deep navy, restrained gold. */
-:root{--paper:#f7f4ef;--sheet:#fffdfa;--navy:#173651;--navy-2:#31526b;--text:#293741;--muted:#53616c;--rule:#d7d6cf;--gold:#956f34;--warm:#eee6d7;--max:1160px;--gutter:clamp(18px,4vw,32px);--font:"PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif}
+:root{--paper:#f7f4ef;--sheet:#fffdfa;--navy:#173651;--navy-2:#31526b;--text:#293741;--muted:#53616c;--rule:#d7d6cf;--gold:#856126;--warm:#eee6d7;--max:1160px;--gutter:clamp(18px,4vw,32px);--font:"PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif}
 *{box-sizing:border-box}
 html{scroll-padding-top:84px;scroll-behavior:smooth;background:var(--paper)}
 body{margin:0;color:var(--text);background:var(--paper);font:16px/1.72 var(--font);-webkit-font-smoothing:antialiased}
