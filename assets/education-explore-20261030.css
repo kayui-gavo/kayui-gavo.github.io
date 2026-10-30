@@ -195,3 +195,152 @@ html { scrollbar-gutter:stable; }
 }
 
 .no-js .course-tabs { display:none; }
+
+/* v6 — precise credentials, compact navigation and a working wave preview.
+   Shared by both locales. Decoration and the source portrait are preserved. */
+:root { --ui-ease:cubic-bezier(.2,.7,.2,1); }
+body { overflow-wrap:break-word; }
+a,button,input,select,summary { touch-action:manipulation; }
+:focus-visible { outline:2px solid #96723e; outline-offset:4px; }
+.hero-biography { border-left:0; padding-left:0; }
+.hero-appointment { display:grid; grid-template-columns:32px minmax(0,1fr); gap:12px; margin-top:18px; padding:14px 16px 8px; border:1px solid #d9cec6; border-left:3px solid #aa8790; border-radius:4px 10px 10px 4px; background:linear-gradient(110deg,#eee4e380,#fbfaf7c4); }
+.appointment-icon { display:grid; place-items:center; width:32px; height:36px; color:var(--navy); }
+.hero-appointment p { font-size:1rem; line-height:1.75; }
+.office-title { display:inline-block; max-width:100%; }
+.appointment-link { display:inline-flex; align-items:center; gap:12px; min-height:44px; color:var(--navy); font-size:var(--meta); text-decoration:underline; text-decoration-color:#c8b3b4; text-underline-offset:5px; }
+.appointment-link span { transition:transform .18s var(--ui-ease); }
+.appointment-link:hover span { transform:translateX(3px); }
+.quick-menu { display:none; }
+.quick-menu-panel a { display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:48px; padding:10px 14px; font-size:1rem; border-radius:6px; color:var(--navy); }
+.quick-menu-panel a:hover,.quick-menu-panel a[aria-current="location"] { background:#ede4e2; }
+.quick-menu-panel a span { color:var(--rose); }
+.explore-bar { background:rgba(246,243,237,.94); -webkit-backdrop-filter:blur(16px); box-shadow:0 6px 22px #12365f08; }
+.explore-tabs { gap:10px; }
+.explore-tabs a { gap:10px; transition:background .18s var(--ui-ease),border-color .18s var(--ui-ease),box-shadow .18s var(--ui-ease); border-radius:7px; }
+.explore-tabs a[aria-selected="true"] { background:var(--surface); border-color:#d3c3b7; color:var(--navy); box-shadow:inset 0 -2px #b49764,0 3px 10px #12365f06; }
+.view-icon { flex:none; opacity:.8; }
+.explore-tabs a[aria-selected="true"] .view-icon { opacity:1; }
+.course-stage { border-color:#ced5d9; border-radius:10px; }
+.course-tabs { padding:6px; gap:4px; background:#eaecebd9; border-bottom:1px solid #d0d6da; }
+.course-tabs button { border:0; border-radius:6px; background:transparent; min-height:46px; padding:10px 8px; transition:background-color .18s,color .18s,box-shadow .18s; }
+.course-tabs button+button { border-left:0; }
+.course-tabs button[aria-selected="true"] { color:#fff; background:var(--navy); box-shadow:0 2px 8px #12365f1a; }
+.course-tabs button:hover:not([aria-selected="true"]) { background:#ffffffa8; }
+.course-panel { min-width:0; }
+.course-panel>.text-link { min-height:44px; }
+.syllabus summary,.planning-details summary { font-weight:500; }
+.syllabus summary::after,.planning-details summary::after { display:grid; place-items:center; width:28px; height:28px; border-radius:50%; border:1px solid #c8cdd0; color:var(--navy); }
+.syllabus[open] summary::after,.planning-details[open] summary::after { background:var(--navy); border-color:var(--navy); color:#fff; }
+.featured-inline .featured-course-inner { border-radius:10px; }
+.course-schedule { gap:4px 20px; }
+.course-enquire { min-height:44px; }
+.course-layout .lab-entry { gap:16px; border:1px solid #304d65; border-radius:10px; background:radial-gradient(ellipse at 100% 0,#a17b8433,transparent 70%),#172f46; color:#e3ebf2; box-shadow:0 8px 24px #12365f12; }
+.course-layout .lab-entry::before { display:none; }
+.course-layout .lab-entry .kicker { color:#e2c28c; padding-right:0; }
+.course-layout .lab-entry h3 { color:#fff; padding-right:0; }
+.course-layout .lab-entry p:not(.kicker) { color:#d5dfe7; font-size:1rem; line-height:1.75; }
+.course-layout .lab-entry .btn { background:#f7f2e9; color:#183956; border-color:#f7f2e9; box-shadow:none; width:100%; }
+.course-layout .lab-entry .btn:hover { background:#e8d8c4; border-color:#e8d8c4; }
+.wave-preview { min-width:0; overflow:hidden; border:1px solid #60758780; border-radius:7px; background:#0d2335; }
+.wave-plot { display:block; width:100%; height:104px; overflow:hidden; }
+.wave-grid { fill:none; stroke:#d2e2ec; stroke-opacity:.09; stroke-width:.6; }
+.wave-axis { fill:none; stroke:#e0cfb1; stroke-width:1; stroke-opacity:.28; }
+.wave-curve { fill:none; stroke:url(#wave-ink); stroke-width:2; vector-effect:non-scaling-stroke; }
+.wave-marker { fill:#e2c28c; stroke:#172f46; stroke-width:2; }
+.wave-controls { display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:12px; padding:2px 10px; border-top:1px solid #60758760; }
+.wave-controls label { font-size:.875rem; color:#e2e9f0; }
+.wave-controls input { min-width:0; width:100%; height:44px; accent-color:#e2c28c; cursor:pointer; }
+.wave-toggle { min-width:48px; min-height:44px; padding:6px; border:0; border-radius:4px; background:transparent; color:#e2c28c; font-size:.875rem; line-height:1.5; }
+.wave-toggle:hover { background:#ffffff0d; }
+.no-js .wave-controls { display:none; }
+.student-shot>a { transition:border-color .18s,box-shadow .18s; }
+.dialog-toolbar button,.contact-toolbar button,.dialog-controls button,.copy-button { transition:background-color .18s,border-color .18s; }
+.contact-dialog { border-radius:14px; box-shadow:0 28px 100px #07172466; }
+.contact-dialog .contact-grid { grid-template-areas:"copy qr" "tools qr"; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); gap:20px 32px; }
+.contact-dialog .contact-copy { grid-area:copy; }
+.contact-dialog .qr-grid { grid-area:qr; }
+.contact-dialog .inquiry-tools { grid-area:tools; margin-top:0; padding-top:16px; border-top:1px solid #52606c; }
+.contact-dialog .contact-copy>p:not(.kicker) { margin-top:12px; }
+.contact-toolbar button:hover { background:#ffffff14; }
+.contact-dialog .contact-copy h2 { font-size:1.5rem; }
+.contact-dialog .contact-links { gap:0 16px; }
+.contact-dialog .qr-item { border-color:#71828d80; border-radius:8px; }
+.contact-dialog .inquiry-tools select { font-size:1rem; }
+.image-dialog { border-radius:12px; box-shadow:0 28px 100px #07172466; }
+.image-dialog[open],.contact-dialog[open] { animation:dialog-arrive .18s var(--ui-ease); }
+@keyframes dialog-arrive { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+.copy-button { border-radius:6px; }
+@media(hover:hover) {
+ .syllabus summary:hover,.planning-details summary:hover { color:var(--navy); }
+ .dialog-toolbar button:hover,.dialog-controls button:hover:enabled { background:#e9e0da; }
+}
+@media(min-width:64rem) {
+ .course-layout { grid-template-columns:minmax(0,1.9fr) minmax(300px,1fr); }
+ .hero-copy { gap:22px; }
+}
+@media(max-width:63.99rem) {
+ .course-layout .lab-entry { display:grid; grid-template-columns:minmax(0,1fr) minmax(220px,1fr); gap:14px 24px; }
+ .course-layout .lab-entry>div:first-child { grid-column:1; }
+ .course-layout .wave-preview { grid-column:2; grid-row:1 / span 2; align-self:center; }
+ .course-layout .lab-entry .btn { grid-column:1; margin:0; }
+}
+@media(max-width:53.75rem) {
+ .nav { gap:6px 10px; flex-wrap:wrap; padding-block:6px; }
+ .nav .brand { margin-right:auto; flex:none; }
+ .nav .header-cta,.quick-menu { flex:none; }
+ .quick-menu { display:block; }
+ .quick-menu summary { white-space:nowrap; justify-content:center; gap:6px; min-width:44px; min-height:44px; font-size:.875rem; font-weight:500; color:var(--navy); padding-inline:4px; }
+ .quick-menu summary::after { display:none; }
+ .quick-menu[open] summary { color:var(--rose); }
+ .quick-menu-panel { position:fixed; top:calc(var(--header-height) + 8px); left:16px; right:16px; width:auto; max-width:400px; margin-left:auto; padding:8px; border:1px solid #d4c3b6; border-radius:10px; background:var(--surface); box-shadow:0 16px 46px #12365f24; }
+}
+@media(max-width:47.99rem) {
+ .hero-appointment { grid-template-columns:24px minmax(0,1fr); gap:8px; padding:12px 12px 4px; margin-top:14px; }
+ .appointment-icon { width:24px; height:30px; }
+ .hero-appointment p { font-size:1rem; line-height:1.75; }
+ .hero-biography { padding:0; }
+ .hero-biography p+p { margin-top:12px; }
+ .explore-tabs { gap:4px; }
+ .explore-tabs a { gap:0; padding-inline:3px; }
+ .explore-tabs .view-icon { display:none; }
+ .course-tabs { padding:4px; gap:3px; }
+ .course-tabs button { padding:10px 3px; min-height:46px; font-size:.875rem; }
+ .course-layout .lab-entry { display:block; padding:20px; }
+ .course-layout .lab-entry h3,.course-layout .lab-entry .kicker { padding-right:0; }
+ .course-layout .lab-entry .wave-preview { margin-top:16px; }
+ .course-layout .lab-entry .btn { margin-top:16px; }
+ .wave-plot { height:92px; }
+ .contact-dialog { width:calc(100% - 16px); max-height:calc(100dvh - 16px); margin:auto auto 0; border-radius:18px 18px 0 0; }
+ .contact-dialog .contact-section { padding:18px; }
+ .contact-dialog .contact-grid { grid-template-columns:1fr; grid-template-areas:"copy" "qr" "tools"; gap:18px; }
+ .contact-dialog .qr-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+ .contact-dialog .qr-item { display:flex; flex-direction:column; align-items:center; gap:8px; padding:14px 8px; text-align:center; }
+ .contact-dialog .qr-item img { width:100px; height:100px; }
+ .contact-dialog .qr-item h3 { font-size:1.125rem; }
+ .contact-dialog .qr-item p { font-size:.875rem; }
+ .contact-dialog .qr-item .copy-button { margin:0; width:100%; padding-inline:4px; }
+ .contact-dialog .qr-item .secondary { display:none; }
+ .contact-dialog .contact-links { gap:4px 14px; }
+ .contact-dialog .contact-toolbar { padding:8px 18px; }
+ .contact-dialog .contact-copy h2 { display:none; }
+ .contact-dialog .contact-copy>p:not(.kicker) { margin-top:0; }
+ .image-dialog { width:calc(100% - 16px); }
+ .back-top { bottom:max(14px,env(safe-area-inset-bottom)); }
+}
+@media(max-width:22.49rem) {
+ .quick-menu summary span { display:none; }
+ .nav { gap:8px; }
+ .hero-appointment { display:block; }
+ .appointment-icon { display:none; }
+ .contact-dialog .contact-section { padding:14px; }
+ .contact-dialog .qr-item img { width:88px; height:88px; }
+}
+@media(prefers-reduced-motion:reduce) {
+ .image-dialog[open],.contact-dialog[open] { animation:none; }
+}
+@media print {
+ .quick-menu,.view-icon,.wave-preview { display:none!important; }
+ .hero-appointment { break-inside:avoid; }
+ .hero-appointment a { display:none; }
+ .hero-appointment { box-shadow:none; background:none; }
+}

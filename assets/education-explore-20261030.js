@@ -1,4 +1,4 @@
-/* Education v5. Progressive navigation; facts remain in static HTML.
+/* Education v6. Progressive navigation; facts remain in static HTML.
    No analytics, remote form submission, storage or framework dependencies. */
 (() => {
  'use strict';
@@ -12,9 +12,10 @@
  const viewTabs=[...document.querySelectorAll('[data-view-tab]')];
  const header=document.querySelector('.site-header');
  const bar=document.querySelector('.explore-bar');
- let active='teaching',headerHeight=0;
+ let active='teaching',headerHeight=0,handledHash=location.hash;
+ const quickMenu=document.querySelector('.quick-menu');
  if(!browser || !viewTabs.length) return;
- const setHash=hash=>{if(location.hash!==hash) history.pushState(null,'',hash);};
+ const setHash=hash=>{if(location.hash!==hash) history.pushState(null,'',hash);handledHash=hash;};
  function measure(){
   headerHeight=Math.ceil(header?.getBoundingClientRect().height || 0);
   root.style.setProperty('--header-height',headerHeight+'px');
@@ -24,6 +25,9 @@
  function selectView(key,{scroll=false,focus=false}={}){
   if(!views.some(v=>v.dataset.view===key)) return;
   active=key;
+  document.querySelectorAll('.quick-menu-panel a').forEach(a=>{
+   if(a.hash==='#'+key)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');
+  });
   views.forEach(v=>{v.hidden=v.dataset.view!==key;});
   viewTabs.forEach(a=>{
    const selected=a.dataset.viewTab===key;
@@ -53,6 +57,7 @@
  const courses=[...document.querySelectorAll('[data-course-tab]')];
  const coursePanels=[...document.querySelectorAll('[data-course-panel]')];
  function selectCourse(key,focus=false){
+  if(!coursePanels.some(p=>p.dataset.coursePanel===key))return;
   courses.forEach(a=>{const yes=a.dataset.courseTab===key;a.setAttribute('aria-selected',String(yes));a.tabIndex=yes?0:-1;if(yes&&focus)a.focus({preventScroll:true});});
   coursePanels.forEach(p=>{p.hidden=p.dataset.coursePanel!==key;});
  }
@@ -70,15 +75,26 @@
  });
  selectCourse('common');
  // Stacked native dialogs: closing a QR image must not unlock the contact dialog behind it.
- const locks=new Set();let previousOverflow='';
- function lock(d){if(!locks.size)previousOverflow=document.body.style.overflow;locks.add(d);document.body.style.overflow='hidden';}
- function unlock(d){if(d.open)return;locks.delete(d);if(!locks.size)document.body.style.overflow=previousOverflow;}
+ const locks=new Set();let savedBodyStyle='',savedScroll={x:0,y:0};
+ function lock(d){
+  if(!locks.size){
+   savedScroll={x:scrollX,y:scrollY};savedBodyStyle=document.body.style.cssText;
+   document.body.style.position='fixed';document.body.style.top=-savedScroll.y+'px';
+   document.body.style.left='0';document.body.style.right='0';document.body.style.overflow='hidden';
+  }
+  locks.add(d);
+ }
+ function unlock(d){
+  if(d.open||!locks.has(d))return;locks.delete(d);
+  if(!locks.size){document.body.style.cssText=savedBodyStyle;window.scrollTo({left:savedScroll.x,top:savedScroll.y,behavior:'instant'});}
+ }
  function bindClose(d,button,onClose){
-  const close=()=>{d.close();unlock(d);onClose?.();};
+  const finish=()=>{if(d.open||!locks.has(d))return;unlock(d);onClose?.();};
+  const close=()=>{d.close();finish();};
   button.addEventListener('click',close);
   d.addEventListener('cancel',e=>{e.preventDefault();close();});
   d.addEventListener('click',e=>{if(e.target!==d)return;const b=d.getBoundingClientRect();if(e.clientX<b.left||e.clientX>b.right||e.clientY<b.top||e.clientY>b.bottom)close();});
-  d.addEventListener('close',()=>unlock(d));
+  d.addEventListener('close',finish);
  }
  const contact=document.getElementById('contact');
  let contactDialog=null,contactTrigger=null;
@@ -117,7 +133,6 @@
   if(id==='explore'){if(scroll)alignBrowser();return;}
   const target=document.getElementById(id);const view=target?.closest('[data-view]');
   if(!view)return;
-  if(id==='teaching')selectCourse('common');
   selectView(view.dataset.view,{scroll});
   if(target.dataset.coursePanel)selectCourse(target.dataset.coursePanel);
   if(scroll && (id==='physics-lab'||id==='feedback'))requestAnimationFrame(()=>target.scrollIntoView({behavior:behavior(),block:'start'}));
@@ -126,16 +141,27 @@
  document.addEventListener('click',e=>{
   if(e.defaultPrevented||e.button!==0||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;
   const a=e.target.closest('a[href^="#"]');if(!a)return;
+  const fromMenu=!!a.closest('.quick-menu');
+  if(quickMenu)quickMenu.open=false;
+  if(fromMenu)requestAnimationFrame(()=>document.querySelector('[data-view]:not([hidden])')?.focus({preventScroll:true}));
   if(a.hash==='#contact'){e.preventDefault();openContact(a);return;}
   const target=document.getElementById(a.hash.slice(1));if(!target)return;
   if(a.hash==='#main')return; // preserve the native skip-link semantics
   e.preventDefault();setHash(a.hash);route(a.hash,{scroll:true});
  });
- window.addEventListener('popstate',()=>{
+ function historyRoute(){
+  if(handledHash===location.hash)return;handledHash=location.hash;
+  if(contactDialog?.open && location.hash!=='#contact')contactDialog.close();
   if(!location.hash){selectView('teaching');selectCourse('common');window.scrollTo({top:0,behavior:behavior()});}
   else route(location.hash,{scroll:true});
+ }
+ window.addEventListener('popstate',historyRoute);
+ window.addEventListener('hashchange',historyRoute);
+ // Dismiss the shortcut menu without trapping focus or blocking page scrolling.
+ document.addEventListener('click',e=>{if(quickMenu?.open&&!quickMenu.contains(e.target))quickMenu.open=false;});
+ document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&quickMenu?.open){e.preventDefault();quickMenu.open=false;quickMenu.querySelector('summary').focus();}
  });
- window.addEventListener('hashchange',()=>route(location.hash,{scroll:true}));
  // Copy with visible feedback, and a selectable-text fallback when clipboard permission is unavailable.
  async function copy(text,button){
   const status=button.closest('.contact-dialog')?.querySelector('.copy-status')||document.querySelector('.browse-footer .copy-status');
@@ -201,6 +227,39 @@
   zoom.addEventListener('click',()=>{const yes=imageDialog.classList.toggle('is-zoomed');imageDialog.style.setProperty('--zoom-width',Math.max(image.naturalWidth,canvas.clientWidth*1.6)+'px');zoom.textContent=yes?t('适应窗口','適應視窗'):t('放大阅读','放大閱讀');zoom.setAttribute('aria-pressed',String(yes));});
   imageDialog.addEventListener('keydown',e=>{if(index<0)return;if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();change(e.key==='ArrowRight'?1:-1);}});
   bindClose(imageDialog,imageDialog.querySelector('[data-dialog-close]'),()=>{if(trigger?.isConnected)trigger.focus({preventScroll:true});});
+ }
+ // A small illustrative travelling wave; paused outside the viewport and in reduced-motion mode.
+ const wave=document.querySelector('[data-wave-preview]');
+ if(wave){
+  const curve=wave.querySelector('.wave-curve'),marker=wave.querySelector('.wave-marker');
+  const range=wave.querySelector('input'),toggle=wave.querySelector('.wave-toggle');
+  let playing=!motion.matches,visible=false,frame=0,time=0,last=0;
+  const draw=()=>{
+   const amplitude=Number(range.value)||18;
+   const y=x=>60-amplitude*Math.sin(x/320*4*Math.PI-time);
+   const points=Array.from({length:81},(_,i)=>(i?'L':'M')+(i*4)+','+y(i*4).toFixed(2));
+   curve.setAttribute('d',points.join(' '));marker.setAttribute('cy',y(80).toFixed(2));
+  };
+  const tick=now=>{
+   frame=0;
+   if(!playing||!visible||document.hidden){last=0;return;}
+   if(last)time+=Math.min(now-last,60)/1000*1.5;
+   last=now;draw();frame=requestAnimationFrame(tick);
+  };
+  const sync=()=>{
+   toggle.textContent=playing?t('暂停','暫停'):t('播放','播放');
+   toggle.setAttribute('aria-pressed',String(playing));
+   toggle.setAttribute('aria-label',playing?t('暂停波形动画','暫停波形動畫'):t('播放波形动画','播放波形動畫'));
+   if(frame)cancelAnimationFrame(frame);frame=0;last=0;
+   if(playing&&visible&&!document.hidden)frame=requestAnimationFrame(tick);
+  };
+  toggle.addEventListener('click',()=>{playing=!playing;sync();});
+  range.addEventListener('input',draw);
+  if('IntersectionObserver' in window)new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync();},{threshold:.15}).observe(wave);
+  else{visible=true;sync();}
+  document.addEventListener('visibilitychange',sync);
+  motion.addEventListener?.('change',()=>{if(motion.matches){playing=false;sync();}});
+  draw();sync();
  }
  const back=document.querySelector('.back-top');
  const updateBack=()=>{if(back)back.hidden=scrollY<600;};
