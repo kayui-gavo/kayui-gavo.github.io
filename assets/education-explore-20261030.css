@@ -1,0 +1,197 @@
+/* Education v5: content navigation, compact curricula and contextual contact.
+   The v4 visual system, photographs, illustrations and typography are retained. */
+:root { --explore-height:64px; }
+html { scrollbar-gutter:stable; }
+.hero { padding-block:38px 42px; }
+.hero-copy { gap:22px; }
+.hero-biography p+p { margin-top:12px; }
+.hero-voice { color:var(--navy); }
+.nav-links { margin-left:auto; }
+.education-browser { min-width:0; }
+.explore-bar { position:sticky; top:var(--header-height); z-index:18; border-block:1px solid #d6c8bd; background:rgba(246,243,237,.98); backdrop-filter:blur(12px); }
+.explore-tabs { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:8px; padding-block:8px; }
+.explore-tabs a { position:relative; display:flex; align-items:center; justify-content:center; min-height:46px; padding:8px 12px; color:var(--muted); font-size:var(--body); font-weight:600; line-height:1.5; border-radius:4px; border:1px solid transparent; text-align:center; }
+.explore-tabs a:hover { color:var(--navy); background:#eee4e3; }
+.explore-tabs a[aria-selected="true"] { color:#fff; background:var(--navy); border-color:var(--navy); box-shadow:inset 0 -3px #c9ac79; }
+.explore-tabs .tab-short { display:none; }
+.explore-panel { min-width:0; }
+.explore-panel .section-space,.explore-panel .band { padding-block:36px; }
+.is-tabbed .explore-panel { animation:panel-appear .18s ease-out; }
+@keyframes panel-appear { from{opacity:.6;transform:translateY(4px)} to{opacity:1;transform:none} }
+.is-tabbed [data-view] section[id],.is-tabbed [data-view] aside[id] { scroll-margin-top:calc(var(--explore-height) + 16px); }
+.explore-panel .section-head { gap:24px 48px; }
+.explore-panel .section-head>p { max-width:42em; }
+/* One current-course card; the timetable is never hidden inside an accordion. */
+.featured-inline { width:100%; margin-top:24px; padding-bottom:0; }
+.featured-inline .featured-course-inner { grid-template-columns:68px minmax(0,1fr) auto; gap:20px; padding:18px 24px; }
+.featured-inline .course-poster { width:68px; }
+.featured-inline .featured-course-copy { padding-right:0; }
+.featured-inline .featured-course-copy h2 { font-size:var(--subhead); margin-bottom:4px; }
+.featured-inline .featured-course-copy .kicker { margin-bottom:4px; }
+.featured-inline .featured-course-inner::after { display:none; }
+.featured-inline .featured-course-copy>p:not(.kicker) { font-size:var(--meta); }
+.course-schedule { display:flex; flex-wrap:wrap; gap:0 16px; margin-top:6px; color:var(--navy); }
+.course-schedule strong { color:var(--navy); }
+.course-enquire { align-self:center; font-size:var(--meta); white-space:nowrap; }
+.course-layout { display:grid; grid-template-columns:minmax(0,1.8fr) minmax(260px,.85fr); align-items:start; gap:24px; margin-top:24px; }
+.course-layout .course-stage { margin-top:0; }
+.course-tabs { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); }
+.course-tabs button { min-width:0; font-size:var(--meta); line-height:1.5; padding:14px 10px; min-height:48px; }
+.course-panel { padding:24px 28px; }
+.course-panel>p { margin-top:10px; }
+.course-personal { color:var(--navy); }
+.course-panel>.text-link { margin-top:12px; font-size:var(--meta); }
+.syllabus { margin-top:16px; border-block:1px solid var(--rule); }
+.syllabus summary { padding-block:10px; }
+.syllabus .course-list { margin:8px 0 18px; }
+.material-note { margin-top:16px; padding:16px 18px; }
+.material-note h4 { font-size:var(--body); }
+.material-note p { font-size:var(--meta); }
+.course-layout .lab-entry { display:flex; flex-direction:column; align-items:stretch; gap:18px; margin:0; padding:24px; }
+.course-layout .lab-entry::before { right:20px; top:16px; left:auto; width:90px; height:55px; transform:none; opacity:.65; }
+.course-layout .lab-entry h3,.course-layout .lab-entry .kicker { padding-right:60px; }
+.course-layout .lab-entry .lab-note { font-size:var(--meta); margin-top:14px; }
+.course-layout .lab-entry .btn { font-size:var(--meta); min-width:0; white-space:normal; }
+/* Evidence is a second view, not another compulsory page below the courses. */
+.score-disclosure { border-bottom:1px solid #45515b; margin-top:10px; }
+.score-disclosure summary { flex-wrap:wrap; justify-content:flex-start; gap:6px 20px; padding-block:8px; font-size:var(--meta); }
+.score-disclosure summary::after { margin-left:auto; }
+.score-disclosure summary>span { color:#c8dae5; font-weight:400; }
+.score-disclosure .eju-row { margin-block:10px 22px; }
+.record-section .section-note { margin-top:14px; }
+[data-view="record"] .student-shot { flex-basis:240px; }
+[data-view="record"] .student-shot>a { height:296px; }
+[data-view="record"] .student-media-grid { margin-top:20px; }
+.planning-details { border-block:1px solid var(--rule); margin-top:20px; }
+.planning-details summary { padding-block:10px; }
+.planning-details .selection-list { margin-top:0; }
+.planning-details .selection-list>div:first-child { border-top:0; }
+.planning-details .selection-list>div:last-child { padding-bottom:20px; }
+.panel-inquiry { margin-top:24px; }
+.past-experience { border-bottom:1px solid var(--rule); }
+.past-experience summary { flex-wrap:wrap; justify-content:flex-start; gap:6px 18px; padding-block:14px; }
+.past-experience summary::after { margin-left:auto; }
+.past-experience summary>span { font-size:var(--meta); font-weight:400; color:var(--muted); }
+.experience-grid { margin-top:24px; }
+.exp-current { padding-top:16px; }
+.experience-grid .tabito-block { display:grid; grid-template-columns:1fr; }
+.experience-grid .classroom-photo { max-height:260px; object-fit:contain; background:var(--surface); }
+.browse-footer { position:relative; display:flex; flex-wrap:wrap; justify-content:flex-end; align-items:center; gap:8px 24px; padding-block:12px; border-top:1px solid var(--rule); font-size:var(--meta); }
+.browse-footer>.text-link:first-child { margin-right:auto; }
+.copy-button { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; padding:8px 12px; border:1px solid var(--rule); border-radius:3px; background:var(--surface); color:var(--navy); font-size:var(--meta); line-height:1.5; cursor:pointer; }
+.copy-button:hover { background:var(--blue-soft); }
+.copy-status { font-size:var(--meta); color:var(--navy); }
+.copy-status:empty { display:none; }
+.browse-footer .copy-status { width:100%; text-align:right; }
+.copy-manual { width:100%; font:inherit; padding:10px; color:var(--ink); background:#fff; border:1px solid var(--rule); }
+.site-footer { padding-block:12px; }
+/* A native modal makes consultation available without navigating to a page bottom. */
+.contact-fallback-note { padding-top:24px; }
+.js .contact-fallback-note { display:none; }
+.contact-dialog { width:min(1020px,calc(100% - 40px)); max-height:calc(100dvh - 40px); padding:0; border:1px solid #637584; border-radius:8px; color:var(--dark-text); background:#17212b; overflow:auto; overscroll-behavior:contain; }
+.contact-dialog::backdrop { background:rgba(16,28,42,.68); backdrop-filter:blur(3px); }
+.contact-dialog .contact-toolbar { position:sticky; top:0; z-index:2; display:flex; justify-content:space-between; align-items:center; gap:16px; padding:10px 24px; border-bottom:1px solid #52606c; background:#17212b; }
+.contact-toolbar h2 { font-size:var(--body); color:#fff; }
+.contact-toolbar button { display:grid; place-items:center; width:44px; height:44px; flex:none; color:#fff; background:transparent; border:1px solid #697985; border-radius:50%; font-size:1.5rem; }
+.contact-dialog .contact-section { padding:28px; overflow:visible; }
+.contact-dialog .contact-grid { width:100%; grid-template-columns:1fr 1fr; gap:28px; }
+.contact-dialog .contact-copy h2 { font-size:1.75rem; }
+.contact-dialog .qr-grid { grid-template-columns:1fr; gap:16px; }
+.contact-dialog .qr-item { flex-wrap:nowrap; gap:16px; padding:16px; }
+.contact-dialog .qr-item img { width:100px; height:100px; }
+.contact-dialog .qr-item:last-child { flex-wrap:wrap; }
+.contact-dialog .qr-item .copy-button { margin-left:auto; }
+.contact-dialog .contact-links { flex-direction:row; flex-wrap:wrap; gap:4px 20px; margin-top:12px; }
+.inquiry-tools { margin-top:22px; }
+.inquiry-tools label { display:block; font-size:var(--meta); margin-bottom:8px; }
+.inquiry-tools select { font:inherit; color:var(--ink); width:100%; max-width:100%; min-height:44px; padding:10px; border:1px solid #778692; border-radius:3px; background:var(--surface); }
+.inquiry-tools>.copy-button { margin-top:10px; }
+.copy-fallback { margin-top:8px; }
+.copy-fallback summary { min-height:44px; font-size:var(--meta); font-weight:400; }
+.copy-fallback textarea { display:block; width:100%; max-width:100%; min-height:140px; font:400 .875rem/1.7 var(--sans); padding:12px; background:#fff; color:#24313b; border:1px solid #778692; resize:vertical; }
+.contact-dialog .copy-status { color:#e4cda7; padding:0 28px 20px; }
+.no-js .inquiry-tools,.no-js .copy-button { display:none; }
+/* Image viewer: navigate the six records without repeatedly opening and closing them. */
+.dialog-toolbar { z-index:2; }
+.dialog-controls { display:flex; gap:8px; align-items:center; flex-wrap:wrap; padding:8px 16px; border-bottom:1px solid var(--rule); }
+.dialog-controls button { min-height:44px; min-width:44px; padding:6px 12px; border:1px solid var(--rule); border-radius:3px; background:var(--surface); font-size:var(--meta); }
+.dialog-controls button:disabled { opacity:.4; cursor:default; }
+.dialog-counter { font-size:var(--meta); margin-right:auto; font-variant-numeric:tabular-nums; }
+.dialog-canvas { max-height:calc(100dvh - 210px); overflow:auto; overscroll-behavior:contain; padding:12px; }
+.dialog-canvas .dialog-image { margin:0 auto; }
+.image-dialog.is-zoomed .dialog-image { max-width:none; width:var(--zoom-width,640px); margin-left:0; }
+.image-dialog.is-qr .dialog-canvas { padding:24px; }
+.image-dialog.is-qr .dialog-image { width:min(320px,100%); }
+.back-top { position:fixed; right:20px; bottom:20px; z-index:19; width:44px; height:44px; border:1px solid #ba9da7; border-radius:50%; background:var(--surface); color:var(--navy); box-shadow:0 4px 18px #142a401c; font-size:1.25rem; }
+@media(min-width:137.5rem) { .hero { padding-block:36px 44px; } }
+@media(max-width:68.75rem) { .course-layout { grid-template-columns:minmax(0,1.6fr) minmax(240px,1fr); gap:20px; } .course-panel { padding:22px; } }
+@media(max-width:63.99rem) { .course-layout { grid-template-columns:1fr; } .course-layout .lab-entry { display:grid; grid-template-columns:minmax(0,1fr) auto; } .course-layout .lab-entry::before { display:none; } .course-layout .lab-entry h3,.course-layout .lab-entry .kicker { padding-right:0; } }
+@media(max-width:53.75rem) { :root { --header-height:60px; } .nav-links { display:none; } .nav { min-height:60px; } }
+@media(max-width:47.99rem) {
+ :root { --explore-height:62px; }
+ .hero { padding-block:24px; gap:16px; }
+ .hero-copy { gap:0; }
+ .hero-biography { font-size:var(--body); }
+ .hero-biography p+p { margin-top:10px; }
+ .explore-tabs { gap:3px; padding-block:7px; width:calc(100% - 24px); }
+ .explore-tabs a { min-height:44px; padding:8px 4px; font-size:.875rem; }
+ .explore-tabs .tab-short { display:inline; }
+ .explore-tabs .tab-full { display:none; }
+ .explore-panel .section-space,.explore-panel .band { padding-block:26px; }
+ .explore-panel .section-head { gap:12px; }
+ .featured-inline { margin-top:18px; }
+ .featured-inline .featured-course-inner { grid-template-columns:minmax(0,1fr) 56px; gap:10px 12px; padding:18px; }
+ .featured-inline .featured-course-copy { grid-column:1; }
+ .featured-inline .course-poster { grid-column:2; width:56px; }
+ .featured-inline .featured-course-copy h2 { display:block; }
+ .featured-inline .course-enquire { grid-column:1/-1; min-height:36px; border-top:1px solid var(--rule); padding-top:8px; }
+ .course-schedule { display:block; margin-top:8px; }
+ .course-schedule span { display:block; }
+ .course-layout { gap:18px; margin-top:18px; }
+ .course-panel { padding:20px 18px; }
+ .course-tabs button { padding:12px 4px; min-height:50px; font-size:.875rem; }
+ .syllabus summary { font-size:var(--body); }
+ .course-layout .lab-entry { display:block; padding:20px; }
+ .course-layout .lab-entry::before { display:block; width:74px; height:46px; }
+ .course-layout .lab-entry h3,.course-layout .lab-entry .kicker { padding-right:70px; }
+ .course-layout .lab-entry .btn { margin-top:16px; width:100%; }
+ .course-layout .lab-note { display:none; }
+ .score-disclosure summary { gap:4px 12px; }
+ .score-disclosure summary>span { font-size:.875rem; }
+ [data-view="record"] .student-shot { flex-basis:calc(100% - 28px); max-width:280px; }
+ [data-view="record"] .student-shot>a { height:300px; }
+ .school-records { margin-top:18px; }
+ .school-records>div,.school-records>div:first-child { padding-block:14px; }
+ .planning-grid { margin-top:20px; gap:22px; }
+ .planning-grid>article+article { padding-top:22px; }
+ .browse-footer { gap:4px 12px; padding-block:10px; }
+ .browse-footer .share-section { width:100%; border:0; background:transparent; padding-block:6px; }
+ .browse-footer .copy-status { text-align:left; }
+ .site-footer { align-items:flex-start; gap:8px; flex-wrap:wrap; }
+ .site-footer>div,.site-footer nav { gap:16px; }
+ .contact-dialog { width:calc(100% - 20px); max-height:calc(100dvh - 20px); }
+ .contact-dialog .contact-toolbar { padding:8px 18px; }
+ .contact-dialog .contact-section { padding:20px; }
+ .contact-dialog .contact-grid { grid-template-columns:1fr; gap:22px; }
+ .contact-dialog .contact-copy .kicker { display:none; }
+ .contact-dialog .contact-copy h2 { font-size:1.5rem; }
+ .contact-dialog .contact-copy>p:not(.kicker) { margin-top:10px; }
+ .contact-dialog .qr-item { padding:14px; }
+ .contact-dialog .qr-item img { width:96px; height:96px; }
+ .contact-dialog .qr-item .copy-button { margin-left:0; }
+ .contact-dialog .copy-status { padding-inline:20px; }
+ .dialog-toolbar { padding:8px 12px; }
+ .dialog-controls { padding:8px 12px; gap:6px; }
+ .back-top { right:10px; bottom:14px; }
+}
+@media(prefers-reduced-motion:reduce) { .is-tabbed .explore-panel { animation:none; } }
+@media print {
+ .explore-bar,.browse-footer,.back-top,.copy-button,.contact-toolbar,.contact-fallback-note { display:none!important; }
+ .is-tabbed .explore-panel[hidden] { display:block!important; }
+ .contact-dialog { display:block!important; position:static; width:100%; max-height:none; overflow:visible; border:0; }
+ .contact-dialog .contact-grid { display:grid; }
+ .course-layout { display:block; }
+ .dialog-canvas,.inquiry-tools,.image-dialog { display:none!important; }
+}
+
+.no-js .course-tabs { display:none; }
