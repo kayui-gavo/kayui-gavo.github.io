@@ -203,13 +203,6 @@ body { overflow-wrap:break-word; }
 a,button,input,select,summary { touch-action:manipulation; }
 :focus-visible { outline:2px solid #96723e; outline-offset:4px; }
 .hero-biography { border-left:0; padding-left:0; }
-.hero-appointment { display:grid; grid-template-columns:32px minmax(0,1fr); gap:12px; margin-top:18px; padding:14px 16px 8px; border:1px solid #d9cec6; border-left:3px solid #aa8790; border-radius:4px 10px 10px 4px; background:linear-gradient(110deg,#eee4e380,#fbfaf7c4); }
-.appointment-icon { display:grid; place-items:center; width:32px; height:36px; color:var(--navy); }
-.hero-appointment p { font-size:1rem; line-height:1.75; }
-.office-title { display:inline-block; max-width:100%; }
-.appointment-link { display:inline-flex; align-items:center; gap:12px; min-height:44px; color:var(--navy); font-size:var(--meta); text-decoration:underline; text-decoration-color:#c8b3b4; text-underline-offset:5px; }
-.appointment-link span { transition:transform .18s var(--ui-ease); }
-.appointment-link:hover span { transform:translateX(3px); }
 .quick-menu { display:none; }
 .quick-menu-panel a { display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:48px; padding:10px 14px; font-size:1rem; border-radius:6px; color:var(--navy); }
 .quick-menu-panel a:hover,.quick-menu-panel a[aria-current="location"] { background:#ede4e2; }
@@ -295,9 +288,6 @@ a,button,input,select,summary { touch-action:manipulation; }
  .quick-menu-panel { position:fixed; top:calc(var(--header-height) + 8px); left:16px; right:16px; width:auto; max-width:400px; margin-left:auto; padding:8px; border:1px solid #d4c3b6; border-radius:10px; background:var(--surface); box-shadow:0 16px 46px #12365f24; }
 }
 @media(max-width:47.99rem) {
- .hero-appointment { grid-template-columns:24px minmax(0,1fr); gap:8px; padding:12px 12px 4px; margin-top:14px; }
- .appointment-icon { width:24px; height:30px; }
- .hero-appointment p { font-size:1rem; line-height:1.75; }
  .hero-biography { padding:0; }
  .hero-biography p+p { margin-top:12px; }
  .explore-tabs { gap:4px; }
@@ -330,8 +320,6 @@ a,button,input,select,summary { touch-action:manipulation; }
 @media(max-width:22.49rem) {
  .quick-menu summary span { display:none; }
  .nav { gap:8px; }
- .hero-appointment { display:block; }
- .appointment-icon { display:none; }
  .contact-dialog .contact-section { padding:14px; }
  .contact-dialog .qr-item img { width:88px; height:88px; }
 }
@@ -340,7 +328,4 @@ a,button,input,select,summary { touch-action:manipulation; }
 }
 @media print {
  .quick-menu,.view-icon,.wave-preview { display:none!important; }
- .hero-appointment { break-inside:avoid; }
- .hero-appointment a { display:none; }
- .hero-appointment { box-shadow:none; background:none; }
 }
